@@ -1,0 +1,13 @@
+.mainMenu {
+  &__list {
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  &__link {
+    padding: 0 5px;
+    &_active {
+      color: red;
+    }
+  }
+}
