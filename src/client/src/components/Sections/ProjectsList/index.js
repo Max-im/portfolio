@@ -3,23 +3,28 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import ProjectItem from "../../Items/ProjectItem";
+import { getProjects } from "../../../store/actions/projectes";
 
-export class index extends Component {
+export class ProjectsList extends Component {
+  componentDidMount() {
+    this.props.getProjects();
+  }
+
   static propTypes = {
     portfolio: PropTypes.object.isRequired
   };
 
   render() {
-    const { projects } = this.props.portfolio;
+    const { projects, loading } = this.props.portfolio;
 
     return (
       <section className="projectsList">
         <h3 className="projectsList__title">Projects list</h3>
 
         <div className="projectsList__body">
-          {projects.map(item => (
-            <ProjectItem item={item} key={item.id} />
-          ))}
+          {loading
+            ? "Loading..."
+            : projects.map(item => <ProjectItem item={item} key={item.id} />)}
         </div>
       </section>
     );
@@ -32,5 +37,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
-)(index);
+  { getProjects }
+)(ProjectsList);
