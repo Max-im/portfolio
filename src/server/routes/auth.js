@@ -21,7 +21,7 @@ router.post("/", async (req, res, next) => {
       "INSERT INTO users(name, email, gId, avatar) VALUES ($1, $2, $3, $4) RETURNING isAdmin",
       [name, email, gId, avatar]
     )
-    .then(({ rows }) => res.json({ ...req.body, isAdmin: rows[0].isadmin }))
+    .then(({ rows }) => res.json({ ...req.body, isadmin: rows[0].isadmin }))
     .catch(err => next(err));
 });
 
