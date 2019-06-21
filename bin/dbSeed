@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export PGPASSWORD='max'
+
+db="portfolio"
+
+echo "start initing DB $db"
+
+dropdb -U max portfolio
+createdb -U max portfolio
+
+psql -U max portfolio < './src/server/db/dump.sql'
+
+echo "db $db configured"
