@@ -24,13 +24,16 @@ export class AuthMenu extends Component {
             <i className="fas fa-sign-out-alt authMenu__out" onClick={logout} />
           </div>
         ) : (
-          <GoogleLogin
-            clientId={process.env.REACT_APP_CLIENT_ID}
-            buttonText=""
-            onSuccess={this.props.onLogin}
-            onFailure={this.props.onLoginError}
-            cookiePolicy={"single_host_origin"}
-          />
+          <div className="authMenu__login">
+            <GoogleLogin
+              clientId={process.env.REACT_APP_CLIENT_ID}
+              buttonText=""
+              className="authMenu__loginBtn"
+              onSuccess={this.props.onLogin}
+              onFailure={this.props.onLoginError}
+              cookiePolicy={"single_host_origin"}
+            />
+          </div>
         )}
       </div>
     );

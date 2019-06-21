@@ -1,13 +1,22 @@
 .authMenu {
-  &__btn {
+  &__login {
+    height: 100%;
+    display: flex;
+  }
+  &__loginBtn {
+    box-shadow: none !important;
+    & > div {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
   }
   &__user {
     display: flex;
     align-items: center;
-    height: 30px;
+    height: 100%;
   }
   &__ava {
-    width: 25px;
+    width: 28px;
     border-radius: 50%;
     margin: 0 10px 0 0;
   }
