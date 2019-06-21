@@ -1,9 +1,21 @@
+-- PROJECTS
 CREATE TABLE projects
 (
     id serial,
     title CHARACTER varying(64),
     description CHARACTER varying(64),
     picture CHARACTER varying(256)
+);
+
+-- AUTH
+CREATE TABLE users
+(
+    id serial,
+    name CHARACTER varying(64),
+    email CHARACTER varying(64),
+    gId CHARACTER varying(64),
+    avatar CHARACTER varying(256),
+    isAdmin BOOLEAN DEFAULT false
 );
 
 
@@ -18,4 +30,5 @@ VALUES
     ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
     ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
     ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV');
+
 

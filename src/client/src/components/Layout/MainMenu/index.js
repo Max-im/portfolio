@@ -13,21 +13,21 @@ export default function index() {
             className="mainMenu__link"
             activeClassName="mainMenu__link_active"
           >
-            home
+            <i className="fas fa-home mainMenu__icon" />
           </NavLink>
           <NavLink
             to="/resume"
             className="mainMenu__link"
             activeClassName="mainMenu__link_active"
           >
-            resume
+            <i className="fas fa-user-tie mainMenu__icon" />
           </NavLink>
           <NavLink
             to="/portfolio"
             className="mainMenu__link"
             activeClassName="mainMenu__link_active"
           >
-            portfolio
+            <i className="fas fa-palette mainMenu__icon" />
           </NavLink>
         </li>
       </ul>

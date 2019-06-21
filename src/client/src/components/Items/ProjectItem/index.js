@@ -9,7 +9,7 @@ export default function index({ item }) {
       <div className="projectItem__body">
         <h5 className="projectItem__title">{item.title}</h5>
         <p className="projectItem__description">{item.description}</p>
-        <Link className="projectItem__btn" to={item.picture}>
+        <Link className="projectItem__btn" to={"/portfolio/project/" + item.id}>
           Show
         </Link>
       </div>
