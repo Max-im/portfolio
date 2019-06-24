@@ -11,9 +11,7 @@ export default function index({ contact }) {
             src={contact.contact_picture}
             alt={contact.contact_title}
           />
-          <p>
-            {contact.contact_title} {contact.contact_value}
-          </p>
+          <p>{contact.contact_value}</p>
         </>
       ) : (
         <>
