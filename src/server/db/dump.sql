@@ -198,3 +198,24 @@ VALUES
 
 
 
+-- EDUCATION
+-- ======================================================================================
+-- init
+CREATE TABLE education
+(
+    id SERIAL PRIMARY KEY,
+    edu_photo CHARACTER varying(64),
+    edu_title CHARACTER varying(64),
+    edu_description CHARACTER varying(64)
+);
+
+-- insert
+INSERT INTO education
+    (edu_photo, edu_title, edu_description)
+VALUES
+    ('https://max-im.github.io/img/experience/donNu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
+-- ======================================================================================
+
+
+
+

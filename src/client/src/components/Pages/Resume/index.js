@@ -4,6 +4,7 @@ import Contacts from "../../Sections/Contacts";
 import Skills from "../../Sections/Skills";
 import Experience from "../../Sections/Experience";
 import Summary from "../../Sections/Summary";
+import Education from "../../Sections/Education";
 
 export default function index() {
   return (
@@ -23,6 +24,7 @@ export default function index() {
       <Experience />
 
       {/* education */}
+      <Education />
     </div>
   );
 }

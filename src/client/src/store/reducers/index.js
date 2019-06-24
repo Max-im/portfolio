@@ -6,6 +6,7 @@ import skills from "./skills";
 import contacts from "./contacts";
 import experience from "./experience";
 import summary from "./summary";
+import education from "./education";
 
 export default combineReducers({
   general,
@@ -14,5 +15,6 @@ export default combineReducers({
   skills,
   contacts,
   experience,
-  summary
+  summary,
+  education
 });

@@ -14,3 +14,6 @@ export const LOAD_EXP = "LOAD_EXP";
 
 export const SET_SUMMARY = "SET_SUMMARY";
 export const LOAD_SUMMARY = "LOAD_SUMMARY";
+
+export const SET_EDU = "SET_EDU";
+export const LOAD_EDU = "LOAD_EDU";
