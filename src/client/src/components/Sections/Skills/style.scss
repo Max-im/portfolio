@@ -1,0 +1,15 @@
+.skills {
+  &__category {
+    margin: 15px 0 5px 0;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    padding: 3px 5px;
+    box-sizing: border-box;
+  }
+}

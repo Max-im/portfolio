@@ -16,43 +16,28 @@ export class index extends Component {
 
   render() {
     const { skills, loading } = this.props.skills;
-    const categories = skills
-      .map(item => item.category)
-      .filter((v, i, a) => a.indexOf(v) === i);
 
     return (
-      <section className="section">
+      <section className="section skills">
         <h3 className="section__title">Skills</h3>
-
-        {/* <ul>
-          {loading
-            ? "Loading..."
-            : categories.map(category => (
-                <li key={category}>
-                  <h5>{category}</h5>
-                  <ul>
-                    {skills
-                      .filter(item => item.category === category)
-                      .map(item => (
-                        <li key={item.id}>
-                          <img src={item.picture} alt={item.skill} />
-                        </li>
-                      ))}
-                  </ul>
-                </li>
-              ))}
-        </ul> */}
 
         <ul>
           {loading
             ? "Loading..."
-            : skills.map((item, i) => (
-                <li key={item.id}>
-                  {skills[i + 1] &&
-                    skills[i + 1].category !== item.category && (
-                      <h5>{item.category}</h5>
-                    )}
-                  <img src={item.picture} alt={item.skill} />
+            : Object.keys(skills).map(category => (
+                <li key={category}>
+                  <h5 className="skills__category">{category}</h5>
+                  <ul className="skills__list">
+                    {skills[category].map(skill => (
+                      <li key={skill.id} className="skills__item">
+                        <img
+                          className="skills__img"
+                          src={skill.picture}
+                          alt={skill.skill}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
         </ul>
