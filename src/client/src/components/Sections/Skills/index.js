@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getSkills } from "../../../store/actions/skills";
 import "./style.scss";
+import SkillItem from "../../Items/SkillItem";
 
 export class index extends Component {
   componentDidMount() {
@@ -29,13 +30,7 @@ export class index extends Component {
                   <h5 className="skills__category">{category}</h5>
                   <ul className="skills__list">
                     {skills[category].map(skill => (
-                      <li key={skill.id} className="skills__item">
-                        <img
-                          className="skills__img"
-                          src={skill.picture}
-                          alt={skill.skill}
-                        />
-                      </li>
+                      <SkillItem key={skill.id} skill={skill} />
                     ))}
                   </ul>
                 </li>
