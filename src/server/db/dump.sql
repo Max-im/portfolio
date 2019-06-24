@@ -65,9 +65,10 @@ VALUES
     ('Database'),
     ('Tests'),
     ('Other');
-
-
 -- ======================================================================================
+
+
+
 
 -- SKILLS
 -- ======================================================================================
@@ -169,12 +170,30 @@ VALUES
     ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '09.2014', '01.2018', false, 'https://max-im.github.io/img/experience/chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
     ('JS Developer', 'iDeals solutions', '01.208', '', true, 'https://is4-ssl.mzstatic.com/image/thumb/Purple49/v4/4f/87/a3/4f87a3be-b6e9-49e3-d6e9-2f92c7340775/source/256x256bb.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
 
-    
+
 -- ======================================================================================
 
 
 
 
+
+-- SUMMARY RESUME
+-- ======================================================================================
+-- init
+CREATE TABLE summary
+(
+    id SERIAL PRIMARY KEY,
+    photo CHARACTER varying(64),
+    name CHARACTER varying(64),
+    summary CHARACTER varying(128)
+);
+
+-- insert
+INSERT INTO summary
+    (photo, name, summary)
+VALUES
+    ('https://max-im.github.io/img/myPhoto.jpg', 'Maxim Pozhidayev', 'I am a javaScript developer');
+-- ======================================================================================
 
 
 

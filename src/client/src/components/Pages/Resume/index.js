@@ -3,6 +3,7 @@ import "./style.scss";
 import Contacts from "../../Sections/Contacts";
 import Skills from "../../Sections/Skills";
 import Experience from "../../Sections/Experience";
+import Summary from "../../Sections/Summary";
 
 export default function index() {
   return (
@@ -10,6 +11,7 @@ export default function index() {
       <h1 className="page__title">resume</h1>
 
       {/* summary */}
+      <Summary />
 
       {/* contacts */}
       <Contacts />

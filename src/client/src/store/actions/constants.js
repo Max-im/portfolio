@@ -11,3 +11,6 @@ export const LOAD_CONTACTS = "LOAD_CONTACTS";
 
 export const SET_EXP = "SET_EXP";
 export const LOAD_EXP = "LOAD_EXP";
+
+export const SET_SUMMARY = "SET_SUMMARY";
+export const LOAD_SUMMARY = "LOAD_SUMMARY";

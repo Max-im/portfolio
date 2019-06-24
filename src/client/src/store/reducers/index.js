@@ -5,6 +5,7 @@ import auth from "./auth";
 import skills from "./skills";
 import contacts from "./contacts";
 import experience from "./experience";
+import summary from "./summary";
 
 export default combineReducers({
   general,
@@ -12,5 +13,6 @@ export default combineReducers({
   auth,
   skills,
   contacts,
-  experience
+  experience,
+  summary
 });
