@@ -17,3 +17,6 @@ export const LOAD_SUMMARY = "LOAD_SUMMARY";
 
 export const SET_EDU = "SET_EDU";
 export const LOAD_EDU = "LOAD_EDU";
+
+export const GET_PROJECT = "GET_PROJECT";
+export const LOAD_PROJECT = "LOAD_PROJECT";

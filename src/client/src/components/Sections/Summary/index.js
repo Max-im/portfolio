@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "./style.scss";
 import { getSummary } from "../../../store/actions/summary";
+import "./style.scss";
 
 export class index extends Component {
   componentDidMount() {
@@ -15,13 +15,21 @@ export class index extends Component {
   };
 
   render() {
-    const { photo, summary, name } = this.props.summary;
+    const { photo, summary, name, loading } = this.props.summary;
     return (
-      <section className="section">
+      <section className="section summary">
         <h3 className="section__title">Summary</h3>
-        <img src={photo} alt={name} />
-        <p>{name}</p>
-        <p>{summary}</p>
+        {loading ? (
+          "Loading..."
+        ) : (
+          <>
+            <div className="summary__body">
+              <img src={photo} alt={name} className="summary__img" />
+              <p className="summary__name">{name}</p>
+            </div>
+            <p className="summary__text">{summary}</p>
+          </>
+        )}
       </section>
     );
   }

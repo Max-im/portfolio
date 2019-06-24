@@ -1,0 +1,15 @@
+.summary {
+  &__body {
+    display: flex;
+  }
+  &__img {
+    width: 70px;
+    margin: 0 10px 0 0;
+  }
+  &__name {
+    font-size: 18px;
+  }
+  &__text {
+    margin: 15px 0 0 0;
+  }
+}
