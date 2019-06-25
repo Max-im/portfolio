@@ -5,26 +5,29 @@ import Skills from "../../Sections/Skills";
 import Experience from "../../Sections/Experience";
 import Summary from "../../Sections/Summary";
 import Education from "../../Sections/Education";
+import PageTitle from "../../Common/PageTitle";
 
 export default function index() {
   return (
-    <div className="page container">
-      <h1 className="page__title">resume</h1>
+    <div className="page">
+      <PageTitle text="resume" />
 
-      {/* summary */}
-      <Summary />
+      <div className="container">
+        {/* summary */}
+        <Summary />
 
-      {/* contacts */}
-      <Contacts />
+        {/* contacts */}
+        <Contacts />
 
-      {/* skills */}
-      <Skills />
+        {/* skills */}
+        <Skills />
 
-      {/* experience */}
-      <Experience />
+        {/* experience */}
+        <Experience />
 
-      {/* education */}
-      <Education />
+        {/* education */}
+        <Education />
+      </div>
     </div>
   );
 }

@@ -5,8 +5,21 @@ const router = Router();
 
 router.get("/", (req, res, next) => {
   client
-    .query("SELECT * FROM projects")
-    .then(({ rows }) => res.json(rows))
+    .query(
+      `SELECT projects.id, title, description, picture, skill_picture 
+              FROM projects 
+              JOIN projects_skills ON projects_skills.project_id = projects.id 
+              JOIN skills ON skills.id = projects_skills.skill_id`
+    )
+    .then(({ rows }) => {
+      const result = {};
+      rows.forEach(item => {
+        if (!result[item.id])
+          result[item.id] = { ...item, skill_picture: [item.skill_picture] };
+        else result[item.id].skill_picture.push(item.skill_picture);
+      });
+      res.json(Object.keys(result).map(key => result[key]));
+    })
     .catch(err => next(err));
 });
 

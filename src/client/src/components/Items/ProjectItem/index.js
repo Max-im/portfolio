@@ -9,6 +9,17 @@ export default function index({ item }) {
       <div className="projectItem__body">
         <h5 className="projectItem__title">{item.title}</h5>
         <p className="projectItem__description">{item.description}</p>
+        <ul className="projectItem__skills">
+          {item.skill_picture.map((skill_src, i) => (
+            <li className="projectItem__skill" key={i}>
+              <img
+                src={skill_src}
+                alt="skill"
+                className="projectItem__skillImg"
+              />
+            </li>
+          ))}
+        </ul>
         <Link className="projectItem__btn" to={"/portfolio/project/" + item.id}>
           Show
         </Link>

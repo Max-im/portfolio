@@ -1,0 +1,18 @@
+.theTitle {
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  background: #fdd835;
+  height: 400px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-transform: capitalize;
+  max-height: 70%;
+  &__container {
+    display: flex;
+    height: 100%;
+  }
+  &__text {
+    margin: auto;
+  }
+}

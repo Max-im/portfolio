@@ -18,16 +18,14 @@ function App() {
       <div className="app">
         <Header />
         <main className="main">
-          <div className="container">
-            <Route exact path="/" component={Home} />
-            <Route path="/resume" component={Resume} />
-            <Route exact path="/portfolio" component={Portfolio} />
-            <Route path="/portfolio/project/:id" component={SingleProject} />
+          <Route exact path="/" component={Home} />
+          <Route path="/resume" component={Resume} />
+          <Route exact path="/portfolio" component={Portfolio} />
+          <Route path="/portfolio/project/:id" component={SingleProject} />
 
-            <Switch>
-              <AdminRoute path="/admin" component={Admin} />
-            </Switch>
-          </div>
+          <Switch>
+            <AdminRoute path="/admin" component={Admin} />
+          </Switch>
         </main>
         <Footer />
       </div>

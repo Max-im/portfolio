@@ -17,7 +17,6 @@ export class index extends Component {
 
   render() {
     const { edu, loading } = this.props.education;
-    console.log(edu);
     return (
       <section className="section">
         <h3 className="section__title">Education</h3>

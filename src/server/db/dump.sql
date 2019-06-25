@@ -23,6 +23,9 @@ VALUES
 
 
 
+
+
+
 -- AUTH
 -- ======================================================================================
 -- init
@@ -77,14 +80,14 @@ CREATE TABLE skills
 (
     id SERIAL PRIMARY KEY,
     skill CHARACTER varying(64),
-    picture CHARACTER varying(128),
+    skill_picture CHARACTER varying(128),
     category_id INTEGER REFERENCES skills_categories(id)
 );
 
 
 -- insert
 INSERT INTO skills
-    (skill, category_id, picture)
+    (skill, category_id, skill_picture)
 VALUES
     ('angular', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/angular.png?raw=true'),
     ('react', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/react.png?raw=true'),
@@ -113,6 +116,40 @@ VALUES
     ('opengraph', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/openGraph.png?raw=true'),
     ('schema', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/schema.png?raw=true');
 
+-- ======================================================================================
+
+
+-- PROJECTS_SKILLS
+-- ======================================================================================
+-- init
+CREATE TABLE projects_skills
+(
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(id),
+    skill_id INTEGER REFERENCES skills(id)
+);
+
+-- insert
+INSERT INTO projects_skills
+    (project_id, skill_id)
+VALUES
+    (1, 2),
+    (1, 3),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (2, 1),
+    (2, 7),
+    (2, 8),
+    (2, 9),
+    (3, 4),
+    (3, 10),
+    (3, 11),
+    (4, 5),
+    (4, 15),
+    (5, 2),
+    (5, 3),
+    (5, 12);
 -- ======================================================================================
 
 
