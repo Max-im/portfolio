@@ -17,7 +17,7 @@ export const getProject = id => (dispatch, getState) => {
   const { portfolio } = getState();
   //   return data from store
   if (portfolio.projects.length > 0) {
-    const theProject = portfolio.projects.find(item => item.id === id);
+    const theProject = portfolio.projects.find(item => item.id == id);
     dispatch({ type: GET_PROJECT, payload: theProject });
     dispatch({ type: LOAD_PROJECTS, payload: false });
   }

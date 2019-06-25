@@ -31,6 +31,13 @@ export class index extends Component {
           <div>
             <img src={project.picture} />
             <p>{project.description}</p>
+            <ul>
+              {project.skill_picture.map((skill_src, i) => (
+                <li key={i}>
+                  <img src={skill_src} alt="" />
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </section>
