@@ -50,7 +50,7 @@ export const attachComments = (req, res, next) => {
   Promise.all(
     projectsWithSkills.map(item =>
       client.query(
-        `SELECT c.id, c.text, u.avatar, u.name FROM comments AS c JOIN users AS u ON u.id = c.author_id WHERE project_id=$1`,
+        `SELECT c.id, c.text, u.avatar, u.name FROM comments AS c  JOIN users AS u ON u.id = c.author_id WHERE project_id=$1 ORDER BY c.id DESC`,
         [item.id]
       )
     )

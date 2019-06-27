@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import Comment from "../../Items/Comment";
+import AddComment from "../../Control/AddComment";
 
 export class index extends Component {
   static propTypes = {
@@ -18,11 +19,14 @@ export class index extends Component {
         {!isReady ? (
           "loading..."
         ) : (
-          <ul>
-            {project.comments.map(comment => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
-          </ul>
+          <>
+            <AddComment />
+            <ul>
+              {project.comments.map(comment => (
+                <Comment comment={comment} key={comment.id} />
+              ))}
+            </ul>
+          </>
         )}
       </section>
     );
