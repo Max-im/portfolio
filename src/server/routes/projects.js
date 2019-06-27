@@ -1,10 +1,9 @@
 import { Router } from "express";
-import client from "../db";
 import {
   getAllProjects,
   getProjectById,
-  attachSkillsToProject,
-  returnProjects
+  attachSkills,
+  attachComments
 } from "../controllers/projects";
 
 const router = Router();
@@ -12,15 +11,21 @@ const router = Router();
 /**
  * @method GET
  * @access public
- * @description get all projects, attach skills data into the projects, return to frontend
+ * @description get all projects, attach skills, return to frontend
  */
-router.get("/", getAllProjects, attachSkillsToProject, returnProjects);
+router.get("/", getAllProjects, attachSkills, (req, res) => {
+  const { projectsWithSkills } = req.body;
+  res.json(projectsWithSkills);
+});
 
 /**
  * @method GET
  * @access public
- * @description get cretain project by id, attach skills data into the project, return to frontend
+ * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
-router.get("/:id", getProjectById, attachSkillsToProject, returnProjects);
+router.get("/:id", getProjectById, attachSkills, attachComments, (req, res) => {
+  const { projectsWithComments } = req.body;
+  res.json(projectsWithComments);
+});
 
 module.exports = router;

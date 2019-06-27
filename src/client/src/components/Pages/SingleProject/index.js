@@ -1,7 +1,8 @@
 import React from "react";
-import SingleProjectCommon from "../../Sections/SingleProjectCommon";
 import "./style.scss";
 import PageTitle from "../../Common/PageTitle";
+import SingleProjectCommon from "../../Sections/SingleProjectCommon";
+import Comments from "../../Sections/Comments";
 
 export default function index() {
   return (
@@ -13,6 +14,7 @@ export default function index() {
         {/* rate */}
         {/* admin */}
         {/* comments */}
+        <Comments />
       </div>
     </div>
   );

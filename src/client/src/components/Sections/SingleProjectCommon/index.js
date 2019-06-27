@@ -32,9 +32,9 @@ export class index extends Component {
             <img src={project.picture} />
             <p>{project.description}</p>
             <ul>
-              {project.skill_picture.map((skill_src, i) => (
-                <li key={i}>
-                  <img src={skill_src} alt="" />
+              {project.skills.map(skill => (
+                <li key={skill.id}>
+                  <img src={skill.picture} alt={skill.title} />
                 </li>
               ))}
             </ul>

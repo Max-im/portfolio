@@ -2,12 +2,7 @@ import client from "../db";
 
 export const getAllProjects = (req, res, next) => {
   client
-    .query(
-      `SELECT p.id, title, description, picture, skill_picture
-              FROM projects AS p
-              JOIN projects_skills AS ps ON ps.project_id = p.id
-              JOIN skills ON skills.id = ps.skill_id`
-    )
+    .query(`SELECT id, title, description, picture FROM projects ORDER BY id`)
     .then(({ rows }) => {
       req.body.projects = rows;
       next();
@@ -17,14 +12,9 @@ export const getAllProjects = (req, res, next) => {
 
 export const getProjectById = (req, res, next) => {
   client
-    .query(
-      `SELECT p.id, title, description, picture, skill_picture 
-                FROM projects AS p
-                JOIN projects_skills AS ps ON ps.project_id = p.id 
-                JOIN skills ON skills.id = ps.skill_id 
-                WHERE p.id=$1`,
-      [req.params.id]
-    )
+    .query(`SELECT id, title, description, picture FROM projects WHERE id=$1`, [
+      req.params.id
+    ])
     .then(({ rows }) => {
       req.body.projects = rows;
       next();
@@ -32,19 +22,45 @@ export const getProjectById = (req, res, next) => {
     .catch(err => next(err));
 };
 
-export const attachSkillsToProject = (req, res, next) => {
+export const attachSkills = (req, res, next) => {
   const { projects } = req.body;
-  const result = {};
-  projects.forEach(item => {
-    if (!result[item.id])
-      result[item.id] = { ...item, skill_picture: [item.skill_picture] };
-    else result[item.id].skill_picture.push(item.skill_picture);
-  });
-  req.body.formatedProjects = Object.keys(result).map(key => result[key]);
-  next();
+
+  Promise.all(
+    projects.map(item =>
+      client.query(
+        `SELECT skill_id AS id, skill_picture AS picture, s.skill AS title
+          FROM projects_skills AS ps 
+          JOIN skills AS s ON s.id = ps.skill_id 
+          WHERE ps.project_id = $1 `,
+        [item.id]
+      )
+    )
+  )
+    .then(resp => {
+      const result = projects.map((p, i) => ({ ...p, skills: resp[i].rows }));
+      req.body.projectsWithSkills = result;
+      next();
+    })
+    .catch(err => next(err));
 };
 
-export const returnProjects = (req, res) => {
-  const { formatedProjects } = req.body;
-  res.json(formatedProjects);
+export const attachComments = (req, res, next) => {
+  const { projectsWithSkills } = req.body;
+
+  Promise.all(
+    projectsWithSkills.map(item =>
+      client.query(
+        `SELECT c.id, c.text, u.avatar, u.name FROM comments AS c JOIN users AS u ON u.id = c.author_id WHERE project_id=$1`,
+        [item.id]
+      )
+    )
+  )
+    .then(resp => {
+      req.body.projectsWithComments = projectsWithSkills.map((proj, i) => ({
+        ...proj,
+        comments: resp[i].rows
+      }));
+      next();
+    })
+    .catch(err => next(err));
 };

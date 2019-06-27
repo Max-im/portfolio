@@ -10,11 +10,11 @@ export default function index({ item }) {
         <h5 className="projectItem__title">{item.title}</h5>
         <p className="projectItem__description">{item.description}</p>
         <ul className="projectItem__skills">
-          {item.skill_picture.map((skill_src, i) => (
-            <li className="projectItem__skill" key={i}>
+          {item.skills.map(skill => (
+            <li className="projectItem__skill" key={skill.id}>
               <img
-                src={skill_src}
-                alt="skill"
+                src={skill.picture}
+                alt={skill.title}
                 className="projectItem__skillImg"
               />
             </li>

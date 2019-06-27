@@ -1,31 +1,3 @@
--- PROJECTS
--- ======================================================================================
--- init
-CREATE TABLE projects
-(
-    id SERIAL PRIMARY KEY,
-    title CHARACTER varying(64),
-    description CHARACTER varying(64),
-    picture CHARACTER varying(256)
-);
-
--- insert
-INSERT INTO projects
-    (title, description, picture)
-VALUES
-    ('one', 'descr one', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
-    ('two', 'descr two', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
-    ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
-    ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV'),
-    ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV');
-
--- ======================================================================================
-
-
-
-
-
-
 -- AUTH
 -- ======================================================================================
 -- init
@@ -43,9 +15,71 @@ CREATE TABLE users
 INSERT INTO users
     (name, email, gid, avatar, isadmin)
 VALUES
-    ('Maxim Pogidaev', 'maxim.pogidaev@idealscorp.com', '110822060876468114858', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', true);
+    ('Maxim Pogidaev', 'maxim.pogidaev@idealscorp.com', '110822060876468114858', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', true),
+    ('User User', 'user.user@gmail.com', '110822060876468110000', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', false);
 
 -- ======================================================================================
+
+
+
+
+
+-- PROJECTS
+-- ======================================================================================
+-- init
+CREATE TABLE projects
+(
+    id SERIAL PRIMARY KEY,
+    title CHARACTER varying(64),
+    description CHARACTER varying(64),
+    picture CHARACTER varying(256),
+    author_id INTEGER REFERENCES users(id)
+);
+
+-- insert
+INSERT INTO projects
+    (title, description, picture, author_id)
+VALUES
+    ('one', 'descr one', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
+    ('two', 'descr two', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
+    ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
+    ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
+    ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1);
+
+-- ======================================================================================
+
+
+
+
+-- COMMENTS
+-- ======================================================================================
+-- init
+CREATE TABLE comments
+(
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(id),
+    author_id INTEGER REFERENCES users(id),
+    text CHARACTER varying(1024)
+);
+
+-- insert
+INSERT INTO comments
+    (project_id, author_id, text)
+VALUES
+    (1, 2, 'User first comment - project #1'),
+    (2, 2, 'User first comment - project #2'),
+    (3, 2, 'User first comment - project #3'),
+    (4, 2, 'User first comment - project #4'),
+    (5, 2, 'User first comment - project #5'),
+    (1, 1, 'Admin first comment - project #1'),
+    (2, 1, 'Admin first comment - project #2'),
+    (3, 1, 'Admin first comment - project #3'),
+    (4, 1, 'Admin first comment - project #4'),
+    (5, 1, 'Admin first comment - project #5');
+
+-- ======================================================================================
+
+
 
 
 
