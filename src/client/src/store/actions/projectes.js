@@ -14,12 +14,18 @@ export const getProjects = () => dispatch => {
 
 export const getProject = id => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
-
   axios
     .get(`/projects/${id}`)
     .then(({ data }) => {
       dispatch({ type: GET_PROJECT, payload: data[0] });
       dispatch({ type: LOAD_PROJECTS, payload: false });
     })
+    .catch(err => console.error(err));
+};
+
+export const addProject = projectData => dispatch => {
+  axios
+    .post("/projects", projectData)
+    .then(({ data }) => dispatch(getProjects()))
     .catch(err => console.error(err));
 };

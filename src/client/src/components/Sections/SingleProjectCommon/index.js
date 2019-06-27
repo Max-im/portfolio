@@ -29,12 +29,20 @@ export class index extends Component {
           "Loading..."
         ) : (
           <div>
-            <img src={project.picture} />
+            <img
+              src={project.picture}
+              alt={project.title}
+              className="aboutSingleProject__img"
+            />
             <p>{project.description}</p>
             <ul>
               {project.skills.map(skill => (
                 <li key={skill.id}>
-                  <img src={skill.picture} alt={skill.title} />
+                  <img
+                    src={skill.picture}
+                    alt={skill.title}
+                    className="aboutSingleProject__skill"
+                  />
                 </li>
               ))}
             </ul>

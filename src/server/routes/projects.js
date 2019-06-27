@@ -5,6 +5,7 @@ import {
   attachSkills,
   attachComments
 } from "../controllers/projects";
+import client from "../db";
 
 const router = Router();
 
@@ -26,6 +27,22 @@ router.get("/", getAllProjects, attachSkills, (req, res) => {
 router.get("/:id", getProjectById, attachSkills, attachComments, (req, res) => {
   const { projectsWithComments } = req.body;
   res.json(projectsWithComments);
+});
+
+/**
+ * @method POST
+ * @access private - admin
+ * @description create new project
+ */
+router.post("/", (req, res) => {
+  const { author_id, picture, title, description } = req.body;
+  client
+    .query(
+      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4)",
+      [author_id, picture, title, description]
+    )
+    .then(() => res.end())
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
