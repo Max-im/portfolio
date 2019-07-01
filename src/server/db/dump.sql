@@ -33,7 +33,8 @@ CREATE TABLE projects
     title CHARACTER varying(64),
     description CHARACTER varying(64),
     picture CHARACTER varying(256),
-    author_id INTEGER REFERENCES users(id)
+    author_id INTEGER REFERENCES users(id),
+    date date
 );
 
 -- insert
@@ -136,7 +137,6 @@ VALUES
     ('bootstrap', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bootstrap.png?raw=true'),
     ('ts', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/ts.png?raw=true'),
     ('node', 2, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/node.png?raw=true'),
-    ('ts', 2, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/ts.png?raw=true'),
     ('postgres', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/postgres.png?raw=true'),
     ('mongodb', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mongoDB.png?raw=true'),
     ('sequelize', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sequelize.png?raw=true'),

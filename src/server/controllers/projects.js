@@ -66,3 +66,54 @@ export const attachComments = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+export const deleteProjectSkills = (req, res, next) => {
+  const { id } = req.params;
+  client
+    .query("DELETE FROM projects_skills WHERE project_id=$1", [id])
+    .then(() => next())
+    .catch(err => next(err));
+};
+
+export const deleteProjectComments = (req, res, next) => {
+  const { id } = req.params;
+  client
+    .query("DELETE FROM comments WHERE project_id=$1", [id])
+    .then(() => next())
+    .catch(err => next(err));
+};
+
+export const deleteProject = (req, res, next) => {
+  const { id } = req.params;
+  client
+    .query("DELETE FROM projects WHERE id=$1", [id])
+    .then(() => next())
+    .catch(err => next(err));
+};
+
+export const createNewProject = (req, res, next) => {
+  const { author_id, picture, title, description } = req.body;
+  client
+    .query(
+      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4) RETURNING id",
+      [author_id, picture, title, description]
+    )
+    .then(({ rows }) => {
+      req.body.project_id = rows[0].id;
+      next();
+    })
+    .catch(err => next(err));
+};
+
+export const attachSkillsToNewProject = async (req, res, next) => {
+  const { skills, project_id } = req.body;
+  for (const skill_id of skills) {
+    await client
+      .query(
+        "INSERT INTO projects_skills(project_id, skill_id) VALUES ($1, $2)",
+        [project_id, skill_id]
+      )
+      .catch(err => next(err));
+  }
+  next();
+};

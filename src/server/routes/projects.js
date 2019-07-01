@@ -3,9 +3,15 @@ import {
   getAllProjects,
   getProjectById,
   attachSkills,
-  attachComments
+  attachComments,
+  deleteProjectSkills,
+  deleteProjectComments,
+  deleteProject,
+  createNewProject,
+  attachSkillsToNewProject
 } from "../controllers/projects";
-import client from "../db";
+import { checkAdminPermission } from "../controllers/permission";
+// import client from "../db";
 
 const router = Router();
 
@@ -32,45 +38,28 @@ router.get("/:id", getProjectById, attachSkills, attachComments, (req, res) => {
 /**
  * @method POST
  * @access private - admin
- * @description create new project
+ * @description create new project, attach skills to the created project
  */
-router.post("/", async (req, res, next) => {
-  const { author_id, picture, title, description, skills } = req.body;
-  // create project
-  const { rows } = await client
-    .query(
-      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4) RETURNING id",
-      [author_id, picture, title, description]
-    )
-    .catch(err => next(err));
+router.post(
+  "/",
+  checkAdminPermission,
+  createNewProject,
+  attachSkillsToNewProject,
+  (req, res) => res.end()
+);
 
-  const project_id = rows[0].id;
-
-  for (const skill_id of skills) {
-    await client
-      .query(
-        "INSERT INTO projects_skills(project_id, skill_id) VALUES ($1, $2)",
-        [project_id, skill_id]
-      )
-      .catch(err => next(err));
-  }
-
-  res.end();
-});
-
-router.delete("/:id", async (req, res, next) => {
-  const { id } = req.params;
-
-  // delete projects_skills
-  await client.query("DELETE FROM projects_skills WHERE project_id=$1", [id]);
-
-  // delete comments
-  await client.query("DELETE FROM comments WHERE project_id=$1", [id]);
-
-  // delete project
-  await client.query("DELETE FROM projects WHERE id=$1", [id]);
-
-  res.end();
-});
+/**
+ * @method DELETE
+ * @access private - admin
+ * @description delete projects_skills, delete projects comments, delete certain project
+ */
+router.delete(
+  "/:id",
+  checkAdminPermission,
+  deleteProjectSkills,
+  deleteProjectComments,
+  deleteProject,
+  (req, res) => res.end()
+);
 
 module.exports = router;
