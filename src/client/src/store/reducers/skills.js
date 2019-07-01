@@ -2,7 +2,7 @@ import { SET_SKILLS, LOAD_SKILLS } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  skills: []
+  skills: {}
 };
 
 export default (state = initialState, action) => {

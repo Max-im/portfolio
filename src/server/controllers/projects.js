@@ -2,7 +2,9 @@ import client from "../db";
 
 export const getAllProjects = (req, res, next) => {
   client
-    .query(`SELECT id, title, description, picture FROM projects ORDER BY id`)
+    .query(
+      `SELECT id, title, description, picture FROM projects ORDER BY id DESC`
+    )
     .then(({ rows }) => {
       req.body.projects = rows;
       next();

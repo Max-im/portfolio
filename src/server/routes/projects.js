@@ -34,15 +34,28 @@ router.get("/:id", getProjectById, attachSkills, attachComments, (req, res) => {
  * @access private - admin
  * @description create new project
  */
-router.post("/", (req, res) => {
-  const { author_id, picture, title, description } = req.body;
-  client
+router.post("/", async (req, res, next) => {
+  const { author_id, picture, title, description, skills } = req.body;
+  // create project
+  const { rows } = await client
     .query(
-      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4)",
+      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4) RETURNING id",
       [author_id, picture, title, description]
     )
-    .then(() => res.end())
-    .catch(err => console.log(err));
+    .catch(err => next(err));
+
+  const project_id = rows[0].id;
+
+  for (const skill_id of skills) {
+    await client
+      .query(
+        "INSERT INTO projects_skills(project_id, skill_id) VALUES ($1, $2)",
+        [project_id, skill_id]
+      )
+      .catch(err => next(err));
+  }
+
+  res.end();
 });
 
 router.delete("/:id", async (req, res, next) => {
