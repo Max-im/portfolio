@@ -3,6 +3,7 @@ import "./style.scss";
 import PageTitle from "../../Common/PageTitle";
 import SingleProjectCommon from "../../Sections/SingleProjectCommon";
 import Comments from "../../Sections/Comments";
+import SingleControl from "../../Sections/SingleControl";
 
 export default function index() {
   return (
@@ -13,6 +14,7 @@ export default function index() {
         {/* aside similar */}
         {/* rate */}
         {/* admin */}
+        <SingleControl />
         {/* comments */}
         <Comments />
       </div>

@@ -26,6 +26,13 @@ export const getProject = id => dispatch => {
 export const addProject = projectData => dispatch => {
   axios
     .post("/projects", projectData)
-    .then(({ data }) => dispatch(getProjects()))
+    .then(() => dispatch(getProjects()))
+    .catch(err => console.error(err));
+};
+
+export const deleteProject = id => dispatch => {
+  axios
+    .delete(`/projects/${id}`)
+    .then(() => dispatch(getProjects()))
     .catch(err => console.error(err));
 };

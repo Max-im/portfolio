@@ -45,4 +45,19 @@ router.post("/", (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.delete("/:id", async (req, res, next) => {
+  const { id } = req.params;
+
+  // delete projects_skills
+  await client.query("DELETE FROM projects_skills WHERE project_id=$1", [id]);
+
+  // delete comments
+  await client.query("DELETE FROM comments WHERE project_id=$1", [id]);
+
+  // delete project
+  await client.query("DELETE FROM projects WHERE id=$1", [id]);
+
+  res.end();
+});
+
 module.exports = router;

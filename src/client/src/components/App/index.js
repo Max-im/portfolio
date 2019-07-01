@@ -11,6 +11,7 @@ import Portfolio from "../Pages/Portfolio";
 import SingleProject from "../Pages/SingleProject";
 import Admin from "../Pages/Admin";
 import AdminRoute from "../Common/AdminRoute";
+import UpdateProject from "../Pages/UpdateProject";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           <Route path="/resume" component={Resume} />
           <Route exact path="/portfolio" component={Portfolio} />
           <Route path="/portfolio/project/:id" component={SingleProject} />
+          <AdminRoute
+            path="/portfolio/update-project/:id"
+            component={UpdateProject}
+          />
 
           <Switch>
             <AdminRoute path="/admin" component={Admin} />
