@@ -34,7 +34,7 @@ CREATE TABLE projects
     description CHARACTER varying(64),
     picture CHARACTER varying(256),
     author_id INTEGER REFERENCES users(id),
-    date date
+    date date DEFAULT CURRENT_TIMESTAMP
 );
 
 -- insert

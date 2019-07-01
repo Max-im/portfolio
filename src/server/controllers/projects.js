@@ -3,7 +3,7 @@ import client from "../db";
 export const getAllProjects = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture FROM projects ORDER BY id DESC`
+      `SELECT id, title, description, picture, date FROM projects ORDER BY id DESC`
     )
     .then(({ rows }) => {
       req.body.projects = rows;
@@ -14,9 +14,10 @@ export const getAllProjects = (req, res, next) => {
 
 export const getProjectById = (req, res, next) => {
   client
-    .query(`SELECT id, title, description, picture FROM projects WHERE id=$1`, [
-      req.params.id
-    ])
+    .query(
+      `SELECT id, title, description, picture, date FROM projects WHERE id=$1`,
+      [req.params.id]
+    )
     .then(({ rows }) => {
       req.body.projects = rows;
       next();

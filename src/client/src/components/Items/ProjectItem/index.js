@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
+import FormatedDate from "../../Common/FormatedDate";
 
 export default function index({ item }) {
   return (
@@ -22,6 +23,7 @@ export default function index({ item }) {
               </li>
             ))}
         </ul>
+        <FormatedDate date={item.date} clasName="projectItem__date" />
         <Link className="projectItem__btn" to={"/portfolio/project/" + item.id}>
           Show
         </Link>
