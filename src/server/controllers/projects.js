@@ -47,11 +47,38 @@ export const attachSkills = (req, res, next) => {
     .catch(err => next(err));
 };
 
-export const attachComments = (req, res, next) => {
-  const { projectsWithSkills } = req.body;
+export const attachLikes = (req, res, next) => {
+  const { projectsWithSkills: projects } = req.body;
 
   Promise.all(
-    projectsWithSkills.map(item =>
+    projects.map(item =>
+      client.query(
+        `SELECT l.sign, u.id AS uid 
+            FROM likes AS l 
+            JOIN users AS u 
+            ON u.id = l.user_id 
+            WHERE project_id=$1 
+            ORDER BY l.id DESC`,
+        [item.id]
+      )
+    )
+  )
+    .then(resp => {
+      req.body.projectsWithLikes = projects.map((proj, i) => ({
+        ...proj,
+        likes: resp[i].rows.filter(item => item.sign).map(item => item.uid),
+        dislikes: resp[i].rows.filter(item => !item.sign).map(item => item.uid)
+      }));
+      next();
+    })
+    .catch(err => next(err));
+};
+
+export const attachComments = (req, res, next) => {
+  const { projectsWithLikes: projects } = req.body;
+
+  Promise.all(
+    projects.map(item =>
       client.query(
         `SELECT c.id, c.text, u.avatar, u.name FROM comments AS c  JOIN users AS u ON u.id = c.author_id WHERE project_id=$1 ORDER BY c.id DESC`,
         [item.id]
@@ -59,7 +86,7 @@ export const attachComments = (req, res, next) => {
     )
   )
     .then(resp => {
-      req.body.projectsWithComments = projectsWithSkills.map((proj, i) => ({
+      req.body.projectsWithComments = projects.map((proj, i) => ({
         ...proj,
         comments: resp[i].rows
       }));

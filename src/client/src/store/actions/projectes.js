@@ -36,3 +36,7 @@ export const deleteProject = id => dispatch => {
     .then(() => dispatch(getProjects()))
     .catch(err => console.error(err));
 };
+
+export const setRate = rate => dispatch => {
+  console.log(rate);
+};

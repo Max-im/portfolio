@@ -1,0 +1,21 @@
+.rate {
+  &__icons {
+    display: flex;
+    align-items: center;
+    color: gray;
+    font-size: 20px;
+  }
+  &__icon {
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    opacity: 0.7;
+    letter-spacing: 5px;
+    &:hover {
+      opacity: 1;
+    }
+    &_active {
+      color: #2196f3;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+    }
+  }
+}

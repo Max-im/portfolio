@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./style.scss";
 import { getProject } from "../../../store/actions/projectes";
+import FormatedDate from "../../Common/FormatedDate";
 
 export class index extends Component {
   componentDidMount() {
@@ -46,6 +47,10 @@ export class index extends Component {
                 </li>
               ))}
             </ul>
+            <FormatedDate
+              date={project.date}
+              clasName="aboutSingleProject__date"
+            />
           </div>
         )}
       </section>

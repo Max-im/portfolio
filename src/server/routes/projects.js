@@ -1,8 +1,10 @@
 import { Router } from "express";
+import { checkAdminPermission } from "../controllers/permission";
 import {
   getAllProjects,
   getProjectById,
   attachSkills,
+  attachLikes,
   attachComments,
   deleteProjectSkills,
   deleteProjectComments,
@@ -10,7 +12,6 @@ import {
   createNewProject,
   attachSkillsToNewProject
 } from "../controllers/projects";
-import { checkAdminPermission } from "../controllers/permission";
 // import client from "../db";
 
 const router = Router();
@@ -30,10 +31,17 @@ router.get("/", getAllProjects, attachSkills, (req, res) => {
  * @access public
  * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
-router.get("/:id", getProjectById, attachSkills, attachComments, (req, res) => {
-  const { projectsWithComments } = req.body;
-  res.json(projectsWithComments);
-});
+router.get(
+  "/:id",
+  getProjectById,
+  attachSkills,
+  attachLikes,
+  attachComments,
+  (req, res) => {
+    const { projectsWithComments } = req.body;
+    res.json(projectsWithComments);
+  }
+);
 
 /**
  * @method POST

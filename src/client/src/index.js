@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { read_cookie, delete_cookie } from "sfcookies";
+import { setAuthToken } from "./store/actions/utils";
 
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
@@ -11,6 +12,7 @@ import { SET_USER } from "./store/actions/constants";
 const userCookie = read_cookie("max-im");
 if (userCookie.id) {
   store.dispatch({ type: SET_USER, payload: userCookie });
+  setAuthToken(userCookie);
   // TODO - check expired date
 }
 

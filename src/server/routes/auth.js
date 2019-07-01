@@ -18,7 +18,7 @@ router.post("/", async (req, res, next) => {
   // create new User
   client
     .query(
-      "INSERT INTO users(name, email, gId, avatar) VALUES ($1, $2, $3, $4) RETURNING isAdmin",
+      "INSERT INTO users(name, email, gId, avatar) VALUES ($1, $2, $3, $4) RETURNING isadmin",
       [name, email, gId, avatar]
     )
     .then(({ rows }) => res.json({ ...req.body, isadmin: rows[0].isadmin }))

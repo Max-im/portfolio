@@ -31,10 +31,12 @@ CREATE TABLE projects
 (
     id SERIAL PRIMARY KEY,
     title CHARACTER varying(64),
-    description CHARACTER varying(64),
+    description CHARACTER varying(256),
     picture CHARACTER varying(256),
     author_id INTEGER REFERENCES users(id),
-    date date DEFAULT CURRENT_TIMESTAMP
+    date date DEFAULT CURRENT_TIMESTAMP,
+    github CHARACTER varying(64),
+    deploy CHARACTER varying(64)
 );
 
 -- insert
@@ -60,7 +62,8 @@ CREATE TABLE comments
     id SERIAL PRIMARY KEY,
     project_id INTEGER REFERENCES projects(id),
     author_id INTEGER REFERENCES users(id),
-    text CHARACTER varying(1024)
+    text CHARACTER varying(1024),
+    date date DEFAULT CURRENT_TIMESTAMP
 );
 
 -- insert
@@ -79,6 +82,38 @@ VALUES
     (5, 1, 'Admin first comment - project #5');
 
 -- ======================================================================================
+
+
+
+-- LIKES
+-- ======================================================================================
+-- init
+CREATE TABLE likes
+(
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(id),
+    user_id INTEGER REFERENCES users(id),
+    sign BOOLEAN
+);
+
+-- insert
+INSERT INTO likes
+    (project_id, user_id, sign)
+VALUES
+    (1, 2, true),
+    (1, 1, true),
+    (2, 1, true),
+    (2, 2, false),
+    (3, 1, true),
+    (4, 1, false),
+    (4, 2, false),
+    (5, 1, true),
+    (5, 2, false);
+
+-- ======================================================================================
+
+
+
 
 
 
@@ -116,6 +151,7 @@ CREATE TABLE skills
     id SERIAL PRIMARY KEY,
     skill CHARACTER varying(64),
     skill_picture CHARACTER varying(128),
+    source CHARACTER varying(64),
     category_id INTEGER REFERENCES skills_categories(id)
 );
 
