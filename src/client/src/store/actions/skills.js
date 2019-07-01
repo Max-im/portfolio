@@ -6,7 +6,6 @@ import { SET_SKILLS, LOAD_SKILLS } from "./constants";
  */
 export const getSkills = () => dispatch => {
   dispatch({ type: LOAD_SKILLS, payload: true });
-
   axios
     .get("/skills")
     .then(({ data }) => {

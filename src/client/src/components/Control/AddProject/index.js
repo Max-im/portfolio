@@ -5,6 +5,7 @@ import { getSkills } from "../../../store/actions/skills";
 import "./style.scss";
 import Input from "../../Common/Input";
 import { addProject } from "../../../store/actions/projectes";
+import SelectSkills from "../../Common/SelectSkills";
 
 export class index extends Component {
   state = { picture: "", description: "", title: "" };
@@ -59,6 +60,7 @@ export class index extends Component {
                 onChange={this.onChange.bind(this)}
                 clasName="addProject__input"
               />
+              <SelectSkills />
               <button type="submit">Add project</button>
             </form>
           </>
