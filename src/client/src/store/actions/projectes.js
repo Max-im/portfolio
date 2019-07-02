@@ -37,6 +37,9 @@ export const deleteProject = id => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const setRate = rate => dispatch => {
-  console.log(rate);
+export const setRate = ({ project_id, sign }) => dispatch => {
+  axios
+    .post("/projects/likes", { project_id, sign })
+    .then(() => dispatch(getProject(project_id)))
+    .catch(err => console.error(err));
 };

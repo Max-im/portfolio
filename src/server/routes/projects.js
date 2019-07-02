@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { checkAdminPermission } from "../controllers/permission";
+import {
+  checkAdminPermission,
+  checkAuthPermission
+} from "../controllers/permission";
 import {
   getAllProjects,
   getProjectById,
@@ -12,6 +15,8 @@ import {
   createNewProject,
   attachSkillsToNewProject
 } from "../controllers/projects";
+
+import { addNewLike, removeLike, toggleLike } from "../controllers/likes";
 // import client from "../db";
 
 const router = Router();
@@ -55,6 +60,13 @@ router.post(
   attachSkillsToNewProject,
   (req, res) => res.end()
 );
+
+/**
+ * @method POST
+ * @access private - auth
+ * @description likes management
+ */
+router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
 
 /**
  * @method DELETE

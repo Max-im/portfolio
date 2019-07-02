@@ -8,8 +8,9 @@ import "./style.scss";
 export class index extends Component {
   state = { error: null };
 
-  onRate(bool) {
+  onRate(sign) {
     const { id: project_id } = this.props.match.params;
+    this.props.setRate({ project_id, sign });
   }
 
   static propTypes = {
@@ -34,7 +35,7 @@ export class index extends Component {
                   ? "fas fa-thumbs-up rate__icon rate__icon_active"
                   : "fas fa-thumbs-up rate__icon"
               }
-              onClick={this.onRate.bind(this, false)}
+              onClick={this.onRate.bind(this, true)}
             >
               {"-" + project.likes.length}
             </i>
@@ -42,10 +43,10 @@ export class index extends Component {
             <i
               className={
                 isAuth && project.dislikes.includes(user.id)
-                  ? "fas fa-thumbs-up rate__icon rate__icon_active"
-                  : "fas fa-thumbs-up rate__icon"
+                  ? "fas fa-thumbs-down rate__icon rate__icon_active"
+                  : "fas fa-thumbs-down rate__icon"
               }
-              onClick={this.onRate.bind(this, true)}
+              onClick={this.onRate.bind(this, false)}
             >
               {"-" + project.dislikes.length}
             </i>
