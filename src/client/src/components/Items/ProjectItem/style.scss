@@ -1,10 +1,15 @@
 .projectItem {
+  position: relative;
   flex: 0 0 90%;
+  overflow: hidden;
   margin: 0 0 25px 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   background: #fff;
   &:hover {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    .projectItem__medias {
+      top: 10px;
+    }
   }
 
   &__img {
@@ -57,5 +62,21 @@
     color: #757575;
     text-align: right;
     margin: 15px 0 0 0;
+  }
+  &__medias {
+    position: absolute;
+    transition: 0.3s;
+    top: -30px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2px;
+  }
+  &__media {
+    margin: 0 3px;
+    color: gray;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
 }

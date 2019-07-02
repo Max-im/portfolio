@@ -7,7 +7,7 @@ import client from "../db";
 export const getAllProjects = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date 
+      `SELECT id, title, description, picture, date, github, deploy 
         FROM projects 
         ORDER BY id DESC`
     )
@@ -177,13 +177,13 @@ export const deleteProject = (req, res, next) => {
  * @description
  */
 export const createNewProject = (req, res, next) => {
-  const { author_id, picture, title, description } = req.body;
+  const { author_id, picture, title, description, github, deploy } = req.body;
   client
     .query(
-      `INSERT INTO projects(author_id, picture, title, description) 
-        VALUES ($1,$2,$3,$4) 
+      `INSERT INTO projects(author_id, picture, title, description, github, deploy) 
+        VALUES ($1, $2, $3, $4, $5, $6) 
         RETURNING id`,
-      [author_id, picture, title, description]
+      [author_id, picture, title, description, github, deploy]
     )
     .then(({ rows }) => {
       req.body.project_id = rows[0].id;

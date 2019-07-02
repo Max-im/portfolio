@@ -10,6 +10,26 @@ export default function index({ item }) {
       <div className="projectItem__body">
         <h5 className="projectItem__title">{item.title}</h5>
         <p className="projectItem__description">{item.description}</p>
+        {(item.github || item.deploy) && (
+          <div className="projectItem__medias">
+            {item.github && (
+              <a
+                className="fab fa-github-square projectItem__media"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={item.github}
+              />
+            )}
+            {item.deploy && (
+              <a
+                className="fas fa-eye projectItem__media"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={item.deploy}
+              />
+            )}
+          </div>
+        )}
         <ul className="projectItem__skills">
           {item.skills
             .filter((j, i) => i < 8)

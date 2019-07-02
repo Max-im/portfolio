@@ -6,8 +6,17 @@ import Input from "../../Common/Input";
 import { addProject } from "../../../store/actions/projectes";
 import { getSkills } from "../../../store/actions/skills";
 
+const initState = {
+  picture: "",
+  description: "",
+  title: "",
+  skills: [],
+  github: "",
+  deploy: ""
+};
+
 export class index extends Component {
-  state = { picture: "", description: "", title: "", skills: [] };
+  state = { ...initState };
   componentDidMount() {
     this.props.getSkills();
   }
@@ -26,10 +35,9 @@ export class index extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const { picture, description, title, skills } = this.state;
     const { id: author_id } = this.props.auth.user;
-    this.props.addProject({ picture, description, title, author_id, skills });
-    this.setState({ picture: "", description: "", title: "", skills: [] });
+    this.props.addProject({ ...this.state, author_id });
+    this.setState({ ...initState });
   }
 
   static propTypes = {
@@ -47,24 +55,17 @@ export class index extends Component {
           <>
             <h5>Add project</h5>
             <form className="addProject" onSubmit={this.onSubmit.bind(this)}>
-              <Input
-                name="picture"
-                value={this.state.picture}
-                onChange={this.onChange.bind(this)}
-                clasName="addProject__input"
-              />
-              <Input
-                name="title"
-                value={this.state.title}
-                onChange={this.onChange.bind(this)}
-                clasName="addProject__input"
-              />
-              <Input
-                name="description"
-                value={this.state.description}
-                onChange={this.onChange.bind(this)}
-                clasName="addProject__input"
-              />
+              {Object.keys(this.state)
+                .filter(key => key !== "skills")
+                .map(key => (
+                  <Input
+                    key={key}
+                    name={key}
+                    value={this.state[key]}
+                    onChange={this.onChange.bind(this)}
+                    clasName="addProject__input"
+                  />
+                ))}
 
               <ul className="addProject__skills">
                 {!loading &&
