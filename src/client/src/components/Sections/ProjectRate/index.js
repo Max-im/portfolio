@@ -39,6 +39,7 @@ export class index extends Component {
             >
               {"-" + project.likes.length}
             </i>
+
             {/* DISLIKES */}
             <i
               className={

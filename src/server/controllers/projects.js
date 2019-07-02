@@ -1,9 +1,15 @@
 import client from "../db";
 
+/**
+ * @route PROJECTS
+ * @description save retrieve all projects data, store them into req.body.projects
+ */
 export const getAllProjects = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date FROM projects ORDER BY id DESC`
+      `SELECT id, title, description, picture, date 
+        FROM projects 
+        ORDER BY id DESC`
     )
     .then(({ rows }) => {
       req.body.projects = rows;
@@ -12,10 +18,16 @@ export const getAllProjects = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT
+ * @description get data of particular project, store them into req.body.projects
+ */
 export const getProjectById = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date FROM projects WHERE id=$1`,
+      `SELECT id, title, description, picture, date 
+        FROM projects 
+        WHERE id=$1`,
       [req.params.id]
     )
     .then(({ rows }) => {
@@ -25,6 +37,10 @@ export const getProjectById = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT
+ * @description
+ */
 export const attachSkills = (req, res, next) => {
   const { projects } = req.body;
 
@@ -47,6 +63,10 @@ export const attachSkills = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT
+ * @description
+ */
 export const attachLikes = (req, res, next) => {
   const { projectsWithSkills: projects } = req.body;
 
@@ -74,13 +94,22 @@ export const attachLikes = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT
+ * @description
+ */
 export const attachComments = (req, res, next) => {
   const { projectsWithLikes: projects } = req.body;
 
   Promise.all(
     projects.map(item =>
       client.query(
-        `SELECT c.id, c.text, u.avatar, u.name FROM comments AS c  JOIN users AS u ON u.id = c.author_id WHERE project_id=$1 ORDER BY c.id DESC`,
+        `SELECT c.id, c.text, c.date, u.avatar, u.name 
+          FROM comments AS c  
+          JOIN users AS u 
+          ON u.id = c.author_id 
+          WHERE project_id=$1 
+          ORDER BY c.id DESC`,
         [item.id]
       )
     )
@@ -95,35 +124,65 @@ export const attachComments = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT/DELETE
+ * @description
+ */
 export const deleteProjectSkills = (req, res, next) => {
   const { id } = req.params;
   client
-    .query("DELETE FROM projects_skills WHERE project_id=$1", [id])
+    .query(
+      `DELETE FROM projects_skills 
+        WHERE project_id=$1`,
+      [id]
+    )
     .then(() => next())
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT/DELETE
+ * @description
+ */
 export const deleteProjectComments = (req, res, next) => {
   const { id } = req.params;
   client
-    .query("DELETE FROM comments WHERE project_id=$1", [id])
+    .query(
+      `DELETE FROM comments 
+        WHERE project_id=$1`,
+      [id]
+    )
     .then(() => next())
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT/DELETE
+ * @description
+ */
 export const deleteProject = (req, res, next) => {
   const { id } = req.params;
   client
-    .query("DELETE FROM projects WHERE id=$1", [id])
+    .query(
+      `DELETE FROM projects 
+        WHERE id=$1`,
+      [id]
+    )
     .then(() => next())
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT/CREATE
+ * @description
+ */
 export const createNewProject = (req, res, next) => {
   const { author_id, picture, title, description } = req.body;
   client
     .query(
-      "INSERT INTO projects(author_id, picture, title, description) VALUES ($1,$2,$3,$4) RETURNING id",
+      `INSERT INTO projects(author_id, picture, title, description) 
+        VALUES ($1,$2,$3,$4) 
+        RETURNING id`,
       [author_id, picture, title, description]
     )
     .then(({ rows }) => {
@@ -133,12 +192,17 @@ export const createNewProject = (req, res, next) => {
     .catch(err => next(err));
 };
 
+/**
+ * @route PROJECT/CREATE
+ * @description
+ */
 export const attachSkillsToNewProject = async (req, res, next) => {
   const { skills, project_id } = req.body;
   for (const skill_id of skills) {
     await client
       .query(
-        "INSERT INTO projects_skills(project_id, skill_id) VALUES ($1, $2)",
+        `INSERT INTO projects_skills(project_id, skill_id) 
+          VALUES ($1, $2)`,
         [project_id, skill_id]
       )
       .catch(err => next(err));
