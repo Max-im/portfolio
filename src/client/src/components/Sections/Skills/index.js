@@ -17,24 +17,28 @@ export class index extends Component {
 
   render() {
     const { skills, loading } = this.props.skills;
+    const isReady = skills && !loading;
 
     return (
       <section className="section skills">
         <h3 className="section__title">Skills</h3>
 
         <ul>
-          {loading
-            ? "Loading..."
-            : Object.keys(skills).map(category => (
+          {isReady
+            ? Object.keys(skills).map(category => (
+                // loop categories
                 <li key={category}>
                   <h5 className="skills__category">{category}</h5>
+
+                  {/* Loop skills of the particular category */}
                   <ul className="skills__list">
                     {skills[category].map(skill => (
                       <SkillItem key={skill.id} skill={skill} />
                     ))}
                   </ul>
                 </li>
-              ))}
+              ))
+            : "Loading..."}
         </ul>
       </section>
     );

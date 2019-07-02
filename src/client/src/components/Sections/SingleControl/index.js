@@ -6,6 +6,12 @@ import "./style.scss";
 import { deleteProject } from "../../../store/actions/projectes";
 
 export class index extends Component {
+  onDelete(id) {
+    if (window.confirm("Are you sure?")) {
+      this.props.deleteProject(id, this.props.history);
+    }
+  }
+
   static propTypes = {
     auth: PropTypes.object.isRequired
   };
@@ -13,24 +19,26 @@ export class index extends Component {
   render() {
     const { user, isAuth } = this.props.auth;
     const { id: project_id } = this.props.match.params;
+
     return (
       <div className="singleControl">
         {isAuth && user.isadmin && (
           <section className="section">
-            <h3>Control</h3>
-            <Link
-              className="fas fa-trash-alt singleControl__delete"
-              onClick={this.props.deleteProject.bind(this, project_id)}
-              to="/portfolio"
-            >
-              Delete the Project
-            </Link>
-            <Link
-              className="fas fa-edit singleControl__update"
-              to={"/portfolio/update-project/" + project_id}
-            >
-              Update the Project
-            </Link>
+            <h3 className="section__title">Control</h3>
+            <div className="singleControll__body">
+              <i
+                className="fas fa-trash-alt singleControll__item singleControll__delete"
+                onClick={this.onDelete.bind(this, project_id)}
+              >
+                Delete
+              </i>
+              <Link
+                className="fas fa-edit singleControll__item singleControll__update"
+                to={"/portfolio/update-project/" + project_id}
+              >
+                Update
+              </Link>
+            </div>
           </section>
         )}
       </div>

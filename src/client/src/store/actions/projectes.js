@@ -30,10 +30,10 @@ export const addProject = projectData => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const deleteProject = id => dispatch => {
+export const deleteProject = (id, history) => dispatch => {
   axios
     .delete(`/projects/${id}`)
-    .then(() => dispatch(getProjects()))
+    .then(() => history.push("/portfolio"))
     .catch(err => console.error(err));
 };
 
@@ -41,5 +41,12 @@ export const setRate = ({ project_id, sign }) => dispatch => {
   axios
     .post("/projects/likes", { project_id, sign })
     .then(() => dispatch(getProject(project_id)))
+    .catch(err => console.error(err));
+};
+
+export const updateProject = (projectData, history) => () => {
+  axios
+    .put("/projects", projectData)
+    .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
     .catch(err => console.error(err));
 };

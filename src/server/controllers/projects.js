@@ -25,7 +25,7 @@ export const getAllProjects = (req, res, next) => {
 export const getProjectById = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date 
+      `SELECT id, title, description, picture, date, github, deploy  
         FROM projects 
         WHERE id=$1`,
       [req.params.id]
@@ -144,6 +144,22 @@ export const deleteProjectSkills = (req, res, next) => {
  * @route PROJECT/DELETE
  * @description
  */
+export const deleteProjectLikes = (req, res, next) => {
+  const { id } = req.params;
+  client
+    .query(
+      `DELETE FROM likes 
+        WHERE project_id=$1`,
+      [id]
+    )
+    .then(() => next())
+    .catch(err => next(err));
+};
+
+/**
+ * @route PROJECT/DELETE
+ * @description
+ */
 export const deleteProjectComments = (req, res, next) => {
   const { id } = req.params;
   client
@@ -208,4 +224,93 @@ export const attachSkillsToNewProject = async (req, res, next) => {
       .catch(err => next(err));
   }
   next();
+};
+/**
+ * @route PROJECT/UPDATE
+ * @description
+ */
+export const updateProjectData = async (req, res, next) => {
+  // get current db project data
+  const { rows: theProjectArr } = await client.query(
+    `SELECT title, description, picture, github, deploy 
+      FROM projects WHERE id=$1`,
+    [req.body.project_id]
+  );
+
+  // retrieve updated fields only
+  const toUpdate = {};
+  const theProject = theProjectArr[0];
+  for (const key in theProject) {
+    if (req.body[key] !== theProject[key]) {
+      toUpdate[key] = req.body[key];
+    }
+  }
+
+  // update project fields
+  Promise.all(
+    Object.keys(toUpdate).map(key => {
+      client.query(
+        `UPDATE projects
+        SET ${key}=($1)
+        WHERE id=$2`,
+        [toUpdate[key], req.body.project_id]
+      );
+    })
+  ).then(() => next());
+};
+
+/**
+ * @route PROJECT/UPDATE
+ * @description
+ */
+export const retrieveSkillsToUpdate = (req, res, next) => {
+  const { project_id, skills } = req.body;
+
+  client
+    .query(
+      `SELECT skill_id 
+        FROM projects_skills 
+        WHERE project_id=$1`,
+      [project_id]
+    )
+    .then(({ rows }) => {
+      const currentSkills = rows.map(item => item.skill_id);
+      req.body.toRemove = currentSkills.filter(item => !skills.includes(item));
+      req.body.toAdd = skills.filter(item => !currentSkills.includes(item));
+      next();
+    });
+};
+
+/**
+ * @route PROJECT/UPDATE
+ * @description
+ */
+export const addNewProjectSkills = async (req, res, next) => {
+  const { toAdd, project_id } = req.body;
+  if (toAdd.length === 0) return next();
+  Promise.all(
+    toAdd.map(skill_id =>
+      client.query(
+        `INSERT INTO projects_skills(skill_id, project_id) VALUES($1, $2)`,
+        [skill_id, project_id]
+      )
+    )
+  ).then(() => next());
+};
+
+/**
+ * @route PROJECT/UPDATE
+ * @description
+ */
+export const removeOldProjectSkills = (req, res, next) => {
+  const { toRemove, project_id } = req.body;
+  if (toRemove.length === 0) return next();
+  Promise.all(
+    toRemove.map(skill_id =>
+      client.query(
+        `DELETE FROM projects_skills WHERE skill_id=$1 AND project_id=$2`,
+        [skill_id, project_id]
+      )
+    )
+  ).then(() => next());
 };

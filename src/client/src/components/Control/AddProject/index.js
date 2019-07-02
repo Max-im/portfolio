@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import Input from "../../Common/Input";
 import { addProject } from "../../../store/actions/projectes";
-import { getSkills } from "../../../store/actions/skills";
+import SelectSkills from "../../Common/SelectSkills";
 
 const initState = {
   picture: "",
@@ -17,9 +17,6 @@ const initState = {
 
 export class index extends Component {
   state = { ...initState };
-  componentDidMount() {
-    this.props.getSkills();
-  }
 
   toggleSkill(id) {
     const current = this.state.skills;
@@ -42,13 +39,11 @@ export class index extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    skills: PropTypes.object.isRequired,
-    getSkills: PropTypes.func.isRequired
+    skills: PropTypes.object.isRequired
   };
 
   render() {
     const { isAuth, user } = this.props.auth;
-    const { loading, skills } = this.props.skills;
     return (
       <div>
         {isAuth && user.isadmin && (
@@ -67,25 +62,10 @@ export class index extends Component {
                   />
                 ))}
 
-              <ul className="addProject__skills">
-                {!loading &&
-                  Object.keys(skills).length > 0 &&
-                  Object.keys(skills).map(category =>
-                    skills[category].map(skill => (
-                      <li
-                        key={skill.id}
-                        onClick={this.toggleSkill.bind(this, skill.id)}
-                        className={
-                          this.state.skills.includes(skill.id)
-                            ? "addProject__skill addProject__skill_active"
-                            : "addProject__skill"
-                        }
-                      >
-                        <img src={skill.skill_picture} alt={skill.skill} />
-                      </li>
-                    ))
-                  )}
-              </ul>
+              <SelectSkills
+                stateSkills={this.state.skills}
+                toggleSkill={this.toggleSkill.bind(this)}
+              />
 
               <button type="submit">Add project</button>
             </form>
@@ -103,5 +83,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSkills, addProject }
+  { addProject }
 )(index);

@@ -9,6 +9,11 @@ import {
   attachSkills,
   attachLikes,
   attachComments,
+  updateProjectData,
+  retrieveSkillsToUpdate,
+  addNewProjectSkills,
+  removeOldProjectSkills,
+  deleteProjectLikes,
   deleteProjectSkills,
   deleteProjectComments,
   deleteProject,
@@ -62,6 +67,21 @@ router.post(
 );
 
 /**
+ * @method PUT
+ * @access private - admin
+ * @description update project data
+ */
+router.put(
+  "/",
+  checkAdminPermission,
+  updateProjectData,
+  retrieveSkillsToUpdate,
+  addNewProjectSkills,
+  removeOldProjectSkills,
+  (req, res) => res.end()
+);
+
+/**
  * @method POST
  * @access private - auth
  * @description likes management
@@ -76,6 +96,7 @@ router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
 router.delete(
   "/:id",
   checkAdminPermission,
+  deleteProjectLikes,
   deleteProjectSkills,
   deleteProjectComments,
   deleteProject,

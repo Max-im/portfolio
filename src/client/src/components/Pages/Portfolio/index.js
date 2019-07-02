@@ -8,9 +8,12 @@ export default function index() {
   return (
     <div className="page">
       <PageTitle text="Portfolio" />
+
       <div className="container">
         {/* add promect */}
         <AddProject />
+
+        {/* projects list */}
         <ProjectsList />
       </div>
     </div>
