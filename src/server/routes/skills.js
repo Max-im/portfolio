@@ -28,4 +28,29 @@ router.get("/", (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ * get categories
+ */
+router.get("/categories", (req, res, next) => {
+  client
+    .query("SELECT * FROM skills_categories")
+    .then(({ rows }) => res.json(rows))
+    .catch(err => next(err));
+});
+
+/**
+ * get admin skills
+ */
+router.get("/admin", (req, res, next) => {
+  client
+    .query(
+      `SELECT skill, skill_picture, s.range, source, category
+       FROM skills AS s 
+       JOIN skills_categories AS c 
+       ON s.category_id=c.id`
+    )
+    .then(({ rows }) => res.json(rows))
+    .catch(err => next(err));
+});
+
 module.exports = router;

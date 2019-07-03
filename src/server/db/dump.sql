@@ -122,18 +122,19 @@ VALUES
 CREATE TABLE skills_categories
 (
     id SERIAL PRIMARY KEY,
+    range INTEGER UNIQUE,
     category CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO skills_categories
-    (category)
+    (category, range)
 VALUES
-    ('Frontend'),
-    ('Backend'),
-    ('Database'),
-    ('Tests'),
-    ('Other');
+    ('Frontend', 1),
+    ('Backend', 2),
+    ('Database', 3),
+    ('Tests', 4),
+    ('Other', 5);
 -- ======================================================================================
 
 
@@ -148,39 +149,40 @@ CREATE TABLE skills
     skill CHARACTER varying(64),
     skill_picture CHARACTER varying(128),
     source CHARACTER varying(64),
+    range INTEGER,
     category_id INTEGER REFERENCES skills_categories(id)
 );
 
 
 -- insert
 INSERT INTO skills
-    (skill, category_id, skill_picture)
+    (skill, category_id, skill_picture, range)
 VALUES
-    ('angular', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/angular.png?raw=true'),
-    ('react', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/react.png?raw=true'),
-    ('redux', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/redux.png?raw=true'),
-    ('vue', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/vue.png?raw=true'),
-    ('js', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/js.png?raw=true'),
-    ('jquery', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jquery.png?raw=true'),
-    ('html', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/html.png?raw=true'),
-    ('sass', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sass.png?raw=true'),
-    ('mobile', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mobile.png?raw=true'),
-    ('bem', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bem.png?raw=true'),
-    ('bootstrap', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bootstrap.png?raw=true'),
-    ('ts', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/ts.png?raw=true'),
-    ('node', 2, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/node.png?raw=true'),
-    ('postgres', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/postgres.png?raw=true'),
-    ('mongodb', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mongoDB.png?raw=true'),
-    ('sequelize', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sequelize.png?raw=true'),
-    ('mocha', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mocha.png?raw=true'),
-    ('chai', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/chai.png?raw=true'),
-    ('jest', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jest.png?raw=true'),
-    ('sinon', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sinon.png?raw=true'),
-    ('babel', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/babel.png?raw=true'),
-    ('eslint', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/eslint.png?raw=true'),
-    ('webpack', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/webpack.png?raw=true'),
-    ('opengraph', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/openGraph.png?raw=true'),
-    ('schema', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/schema.png?raw=true');
+    ('angular', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/angular.png?raw=true', 1),
+    ('react', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/react.png?raw=true', 1),
+    ('redux', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/redux.png?raw=true', 1),
+    ('vue', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/vue.png?raw=true', 1),
+    ('js', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/js.png?raw=true', 2),
+    ('jquery', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jquery.png?raw=true', 3),
+    ('html', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/html.png?raw=true', 3),
+    ('sass', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sass.png?raw=true', 2),
+    ('mobile', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mobile.png?raw=true', 2),
+    ('bem', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bem.png?raw=true', 3),
+    ('bootstrap', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bootstrap.png?raw=true', 3),
+    ('ts', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/ts.png?raw=true', 2),
+    ('node', 2, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/node.png?raw=true', 1),
+    ('postgres', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/postgres.png?raw=true', 1),
+    ('mongodb', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mongoDB.png?raw=true', 1),
+    ('sequelize', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sequelize.png?raw=true', 2),
+    ('mocha', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mocha.png?raw=true', 1),
+    ('chai', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/chai.png?raw=true', 2),
+    ('jest', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jest.png?raw=true', 1),
+    ('sinon', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sinon.png?raw=true', 2),
+    ('babel', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/babel.png?raw=true', 2),
+    ('eslint', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/eslint.png?raw=true', 2),
+    ('webpack', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/webpack.png?raw=true', 2),
+    ('opengraph', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/openGraph.png?raw=true', 3),
+    ('schema', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/schema.png?raw=true', 3);
 
 -- ======================================================================================
 
