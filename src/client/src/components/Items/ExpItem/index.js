@@ -8,7 +8,7 @@ export default class index extends Component {
     const { expItem } = this.props;
     const { isShow } = this.state;
     return (
-      <li className="exp">
+      <>
         <img
           src={expItem.exp_image}
           alt={expItem.exp_company}
@@ -44,7 +44,7 @@ export default class index extends Component {
             </ul>
           )}
         </div>
-      </li>
+      </>
     );
   }
 }

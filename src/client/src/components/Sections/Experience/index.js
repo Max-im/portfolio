@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
-import { getExp } from "../../../store/actions/experience";
+import { getExp, removeExp } from "../../../store/actions/experience";
 import ExpItem from "../../Items/ExpItem";
 
 export class index extends Component {
@@ -10,13 +10,20 @@ export class index extends Component {
     this.props.getExp();
   }
 
+  onDeleteExp(id) {
+    if (window.confirm("Are you sure?")) this.props.removeExp(id);
+  }
+
   static propTypes = {
     experience: PropTypes.object.isRequired,
-    getExp: PropTypes.func.isRequired
+    auth: PropTypes.object.isRequired,
+    getExp: PropTypes.func.isRequired,
+    removeExp: PropTypes.func.isRequired
   };
 
   render() {
     const { loading, exp } = this.props.experience;
+    const { isAuth, user } = this.props.auth;
     return (
       <section className="section">
         <h3 className="section__title">Experience</h3>
@@ -25,7 +32,15 @@ export class index extends Component {
           {loading
             ? "Loading..."
             : exp.map(expItem => (
-                <ExpItem key={expItem.id} expItem={expItem} />
+                <li key={expItem.id} className="exp">
+                  {isAuth && user.isadmin && (
+                    <i
+                      className="fas fa-trash-alt exp__delete"
+                      onClick={this.onDeleteExp.bind(this, expItem.id)}
+                    />
+                  )}
+                  <ExpItem expItem={expItem} />
+                </li>
               ))}
         </ul>
       </section>
@@ -34,10 +49,11 @@ export class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  experience: state.experience
+  experience: state.experience,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getExp }
+  { getExp, removeExp }
 )(index);
