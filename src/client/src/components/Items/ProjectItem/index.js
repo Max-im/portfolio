@@ -10,6 +10,9 @@ export default function index({ item }) {
       <div className="projectItem__body">
         <h5 className="projectItem__title">{item.title}</h5>
         <p className="projectItem__description">{item.description}</p>
+        <p className={"projectItem__level projectItem__level_" + item.level}>
+          {item.level}
+        </p>
         {(item.github || item.deploy) && (
           <div className="projectItem__medias">
             {item.github && (

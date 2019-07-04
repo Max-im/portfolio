@@ -11,7 +11,27 @@
       top: 10px;
     }
   }
+  &__level {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 3px 15px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 
+    color: gray;
+    text-shadow: -1px 1px 1px rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    &_Simple {
+      background: #e0e0e0;
+    }
+    &_Medium {
+      background: #4dd0e1;
+    }
+    &_Best {
+      background: #ffc107;
+    }
+  }
   &__img {
     width: 100%;
   }

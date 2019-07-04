@@ -7,8 +7,10 @@ import client from "../db";
 export const getAllProjects = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date, github, deploy 
-        FROM projects 
+      `SELECT p.id, title, description, picture, date, github, deploy, l.level 
+        FROM projects AS p
+        JOIN projectlevels AS l
+        ON l.id = p.level_id
         ORDER BY id DESC`
     )
     .then(({ rows }) => {

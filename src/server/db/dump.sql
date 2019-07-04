@@ -23,6 +23,26 @@ VALUES
 
 
 
+-- PROJECT LEVELS
+-- ======================================================================================
+-- init
+CREATE TABLE projectlevels
+(
+    id SERIAL PRIMARY KEY,
+    level CHARACTER varying(64)
+);
+
+-- insert
+INSERT INTO projectlevels
+    (level)
+VALUES
+    ('Simple'),
+    ('Medium'),
+    ('Best');
+-- ======================================================================================
+
+
+
 
 -- PROJECTS
 -- ======================================================================================
@@ -35,19 +55,20 @@ CREATE TABLE projects
     picture CHARACTER varying(256),
     author_id INTEGER REFERENCES users(id),
     date date DEFAULT CURRENT_TIMESTAMP,
+    level_id INTEGER REFERENCES projectlevels(id),
     github CHARACTER varying(64),
     deploy CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO projects
-    (title, description, picture, author_id)
+    (title, description, picture, author_id, level_id)
 VALUES
-    ('one', 'descr one', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
-    ('two', 'descr two', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
-    ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
-    ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1),
-    ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1);
+    ('one', 'descr one', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 1),
+    ('two', 'descr two', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 2),
+    ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 3),
+    ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 3),
+    ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 1);
 
 -- ======================================================================================
 
@@ -136,6 +157,8 @@ VALUES
     ('Tests', 4),
     ('Other', 5);
 -- ======================================================================================
+
+
 
 
 
