@@ -11,3 +11,10 @@ export const getEdu = () => dispatch => {
     })
     .catch(err => console.error(err));
 };
+
+export const removeEdu = id => dispatch => {
+  axios
+    .delete(`/education/${id}`)
+    .then(() => dispatch(getEdu()))
+    .catch(err => console.error(err));
+};

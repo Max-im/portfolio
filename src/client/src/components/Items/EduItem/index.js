@@ -3,7 +3,7 @@ import "./style.scss";
 
 export default function index({ eduItem }) {
   return (
-    <li className="edu">
+    <>
       <img
         src={eduItem.edu_photo}
         alt={eduItem.edu_title}
@@ -13,6 +13,6 @@ export default function index({ eduItem }) {
         <p className="edu__title">{eduItem.edu_title}</p>
         <p className="edu__desc">{eduItem.edu_description}</p>
       </div>
-    </li>
+    </>
   );
 }

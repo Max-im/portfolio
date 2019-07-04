@@ -1,5 +1,6 @@
 import { Router } from "express";
 import client from "../db";
+import { checkAdminPermission } from "../controllers/permission";
 
 const router = Router();
 
@@ -31,7 +32,7 @@ router.get("/", (req, res, next) => {
 /**
  * get categories
  */
-router.get("/categories", (req, res, next) => {
+router.get("/categories", checkAdminPermission, (req, res, next) => {
   client
     .query("SELECT * FROM skills_categories")
     .then(({ rows }) => res.json(rows))
@@ -41,16 +42,26 @@ router.get("/categories", (req, res, next) => {
 /**
  * get admin skills
  */
-router.get("/admin", (req, res, next) => {
+router.get("/admin", checkAdminPermission, (req, res, next) => {
   client
     .query(
-      `SELECT skill, skill_picture, s.range, source, category
+      `SELECT s.id, skill, skill_picture, s.range, source, category
        FROM skills AS s 
        JOIN skills_categories AS c 
        ON s.category_id=c.id`
     )
     .then(({ rows }) => res.json(rows))
     .catch(err => next(err));
+});
+
+router.delete("/:id", checkAdminPermission, async (req, res) => {
+  await client.query(`DELETE FROM projects_skills AS ps WHERE ps.skill_id=$1`, [
+    req.params.id
+  ]);
+
+  await client.query(`DELETE FROM skills AS s WHERE s.id=$1`, [req.params.id]);
+
+  res.end();
 });
 
 module.exports = router;

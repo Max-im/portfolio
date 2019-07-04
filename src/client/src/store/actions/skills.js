@@ -33,3 +33,10 @@ export const getAdminSkills = () => dispatch => {
     .then(({ data }) => dispatch({ type: SET_A_SKILLS, payload: data }))
     .catch(err => console.error(err));
 };
+
+export const removeSkill = id => dispatch => {
+  axios
+    .delete(`/skills/${id}`)
+    .then(() => dispatch(getAdminSkills()))
+    .catch(err => console.error(err));
+};

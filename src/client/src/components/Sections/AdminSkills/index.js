@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
-import { getAdminSkills } from "../../../store/actions/skills";
+import { getAdminSkills, removeSkill } from "../../../store/actions/skills";
 
 export class index extends Component {
   componentDidMount() {
     this.props.getAdminSkills();
   }
 
+  onRemove(id) {
+    if (window.confirm("Are you sure?")) this.props.removeSkill(id);
+  }
+
   static propTypes = {
     getAdminSkills: PropTypes.func.isRequired,
+    removeSkill: PropTypes.func.isRequired,
     skills: PropTypes.object.isRequired
   };
 
@@ -38,7 +43,10 @@ export class index extends Component {
                   <p>{item.range}</p>
                   <p>{item.category}</p>
                   <p>{item.source}</p>
-                  <i className="fas fa-trash-alt" />
+                  <i
+                    className="fas fa-trash-alt"
+                    onClick={this.onRemove.bind(this, item.id)}
+                  />
                 </li>
               ))}
             </ul>
@@ -56,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAdminSkills }
+  { getAdminSkills, removeSkill }
 )(index);
