@@ -11,3 +11,10 @@ export const getSummary = () => dispatch => {
     })
     .catch(err => console.error(err));
 };
+
+export const updateSummary = text => dispatch => {
+  axios
+    .put("/summary", { text })
+    .then(() => dispatch(getSummary()))
+    .catch(err => console.error(err));
+};

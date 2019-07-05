@@ -49,7 +49,7 @@ export const toggleLike = (req, res, next) => {
     .then(({ rows }) => {
       if (rows.length === 1) {
         client
-          .query("UPDATE likes SET sign=($1)WHERE id=$2", [sign, rows[0].id])
+          .query("UPDATE likes SET sign=($1) WHERE id=$2", [sign, rows[0].id])
           .then(() => res.end());
       } else next();
     });

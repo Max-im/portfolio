@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getSummary } from "../../../store/actions/summary";
+import { getSummary, updateSummary } from "../../../store/actions/summary";
 import "./style.scss";
+import UpdatedText from "../../Common/UpdatedText";
 
 export class index extends Component {
   componentDidMount() {
@@ -27,7 +28,11 @@ export class index extends Component {
               <img src={photo} alt={name} className="summary__img" />
               <p className="summary__name">{name}</p>
             </div>
-            <p className="summary__text">{summary}</p>
+
+            <UpdatedText
+              text={summary}
+              onUpdate={this.props.updateSummary.bind(this)}
+            />
           </>
         )}
       </section>
@@ -41,5 +46,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSummary }
+  { getSummary, updateSummary }
 )(index);
