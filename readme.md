@@ -2,16 +2,15 @@
 
 ## **App info:**
 
-| Name        | APP-NAME        |
+| Name        | Portfolio       |
 | ----------- | --------------- |
 | Description | APP-DESCRIPTION |
-| Start date  | **.**.\_\_\_\_  |
-| Version     | 1.0.0           |
+| Start date  | 06.2019         |
 
 ## **Setup the App**
 
 - Download this repo:
-  `git clone https://github.com/Max-im/PATH`
+  `git clone https://github.com/Max-im/portfolio`
 - Go to the project directory:
   `cd PATH`
 - Install all App dependencies:
@@ -20,15 +19,13 @@
 ## **Run the App**
 
 - for start the project in develop mode:  
-  `npm start / npm run dev`
-- for testing the project:  
-  `npm test`
+  `npm run dev`
 
 ## **Stack:**
 
 #### **Frontend:**
 
-![angular][angularimg] ![react][reactimg] ![redux][reduximg] ![vue][vueimg] ![ES6][es6img] ![jQuery][jqueryimg] ![HTML][htmlimg] ![sass][sassimg] ![CSS3][cssimg] ![mobile][mobileimg] ![bem][bemimg] ![bootstrap][bootstrapimg] ![materialise][materialiseimg] ![canvas][canvasimg] ![d3][d3img]
+![react][reactimg] ![redux][reduximg] ![ES6][es6img] ![HTML][htmlimg] ![sass][sassimg] ![CSS3][cssimg] ![mobile][mobileimg] ![bem][bemimg]
 
 #### **Backend:**
 
@@ -36,15 +33,15 @@
 
 #### **Db:**
 
-![mongoDB][mongodbimg] ![SQL][sqlimg] ![sequelize][sequelizeimg] ![postgres][postgresimg]
+![postgres][postgresimg]
 
-#### **Tests:**
+<!-- #### **Tests:** -->
 
-![mocha][mochaimg] ![chai][chaiimg] ![sinon][sinonimg] ![jest][jestimg]
+<!-- ![mocha][mochaimg] ![chai][chaiimg] ![sinon][sinonimg] ![jest][jestimg] -->
 
 #### **Other:**
 
-![openGraph][opengraphimg] ![schema][schemaimg] ![webpack][webpackimg] ![babel][babelimg] ![eslint][eslintimg]
+![babel][babelimg] ![eslint][eslintimg]
 
 ## **Schedule:**
 
