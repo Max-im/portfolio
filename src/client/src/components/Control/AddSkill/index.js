@@ -36,6 +36,13 @@ export class index extends Component {
       source,
       category_id: category_id - 0
     });
+    this.setState({
+      skill: "",
+      skill_picture: "",
+      range: "",
+      source: "",
+      category_id: ""
+    });
   }
 
   static propTypes = {

@@ -64,7 +64,7 @@ router.delete("/:id", checkAdminPermission, async (req, res) => {
   res.end();
 });
 
-router.post("/", checkAdminPermission, async (req, res, next) => {
+router.post("/", checkAdminPermission, (req, res, next) => {
   const { skill_picture, skill, range, source, category_id } = req.body;
   client
     .query(
@@ -73,6 +73,29 @@ router.post("/", checkAdminPermission, async (req, res, next) => {
     )
     .then(() => res.end())
     .catch(err => next(err));
+});
+
+router.post("/category", checkAdminPermission, (req, res, next) => {
+  const { range, category } = req.body;
+  client
+    .query("INSERT INTO skills_categories(range, category) VALUES($1, $2)", [
+      range,
+      category
+    ])
+    .then(() => res.end())
+    .catch(err => next(err));
+});
+
+router.delete("/category/:id", checkAdminPermission, async (req, res, next) => {
+  const { id } = req.params;
+
+  // delete categories skills
+  await client.query("DELETE FROM skills WHERE category_id=$1", [id]);
+
+  // delete category
+  await client.query("DELETE FROM skills_categories WHERE id=$1", [id]);
+
+  res.end();
 });
 
 module.exports = router;

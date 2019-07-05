@@ -4,6 +4,7 @@ import PageTitle from "../../Common/PageTitle";
 import AdminSkillsCategories from "../../Sections/AdminSkillsCategories";
 import AdminSkills from "../../Sections/AdminSkills";
 import AddSkill from "../../Control/AddSkill";
+import AddCategory from "../../Control/AddCategory";
 
 export default function index() {
   return (
@@ -12,10 +13,15 @@ export default function index() {
       <div className="container">
         {/* skills categories */}
         <AdminSkillsCategories />
+
+        {/* add category */}
+        <AddCategory />
+
         {/* skills levels */}
         {/* skills type */}
         {/* skills */}
         <AdminSkills />
+
         {/* add skills */}
         <AddSkill />
       </div>

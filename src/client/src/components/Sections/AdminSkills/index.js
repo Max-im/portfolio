@@ -25,33 +25,30 @@ export class index extends Component {
       <section className="section">
         <h3 className="section__title">Skills</h3>
         {admin && (
-          <div>
-            <ul>
-              <li className="skillsCat__item">
-                <p>#</p>
-                <p>Picture</p>
-                <p>Skill</p>
-                <p>Range</p>
-                <p>Category</p>
-                <p>Source</p>
-                <p>Delete</p>
+          <ul>
+            <li className="skillsCat__item">
+              <p>#</p>
+              <p>Picture</p>
+              <p>Skill</p>
+              <p>Range</p>
+              <p>Category</p>
+              <p>Source</p>
+              <p>Delete</p>
+            </li>
+            {admin.map((item, i) => (
+              <li key={item.skill} className="skillsCat__item">
+                <img src={item.skill_picture} alt={item.skill} />
+                <p>{item.skill}</p>
+                <p>{item.range}</p>
+                <p>{item.category}</p>
+                <p>{item.source}</p>
+                <i
+                  className="fas fa-trash-alt"
+                  onClick={this.onRemove.bind(this, item.id)}
+                />
               </li>
-              {admin.map((item, i) => (
-                <li key={item.skill} className="skillsCat__item">
-                  <img src={item.skill_picture} alt={item.skill} />
-                  <p>{item.skill}</p>
-                  <p>{item.range}</p>
-                  <p>{item.category}</p>
-                  <p>{item.source}</p>
-                  <i
-                    className="fas fa-trash-alt"
-                    onClick={this.onRemove.bind(this, item.id)}
-                  />
-                </li>
-              ))}
-            </ul>
-            <p>add skill</p>
-          </div>
+            ))}
+          </ul>
         )}
       </section>
     );

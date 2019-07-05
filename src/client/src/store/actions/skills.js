@@ -47,3 +47,20 @@ export const createSkill = skillData => dispatch => {
     .then(() => dispatch(getAdminSkills()))
     .catch(err => console.error(err));
 };
+
+export const createCategory = categoryData => dispatch => {
+  axios
+    .post("/skills/category", categoryData)
+    .then(() => dispatch(getSkillsCategories()))
+    .catch(err => console.error(err));
+};
+
+export const deleteCategory = id => dispatch => {
+  axios
+    .delete(`/skills/category/${id}`)
+    .then(() => {
+      dispatch(getSkillsCategories());
+      dispatch(getAdminSkills());
+    })
+    .catch(err => console.error(err));
+};
