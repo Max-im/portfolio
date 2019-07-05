@@ -16,7 +16,8 @@ INSERT INTO users
     (name, email, gid, avatar, isadmin)
 VALUES
     ('Maxim Pogidaev', 'maxim.pogidaev@idealscorp.com', '110822060876468114858', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', true),
-    ('User User', 'user.user@gmail.com', '110822060876468110000', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', false);
+    ('User User', 'user.user@gmail.com', '110822060876468110000', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', false),
+    ('Maxim Pozhidayev', 'pogidaevmo@gmail.com', '104819189707149372033', 'https://lh6.googleusercontent.com/-TE1h5kRJKK0/AAAAAAAAAAI/AAAAAAAAA6U/mXm7qY1aWgA/s96-c/photo.jpg', true);
 
 -- ======================================================================================
 

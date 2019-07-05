@@ -242,17 +242,20 @@ export const createNewProject = (req, res, next) => {
  */
 export const attachSkillsToNewProject = async (req, res, next) => {
   const { skills, project_id } = req.body;
-  for (const skill_id of skills) {
-    await client
-      .query(
+
+  Promise.all(
+    skills.map(skill_id => {
+      return client.qeury(
         `INSERT INTO projects_skills(project_id, skill_id) 
           VALUES ($1, $2)`,
         [project_id, skill_id]
-      )
-      .catch(err => next(err));
-  }
-  next();
+      );
+    })
+  )
+    .then(() => next())
+    .catch(err => next(err));
 };
+
 /**
  * @route PROJECT/UPDATE
  * @description
@@ -268,16 +271,17 @@ export const updateProjectData = async (req, res, next) => {
   // retrieve updated fields only
   const toUpdate = {};
   const theProject = theProjectArr[0];
-  for (const key in theProject) {
+  Object.keys(theProject).map(key => {
     if (req.body[key] !== theProject[key]) {
       toUpdate[key] = req.body[key];
     }
-  }
+    return null;
+  });
 
   // update project fields
   Promise.all(
     Object.keys(toUpdate).map(key => {
-      client.query(
+      return client.query(
         `UPDATE projects
         SET ${key}=($1)
         WHERE id=$2`,
@@ -324,6 +328,7 @@ export const addNewProjectSkills = async (req, res, next) => {
       )
     )
   ).then(() => next());
+  return null;
 };
 
 /**
@@ -341,4 +346,5 @@ export const removeOldProjectSkills = (req, res, next) => {
       )
     )
   ).then(() => next());
+  return null;
 };

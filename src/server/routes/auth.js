@@ -23,6 +23,8 @@ router.post("/", async (req, res, next) => {
     )
     .then(({ rows }) => res.json({ ...req.body, isadmin: rows[0].isadmin }))
     .catch(err => next(err));
+
+  return null;
 });
 
 module.exports = router;

@@ -32,15 +32,12 @@ export class index extends Component {
         {exp && (
           <ul>
             {exp.map(expItem => (
-              <li key={expItem.id} className="exp">
-                {isAuth && user.isadmin && (
-                  <i
-                    className="fas fa-trash-alt exp__delete"
-                    onClick={this.onDeleteExp.bind(this, expItem.id)}
-                  />
-                )}
-                <ExpItem expItem={expItem} />
-              </li>
+              <ExpItem
+                key={expItem.id}
+                expItem={expItem}
+                onDeleteExp={this.onDeleteExp.bind(this)}
+                isadmin={user.isadmin}
+              />
             ))}
           </ul>
         )}

@@ -86,7 +86,7 @@ router.post("/category", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.delete("/category/:id", checkAdminPermission, async (req, res, next) => {
+router.delete("/category/:id", checkAdminPermission, async (req, res) => {
   const { id } = req.params;
 
   // delete categories skills
