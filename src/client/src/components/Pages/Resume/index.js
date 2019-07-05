@@ -6,6 +6,7 @@ import Experience from "../../Sections/Experience";
 import Summary from "../../Sections/Summary";
 import Education from "../../Sections/Education";
 import PageTitle from "../../Common/PageTitle";
+import AddEdu from "../../Control/AddEdu";
 
 export default function index() {
   return (
@@ -27,6 +28,9 @@ export default function index() {
 
         {/* education */}
         <Education />
+
+        {/* add edu */}
+        <AddEdu />
       </div>
     </div>
   );

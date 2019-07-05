@@ -18,3 +18,10 @@ export const removeEdu = id => dispatch => {
     .then(() => dispatch(getEdu()))
     .catch(err => console.error(err));
 };
+
+export const addEdu = eduData => dispatch => {
+  axios
+    .post("/education", eduData)
+    .then(() => dispatch(getEdu()))
+    .catch(err => console.error(err));
+};
