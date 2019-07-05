@@ -40,3 +40,10 @@ export const removeSkill = id => dispatch => {
     .then(() => dispatch(getAdminSkills()))
     .catch(err => console.error(err));
 };
+
+export const createSkill = skillData => dispatch => {
+  axios
+    .post("/skills", skillData)
+    .then(() => dispatch(getAdminSkills()))
+    .catch(err => console.error(err));
+};

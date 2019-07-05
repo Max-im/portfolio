@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import ProjectItem from "../../Items/ProjectItem";
 import { getProjects } from "../../../store/actions/projectes";
+import Spinner from "../../Common/Spinner";
 
 export class ProjectsList extends Component {
   componentDidMount() {
@@ -22,9 +23,9 @@ export class ProjectsList extends Component {
         <h3 className="projectsList__title">Projects list</h3>
 
         <div className="projectsList__body">
-          {loading
-            ? "Loading..."
-            : projects.map(item => <ProjectItem item={item} key={item.id} />)}
+          {projects &&
+            projects.map(item => <ProjectItem item={item} key={item.id} />)}
+          {loading && <Spinner />}
         </div>
       </section>
     );

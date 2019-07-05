@@ -64,4 +64,15 @@ router.delete("/:id", checkAdminPermission, async (req, res) => {
   res.end();
 });
 
+router.post("/", checkAdminPermission, async (req, res, next) => {
+  const { skill_picture, skill, range, source, category_id } = req.body;
+  client
+    .query(
+      `INSERT INTO skills(skill_picture, skill, range, source, category_id) VALUES($1, $2, $3, $4, $5)`,
+      [skill_picture, skill, range, source, category_id]
+    )
+    .then(() => res.end())
+    .catch(err => next(err));
+});
+
 module.exports = router;

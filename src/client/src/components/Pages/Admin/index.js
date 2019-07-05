@@ -3,6 +3,7 @@ import "./style.scss";
 import PageTitle from "../../Common/PageTitle";
 import AdminSkillsCategories from "../../Sections/AdminSkillsCategories";
 import AdminSkills from "../../Sections/AdminSkills";
+import AddSkill from "../../Control/AddSkill";
 
 export default function index() {
   return (
@@ -15,6 +16,8 @@ export default function index() {
         {/* skills type */}
         {/* skills */}
         <AdminSkills />
+        {/* add skills */}
+        <AddSkill />
       </div>
     </div>
   );
