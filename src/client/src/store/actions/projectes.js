@@ -17,7 +17,7 @@ export const getProject = id => dispatch => {
   axios
     .get(`/projects/${id}`)
     .then(({ data }) => {
-      dispatch({ type: GET_PROJECT, payload: data[0] });
+      dispatch({ type: GET_PROJECT, payload: data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
     })
     .catch(err => console.error(err));

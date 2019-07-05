@@ -5,10 +5,9 @@ import {
 } from "../controllers/permission";
 import {
   getAllProjects,
+  formateAllProjects,
   getProjectById,
-  attachSkills,
-  attachLikes,
-  attachComments,
+  parseProjectData,
   updateProjectData,
   retrieveSkillsToUpdate,
   addNewProjectSkills,
@@ -31,9 +30,9 @@ const router = Router();
  * @access public
  * @description get all projects, attach skills, return to frontend
  */
-router.get("/", getAllProjects, attachSkills, (req, res) => {
-  const { projectsWithSkills } = req.body;
-  res.json(projectsWithSkills);
+router.get("/", getAllProjects, formateAllProjects, (req, res) => {
+  const { result } = req.body;
+  res.json(result);
 });
 
 /**
@@ -41,17 +40,10 @@ router.get("/", getAllProjects, attachSkills, (req, res) => {
  * @access public
  * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
-router.get(
-  "/:id",
-  getProjectById,
-  attachSkills,
-  attachLikes,
-  attachComments,
-  (req, res) => {
-    const { projectsWithComments } = req.body;
-    res.json(projectsWithComments);
-  }
-);
+router.get("/:id", getProjectById, parseProjectData, (req, res) => {
+  const { result } = req.body;
+  res.json(result);
+});
 
 /**
  * @method POST

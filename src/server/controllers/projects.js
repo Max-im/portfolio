@@ -7,17 +7,60 @@ import client from "../db";
 export const getAllProjects = (req, res, next) => {
   client
     .query(
-      `SELECT p.id, title, description, picture, date, github, deploy, l.level 
-        FROM projects AS p
-        JOIN projectlevels AS l
-        ON l.id = p.level_id
-        ORDER BY id DESC`
+      `
+    SELECT proj.id, title, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range
+    FROM projects AS proj
+    JOIN projectlevels AS lev ON proj.level_id = lev.id
+    JOIN projects_skills AS ps ON proj.id = ps.project_id
+    JOIN skills AS s ON s.id = ps.skill_id
+  `
     )
     .then(({ rows }) => {
       req.body.projects = rows;
       next();
     })
     .catch(err => next(err));
+};
+
+/**
+ * @route PROJECTS
+ * @description formated all projects data, store them into req.body.result
+ */
+export const formateAllProjects = (req, res, next) => {
+  const { projects } = req.body;
+  const projectsObj = {};
+  projects.forEach(item => {
+    if (!projectsObj[item.id]) {
+      projectsObj[item.id] = {
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        picture: item.picture,
+        author_id: item.author_id,
+        date: item.date,
+        github: item.github,
+        deploy: item.deploy,
+        level: item.level,
+        skills: []
+      };
+    }
+    projectsObj[item.id].skills.push({
+      id: item.skill_id,
+      title: item.skill,
+      picture: item.skill_picture,
+      range: item.range
+    });
+  });
+
+  const result = Object.keys(projectsObj)
+    .map(key => projectsObj[key])
+    .map(item => ({
+      ...item,
+      skills: item.skills.sort((a, b) => a.range - b.range)
+    }));
+
+  req.body.result = result;
+  next();
 };
 
 /**
@@ -27,13 +70,22 @@ export const getAllProjects = (req, res, next) => {
 export const getProjectById = (req, res, next) => {
   client
     .query(
-      `SELECT id, title, description, picture, date, github, deploy  
-        FROM projects 
-        WHERE id=$1`,
+      `SELECT proj.id, title, description, picture, proj.date, github, deploy, level,
+              c.id AS comment_id, c.author_id AS comment_author,  c.date AS comment_date, text, avatar, name,
+              skill_id, skill, skill_picture, range,
+              sign, l.user_id AS like_user
+        FROM projects AS proj
+        JOIN projectlevels AS lev ON proj.level_id = lev.id
+        JOIN projects_skills AS ps ON proj.id = ps.project_id
+        JOIN comments AS c ON proj.id = c.project_id
+        JOIN users AS u ON u.id = c.author_id
+        JOIN skills AS s ON s.id = ps.skill_id
+        JOIN likes AS l ON proj.id = l.project_id
+        WHERE proj.id=$1`,
       [req.params.id]
     )
     .then(({ rows }) => {
-      req.body.projects = rows;
+      req.body.projectData = rows;
       next();
     })
     .catch(err => next(err));
@@ -43,87 +95,61 @@ export const getProjectById = (req, res, next) => {
  * @route PROJECT
  * @description
  */
-export const attachSkills = (req, res, next) => {
-  const { projects } = req.body;
+export const parseProjectData = (req, res, next) => {
+  const { projectData } = req.body;
+  const row = projectData[0];
+  const result = {
+    id: row.id,
+    title: row.title,
+    description: row.description,
+    picture: row.picture,
+    date: row.date,
+    github: row.github,
+    deploy: row.deploy,
+    level: row.level,
+    skills: {},
+    comments: {},
+    likes: [],
+    dislikes: []
+  };
 
-  Promise.all(
-    projects.map(item =>
-      client.query(
-        `SELECT skill_id AS id, skill_picture AS picture, s.skill AS title
-          FROM projects_skills AS ps 
-          JOIN skills AS s ON s.id = ps.skill_id 
-          WHERE ps.project_id = $1 `,
-        [item.id]
-      )
-    )
-  )
-    .then(resp => {
-      const result = projects.map((p, i) => ({ ...p, skills: resp[i].rows }));
-      req.body.projectsWithSkills = result;
-      next();
-    })
-    .catch(err => next(err));
-};
+  projectData.forEach(item => {
+    // add skills
+    if (!result.skills[item.skill_id]) {
+      result.skills[item.skill_id] = {
+        id: item.skill_id,
+        title: item.skill,
+        picture: item.skill_picture
+      };
+    }
 
-/**
- * @route PROJECT
- * @description
- */
-export const attachLikes = (req, res, next) => {
-  const { projectsWithSkills: projects } = req.body;
+    // add comments
+    if (!result.comments[item.comment_id]) {
+      result.comments[item.comment_id] = {
+        id: item.comment_id,
+        author: item.comment_author,
+        date: item.comment_date,
+        text: item.text,
+        avatar: item.avatar,
+        name: item.name
+      };
+    }
 
-  Promise.all(
-    projects.map(item =>
-      client.query(
-        `SELECT l.sign, u.id AS uid 
-            FROM likes AS l 
-            JOIN users AS u 
-            ON u.id = l.user_id 
-            WHERE project_id=$1 
-            ORDER BY l.id DESC`,
-        [item.id]
-      )
-    )
-  )
-    .then(resp => {
-      req.body.projectsWithLikes = projects.map((proj, i) => ({
-        ...proj,
-        likes: resp[i].rows.filter(item => item.sign).map(item => item.uid),
-        dislikes: resp[i].rows.filter(item => !item.sign).map(item => item.uid)
-      }));
-      next();
-    })
-    .catch(err => next(err));
-};
+    // add likes
+    if (item.sign) result.likes.push(item.like_user);
 
-/**
- * @route PROJECT
- * @description
- */
-export const attachComments = (req, res, next) => {
-  const { projectsWithLikes: projects } = req.body;
+    // add dislikes
+    if (!item.sign) result.dislikes.push(item.like_user);
+  });
 
-  Promise.all(
-    projects.map(item =>
-      client.query(
-        `SELECT c.id, c.text, c.date, u.avatar, u.name 
-          FROM comments AS c  
-          JOIN users AS u 
-          ON u.id = c.author_id 
-          WHERE project_id=$1 
-          ORDER BY c.id DESC`,
-        [item.id]
-      )
-    )
-  )
-    .then(resp => {
-      req.body.projectsWithComments = projects.map((proj, i) => ({
-        ...proj,
-        comments: resp[i].rows
-      }));
-      next();
-    })
-    .catch(err => next(err));
+  const com = result.comments;
+  result.comments = Object.keys(com).map(key => com[key]);
+  result.skills = Object.keys(result.skills).map(key => result.skills[key]);
+  result.dislikes = result.dislikes.filter((v, i, a) => a.indexOf(v) === i);
+  result.likes = result.likes.filter((v, i, a) => a.indexOf(v) === i);
+
+  req.body.result = result;
+  next();
 };
 
 /**
