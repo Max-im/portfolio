@@ -2,7 +2,7 @@ import { SET_EDU, LOAD_EDU } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  edu: []
+  edu: null
 };
 
 export default (state = initialState, action) => {

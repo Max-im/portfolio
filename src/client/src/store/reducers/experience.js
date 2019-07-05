@@ -2,7 +2,7 @@ import { SET_EXP, LOAD_EXP } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  exp: []
+  exp: null
 };
 
 export default (state = initialState, action) => {

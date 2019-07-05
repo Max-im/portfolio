@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import { getExp, removeExp } from "../../../store/actions/experience";
 import ExpItem from "../../Items/ExpItem";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   componentDidMount() {
@@ -28,21 +29,22 @@ export class index extends Component {
       <section className="section">
         <h3 className="section__title">Experience</h3>
 
-        <ul>
-          {loading
-            ? "Loading..."
-            : exp.map(expItem => (
-                <li key={expItem.id} className="exp">
-                  {isAuth && user.isadmin && (
-                    <i
-                      className="fas fa-trash-alt exp__delete"
-                      onClick={this.onDeleteExp.bind(this, expItem.id)}
-                    />
-                  )}
-                  <ExpItem expItem={expItem} />
-                </li>
-              ))}
-        </ul>
+        {exp && (
+          <ul>
+            {exp.map(expItem => (
+              <li key={expItem.id} className="exp">
+                {isAuth && user.isadmin && (
+                  <i
+                    className="fas fa-trash-alt exp__delete"
+                    onClick={this.onDeleteExp.bind(this, expItem.id)}
+                  />
+                )}
+                <ExpItem expItem={expItem} />
+              </li>
+            ))}
+          </ul>
+        )}
+        {loading && <Spinner />}
       </section>
     );
   }

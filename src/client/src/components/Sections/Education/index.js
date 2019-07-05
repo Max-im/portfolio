@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import { getEdu, removeEdu } from "../../../store/actions/education";
 import EduItem from "../../Items/EduItem";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   componentDidMount() {
@@ -29,21 +30,22 @@ export class index extends Component {
       <section className="section">
         <h3 className="section__title">Education</h3>
 
-        <ul>
-          {loading
-            ? "Loading..."
-            : edu.map(eduItem => (
-                <li key={eduItem.id} className="edu">
-                  {isAuth && user.isadmin && (
-                    <i
-                      className="fas fa-trash-alt edu__delete"
-                      onClick={this.onEduDelete.bind(this, eduItem.id)}
-                    />
-                  )}
-                  <EduItem eduItem={eduItem} />
-                </li>
-              ))}
-        </ul>
+        {edu && (
+          <ul>
+            {edu.map(eduItem => (
+              <li key={eduItem.id} className="edu">
+                {isAuth && user.isadmin && (
+                  <i
+                    className="fas fa-trash-alt edu__delete"
+                    onClick={this.onEduDelete.bind(this, eduItem.id)}
+                  />
+                )}
+                <EduItem eduItem={eduItem} />
+              </li>
+            ))}
+          </ul>
+        )}
+        {loading && <Spinner />}
       </section>
     );
   }

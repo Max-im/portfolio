@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getSkills } from "../../../store/actions/skills";
 import "./style.scss";
 import SkillItem from "../../Items/SkillItem";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   componentDidMount() {
@@ -17,29 +18,28 @@ export class index extends Component {
 
   render() {
     const { skills, loading } = this.props.skills;
-    const isReady = skills && !loading;
 
     return (
       <section className="section skills">
         <h3 className="section__title">Skills</h3>
 
-        <ul>
-          {isReady
-            ? Object.keys(skills).map(category => (
-                // loop categories
-                <li key={category}>
-                  <h5 className="skills__category">{category}</h5>
+        {skills && (
+          <ul>
+            {Object.keys(skills).map(category => (
+              <li key={category}>
+                <h5 className="skills__category">{category}</h5>
 
-                  {/* Loop skills of the particular category */}
-                  <ul className="skills__list">
-                    {skills[category].map(skill => (
-                      <SkillItem key={skill.id} skill={skill} />
-                    ))}
-                  </ul>
-                </li>
-              ))
-            : "Loading..."}
-        </ul>
+                {/* Loop skills of the particular category */}
+                <ul className="skills__list">
+                  {skills[category].map(skill => (
+                    <SkillItem key={skill.id} skill={skill} />
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        )}
+        {loading && <Spinner />}
       </section>
     );
   }

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import ContactItem from "../../Items/ContactItem";
 import { getContacts } from "../../../store/actions/contacts";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   componentDidMount() {
@@ -21,13 +22,15 @@ export class index extends Component {
       <section className="section">
         <h3 className="section__title">Contacts</h3>
 
-        <ul>
-          {loading
-            ? "Loading..."
-            : contacts.map(contact => (
-                <ContactItem key={contact.id} contact={contact} />
-              ))}
-        </ul>
+        {contacts && (
+          <ul>
+            {contacts.map(contact => (
+              <ContactItem key={contact.id} contact={contact} />
+            ))}
+          </ul>
+        )}
+
+        {loading && <Spinner />}
       </section>
     );
   }

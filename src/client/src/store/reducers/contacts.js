@@ -2,7 +2,7 @@ import { SET_CONTACTS, LOAD_CONTACTS } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  contacts: []
+  contacts: null
 };
 
 export default (state = initialState, action) => {

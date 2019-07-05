@@ -2,7 +2,7 @@ import { LOAD_PROJECTS, GET_PROJECTS, GET_PROJECT } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  projects: [],
+  projects: null,
   project: null
 };
 
