@@ -18,3 +18,10 @@ export const removeExp = id => dispatch => {
     .then(() => dispatch(getExp()))
     .catch(err => console.error(err));
 };
+
+export const addExp = expData => dispatch => {
+  axios
+    .post("/experience", expData)
+    .then(() => dispatch(getExp()))
+    .catch(err => console.error(err));
+};

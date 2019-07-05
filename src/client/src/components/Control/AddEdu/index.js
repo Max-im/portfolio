@@ -37,6 +37,7 @@ export class index extends Component {
             <form onSubmit={this.onSubmit.bind(this)}>
               {Object.keys(this.state).map(item => (
                 <Input
+                  key={item}
                   onChange={this.onChange.bind(this)}
                   name={item}
                   value={this.state[item]}
