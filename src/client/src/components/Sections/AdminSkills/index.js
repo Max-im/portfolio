@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import "./style.scss";
 import { getAdminSkills, removeSkill } from "../../../store/actions/skills";
 
@@ -33,6 +34,7 @@ export class index extends Component {
               <p>Range</p>
               <p>Category</p>
               <p>Source</p>
+              <p>Edit</p>
               <p>Delete</p>
             </li>
             {admin.map((item, i) => (
@@ -42,6 +44,10 @@ export class index extends Component {
                 <p>{item.range}</p>
                 <p>{item.category}</p>
                 <p>{item.source}</p>
+                <Link
+                  className="far fa-edit"
+                  to={"/admin/update-skill/" + item.id}
+                />
                 <i
                   className="fas fa-trash-alt"
                   onClick={this.onRemove.bind(this, item.id)}

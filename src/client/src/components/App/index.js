@@ -12,6 +12,7 @@ import SingleProject from "../Pages/SingleProject";
 import Admin from "../Pages/Admin";
 import AdminRoute from "../Common/AdminRoute";
 import UpdateProject from "../Pages/UpdateProject";
+import UpdateSkill from "../Pages/UpdateSkill";
 
 function App() {
   return (
@@ -29,7 +30,13 @@ function App() {
           />
 
           <Switch>
-            <AdminRoute path="/admin" component={Admin} />
+            <AdminRoute exact path="/admin" component={Admin} />
+          </Switch>
+          <Switch>
+            <AdminRoute
+              path="/admin/update-skill/:id"
+              component={UpdateSkill}
+            />
           </Switch>
         </main>
         <Footer />
