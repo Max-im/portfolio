@@ -2,10 +2,10 @@
 
 ## **App info:**
 
-| Name        | Portfolio       |
-| ----------- | --------------- |
-| Description | APP-DESCRIPTION |
-| Start date  | 06.2019         |
+| Name        | Portfolio                                                      |
+| ----------- | -------------------------------------------------------------- |
+| Description | portfolio page created using react + redux + node + postgresql |
+| Start date  | 06.2019                                                        |
 
 ## **Setup the App**
 
