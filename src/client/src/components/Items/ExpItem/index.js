@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 export default class index extends Component {
@@ -44,10 +45,16 @@ export default class index extends Component {
             </ul>
           )}
           {this.props.isadmin && (
-            <i
-              className="fas fa-trash-alt exp__delete"
-              onClick={this.props.onDeleteExp.bind(null, expItem.id)}
-            />
+            <div className="exp__delete">
+              <Link
+                className="far fa-edit"
+                to={"/admin/update-exp/" + expItem.id}
+              />
+              <i
+                className="fas fa-trash-alt"
+                onClick={this.props.onDeleteExp.bind(null, expItem.id)}
+              />
+            </div>
           )}
         </div>
       </li>

@@ -25,3 +25,10 @@ export const addExp = expData => dispatch => {
     .then(() => dispatch(getExp()))
     .catch(err => console.error(err));
 };
+
+export const updateExp = (expData, history) => () => {
+  axios
+    .put("/experience", expData)
+    .then(() => history.push("/resume"))
+    .catch(err => console.error(err));
+};

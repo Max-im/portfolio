@@ -14,6 +14,7 @@ import AdminRoute from "../Common/AdminRoute";
 import UpdateProject from "../Pages/UpdateProject";
 import UpdateSkill from "../Pages/UpdateSkill";
 import UpdateEdu from "../Pages/UpdateEdu";
+import UpdateExp from "../Pages/UpdateExp";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Switch>
           <Switch>
             <AdminRoute path="/admin/update-edu/:id" component={UpdateEdu} />
+          </Switch>
+          <Switch>
+            <AdminRoute path="/admin/update-exp/:id" component={UpdateExp} />
           </Switch>
         </main>
         <Footer />
