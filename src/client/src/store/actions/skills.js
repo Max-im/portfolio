@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 /**
- * get skills
+ * @description get all skills
  */
 export const getSkills = () => dispatch => {
   dispatch({ type: LOAD_SKILLS, payload: true });
@@ -20,6 +20,9 @@ export const getSkills = () => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ * @description get all skills categories
+ */
 export const getSkillsCategories = () => dispatch => {
   axios
     .get("/skills/categories")
@@ -27,6 +30,9 @@ export const getSkillsCategories = () => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ * @description get all skills in admin format
+ */
 export const getAdminSkills = () => dispatch => {
   axios
     .get("/skills/admin")
@@ -34,13 +40,11 @@ export const getAdminSkills = () => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const removeSkill = id => dispatch => {
-  axios
-    .delete(`/skills/${id}`)
-    .then(() => dispatch(getAdminSkills()))
-    .catch(err => console.error(err));
-};
-
+/**
+ *
+ * @param {Object} skillData {skill_picture, source, skill, range, category_id}
+ * @description create new Skill
+ */
 export const createSkill = skillData => dispatch => {
   axios
     .post("/skills", skillData)
@@ -48,6 +52,11 @@ export const createSkill = skillData => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ *
+ * @param {Object} categoryData {category, range}
+ * @description create new category
+ */
 export const createCategory = categoryData => dispatch => {
   axios
     .post("/skills/category", categoryData)
@@ -55,6 +64,36 @@ export const createCategory = categoryData => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ *
+ * @param {Object} skillData {skill_picture, source, skill, range, category_id, id}
+ * @param {Object} history - from withRouter (react-router-dom)
+ * @description update skill data
+ */
+export const updateSkill = (skillData, history) => () => {
+  axios
+    .put("/skills", skillData)
+    .then(() => history.push("/admin"))
+    .catch(err => console.error(err));
+};
+
+/**
+ *
+ * @param {String} id
+ * @description delete skill by id
+ */
+export const deleteSkill = id => dispatch => {
+  axios
+    .delete(`/skills/${id}`)
+    .then(() => dispatch(getAdminSkills()))
+    .catch(err => console.error(err));
+};
+
+/**
+ *
+ * @param {String} id
+ * @description delete category by id
+ */
 export const deleteCategory = id => dispatch => {
   axios
     .delete(`/skills/category/${id}`)
@@ -62,12 +101,5 @@ export const deleteCategory = id => dispatch => {
       dispatch(getSkillsCategories());
       dispatch(getAdminSkills());
     })
-    .catch(err => console.error(err));
-};
-
-export const updateSkill = (skillData, history) => () => {
-  axios
-    .put("/skills", skillData)
-    .then(() => history.push("/admin"))
     .catch(err => console.error(err));
 };

@@ -1,6 +1,9 @@
 import axios from "axios";
 import { SET_SUMMARY, LOAD_SUMMARY } from "./constants";
 
+/**
+ * @description get summary
+ */
 export const getSummary = () => dispatch => {
   dispatch({ type: LOAD_SUMMARY, payload: true });
   axios
@@ -12,6 +15,11 @@ export const getSummary = () => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ *
+ * @param {String} text
+ * @description update summary
+ */
 export const updateSummary = text => dispatch => {
   axios
     .put("/summary", { text })

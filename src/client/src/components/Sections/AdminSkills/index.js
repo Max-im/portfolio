@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./style.scss";
-import { getAdminSkills, removeSkill } from "../../../store/actions/skills";
+import { getAdminSkills, deleteSkill } from "../../../store/actions/skills";
 
 export class index extends Component {
   componentDidMount() {
@@ -11,12 +11,12 @@ export class index extends Component {
   }
 
   onRemove(id) {
-    if (window.confirm("Are you sure?")) this.props.removeSkill(id);
+    if (window.confirm("Are you sure?")) this.props.deleteSkill(id);
   }
 
   static propTypes = {
     getAdminSkills: PropTypes.func.isRequired,
-    removeSkill: PropTypes.func.isRequired,
+    deleteSkill: PropTypes.func.isRequired,
     skills: PropTypes.object.isRequired
   };
 
@@ -67,5 +67,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAdminSkills, removeSkill }
+  { getAdminSkills, deleteSkill }
 )(index);

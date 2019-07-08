@@ -1,6 +1,9 @@
 import axios from "axios";
 import { GET_PROJECTS, LOAD_PROJECTS, GET_PROJECT } from "../actions/constants";
 
+/**
+ * @description get all projects
+ */
 export const getProjects = () => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
@@ -12,6 +15,11 @@ export const getProjects = () => dispatch => {
     .catch(err => console.error(err));
 };
 
+/**
+ *
+ * @param {String} id
+ * @description get particular project by id
+ */
 export const getProject = id => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
@@ -23,20 +31,34 @@ export const getProject = id => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const addProject = projectData => dispatch => {
+/**
+ *
+ * @param {Object} projectData {picture, description, title, skills, github, deploy, author_id}
+ * @description create new project
+ */
+export const createProject = projectData => dispatch => {
   axios
     .post("/projects", projectData)
     .then(() => dispatch(getProjects()))
     .catch(err => console.error(err));
 };
 
-export const deleteProject = (id, history) => dispatch => {
+/**
+ *
+ * @param {Object} projectData {title, description, picture, skills, project_id}
+ * @param {Object} history - from withRouter (react-router-dom)
+ * @description update project data
+ */
+export const updateProject = (projectData, history) => () => {
   axios
-    .delete(`/projects/${id}`)
-    .then(() => history.push("/portfolio"))
+    .put("/projects", projectData)
+    .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
     .catch(err => console.error(err));
 };
 
+/**
+ * @description change rate of the project
+ */
 export const setRate = ({ project_id, sign }) => dispatch => {
   axios
     .post("/projects/likes", { project_id, sign })
@@ -44,9 +66,15 @@ export const setRate = ({ project_id, sign }) => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const updateProject = (projectData, history) => () => {
+/**
+ *
+ * @param {String} id
+ * @param {Object} history - from withRouter (react-router-dom)
+ * @description delete project by id
+ */
+export const deleteProject = (id, history) => () => {
   axios
-    .put("/projects", projectData)
-    .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
+    .delete(`/projects/${id}`)
+    .then(() => history.push("/portfolio"))
     .catch(err => console.error(err));
 };

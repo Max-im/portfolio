@@ -1,6 +1,9 @@
 import axios from "axios";
 import { SET_EXP, LOAD_EXP } from "./constants";
 
+/**
+ * @description get all experience
+ */
 export const getExp = () => dispatch => {
   dispatch({ type: LOAD_EXP, payload: true });
   axios
@@ -12,23 +15,38 @@ export const getExp = () => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const removeExp = id => dispatch => {
-  axios
-    .delete(`/experience/${id}`)
-    .then(() => dispatch(getExp()))
-    .catch(err => console.error(err));
-};
-
-export const addExp = expData => dispatch => {
+/**
+ *
+ * @param {Object} expData {exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description}
+ * @description create new experience item
+ */
+export const createExp = expData => dispatch => {
   axios
     .post("/experience", expData)
     .then(() => dispatch(getExp()))
     .catch(err => console.error(err));
 };
 
+/**
+ *
+ * @param {Object} expData {exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description, id}
+ * @param {Object} history - from withRouter (react-router-dom)
+ */
 export const updateExp = (expData, history) => () => {
   axios
     .put("/experience", expData)
     .then(() => history.push("/resume"))
+    .catch(err => console.error(err));
+};
+
+/**
+ *
+ * @param {String} id
+ * @description remove experience item by id
+ */
+export const deleteExp = id => dispatch => {
+  axios
+    .delete(`/experience/${id}`)
+    .then(() => dispatch(getExp()))
     .catch(err => console.error(err));
 };

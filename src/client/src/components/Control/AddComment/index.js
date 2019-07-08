@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./style.scss";
-import { addComment } from "../../../store/actions/comments";
+import { createComment } from "../../../store/actions/comments";
 
 export class index extends Component {
   state = {
@@ -12,7 +12,7 @@ export class index extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    addComment: PropTypes.func.isRequired
+    createComment: PropTypes.func.isRequired
   };
 
   onChange(e) {
@@ -23,7 +23,7 @@ export class index extends Component {
     const { commentText: text } = this.state;
     const { id: project_id } = this.props.match.params;
     const { id: author_id } = this.props.auth.user;
-    this.props.addComment({ text, project_id, author_id });
+    this.props.createComment({ text, project_id, author_id });
     this.setState({ commentText: "" });
   }
 
@@ -71,5 +71,5 @@ const mapStateToProps = state => ({ auth: state.auth });
 
 export default connect(
   mapStateToProps,
-  { addComment }
+  { createComment }
 )(withRouter(index));

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
-import { getEdu, removeEdu } from "../../../store/actions/education";
+import { getEdu, deleteEdu } from "../../../store/actions/education";
 import EduItem from "../../Items/EduItem";
 import Spinner from "../../Common/Spinner";
 
@@ -12,14 +12,14 @@ export class index extends Component {
   }
 
   onEduDelete(id) {
-    if (window.confirm("Are you sure?")) this.props.removeEdu(id);
+    if (window.confirm("Are you sure?")) this.props.deleteEdu(id);
   }
 
   static propTypes = {
     education: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     getEdu: PropTypes.func.isRequired,
-    removeEdu: PropTypes.func.isRequired
+    deleteEdu: PropTypes.func.isRequired
   };
 
   render() {
@@ -55,5 +55,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getEdu, removeEdu }
+  { getEdu, deleteEdu }
 )(index);

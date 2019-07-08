@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import Input from "../../Common/Input";
-import { addProject } from "../../../store/actions/projectes";
+import { createProject } from "../../../store/actions/projectes";
 import SelectSkills from "../../Common/SelectSkills";
 
 const initState = {
@@ -33,13 +33,14 @@ export class index extends Component {
   onSubmit(e) {
     e.preventDefault();
     const { id: author_id } = this.props.auth.user;
-    this.props.addProject({ ...this.state, author_id });
+    this.props.createProject({ ...this.state, author_id });
     this.setState({ ...initState });
   }
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    skills: PropTypes.object.isRequired
+    skills: PropTypes.object.isRequired,
+    createProject: PropTypes.func.isRequired
   };
 
   render() {
@@ -83,5 +84,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addProject }
+  { createProject }
 )(index);

@@ -35,7 +35,7 @@ router.post("/", checkAdminPermission, (req, res, next) => {
 });
 
 router.put("/", checkAdminPermission, async (req, res, next) => {
-  const { id, edu_photo, range, edu_title, edu_description } = req.body;
+  const { id } = req.body;
 
   // get current db data
   const current = await client

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import Input from "../../Common/Input";
-import { addEdu } from "../../../store/actions/education";
+import { createEdu } from "../../../store/actions/education";
 
 export class index extends Component {
   state = {
@@ -14,12 +14,12 @@ export class index extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    addEdu: PropTypes.func.isRequired
+    createEdu: PropTypes.func.isRequired
   };
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.addEdu(this.state);
+    this.props.createEdu(this.state);
     this.setState({ edu_photo: "", edu_title: "", edu_description: "" });
   }
 
@@ -58,5 +58,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addEdu }
+  { createEdu }
 )(index);

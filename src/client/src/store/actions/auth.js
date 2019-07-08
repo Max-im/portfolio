@@ -4,7 +4,9 @@ import { SET_USER } from "./constants";
 import { setAuthToken } from "./utils";
 
 /**
- * Login user
+ *
+ * @param {Object} resp - response from google
+ * @description Login or register user by google account
  */
 export const onLogin = resp => dispatch => {
   const { email, googleId: gId, name, imageUrl: avatar } = resp.profileObj;
@@ -20,12 +22,12 @@ export const onLogin = resp => dispatch => {
 };
 
 /**
- * Login error handle
+ * @description show auth error
  */
 export const onLoginError = () => dispatch => {};
 
 /**
- * Logout
+ * @description logout
  */
 export const onLogout = () => dispatch => {
   dispatch({ type: SET_USER, payload: {} });

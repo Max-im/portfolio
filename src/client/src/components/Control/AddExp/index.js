@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./style.scss";
 import Input from "../../Common/Input";
 import TextArea from "../../Common/TextArea";
-import { addExp } from "../../../store/actions/experience";
+import { createExp } from "../../../store/actions/experience";
 
 export class index extends Component {
   state = {
@@ -19,12 +19,12 @@ export class index extends Component {
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    addExp: PropTypes.func.isRequired
+    createExp: PropTypes.func.isRequired
   };
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.addExp(this.state);
+    this.props.createExp(this.state);
     this.setState({
       exp_title: "",
       exp_company: "",
@@ -115,5 +115,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addExp }
+  { createExp }
 )(index);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
-import { getExp, removeExp } from "../../../store/actions/experience";
+import { getExp, deleteExp } from "../../../store/actions/experience";
 import ExpItem from "../../Items/ExpItem";
 import Spinner from "../../Common/Spinner";
 
@@ -12,14 +12,14 @@ export class index extends Component {
   }
 
   onDeleteExp(id) {
-    if (window.confirm("Are you sure?")) this.props.removeExp(id);
+    if (window.confirm("Are you sure?")) this.props.deleteExp(id);
   }
 
   static propTypes = {
     experience: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     getExp: PropTypes.func.isRequired,
-    removeExp: PropTypes.func.isRequired
+    deleteExp: PropTypes.func.isRequired
   };
 
   render() {
@@ -54,5 +54,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getExp, removeExp }
+  { getExp, deleteExp }
 )(index);
