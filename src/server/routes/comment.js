@@ -1,17 +1,19 @@
 import { Router } from "express";
 import client from "../db";
+import { checkAuthPermission } from "../controllers/permission";
 
 const router = Router();
 
 /**
- * get contacts
+ * create comment
  */
-router.post("/", (req, res, next) => {
+router.post("/", checkAuthPermission, (req, res, next) => {
   const { text, project_id, author_id } = req.body;
 
   client
     .query(
-      "INSERT INTO comments(project_id, author_id, text) VALUES ($1, $2, $3)",
+      `INSERT INTO comments(project_id, author_id, text) 
+        VALUES ($1, $2, $3)`,
       [project_id, author_id, text]
     )
     .then(() => res.end())

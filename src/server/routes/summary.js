@@ -1,5 +1,6 @@
 import { Router } from "express";
 import client from "../db";
+import { checkAdminPermission } from "../controllers/permission";
 
 const router = Router();
 
@@ -10,7 +11,7 @@ router.get("/", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.put("/", (req, res, next) => {
+router.put("/", checkAdminPermission, (req, res, next) => {
   const { text } = req.body;
 
   client

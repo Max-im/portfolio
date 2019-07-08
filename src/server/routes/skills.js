@@ -54,6 +54,9 @@ router.get("/admin", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.delete("/:id", checkAdminPermission, async (req, res) => {
   await client.query(`DELETE FROM projects_skills AS ps WHERE ps.skill_id=$1`, [
     req.params.id
@@ -75,6 +78,9 @@ router.post("/", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.post("/category", checkAdminPermission, (req, res, next) => {
   const { range, category } = req.body;
   client
@@ -86,6 +92,9 @@ router.post("/category", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.put("/", checkAdminPermission, async (req, res, next) => {
   const { id } = req.body;
   // get current db skill
@@ -115,6 +124,9 @@ router.put("/", checkAdminPermission, async (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.delete("/category/:id", checkAdminPermission, async (req, res) => {
   const { id } = req.params;
 

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import client from "../db";
+import { checkAdminPermission } from "../controllers/permission";
 
 const router = Router();
 
@@ -13,7 +14,10 @@ router.get("/", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.delete("/:id", (req, res, next) => {
+/**
+ *
+ */
+router.delete("/:id", checkAdminPermission, (req, res, next) => {
   const { id } = req.params;
   client
     .query("DELETE FROM contacts WHERE id=$1", [id])

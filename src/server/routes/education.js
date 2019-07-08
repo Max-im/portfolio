@@ -14,6 +14,9 @@ router.get("/", (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.delete("/:id", checkAdminPermission, (req, res, next) => {
   client
     .query(`DELETE FROM education WHERE id=$1`, [req.params.id])
@@ -21,6 +24,9 @@ router.delete("/:id", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.post("/", checkAdminPermission, (req, res, next) => {
   const { edu_photo, edu_title, edu_description } = req.body;
 
@@ -34,6 +40,9 @@ router.post("/", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
+/**
+ *
+ */
 router.put("/", checkAdminPermission, async (req, res, next) => {
   const { id } = req.body;
 

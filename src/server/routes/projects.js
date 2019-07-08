@@ -31,8 +31,7 @@ const router = Router();
  * @description get all projects, attach skills, return to frontend
  */
 router.get("/", getAllProjects, formateAllProjects, (req, res) => {
-  const { result } = req.body;
-  res.json(result);
+  res.json(req.body.result);
 });
 
 /**
@@ -41,8 +40,7 @@ router.get("/", getAllProjects, formateAllProjects, (req, res) => {
  * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
 router.get("/:id", getProjectById, parseProjectData, (req, res) => {
-  const { result } = req.body;
-  res.json(result);
+  res.json(req.body.result);
 });
 
 /**
