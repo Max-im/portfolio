@@ -86,7 +86,36 @@ router.post("/category", checkAdminPermission, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.delete("/category/:id", checkAdminPermission, async (req, res, next) => {
+router.put("/", checkAdminPermission, async (req, res, next) => {
+  const { id } = req.body;
+  // get current db skill
+  const current = await client.query(
+    `SELECT skill, skill_picture, source, range, category_id FROM skills WHERE id=$1`,
+    [id]
+  );
+
+  // retrieve fields to update
+  const toUpdate = {};
+  const curentSkill = current.rows[0];
+  Object.keys(curentSkill).map(key => {
+    if (req.body[key] !== curentSkill[key]) toUpdate[key] = req.body[key];
+    return null;
+  });
+
+  // update
+  return Promise.all(
+    Object.keys(toUpdate).map(key => {
+      return client.query(`UPDATE skills SET ${key}=$1 WHERE id=$2`, [
+        toUpdate[key],
+        id
+      ]);
+    })
+  )
+    .then(() => res.end())
+    .catch(err => next(err));
+});
+
+router.delete("/category/:id", checkAdminPermission, async (req, res) => {
   const { id } = req.params;
 
   // delete categories skills

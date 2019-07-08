@@ -16,7 +16,8 @@ INSERT INTO users
     (name, email, gid, avatar, isadmin)
 VALUES
     ('Maxim Pogidaev', 'maxim.pogidaev@idealscorp.com', '110822060876468114858', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', true),
-    ('User User', 'user.user@gmail.com', '110822060876468110000', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', false);
+    ('User User', 'user.user@gmail.com', '110822060876468110000', 'https://lh6.googleusercontent.com/-5QhCSbdT4ag/AAAAAAAAAAI/AAAAAAAEQ/VV68fxMyMs4/s96-c/photo.jpg', false),
+    ('Maxim Pozhidayev', 'pogidaevmo@gmail.com', '104819189707149372033', 'https://lh6.googleusercontent.com/-TE1h5kRJKK0/AAAAAAAAAAI/AAAAAAAAA6U/mXm7qY1aWgA/s96-c/photo.jpg', true);
 
 -- ======================================================================================
 
@@ -280,6 +281,7 @@ VALUES
 CREATE TABLE experience
 (
     id SERIAL PRIMARY KEY,
+    range INTEGER UNIQUE,
     exp_title CHARACTER varying(64),
     exp_company CHARACTER varying(64),
     exp_from CHARACTER varying(64),
@@ -291,12 +293,12 @@ CREATE TABLE experience
 
 -- insert
 INSERT INTO experience
-    (exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
+    (range, exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
 VALUES
-    ('Specialist', 'PrivateBank', '06.2006', '03.2007', false, 'https://gravitsapa.info/wp-content/uploads/2017/01/pb.png', 'Conclusion of loan agreements; Attraction of consumers'),
-    ('Economist - Head of Labor and Wages Department', 'Regional gas company', '03.2007', '09.2014', false, 'https://max-im.github.io/img/experience/gaz.jpg', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
-    ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '09.2014', '01.2018', false, 'https://max-im.github.io/img/experience/chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
-    ('JS Developer', 'iDeals solutions', '01.208', '', true, 'https://is4-ssl.mzstatic.com/image/thumb/Purple49/v4/4f/87/a3/4f87a3be-b6e9-49e3-d6e9-2f92c7340775/source/256x256bb.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
+    (1, 'Specialist', 'PrivateBank', '06.2006', '03.2007', false, 'https://gravitsapa.info/wp-content/uploads/2017/01/pb.png', 'Conclusion of loan agreements; Attraction of consumers'),
+    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', '03.2007', '09.2014', false, 'https://max-im.github.io/img/experience/gaz.jpg', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
+    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '09.2014', '01.2018', false, 'https://max-im.github.io/img/experience/chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
+    (4, 'JS Developer', 'iDeals solutions', '01.208', '', true, 'https://is4-ssl.mzstatic.com/image/thumb/Purple49/v4/4f/87/a3/4f87a3be-b6e9-49e3-d6e9-2f92c7340775/source/256x256bb.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
 
 
 -- ======================================================================================
@@ -332,6 +334,7 @@ VALUES
 CREATE TABLE education
 (
     id SERIAL PRIMARY KEY,
+    range INTEGER UNIQUE,
     edu_photo CHARACTER varying(64),
     edu_title CHARACTER varying(64),
     edu_description CHARACTER varying(64)
@@ -339,9 +342,9 @@ CREATE TABLE education
 
 -- insert
 INSERT INTO education
-    (edu_photo, edu_title, edu_description)
+    (range, edu_photo, edu_title, edu_description)
 VALUES
-    ('https://max-im.github.io/img/experience/donNu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
+    (1, 'https://max-im.github.io/img/experience/donNu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
 -- ======================================================================================
 
 

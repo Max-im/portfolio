@@ -64,3 +64,10 @@ export const deleteCategory = id => dispatch => {
     })
     .catch(err => console.error(err));
 };
+
+export const updateSkill = (skillData, history) => () => {
+  axios
+    .put("/skills", skillData)
+    .then(() => history.push("/admin"))
+    .catch(err => console.error(err));
+};

@@ -8,7 +8,7 @@ const router = Router();
  */
 router.get("/", (req, res, next) => {
   client
-    .query("SELECT * FROM experience ORDER BY id DESC")
+    .query("SELECT * FROM experience ORDER BY range DESC")
     .then(({ rows }) => res.json(rows))
     .catch(err => next(err));
 });

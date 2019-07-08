@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 
-export default function index({ contact, isadmin }) {
+export default function index({ contact, onDelete, isadmin }) {
   return (
     <li className="contact">
       <img
@@ -21,8 +21,12 @@ export default function index({ contact, isadmin }) {
           {contact.contact_title}
         </a>
       )}
-
-      {isadmin && <i className="fas fa-trash-alt contact__delete" />}
+      {isadmin && (
+        <i
+          className="fas fa-trash-alt contact__delete"
+          onClick={onDelete.bind(null, contact.id)}
+        />
+      )}
     </li>
   );
 }

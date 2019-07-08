@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import ContactItem from "../../Items/ContactItem";
-import { getContacts } from "../../../store/actions/contacts";
+import { getContacts, deleteContact } from "../../../store/actions/contacts";
 import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
@@ -11,10 +11,15 @@ export class index extends Component {
     this.props.getContacts();
   }
 
+  onDelete(id) {
+    if (window.confirm("Are you sure?")) this.props.deleteContact(id);
+  }
+
   static propTypes = {
     contacts: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    getContacts: PropTypes.func.isRequired
+    getContacts: PropTypes.func.isRequired,
+    deleteContact: PropTypes.func.isRequired
   };
 
   render() {
@@ -31,6 +36,7 @@ export class index extends Component {
               <ContactItem
                 key={contact.id}
                 contact={contact}
+                onDelete={this.onDelete.bind(this)}
                 isadmin={user.isadmin}
               />
             ))}
@@ -50,5 +56,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getContacts }
+  { getContacts, deleteContact }
 )(index);

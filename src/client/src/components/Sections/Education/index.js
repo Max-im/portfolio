@@ -24,7 +24,7 @@ export class index extends Component {
 
   render() {
     const { edu, loading } = this.props.education;
-    const { user, isAuth } = this.props.auth;
+    const { user } = this.props.auth;
 
     return (
       <section className="section">
@@ -33,15 +33,12 @@ export class index extends Component {
         {edu && (
           <ul>
             {edu.map(eduItem => (
-              <li key={eduItem.id} className="edu">
-                {isAuth && user.isadmin && (
-                  <i
-                    className="fas fa-trash-alt edu__delete"
-                    onClick={this.onEduDelete.bind(this, eduItem.id)}
-                  />
-                )}
-                <EduItem eduItem={eduItem} />
-              </li>
+              <EduItem
+                key={eduItem.id}
+                eduItem={eduItem}
+                onEduDelete={this.onEduDelete.bind(this)}
+                isadmin={user.isadmin}
+              />
             ))}
           </ul>
         )}

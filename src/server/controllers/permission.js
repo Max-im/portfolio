@@ -8,12 +8,11 @@ export const checkAdminPermission = (req, res, next) => {
 
   client.query("SELECT * FROM users WHERE gid=$1", [gid]).then(({ rows }) => {
     if (rows.length === 0) throw new Error("Not authorized");
+    else if (rows[0].isadmin === false) throw new Error("Access denied");
     else {
-      if (rows[0].isadmin === false) throw new Error("Access denied");
-      else {
-        req.user = rows[0];
-        next();
-      }
+      const [user] = rows;
+      req.user = user;
+      next();
     }
   });
 };
@@ -27,7 +26,8 @@ export const checkAuthPermission = (req, res, next) => {
   client.query("SELECT * FROM users WHERE gid=$1", [gid]).then(({ rows }) => {
     if (rows.length === 0) throw new Error("Not authorized");
     else {
-      req.user = rows[0];
+      const [user] = rows;
+      req.user = user;
       next();
     }
   });

@@ -13,4 +13,12 @@ router.get("/", (req, res, next) => {
     .catch(err => next(err));
 });
 
+router.delete("/:id", (req, res, next) => {
+  const { id } = req.params;
+  client
+    .query("DELETE FROM contacts WHERE id=$1", [id])
+    .then(() => res.end())
+    .catch(err => next(err));
+});
+
 module.exports = router;

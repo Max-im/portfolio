@@ -25,3 +25,10 @@ export const addEdu = eduData => dispatch => {
     .then(() => dispatch(getEdu()))
     .catch(err => console.error(err));
 };
+
+export const updateEdu = (eduData, history) => () => {
+  axios
+    .put("/education", eduData)
+    .then(() => history.push("/resume"))
+    .catch(err => console.error(err));
+};
