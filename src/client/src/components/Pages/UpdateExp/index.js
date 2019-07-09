@@ -61,59 +61,66 @@ export class index extends Component {
   }
 
   render() {
+    const { exp, loading, error } = this.props.experience;
     return (
       <div className="page">
         <PageTitle text="Update Experience" />
         <div className="container">
-          <form onSubmit={this.onSubmit.bind(this)}>
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="exp_title"
-              value={this.state.exp_title}
-            />
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="range"
-              value={this.state.range}
-            />
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="exp_company"
-              value={this.state.exp_company}
-            />
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="exp_from"
-              value={this.state.exp_from}
-            />
-            <div>
-              <input
-                type="checkbox"
-                onChange={() =>
-                  this.setState({ exp_is_current: !this.state.exp_is_current })
-                }
+          {exp && (
+            <form onSubmit={this.onSubmit.bind(this)}>
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="exp_title"
+                value={this.state.exp_title}
               />
-              {!this.state.exp_is_current && (
-                <Input
-                  onChange={this.onChange.bind(this)}
-                  name="exp_to"
-                  value={this.state.exp_to}
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="range"
+                value={this.state.range}
+              />
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="exp_company"
+                value={this.state.exp_company}
+              />
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="exp_from"
+                value={this.state.exp_from}
+              />
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={() =>
+                    this.setState({
+                      exp_is_current: !this.state.exp_is_current
+                    })
+                  }
                 />
-              )}
-            </div>
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="exp_image"
-              value={this.state.exp_image}
-            />
-            <Input
-              onChange={this.onChange.bind(this)}
-              name="exp_description"
-              value={this.state.exp_description}
-            />
-            <button type="submit">Save</button>
-          </form>
-          {!this.props.experience.exp && <Spinner />}
+                {!this.state.exp_is_current && (
+                  <Input
+                    onChange={this.onChange.bind(this)}
+                    name="exp_to"
+                    value={this.state.exp_to}
+                  />
+                )}
+              </div>
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="exp_image"
+                value={this.state.exp_image}
+              />
+              <Input
+                onChange={this.onChange.bind(this)}
+                name="exp_description"
+                value={this.state.exp_description}
+              />
+              <button type="submit">Save</button>
+            </form>
+          )}
+
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
         </div>
       </div>
     );

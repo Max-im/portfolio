@@ -44,37 +44,41 @@ export class index extends Component {
   }
 
   render() {
-    const { edu } = this.props.education;
+    const { edu, loading, error } = this.props.education;
     return (
       <div className="page">
         <PageTitle text="Update Edu" />
 
         <div className="container">
-          <form onSubmit={this.onSubmit.bind(this)}>
-            <Input
-              name="edu_photo"
-              onChange={this.onChange.bind(this)}
-              value={this.state.edu_photo}
-            />
-            <Input
-              name="range"
-              onChange={this.onChange.bind(this)}
-              value={this.state.range}
-            />
-            <Input
-              name="edu_title"
-              onChange={this.onChange.bind(this)}
-              value={this.state.edu_title}
-            />
-            <Input
-              name="edu_description"
-              onChange={this.onChange.bind(this)}
-              value={this.state.edu_description}
-            />
+          {edu && (
+            <form onSubmit={this.onSubmit.bind(this)}>
+              <Input
+                name="edu_photo"
+                onChange={this.onChange.bind(this)}
+                value={this.state.edu_photo}
+              />
+              <Input
+                name="range"
+                onChange={this.onChange.bind(this)}
+                value={this.state.range}
+              />
+              <Input
+                name="edu_title"
+                onChange={this.onChange.bind(this)}
+                value={this.state.edu_title}
+              />
+              <Input
+                name="edu_description"
+                onChange={this.onChange.bind(this)}
+                value={this.state.edu_description}
+              />
 
-            <button type="submit">Save</button>
-          </form>
-          {!edu && <Spinner />}
+              <button type="submit">Save</button>
+            </form>
+          )}
+
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
         </div>
       </div>
     );

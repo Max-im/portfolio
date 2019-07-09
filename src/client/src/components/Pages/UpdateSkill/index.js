@@ -6,6 +6,7 @@ import "./style.scss";
 import PageTitle from "../../Common/PageTitle";
 import Input from "../../Common/Input";
 import Select from "../../Common/Select";
+import Spinner from "../../Common/Spinner";
 import {
   getSkillsCategories,
   getAdminSkills,
@@ -59,7 +60,13 @@ export class index extends Component {
   }
 
   render() {
-    const { categories, admin } = this.props.skills;
+    const {
+      categories,
+      admin,
+      error,
+      categoryError,
+      loading
+    } = this.props.skills;
     const { id } = this.props.match.params;
     let skill, selectedCat;
     if (admin) {
@@ -114,6 +121,10 @@ export class index extends Component {
               <button type="submit">Save</button>
             </form>
           )}
+
+          {categoryError && <p className="error">{categoryError}</p>}
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
         </div>
       </div>
     );

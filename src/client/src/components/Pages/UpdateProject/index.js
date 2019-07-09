@@ -7,6 +7,7 @@ import "./style.scss";
 import { getProject, updateProject } from "../../../store/actions/projectes";
 import Input from "../../Common/Input";
 import SelectSkills from "../../Common/SelectSkills";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   state = { title: "", description: "", picture: "", skills: [] };
@@ -57,13 +58,13 @@ export class index extends Component {
   };
 
   render() {
-    const { project } = this.props.portfolio;
+    const { project, loading, error } = this.props.portfolio;
 
     return (
       <div className="page">
         <PageTitle text="Update project" />
         <div className="container">
-          {project ? (
+          {project && (
             <form onSubmit={this.onSubmit.bind(this)} className="updateProject">
               {Object.keys(this.state)
                 .filter(key => key !== "skills")
@@ -86,9 +87,10 @@ export class index extends Component {
                 Save project data
               </button>
             </form>
-          ) : (
-            "Loading..."
           )}
+
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
         </div>
       </div>
     );
