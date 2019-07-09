@@ -5,7 +5,8 @@ import {
   LOAD_SKILLS,
   SET_SKILLS_CAT,
   SET_A_SKILLS,
-  SKILL_ERROR
+  SKILL_ERROR,
+  CATEGORY_ERROR
 } from "./constants";
 
 /**
@@ -32,7 +33,9 @@ export const getSkillsCategories = () => dispatch => {
   axios
     .get("/skills/categories")
     .then(({ data }) => dispatch({ type: SET_SKILLS_CAT, payload: data }))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, CATEGORY_ERROR, "Error getting categories"))
+    );
 };
 
 /**
@@ -42,7 +45,7 @@ export const getAdminSkills = () => dispatch => {
   axios
     .get("/skills/admin")
     .then(({ data }) => dispatch({ type: SET_A_SKILLS, payload: data }))
-    .catch(err => console.error(err));
+    .catch(err => dispatch(onError(err, SKILL_ERROR, "Error getting skills")));
 };
 
 /**

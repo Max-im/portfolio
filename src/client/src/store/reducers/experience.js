@@ -9,7 +9,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_EXP:
-      return { ...state, exp: action.payload };
+      return { ...state, exp: action.payload, error: null };
 
     case LOAD_EXP:
       return { ...state, loading: action.payload };

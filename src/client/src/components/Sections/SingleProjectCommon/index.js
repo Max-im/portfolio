@@ -18,7 +18,7 @@ export class index extends Component {
   };
 
   render() {
-    const { project, loading } = this.props.portfolio;
+    const { project, loading, error } = this.props.portfolio;
     const isReady = project && !loading;
     return (
       <section className="section">
@@ -53,6 +53,8 @@ export class index extends Component {
             />
           </div>
         )}
+
+        {error && <p className="error">{error}</p>}
       </section>
     );
   }

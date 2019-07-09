@@ -21,7 +21,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         projects: action.payload,
-        shownProjects: action.payload.filter((v, i) => i < state.loadIndex)
+        shownProjects: action.payload.filter((v, i) => i < state.loadIndex),
+        error: null
       };
 
     case LOAD_PROJECTS:
@@ -38,7 +39,7 @@ export default (state = initialState, action) => {
       };
 
     case GET_PROJECT:
-      return { ...state, project: action.payload };
+      return { ...state, project: action.payload, error: null };
 
     case PROJECTS_ERROR:
       return { ...state, error: action.payload };

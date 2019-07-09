@@ -19,7 +19,6 @@ import {
   createNewProject,
   attachSkillsToNewProject
 } from "../controllers/projects";
-
 import { addNewLike, removeLike, toggleLike } from "../controllers/likes";
 // import client from "../db";
 

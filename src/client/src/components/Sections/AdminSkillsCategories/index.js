@@ -23,7 +23,7 @@ export class index extends Component {
   };
 
   render() {
-    const { categories } = this.props.skills;
+    const { categories, categoryError } = this.props.skills;
     return (
       <section className="section">
         <h3 className="section__title">Skills categories</h3>
@@ -46,6 +46,7 @@ export class index extends Component {
             ))}
           </ul>
         )}
+        {categoryError && <p className="error">{categoryError}</p>}
       </section>
     );
   }

@@ -38,7 +38,10 @@ export const getProject = id => dispatch => {
       dispatch({ type: GET_PROJECT, payload: data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, PROJECTS_ERROR, "Error getting project"));
+      dispatch({ type: LOAD_PROJECTS, payload: false });
+    });
 };
 
 /**

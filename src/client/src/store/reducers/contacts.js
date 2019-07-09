@@ -13,7 +13,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_CONTACTS:
-      return { ...state, contacts: action.payload };
+      return { ...state, contacts: action.payload, error: null };
 
     case LOAD_CONTACTS:
       return { ...state, loading: action.payload };

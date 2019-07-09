@@ -12,7 +12,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isAuth: Object.keys(action.payload).length > 0
+        isAuth: Object.keys(action.payload).length > 0,
+        error: null
       };
 
     case AUTH_ERROR:
