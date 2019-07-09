@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SET_EXP, LOAD_EXP } from "./constants";
+import { onError } from "./utils";
+import { SET_EXP, LOAD_EXP, EXP_ERROR } from "./constants";
 
 /**
  * @description get all experience
@@ -12,7 +13,10 @@ export const getExp = () => dispatch => {
       dispatch({ type: LOAD_EXP, payload: false });
       dispatch({ type: SET_EXP, payload: data });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, EXP_ERROR, "Getting experience error, try again"));
+      dispatch({ type: LOAD_EXP, payload: false });
+    });
 };
 
 /**

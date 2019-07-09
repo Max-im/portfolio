@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SET_CONTACTS, LOAD_CONTACTS } from "./constants";
+import { SET_CONTACTS, LOAD_CONTACTS, CONTACT_ERROR } from "./constants";
+import { onError } from "./utils";
 
 /**
  * @description get all contacts
@@ -9,10 +10,13 @@ export const getContacts = () => dispatch => {
   axios
     .get("/contacts")
     .then(({ data }) => {
-      dispatch({ type: LOAD_CONTACTS, payload: false });
       dispatch({ type: SET_CONTACTS, payload: data });
+      dispatch({ type: LOAD_CONTACTS, payload: false });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, CONTACT_ERROR, "Error getting contacts"));
+      dispatch({ type: LOAD_CONTACTS, payload: false });
+    });
 };
 
 /**

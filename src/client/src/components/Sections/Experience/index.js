@@ -23,8 +23,9 @@ export class index extends Component {
   };
 
   render() {
-    const { loading, exp } = this.props.experience;
-    const { isAuth, user } = this.props.auth;
+    const { exp, error, loading } = this.props.experience;
+    const { user } = this.props.auth;
+
     return (
       <section className="section">
         <h3 className="section__title">Experience</h3>
@@ -41,6 +42,8 @@ export class index extends Component {
             ))}
           </ul>
         )}
+
+        {error && <p className="error">{error}</p>}
         {loading && <Spinner />}
       </section>
     );

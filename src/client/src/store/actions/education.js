@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SET_EDU, LOAD_EDU } from "./constants";
+import { onError } from "./utils";
+import { SET_EDU, LOAD_EDU, EDU_ERROR } from "./constants";
 
 /**
  * @description get all educations
@@ -9,10 +10,13 @@ export const getEdu = () => dispatch => {
   axios
     .get("/education")
     .then(({ data }) => {
-      dispatch({ type: LOAD_EDU, payload: false });
       dispatch({ type: SET_EDU, payload: data });
+      dispatch({ type: LOAD_EDU, payload: false });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, EDU_ERROR, "Getting education error"));
+      dispatch({ type: LOAD_EDU, payload: false });
+    });
 };
 
 /**

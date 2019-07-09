@@ -17,7 +17,7 @@ export class index extends Component {
   };
 
   render() {
-    const { skills, loading } = this.props.skills;
+    const { skills, error, loading } = this.props.skills;
 
     return (
       <section className="section skills">
@@ -39,6 +39,8 @@ export class index extends Component {
             ))}
           </ul>
         )}
+
+        {error && <p className="error skills__error">{error}</p>}
         {loading && <Spinner />}
       </section>
     );

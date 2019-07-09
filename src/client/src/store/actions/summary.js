@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SET_SUMMARY, LOAD_SUMMARY } from "./constants";
+import { onError } from "./utils";
+import { SET_SUMMARY, LOAD_SUMMARY, SUMMARY_ERROR } from "./constants";
 
 /**
  * @description get summary
@@ -12,7 +13,10 @@ export const getSummary = () => dispatch => {
       dispatch({ type: LOAD_SUMMARY, payload: false });
       dispatch({ type: SET_SUMMARY, payload: data });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, SUMMARY_ERROR, "Error getting summary"));
+      dispatch({ type: LOAD_SUMMARY, payload: false });
+    });
 };
 
 /**

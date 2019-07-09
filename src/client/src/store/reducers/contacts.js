@@ -1,8 +1,13 @@
-import { SET_CONTACTS, LOAD_CONTACTS } from "../actions/constants";
+import {
+  SET_CONTACTS,
+  LOAD_CONTACTS,
+  CONTACT_ERROR
+} from "../actions/constants";
 
 const initialState = {
   loading: false,
-  contacts: null
+  contacts: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +17,9 @@ export default (state = initialState, action) => {
 
     case LOAD_CONTACTS:
       return { ...state, loading: action.payload };
+
+    case CONTACT_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

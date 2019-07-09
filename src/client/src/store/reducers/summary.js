@@ -1,10 +1,11 @@
-import { SET_SUMMARY, LOAD_SUMMARY } from "../actions/constants";
+import { SET_SUMMARY, LOAD_SUMMARY, SUMMARY_ERROR } from "../actions/constants";
 
 const initialState = {
   loading: false,
   photo: null,
   name: null,
-  summary: null
+  summary: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +16,9 @@ export default (state = initialState, action) => {
 
     case LOAD_SUMMARY:
       return { ...state, loading: action.payload };
+
+    case SUMMARY_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

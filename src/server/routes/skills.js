@@ -16,8 +16,6 @@ import {
   deleteSkill
 } from "../controllers/skills";
 
-import client from "../db";
-
 const router = Router();
 
 /**

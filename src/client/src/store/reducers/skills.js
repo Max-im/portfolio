@@ -2,14 +2,16 @@ import {
   SET_SKILLS,
   LOAD_SKILLS,
   SET_SKILLS_CAT,
-  SET_A_SKILLS
+  SET_A_SKILLS,
+  SKILL_ERROR
 } from "../actions/constants";
 
 const initialState = {
   loading: false,
   categories: null,
   admin: null,
-  skills: null
+  skills: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +27,9 @@ export default (state = initialState, action) => {
 
     case SET_A_SKILLS:
       return { ...state, admin: action.payload };
+
+    case SKILL_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

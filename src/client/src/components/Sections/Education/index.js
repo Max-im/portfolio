@@ -23,7 +23,7 @@ export class index extends Component {
   };
 
   render() {
-    const { edu, loading } = this.props.education;
+    const { edu, loading, error } = this.props.education;
     const { user } = this.props.auth;
 
     return (
@@ -42,6 +42,8 @@ export class index extends Component {
             ))}
           </ul>
         )}
+
+        {error && <p className="error">{error}</p>}
         {loading && <Spinner />}
       </section>
     );

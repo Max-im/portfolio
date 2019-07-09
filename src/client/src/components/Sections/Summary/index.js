@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getSummary, updateSummary } from "../../../store/actions/summary";
 import "./style.scss";
 import UpdatedText from "../../Common/UpdatedText";
+import Spinner from "../../Common/Spinner";
 
 export class index extends Component {
   componentDidMount() {
@@ -16,25 +17,23 @@ export class index extends Component {
   };
 
   render() {
-    const { photo, summary, name, loading } = this.props.summary;
+    const { photo, summary, name, loading, error } = this.props.summary;
     return (
       <section className="section summary">
         <h3 className="section__title">Summary</h3>
-        {loading ? (
-          "Loading..."
-        ) : (
-          <>
-            <div className="summary__body">
-              <img src={photo} alt={name} className="summary__img" />
-              <p className="summary__name">{name}</p>
-            </div>
 
-            <UpdatedText
-              text={summary}
-              onUpdate={this.props.updateSummary.bind(this)}
-            />
-          </>
-        )}
+        <div className="summary__body">
+          <img src={photo} alt={name} className="summary__img" />
+          <p className="summary__name">{name}</p>
+        </div>
+
+        <UpdatedText
+          text={summary}
+          onUpdate={this.props.updateSummary.bind(this)}
+        />
+
+        {error && <p className="error">{error}</p>}
+        {loading && <Spinner />}
       </section>
     );
   }

@@ -1,9 +1,11 @@
 import axios from "axios";
+import { onError } from "./utils";
 import {
   SET_SKILLS,
   LOAD_SKILLS,
   SET_SKILLS_CAT,
-  SET_A_SKILLS
+  SET_A_SKILLS,
+  SKILL_ERROR
 } from "./constants";
 
 /**
@@ -17,7 +19,10 @@ export const getSkills = () => dispatch => {
       dispatch({ type: SET_SKILLS, payload: data });
       dispatch({ type: LOAD_SKILLS, payload: false });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, SKILL_ERROR, "Error getting skills, try again"));
+      dispatch({ type: LOAD_SKILLS, payload: false });
+    });
 };
 
 /**

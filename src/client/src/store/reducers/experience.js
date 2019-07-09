@@ -1,8 +1,9 @@
-import { SET_EXP, LOAD_EXP } from "../actions/constants";
+import { SET_EXP, LOAD_EXP, EXP_ERROR } from "../actions/constants";
 
 const initialState = {
   loading: false,
-  exp: null
+  exp: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +13,9 @@ export default (state = initialState, action) => {
 
     case LOAD_EXP:
       return { ...state, loading: action.payload };
+
+    case EXP_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

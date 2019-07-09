@@ -23,7 +23,7 @@ export class index extends Component {
   };
 
   render() {
-    const { loading, contacts } = this.props.contacts;
+    const { contacts, error, loading } = this.props.contacts;
     const { user } = this.props.auth;
 
     return (
@@ -42,7 +42,7 @@ export class index extends Component {
             ))}
           </ul>
         )}
-
+        {error && <p className="error contacts__error">{error}</p>}
         {loading && <Spinner />}
       </section>
     );

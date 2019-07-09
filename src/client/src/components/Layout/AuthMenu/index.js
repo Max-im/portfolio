@@ -14,7 +14,7 @@ export class AuthMenu extends Component {
   };
 
   render() {
-    const { user, isAuth } = this.props.auth;
+    const { user, isAuth, error } = this.props.auth;
     const { onLogout: logout } = this.props;
     return (
       <div className="authMenu">
@@ -33,6 +33,7 @@ export class AuthMenu extends Component {
               onFailure={this.props.onLoginError}
               cookiePolicy={"single_host_origin"}
             />
+            {error && <p className="error authMenu__error">{error}</p>}
           </div>
         )}
       </div>
