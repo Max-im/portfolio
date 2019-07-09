@@ -11,6 +11,7 @@ import Portfolio from "../Pages/Portfolio";
 import SingleProject from "../Pages/SingleProject";
 import Admin from "../Pages/Admin";
 import AdminRoute from "../Common/AdminRoute";
+import NotFoundGenerate from "../Common/NotFoundGenerate";
 import UpdateProject from "../Pages/UpdateProject";
 import UpdateSkill from "../Pages/UpdateSkill";
 import UpdateEdu from "../Pages/UpdateEdu";
@@ -22,31 +23,28 @@ function App() {
       <div className="app">
         <Header />
         <main className="main">
-          <Route exact path="/" component={Home} />
-          <Route path="/resume" component={Resume} />
-          <Route exact path="/portfolio" component={Portfolio} />
-          <Route path="/portfolio/project/:id" component={SingleProject} />
-          <AdminRoute
-            path="/portfolio/update-project/:id"
-            component={UpdateProject}
-          />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/resume" component={Resume} />
+            <Route exact path="/portfolio" component={Portfolio} />
+            <Route path="/portfolio/project/:id" component={SingleProject} />
 
-          <Switch>
+            <AdminRoute
+              path="/portfolio/update-project/:id"
+              component={UpdateProject}
+            />
             <AdminRoute exact path="/admin" component={Admin} />
-          </Switch>
-          <Switch>
             <AdminRoute
               path="/admin/update-skill/:id"
               component={UpdateSkill}
             />
-          </Switch>
-          <Switch>
             <AdminRoute path="/admin/update-edu/:id" component={UpdateEdu} />
-          </Switch>
-          <Switch>
             <AdminRoute path="/admin/update-exp/:id" component={UpdateExp} />
+
+            <NotFoundGenerate path="*" />
           </Switch>
         </main>
+
         <Footer />
       </div>
     </Router>
