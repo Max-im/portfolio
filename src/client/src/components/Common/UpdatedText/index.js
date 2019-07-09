@@ -10,11 +10,15 @@ export class index extends Component {
 
   onCorrectStart() {
     this.setState({ correcting: true, text: this.props.text });
+    setTimeout(() => {
+      this.inp.focus();
+    }, 0);
   }
 
-  onCorrectEnd() {
-    this.setState({ correcting: false, text: "" });
+  onCorrectEnd(e) {
+    e.preventDefault();
     this.props.onUpdate(this.state.text);
+    this.setState({ correcting: false, text: "" });
   }
 
   onChange(e) {
@@ -28,23 +32,25 @@ export class index extends Component {
   render() {
     const { user } = this.props.auth;
     const { text } = this.props;
+    const { correcting } = this.state;
     return (
       <div>
         {user.isadmin ? (
           <div>
-            <p
-              className={this.state.correcting ? "hide" : ""}
-              onClick={this.onCorrectStart.bind(this)}
-            >
-              {text}
-            </p>
-            <input
-              type="text"
-              onChange={this.onChange.bind(this)}
-              className={this.state.correcting ? "" : "hide"}
-              value={this.state.text}
-              onBlur={this.onCorrectEnd.bind(this)}
-            />
+            {!correcting && (
+              <p onClick={this.onCorrectStart.bind(this)}>{text}</p>
+            )}
+            {correcting && (
+              <form onSubmit={this.onCorrectEnd.bind(this)}>
+                <input
+                  type="text"
+                  ref={input => (this.inp = input)}
+                  onChange={this.onChange.bind(this)}
+                  value={this.state.text}
+                  onBlur={this.onCorrectEnd.bind(this)}
+                />
+              </form>
+            )}
           </div>
         ) : (
           <p>{text}</p>

@@ -20,20 +20,22 @@ export class index extends Component {
     const { photo, summary, name, loading, error } = this.props.summary;
     return (
       <section className="section summary">
-        <h3 className="section__title">Summary</h3>
+        <div className="container">
+          <h3 className="section__title">Summary</h3>
 
-        <div className="summary__body">
-          <img src={photo} alt={name} className="summary__img" />
-          <p className="summary__name">{name}</p>
+          <div className="summary__body">
+            <img src={photo} alt={name} className="summary__img" />
+            <p className="summary__name">{name}</p>
+          </div>
+
+          <UpdatedText
+            text={summary}
+            onUpdate={this.props.updateSummary.bind(this)}
+          />
+
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
         </div>
-
-        <UpdatedText
-          text={summary}
-          onUpdate={this.props.updateSummary.bind(this)}
-        />
-
-        {error && <p className="error">{error}</p>}
-        {loading && <Spinner />}
       </section>
     );
   }

@@ -28,22 +28,24 @@ export class index extends Component {
 
     return (
       <section className="section">
-        <h3 className="section__title">Contacts</h3>
+        <div className="container">
+          <h3 className="section__title">Contacts</h3>
 
-        {contacts && (
-          <ul>
-            {contacts.map(contact => (
-              <ContactItem
-                key={contact.id}
-                contact={contact}
-                onDelete={this.onDelete.bind(this)}
-                isadmin={user.isadmin}
-              />
-            ))}
-          </ul>
-        )}
-        {error && <p className="error contacts__error">{error}</p>}
-        {loading && <Spinner />}
+          {contacts && (
+            <ul>
+              {contacts.map(contact => (
+                <ContactItem
+                  key={contact.id}
+                  contact={contact}
+                  onDelete={this.onDelete.bind(this)}
+                  isadmin={user.isadmin}
+                />
+              ))}
+            </ul>
+          )}
+          {error && <p className="error contacts__error">{error}</p>}
+          {loading && <Spinner />}
+        </div>
       </section>
     );
   }

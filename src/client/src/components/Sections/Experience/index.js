@@ -28,23 +28,25 @@ export class index extends Component {
 
     return (
       <section className="section">
-        <h3 className="section__title">Experience</h3>
+        <div className="container">
+          <h3 className="section__title">Experience</h3>
 
-        {exp && (
-          <ul>
-            {exp.map(expItem => (
-              <ExpItem
-                key={expItem.id}
-                expItem={expItem}
-                onDeleteExp={this.onDeleteExp.bind(this)}
-                isadmin={user.isadmin}
-              />
-            ))}
-          </ul>
-        )}
+          {exp && (
+            <ul>
+              {exp.map(expItem => (
+                <ExpItem
+                  key={expItem.id}
+                  expItem={expItem}
+                  onDeleteExp={this.onDeleteExp.bind(this)}
+                  isadmin={user.isadmin}
+                />
+              ))}
+            </ul>
+          )}
 
-        {error && <p className="error">{error}</p>}
-        {loading && <Spinner />}
+          {error && <p className="error">{error}</p>}
+          {loading && <Spinner />}
+        </div>
       </section>
     );
   }

@@ -33,18 +33,20 @@ export class index extends Component {
       <>
         {user.isadmin && (
           <section className="section">
-            <h3 className="section__title">Add Education</h3>
-            <form onSubmit={this.onSubmit.bind(this)}>
-              {Object.keys(this.state).map(item => (
-                <Input
-                  key={item}
-                  onChange={this.onChange.bind(this)}
-                  name={item}
-                  value={this.state[item]}
-                />
-              ))}
-              <button type="submit">Add Edu</button>
-            </form>
+            <div className="container">
+              <h3 className="section__title">Add Education</h3>
+              <form onSubmit={this.onSubmit.bind(this)}>
+                {Object.keys(this.state).map(item => (
+                  <Input
+                    key={item}
+                    onChange={this.onChange.bind(this)}
+                    name={item}
+                    value={this.state[item]}
+                  />
+                ))}
+                <button type="submit">Add Edu</button>
+              </form>
+            </div>
           </section>
         )}
       </>

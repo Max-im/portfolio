@@ -21,27 +21,29 @@ export class index extends Component {
 
     return (
       <section className="section skills">
-        <h3 className="section__title">Skills</h3>
+        <div className="container">
+          <h3 className="section__title">Skills</h3>
 
-        {skills && (
-          <ul>
-            {Object.keys(skills).map(category => (
-              <li key={category}>
-                <h5 className="skills__category">{category}</h5>
+          {skills && (
+            <ul>
+              {Object.keys(skills).map(category => (
+                <li key={category}>
+                  <h5 className="skills__category">{category}</h5>
 
-                {/* Loop skills of the particular category */}
-                <ul className="skills__list">
-                  {skills[category].map(skill => (
-                    <SkillItem key={skill.id} skill={skill} />
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        )}
+                  {/* Loop skills of the particular category */}
+                  <ul className="skills__list">
+                    {skills[category].map(skill => (
+                      <SkillItem key={skill.id} skill={skill} />
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          )}
 
-        {error && <p className="error skills__error">{error}</p>}
-        {loading && <Spinner />}
+          {error && <p className="error skills__error">{error}</p>}
+          {loading && <Spinner />}
+        </div>
       </section>
     );
   }

@@ -14,28 +14,26 @@ export default function index() {
     <div className="page">
       <PageTitle text="resume" />
 
-      <div className="container">
-        {/* summary */}
-        <Summary />
+      {/* summary */}
+      <Summary />
 
-        {/* contacts */}
-        <Contacts />
+      {/* contacts */}
+      <Contacts />
 
-        {/* skills */}
-        <Skills />
+      {/* skills */}
+      <Skills />
 
-        {/* experience */}
-        <Experience />
+      {/* experience */}
+      <Experience />
 
-        {/* add exp */}
-        <AddExp />
+      {/* add exp */}
+      <AddExp />
 
-        {/* education */}
-        <Education />
+      {/* education */}
+      <Education />
 
-        {/* add edu */}
-        <AddEdu />
-      </div>
+      {/* add edu */}
+      <AddEdu />
     </div>
   );
 }

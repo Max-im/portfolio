@@ -51,57 +51,59 @@ export class index extends Component {
       <>
         {user.isadmin && (
           <section className="section">
-            <h3 className="section__title">Add Experience</h3>
+            <div className="container">
+              <h3 className="section__title">Add Experience</h3>
 
-            <form onSubmit={this.onSubmit.bind(this)}>
-              <Input
-                onChange={this.onChange.bind(this)}
-                name="exp_title"
-                value={this.state.exp_title}
-              />
-              <Input
-                onChange={this.onChange.bind(this)}
-                name="exp_company"
-                value={this.state.exp_company}
-              />
-              <Input
-                onChange={this.onChange.bind(this)}
-                name="exp_image"
-                value={this.state.exp_image}
-              />
-              <Input
-                onChange={this.onChange.bind(this)}
-                name="exp_from"
-                value={this.state.exp_from}
-              />
-              <div>
-                <label>
-                  current
-                  <input
-                    type="checkbox"
-                    name="exp_is_current"
-                    onChange={this.onToggle.bind(this)}
-                    defaultChecked={this.state.exp_is_current}
-                  />
-                </label>
-              </div>
-
-              {!this.state.exp_is_current && (
+              <form onSubmit={this.onSubmit.bind(this)}>
                 <Input
                   onChange={this.onChange.bind(this)}
-                  name="exp_to"
-                  value={this.state.exp_to}
+                  name="exp_title"
+                  value={this.state.exp_title}
                 />
-              )}
+                <Input
+                  onChange={this.onChange.bind(this)}
+                  name="exp_company"
+                  value={this.state.exp_company}
+                />
+                <Input
+                  onChange={this.onChange.bind(this)}
+                  name="exp_image"
+                  value={this.state.exp_image}
+                />
+                <Input
+                  onChange={this.onChange.bind(this)}
+                  name="exp_from"
+                  value={this.state.exp_from}
+                />
+                <div>
+                  <label>
+                    current
+                    <input
+                      type="checkbox"
+                      name="exp_is_current"
+                      onChange={this.onToggle.bind(this)}
+                      defaultChecked={this.state.exp_is_current}
+                    />
+                  </label>
+                </div>
 
-              <TextArea
-                onChange={this.onChange.bind(this)}
-                name="exp_description"
-                value={this.state.exp_description}
-              />
+                {!this.state.exp_is_current && (
+                  <Input
+                    onChange={this.onChange.bind(this)}
+                    name="exp_to"
+                    value={this.state.exp_to}
+                  />
+                )}
 
-              <button type="submit">Add Edu</button>
-            </form>
+                <TextArea
+                  onChange={this.onChange.bind(this)}
+                  name="exp_description"
+                  value={this.state.exp_description}
+                />
+
+                <button type="submit">Add Edu</button>
+              </form>
+            </div>
           </section>
         )}
       </>
