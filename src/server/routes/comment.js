@@ -8,7 +8,7 @@ const router = Router();
  * create comment
  */
 router.post("/", checkAuthPermission, (req, res, next) => {
-  const { text, project_id, author_id } = req.body;
+  const { project_id, author_id, text } = req.body;
 
   client
     .query(

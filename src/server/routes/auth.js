@@ -4,7 +4,7 @@ import { getExistingUser, createNewUser } from "../controllers/auth";
 const router = Router();
 
 /**
- * Login
+ * @description login user
  */
 router.post("/", getExistingUser, createNewUser);
 
