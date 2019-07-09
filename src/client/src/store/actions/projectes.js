@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_PROJECTS, LOAD_PROJECTS, GET_PROJECT } from "../actions/constants";
+import {
+  GET_PROJECTS,
+  LOAD_PROJECTS,
+  GET_PROJECT,
+  GET_MORE_PROJECTS
+} from "../actions/constants";
 
 /**
  * @description get all projects
@@ -30,6 +35,11 @@ export const getProject = id => dispatch => {
     })
     .catch(err => console.error(err));
 };
+
+/**
+ * @description show more projects in the page
+ */
+export const getMoreProjects = () => ({ type: GET_MORE_PROJECTS });
 
 /**
  *

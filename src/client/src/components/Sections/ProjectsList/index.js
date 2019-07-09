@@ -3,28 +3,48 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
 import ProjectItem from "../../Items/ProjectItem";
-import { getProjects } from "../../../store/actions/projectes";
+import { getProjects, getMoreProjects } from "../../../store/actions/projectes";
 import Spinner from "../../Common/Spinner";
 
 export class ProjectsList extends Component {
   componentDidMount() {
     this.props.getProjects();
+    window.addEventListener("scroll", this.handleScroll.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const fromBottomPx =
+      document.documentElement.scrollHeight -
+      window.pageYOffset -
+      window.innerHeight;
+
+    if (this.props.portfolio.shownProjects && fromBottomPx < 10) {
+      this.props.getMoreProjects();
+    }
   }
 
   static propTypes = {
-    portfolio: PropTypes.object.isRequired
+    portfolio: PropTypes.object.isRequired,
+    getProjects: PropTypes.func.isRequired,
+    getMoreProjects: PropTypes.func.isRequired
   };
 
   render() {
-    const { projects, loading } = this.props.portfolio;
+    const { shownProjects, loading } = this.props.portfolio;
 
     return (
       <section className="projectsList">
         <h3 className="projectsList__title">Projects list</h3>
 
         <div className="projectsList__body">
-          {projects &&
-            projects.map(item => <ProjectItem item={item} key={item.id} />)}
+          {shownProjects &&
+            shownProjects.map(item => (
+              <ProjectItem item={item} key={item.id} />
+            ))}
           {loading && <Spinner />}
         </div>
       </section>
@@ -38,5 +58,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProjects }
+  { getProjects, getMoreProjects }
 )(ProjectsList);

@@ -1,5 +1,8 @@
 export const GET_PROJECTS = "GET_PROJECTS";
 export const LOAD_PROJECTS = "LOAD_PROJECTS";
+export const GET_PROJECT = "GET_PROJECT";
+export const GET_MORE_PROJECTS = "GET_MORE_PROJECTS";
+export const LOAD_PROJECT = "LOAD_PROJECT";
 
 export const SET_USER = "SET_USER";
 
@@ -19,6 +22,3 @@ export const LOAD_SUMMARY = "LOAD_SUMMARY";
 
 export const SET_EDU = "SET_EDU";
 export const LOAD_EDU = "LOAD_EDU";
-
-export const GET_PROJECT = "GET_PROJECT";
-export const LOAD_PROJECT = "LOAD_PROJECT";
