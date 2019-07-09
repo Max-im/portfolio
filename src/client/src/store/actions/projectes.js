@@ -1,9 +1,11 @@
 import axios from "axios";
+import { onError } from "./utils";
 import {
   GET_PROJECTS,
   LOAD_PROJECTS,
   GET_PROJECT,
-  GET_MORE_PROJECTS
+  GET_MORE_PROJECTS,
+  PROJECTS_ERROR
 } from "../actions/constants";
 
 /**
@@ -17,7 +19,10 @@ export const getProjects = () => dispatch => {
       dispatch({ type: GET_PROJECTS, payload: res.data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects"));
+      dispatch({ type: LOAD_PROJECTS, payload: false });
+    });
 };
 
 /**

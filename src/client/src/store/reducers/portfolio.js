@@ -2,7 +2,8 @@ import {
   LOAD_PROJECTS,
   GET_PROJECTS,
   GET_PROJECT,
-  GET_MORE_PROJECTS
+  GET_MORE_PROJECTS,
+  PROJECTS_ERROR
 } from "../actions/constants";
 
 const initialState = {
@@ -10,7 +11,8 @@ const initialState = {
   projects: null,
   shownProjects: null,
   loadIndex: 3,
-  project: null
+  project: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -37,6 +39,9 @@ export default (state = initialState, action) => {
 
     case GET_PROJECT:
       return { ...state, project: action.payload };
+
+    case PROJECTS_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

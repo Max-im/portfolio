@@ -3,6 +3,7 @@ export const LOAD_PROJECTS = "LOAD_PROJECTS";
 export const GET_PROJECT = "GET_PROJECT";
 export const GET_MORE_PROJECTS = "GET_MORE_PROJECTS";
 export const LOAD_PROJECT = "LOAD_PROJECT";
+export const PROJECTS_ERROR = "PROJECTS_ERROR";
 
 export const SET_USER = "SET_USER";
 export const AUTH_ERROR = "AUTH_ERROR";

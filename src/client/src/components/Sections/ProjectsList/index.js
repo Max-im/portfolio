@@ -34,7 +34,7 @@ export class ProjectsList extends Component {
   };
 
   render() {
-    const { shownProjects, loading } = this.props.portfolio;
+    const { shownProjects, loading, error } = this.props.portfolio;
 
     return (
       <section className="projectsList">
@@ -45,6 +45,8 @@ export class ProjectsList extends Component {
             shownProjects.map(item => (
               <ProjectItem item={item} key={item.id} />
             ))}
+
+          {error && <p className="error">{error}</p>}
           {loading && <Spinner />}
         </div>
       </section>
