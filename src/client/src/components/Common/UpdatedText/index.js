@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 export class index extends Component {
-  state = {
-    text: "",
-    correcting: false
-  };
+  state = { text: "", correcting: false };
 
   onCorrectStart() {
     this.setState({ correcting: true, text: this.props.text });

@@ -2,6 +2,7 @@ import client from "../db";
 
 export const getExistingUser = (req, res, next) => {
   const { gId } = req.body;
+
   client
     .query(
       `SELECT * 
@@ -12,7 +13,7 @@ export const getExistingUser = (req, res, next) => {
     .then(({ rows }) => {
       const [user] = rows;
       if (user) return res.json({ ...user });
-      return null;
+      return next();
     })
     .catch(err => next(err));
 };

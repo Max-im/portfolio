@@ -6,9 +6,7 @@ import "./style.scss";
 import { createComment } from "../../../store/actions/comments";
 
 export class index extends Component {
-  state = {
-    commentText: ""
-  };
+  state = { commentText: "" };
 
   static propTypes = {
     auth: PropTypes.object.isRequired,

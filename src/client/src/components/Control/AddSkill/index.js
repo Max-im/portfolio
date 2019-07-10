@@ -19,7 +19,7 @@ export class index extends Component {
   };
 
   componentDidMount() {
-    this.props.getSkillsCategories();
+    if (this.props.auth.user.isadmin) this.props.getSkillsCategories();
   }
 
   onChange(e) {
@@ -54,49 +54,57 @@ export class index extends Component {
 
   render() {
     const { categories } = this.props.skills;
+    const { user } = this.props.auth;
     return (
-      <section className="section">
-        <h3 className="section__title">Add skill</h3>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <Input
-            name="skill_picture"
-            value={this.state.skill_picture}
-            onChange={this.onChange.bind(this)}
-          />
-          <Input
-            name="source"
-            value={this.state.source}
-            onChange={this.onChange.bind(this)}
-          />
-          <Input
-            name="skill"
-            value={this.state.skill}
-            onChange={this.onChange.bind(this)}
-          />
+      <>
+        {user.isadmin && (
+          <section className="section">
+            <div className="container">
+              <h3 className="section__title">Add skill</h3>
 
-          <Select
-            str="value"
-            onChange={this.onChange.bind(this)}
-            name="range"
-            arr={[
-              { value: 1, id: 1 },
-              { value: 2, id: 2 },
-              { value: 3, id: 3 }
-            ]}
-          />
+              <form onSubmit={this.onSubmit.bind(this)}>
+                <Input
+                  name="skill_picture"
+                  value={this.state.skill_picture}
+                  onChange={this.onChange.bind(this)}
+                />
+                <Input
+                  name="source"
+                  value={this.state.source}
+                  onChange={this.onChange.bind(this)}
+                />
+                <Input
+                  name="skill"
+                  value={this.state.skill}
+                  onChange={this.onChange.bind(this)}
+                />
 
-          {categories && (
-            <Select
-              str="category"
-              onChange={this.onChange.bind(this)}
-              name="category_id"
-              arr={categories}
-            />
-          )}
+                <Select
+                  str="value"
+                  onChange={this.onChange.bind(this)}
+                  name="range"
+                  arr={[
+                    { value: 1, id: 1 },
+                    { value: 2, id: 2 },
+                    { value: 3, id: 3 }
+                  ]}
+                />
 
-          <button type="submit">Add Skill</button>
-        </form>
-      </section>
+                {categories && (
+                  <Select
+                    str="category"
+                    onChange={this.onChange.bind(this)}
+                    name="category_id"
+                    arr={categories}
+                  />
+                )}
+
+                <button type="submit">Add Skill</button>
+              </form>
+            </div>
+          </section>
+        )}
+      </>
     );
   }
 }

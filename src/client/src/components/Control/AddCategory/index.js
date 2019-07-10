@@ -27,26 +27,33 @@ export class index extends Component {
   }
 
   render() {
+    const { user } = this.props.auth;
     return (
-      <section className="section">
-        <h3 className="section__title">Add category</h3>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <Input
-            name="category"
-            value={this.state.category}
-            onChange={this.onChange.bind(this)}
-          />
+      <>
+        {user.isadmin && (
+          <section className="section">
+            <div className="container">
+              <h3 className="section__title">Add category</h3>
+              <form onSubmit={this.onSubmit.bind(this)}>
+                <Input
+                  name="category"
+                  value={this.state.category}
+                  onChange={this.onChange.bind(this)}
+                />
 
-          <input
-            type="number"
-            value={this.state.range}
-            name="range"
-            min="0"
-            onChange={this.onChange.bind(this)}
-          />
-          <button type="submit">Add category</button>
-        </form>
-      </section>
+                <input
+                  type="number"
+                  value={this.state.range}
+                  name="range"
+                  min="0"
+                  onChange={this.onChange.bind(this)}
+                />
+                <button type="submit">Add category</button>
+              </form>
+            </div>
+          </section>
+        )}
+      </>
     );
   }
 }

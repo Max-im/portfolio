@@ -8,6 +8,8 @@ import Education from "../../Sections/Education";
 import PageTitle from "../../Common/PageTitle";
 import AddEdu from "../../Control/AddEdu";
 import AddExp from "../../Control/AddExp";
+import AddSkill from "../../Control/AddSkill";
+import AddCategory from "../../Control/AddCategory";
 
 export default function index() {
   return (
@@ -22,6 +24,12 @@ export default function index() {
 
       {/* skills */}
       <Skills />
+
+      {/* add category */}
+      <AddCategory />
+
+      {/* add skill */}
+      <AddSkill />
 
       {/* experience */}
       <Experience />

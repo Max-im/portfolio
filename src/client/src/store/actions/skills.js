@@ -93,7 +93,7 @@ export const updateSkill = (skillData, history) => () => {
 export const deleteSkill = id => dispatch => {
   axios
     .delete(`/skills/${id}`)
-    .then(() => dispatch(getAdminSkills()))
+    .then(() => dispatch(getSkills()))
     .catch(err => console.error(err));
 };
 
@@ -107,7 +107,7 @@ export const deleteCategory = id => dispatch => {
     .delete(`/skills/category/${id}`)
     .then(() => {
       dispatch(getSkillsCategories());
-      dispatch(getAdminSkills());
+      dispatch(getSkills());
     })
     .catch(err => console.error(err));
 };
