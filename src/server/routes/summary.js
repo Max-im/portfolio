@@ -12,10 +12,12 @@ router.get("/", (req, res, next) => {
 });
 
 router.put("/", checkAdminPermission, (req, res, next) => {
-  const { text } = req.body;
+  const { text, field } = req.body;
+
+  console.log(field);
 
   client
-    .query("UPDATE summary SET summary=$1", [text])
+    .query(`UPDATE summary SET ${field}=$1`, [text])
     .then(() => res.end())
     .catch(err => next(err));
 });

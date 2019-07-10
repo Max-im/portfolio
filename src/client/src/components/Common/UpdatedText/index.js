@@ -7,14 +7,12 @@ export class index extends Component {
 
   onCorrectStart() {
     this.setState({ correcting: true, text: this.props.text });
-    setTimeout(() => {
-      this.inp.focus();
-    }, 0);
+    setTimeout(() => this.inp.focus(), 0);
   }
 
   onCorrectEnd(e) {
     e.preventDefault();
-    this.props.onUpdate(this.state.text);
+    this.props.onUpdate(this.state.text, this.props.field);
     this.setState({ correcting: false, text: "" });
   }
 
@@ -27,12 +25,12 @@ export class index extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
+    const { isadmin } = this.props.auth.user;
+    const { correcting, text: stateText } = this.state;
     const { text } = this.props;
-    const { correcting } = this.state;
     return (
       <div>
-        {user.isadmin ? (
+        {isadmin ? (
           <div>
             {!correcting && (
               <p onClick={this.onCorrectStart.bind(this)}>{text}</p>
@@ -43,7 +41,7 @@ export class index extends Component {
                   type="text"
                   ref={input => (this.inp = input)}
                   onChange={this.onChange.bind(this)}
-                  value={this.state.text}
+                  value={stateText}
                   onBlur={this.onCorrectEnd.bind(this)}
                 />
               </form>
@@ -61,7 +59,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  {}
-)(index);
+export default connect(mapStateToProps)(index);

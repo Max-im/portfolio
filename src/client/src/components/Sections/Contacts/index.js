@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "./style.scss";
 import ContactItem from "../../Items/ContactItem";
-import { getContacts, deleteContact } from "../../../store/actions/contacts";
 import Spinner from "../../Common/Spinner";
+import { getContacts, deleteContact } from "../../../store/actions/contacts";
+import "./style.scss";
 
 export class index extends Component {
   componentDidMount() {
@@ -24,7 +24,7 @@ export class index extends Component {
 
   render() {
     const { contacts, error, loading } = this.props.contacts;
-    const { user } = this.props.auth;
+    const { isadmin } = this.props.auth.user;
 
     return (
       <section className="section">
@@ -38,11 +38,12 @@ export class index extends Component {
                   key={contact.id}
                   contact={contact}
                   onDelete={this.onDelete.bind(this)}
-                  isadmin={user.isadmin}
+                  isadmin={isadmin}
                 />
               ))}
             </ul>
           )}
+
           {error && <p className="error contacts__error">{error}</p>}
           {loading && <Spinner />}
         </div>

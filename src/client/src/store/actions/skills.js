@@ -39,16 +39,6 @@ export const getSkillsCategories = () => dispatch => {
 };
 
 /**
- * @description get all skills in admin format
- */
-export const getAdminSkills = () => dispatch => {
-  axios
-    .get("/skills/admin")
-    .then(({ data }) => dispatch({ type: SET_A_SKILLS, payload: data }))
-    .catch(err => dispatch(onError(err, SKILL_ERROR, "Error getting skills")));
-};
-
-/**
  *
  * @param {Object} skillData {skill_picture, source, skill, range, category_id}
  * @description create new Skill
@@ -56,7 +46,7 @@ export const getAdminSkills = () => dispatch => {
 export const createSkill = skillData => dispatch => {
   axios
     .post("/skills", skillData)
-    .then(() => dispatch(getAdminSkills()))
+    .then(() => dispatch(getSkills()))
     .catch(err => console.error(err));
 };
 
@@ -102,9 +92,9 @@ export const deleteSkill = id => dispatch => {
  * @param {String} id
  * @description delete category by id
  */
-export const deleteCategory = id => dispatch => {
+export const deleteCategory = name => dispatch => {
   axios
-    .delete(`/skills/category/${id}`)
+    .delete(`/skills/category/${name}`)
     .then(() => {
       dispatch(getSkillsCategories());
       dispatch(getSkills());

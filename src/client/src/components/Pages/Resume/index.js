@@ -1,5 +1,6 @@
-import React from "react";
-import "./style.scss";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Contacts from "../../Sections/Contacts";
 import Skills from "../../Sections/Skills";
 import Experience from "../../Sections/Experience";
@@ -10,38 +11,50 @@ import AddEdu from "../../Control/AddEdu";
 import AddExp from "../../Control/AddExp";
 import AddSkill from "../../Control/AddSkill";
 import AddCategory from "../../Control/AddCategory";
+import "./style.scss";
 
-export default function index() {
-  return (
-    <div className="page">
-      <PageTitle text="resume" />
+export class index extends Component {
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
 
-      {/* summary */}
-      <Summary />
+  render() {
+    const { isadmin } = this.props.auth.user;
+    return (
+      <div className="page">
+        <PageTitle text="resume" />
 
-      {/* contacts */}
-      <Contacts />
+        {/* summary */}
+        <Summary />
 
-      {/* skills */}
-      <Skills />
+        {/* contacts */}
+        <Contacts />
 
-      {/* add category */}
-      <AddCategory />
+        {/* skills */}
+        <Skills />
 
-      {/* add skill */}
-      <AddSkill />
+        {/* add category */}
+        {isadmin && <AddCategory />}
 
-      {/* experience */}
-      <Experience />
+        {/* add skill */}
+        {isadmin && <AddSkill />}
 
-      {/* add exp */}
-      <AddExp />
+        {/* experience */}
+        <Experience />
 
-      {/* education */}
-      <Education />
+        {/* add exp */}
+        {isadmin && <AddExp />}
 
-      {/* add edu */}
-      <AddEdu />
-    </div>
-  );
+        {/* education */}
+        <Education />
+
+        {/* add edu */}
+        {isadmin && <AddEdu />}
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(mapStateToProps)(index);

@@ -7,7 +7,10 @@ import client from "../db";
 export const getCategories = (req, res, next) => {
   client
     .query(`SELECT * FROM skills_categories`)
-    .then(({ rows }) => res.json(rows))
+    .then(({ rows }) => {
+      req.body.categories = rows;
+      next();
+    })
     .catch(err => next(err));
 };
 
@@ -16,17 +19,16 @@ export const getCategories = (req, res, next) => {
  * @description get all skills by categories
  */
 export const getSkills = (req, res, next) => {
-  client
-    .query(
-      `SELECT s.id, skill_picture, skill, source, category_id, category, s.range
-        FROM skills AS s 
-        JOIN skills_categories AS c 
-        ON s.category_id = c.id 
-        ORDER BY c.range, s.range`
+  const { categories } = req.body;
+
+  Promise.all(
+    categories.map(category =>
+      client.query(`SELECT * FROM skills WHERE category_id=$1`, [category.id])
     )
-    .then(({ rows }) => {
-      req.body.skills = rows;
-      return next();
+  )
+    .then(response => {
+      req.body.skills = response.map(item => item.rows);
+      next();
     })
     .catch(err => next(err));
 };
@@ -35,16 +37,11 @@ export const getSkills = (req, res, next) => {
  * @type middleware
  * @description formate skills
  */
-export const formateSkills = (req, res, next) => {
-  const { skills } = req.body;
+export const formateSkills = (req, res) => {
+  const { skills, categories } = req.body;
   const formated = {};
 
-  skills.forEach(item => {
-    const { category } = item;
-    if (!formated[category]) formated[category] = [];
-    formated[category].push({ ...item });
-  });
-
+  categories.forEach((item, i) => (formated[item.category] = skills[i]));
   res.json(formated);
 };
 
@@ -132,14 +129,33 @@ export const updateSkill = (req, res, next) => {
 
 /**
  * @type middleware
+ * @description get category id by name
+ */
+export const getCategoryId = (req, res, next) => {
+  const { name } = req.params;
+
+  client
+    .query(`SELECT id FROM skills_categories WHERE category=$1`, [name])
+    .then(({ rows }) => {
+      if (rows.length === 0) {
+        return res.status(404).end("The category not found");
+      }
+      req.body.id = rows[0].id;
+      return next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
+/**
+ * @type middleware
  * @description delete all skills, related to the category
  */
 export const deleteCategorySkills = (req, res, next) => {
   client
     .query(`DELETE FROM skills WHERE category_id=$1 RETURNING id`, [
-      req.params.id
+      req.body.id
     ])
-    .then(({ rows }) => next())
+    .then(() => next())
     .catch(err => next(err));
 };
 
@@ -149,7 +165,7 @@ export const deleteCategorySkills = (req, res, next) => {
  */
 export const deleteCategory = (req, res, next) => {
   client
-    .query(`DELETE FROM skills_categories WHERE id=$1`, [req.params.id])
+    .query(`DELETE FROM skills_categories WHERE id=$1`, [req.body.id])
     .then(() => res.end())
     .catch(err => next(err));
 };
@@ -180,13 +196,13 @@ export const deleteSkill = (req, res, next) => {
  * @type middleware
  * @description delete projects_skills item  by id category id
  */
-export const deleteProjectSkillsByCategory = async (req, res, next) => {
+export const deleteProjectSkillsByCategory = (req, res, next) => {
   client
     .query(
       `DELETE FROM projects_skills 
         WHERE skill_id IN 
         (SELECT id FROM skills WHERE category_id=$1)`,
-      [req.params.id]
+      [req.body.id]
     )
     .then(() => next())
     .catch(err => next(err));

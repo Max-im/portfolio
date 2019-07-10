@@ -24,9 +24,9 @@ export const getSummary = () => dispatch => {
  * @param {String} text
  * @description update summary
  */
-export const updateSummary = text => dispatch => {
+export const updateSummary = (text, field) => dispatch => {
   axios
-    .put("/summary", { text })
+    .put("/summary", { text, field })
     .then(() => dispatch(getSummary()))
     .catch(err => console.error(err));
 };

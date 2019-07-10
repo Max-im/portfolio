@@ -9,14 +9,14 @@ import Select from "../../Common/Select";
 import Spinner from "../../Common/Spinner";
 import {
   getSkillsCategories,
-  getAdminSkills,
+  getSkills,
   updateSkill
 } from "../../../store/actions/skills";
 
 export class index extends Component {
   static propTypes = {
     getSkillsCategories: PropTypes.func.isRequired,
-    getAdminSkills: PropTypes.func.isRequired,
+    getSkills: PropTypes.func.isRequired,
     updateSkill: PropTypes.func.isRequired,
     skills: PropTypes.object.isRequired
   };
@@ -137,5 +137,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSkillsCategories, getAdminSkills, updateSkill }
+  { getSkillsCategories, getSkills, updateSkill }
 )(withRouter(index));

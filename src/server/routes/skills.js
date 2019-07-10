@@ -7,6 +7,7 @@ import {
   createSkill,
   createCategory,
   getCurrentSkill,
+  getCategoryId,
   retrieveFieldsToUpdate,
   updateSkill,
   deleteCategorySkills,
@@ -23,14 +24,16 @@ const router = Router();
  * @access public
  * @description get all categories
  */
-router.get("/", getSkills, formateSkills);
+router.get("/", getCategories, getSkills, formateSkills);
 
 /**
  * @method GET
  * @access private - admin
  * @description get all categories
  */
-router.get("/categories", checkAdminPermission, getCategories);
+router.get("/categories", checkAdminPermission, getCategories, (req, res) => {
+  res.json(req.body.categories);
+});
 
 /**
  * @method GET
@@ -72,8 +75,9 @@ router.put(
  * @description delete category and all related skills all project_skills
  */
 router.delete(
-  "/category/:id",
+  "/category/:name",
   checkAdminPermission,
+  getCategoryId,
   deleteProjectSkillsByCategory,
   deleteCategorySkills,
   deleteCategory
