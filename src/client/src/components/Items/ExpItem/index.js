@@ -1,61 +1,49 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./style.scss";
+import ExpControl from "../../Control/ExpControl";
 
 export default class index extends Component {
-  state = { isShow: false };
+  state = { isShown: false };
 
   render() {
-    const { expItem } = this.props;
-    const { isShow } = this.state;
+    const { exp, isadmin } = this.props;
+    const { isShown } = this.state;
     return (
       <li className="exp">
-        <img
-          src={expItem.exp_image}
-          alt={expItem.exp_company}
-          className="exp__img"
-        />
+        <img src={exp.exp_image} alt={exp.exp_company} className="exp__img" />
+
         <div className="exp__body">
-          <p className="exp__title">{expItem.exp_title}</p>
-          <p className="exp__company">{expItem.exp_company}</p>
+          <p className="exp__title">{exp.exp_title}</p>
+          <p className="exp__company">{exp.exp_company}</p>
+
           <div className="exp__date">
             <p>
-              <span className="exp__from">{expItem.exp_from}</span> -{" "}
+              <span className="exp__from">{exp.exp_from}</span> -{" "}
               <span className="exp__to">
-                {expItem.exp_is_current ? "Now" : expItem.exp_to}
+                {exp.exp_is_current ? "Now" : exp.exp_to}
               </span>
             </p>
             <i
               className={
-                isShow
+                isShown
                   ? "fas fa-chevron-circle-up"
                   : "fas fa-chevron-circle-down"
               }
-              onClick={() => this.setState({ isShow: !isShow })}
+              onClick={() => this.setState({ isShown: !isShown })}
             />
           </div>
 
-          {isShow && (
+          {isShown && (
             <ul className="exp__description">
-              {expItem.exp_description.split(";").map((item, i) => (
+              {exp.exp_description.split(";").map((item, i) => (
                 <li className="exp__descItem" key={i}>
                   {item}
                 </li>
               ))}
             </ul>
           )}
-          {this.props.isadmin && (
-            <div className="exp__delete">
-              <Link
-                className="far fa-edit"
-                to={"/admin/update-exp/" + expItem.id}
-              />
-              <i
-                className="fas fa-trash-alt"
-                onClick={this.props.onDeleteExp.bind(null, expItem.id)}
-              />
-            </div>
-          )}
+
+          {isadmin && <ExpControl id={exp.id} />}
         </div>
       </li>
     );

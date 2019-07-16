@@ -1,32 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./style.scss";
+import EduControl from "../../Control/EduControl";
 
-export default function index({ eduItem, onEduDelete, isadmin }) {
+export default function index({ edu, isadmin }) {
   return (
     <li className="edu">
-      <img
-        src={eduItem.edu_photo}
-        alt={eduItem.edu_title}
-        className="edu__img"
-      />
+      <img src={edu.edu_photo} alt={edu.edu_title} className="edu__img" />
       <div>
-        <p className="edu__title">{eduItem.edu_title}</p>
-        <p className="edu__desc">{eduItem.edu_description}</p>
+        <p className="edu__title">{edu.edu_title}</p>
+        <p className="edu__desc">{edu.edu_description}</p>
       </div>
 
-      {isadmin && (
-        <div className="edu__delete">
-          <Link
-            className="far fa-edit"
-            to={"/admin/update-edu/" + eduItem.id}
-          />
-          <i
-            className="fas fa-trash-alt"
-            onClick={onEduDelete.bind(null, eduItem.id)}
-          />
-        </div>
-      )}
+      {isadmin && <EduControl id={edu.id} />}
     </li>
   );
 }

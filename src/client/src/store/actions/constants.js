@@ -31,8 +31,9 @@ export const SET_SUMMARY = "SET_SUMMARY";
 export const LOAD_SUMMARY = "LOAD_SUMMARY";
 export const SUMMARY_ERROR = "SUMMARY_ERROR";
 
-export const SET_EDU = "SET_EDU";
-export const LOAD_EDU = "LOAD_EDU";
+export const GET_EDU = "GET_EDU";
+export const LOADING_EDU = "LOADLOADING_EDU";
+export const DELETE_EDU = "DELETE_EDU";
 export const EDU_ERROR = "EDU_ERROR";
 
 export const COMMENT_ERROR = "COMMENT_ERROR";

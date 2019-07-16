@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_EDU, LOAD_EDU, EDU_ERROR } from "./constants";
+import { GET_EDU, LOADING_EDU, DELETE_EDU, EDU_ERROR } from "./constants";
 import { onError } from "./utils";
 
 /**
@@ -7,16 +7,16 @@ import { onError } from "./utils";
  * @access public
  */
 export const getEdu = () => dispatch => {
-  dispatch({ type: LOAD_EDU, payload: true });
+  dispatch({ type: LOADING_EDU, payload: true });
   axios
     .get("/education")
     .then(({ data }) => {
-      dispatch({ type: SET_EDU, payload: data });
-      dispatch({ type: LOAD_EDU, payload: false });
+      dispatch({ type: GET_EDU, payload: data });
+      dispatch({ type: LOADING_EDU, payload: false });
     })
     .catch(err => {
       dispatch(onError(err, EDU_ERROR, "Getting education error"));
-      dispatch({ type: LOAD_EDU, payload: false });
+      dispatch({ type: LOADING_EDU, payload: false });
     });
 };
 
@@ -56,6 +56,6 @@ export const updateEdu = (eduData, history) => dispatch => {
 export const deleteEdu = id => dispatch => {
   axios
     .delete(`/admin/education/${id}`)
-    .then(() => dispatch(getEdu()))
+    .then(() => dispatch({ type: DELETE_EDU, payload: id }))
     .catch(err => dispatch(onError(err, EDU_ERROR, "Error deleting edu item")));
 };
