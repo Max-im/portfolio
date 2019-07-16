@@ -1,0 +1,18 @@
+.contactControl {
+  margin: 0 0 0 10px;
+  justify-self: end;
+  &__delete {
+    color: red;
+    width: 27px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    &:hover {
+      transition: 0.1s;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      background: #fff;
+    }
+  }
+}
