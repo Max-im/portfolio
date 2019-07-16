@@ -1,6 +1,6 @@
 import { Router } from "express";
-import client from "../db";
-import { checkAuthPermission } from "../controllers/permission";
+import client from "../../db";
+import { checkAuthPermission } from "../../controllers/permission";
 
 const router = Router();
 

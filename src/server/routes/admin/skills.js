@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { checkAdminPermission } from "../controllers/permission";
+import { checkAdminPermission } from "../../controllers/permission";
 import {
   getCategories,
   getSkills,
-  formateSkills,
   createSkill,
   createCategory,
   getCurrentSkill,
@@ -15,16 +14,9 @@ import {
   deleteProjectSkills,
   deleteProjectSkillsByCategory,
   deleteSkill
-} from "../controllers/skills";
+} from "../../controllers/skills";
 
 const router = Router();
-
-/**
- * @method GET
- * @access public
- * @description get all categories
- */
-router.get("/", getCategories, getSkills, formateSkills);
 
 /**
  * @method GET

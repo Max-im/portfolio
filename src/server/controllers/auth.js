@@ -38,7 +38,7 @@ export const returnToken = (req, res) => {
   const { theUser } = req.body;
   const { id, name, avatar, isadmin, email, gId } = theUser;
   const access_token = jwt.sign(
-    { sub: id, payload: { name, email, avatar, isadmin, gId } },
+    { sub: id, payload: { name, email, avatar, isadmin, gId, id } },
     process.env.SECRET_OR_KEY,
     { expiresIn: 3600 }
   );

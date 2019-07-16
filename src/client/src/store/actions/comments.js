@@ -10,5 +10,5 @@ export const createComment = data => dispatch => {
   axios
     .post("/comment", data)
     .then(() => dispatch(getProject(data.project_id)))
-    .catch(err => console.error(err));
+    .catch(err => console.error(err.response.data));
 };

@@ -4,6 +4,7 @@ import { SET_SUMMARY, LOAD_SUMMARY, SUMMARY_ERROR } from "./constants";
 
 /**
  * @description get summary
+ * @access public
  */
 export const getSummary = () => dispatch => {
   dispatch({ type: LOAD_SUMMARY, payload: true });
@@ -20,13 +21,13 @@ export const getSummary = () => dispatch => {
 };
 
 /**
- *
  * @param {String} text
  * @description update summary
+ * @access private
  */
 export const updateSummary = (text, field) => dispatch => {
   axios
-    .put("/summary", { text, field })
+    .put("/admin/summary", { text, field })
     .then(() => dispatch(getSummary()))
     .catch(err => console.error(err));
 };

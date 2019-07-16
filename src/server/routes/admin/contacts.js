@@ -1,21 +1,12 @@
 import { Router } from "express";
-import client from "../db";
-import { checkAdminPermission } from "../controllers/permission";
+import client from "../../db";
+import { checkAdminPermission } from "../../controllers/permission";
 
 const router = Router();
 
 /**
- * get contacts
- */
-router.get("/", (req, res, next) => {
-  client
-    .query("SELECT * FROM contacts")
-    .then(({ rows }) => res.json(rows))
-    .catch(err => next(err));
-});
-
-/**
- *
+ * @description
+ * @access private - Admin
  */
 router.delete("/:id", checkAdminPermission, (req, res, next) => {
   const { id } = req.params;

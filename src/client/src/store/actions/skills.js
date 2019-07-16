@@ -4,13 +4,13 @@ import {
   SET_SKILLS,
   LOAD_SKILLS,
   SET_SKILLS_CAT,
-  SET_A_SKILLS,
   SKILL_ERROR,
   CATEGORY_ERROR
 } from "./constants";
 
 /**
  * @description get all skills
+ * @access public
  */
 export const getSkills = () => dispatch => {
   dispatch({ type: LOAD_SKILLS, payload: true });
@@ -28,10 +28,11 @@ export const getSkills = () => dispatch => {
 
 /**
  * @description get all skills categories
+ * @access private
  */
 export const getSkillsCategories = () => dispatch => {
   axios
-    .get("/skills/categories")
+    .get("/admin/skills/categories")
     .then(({ data }) => dispatch({ type: SET_SKILLS_CAT, payload: data }))
     .catch(err =>
       dispatch(onError(err, CATEGORY_ERROR, "Error getting categories"))
@@ -42,10 +43,11 @@ export const getSkillsCategories = () => dispatch => {
  *
  * @param {Object} skillData {skill_picture, source, skill, range, category_id}
  * @description create new Skill
+ * @access private
  */
 export const createSkill = skillData => dispatch => {
   axios
-    .post("/skills", skillData)
+    .post("/admin/skills", skillData)
     .then(() => dispatch(getSkills()))
     .catch(err => console.error(err));
 };
@@ -54,10 +56,11 @@ export const createSkill = skillData => dispatch => {
  *
  * @param {Object} categoryData {category, range}
  * @description create new category
+ * @access private
  */
 export const createCategory = categoryData => dispatch => {
   axios
-    .post("/skills/category", categoryData)
+    .post("/admin/skills/category", categoryData)
     .then(() => {
       dispatch(getSkillsCategories());
       dispatch(getSkills());
@@ -70,10 +73,11 @@ export const createCategory = categoryData => dispatch => {
  * @param {Object} skillData {skill_picture, source, skill, range, category_id, id}
  * @param {Object} history - from withRouter (react-router-dom)
  * @description update skill data
+ * @access private
  */
 export const updateSkill = (skillData, history) => () => {
   axios
-    .put("/skills", skillData)
+    .put("/admin/skills", skillData)
     .then(() => history.push("/admin"))
     .catch(err => console.error(err));
 };
@@ -82,10 +86,11 @@ export const updateSkill = (skillData, history) => () => {
  *
  * @param {String} id
  * @description delete skill by id
+ * @access private
  */
 export const deleteSkill = id => dispatch => {
   axios
-    .delete(`/skills/${id}`)
+    .delete(`/admin/skills/${id}`)
     .then(() => dispatch(getSkills()))
     .catch(err => console.error(err));
 };
@@ -94,10 +99,11 @@ export const deleteSkill = id => dispatch => {
  *
  * @param {String} id
  * @description delete category by id
+ * @access private
  */
 export const deleteCategory = name => dispatch => {
   axios
-    .delete(`/skills/category/${name}`)
+    .delete(`/admin/skills/category/${name}`)
     .then(() => {
       dispatch(getSkillsCategories());
       dispatch(getSkills());

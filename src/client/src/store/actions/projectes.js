@@ -10,6 +10,7 @@ import {
 
 /**
  * @description get all projects
+ * @access public
  */
 export const getProjects = () => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
@@ -26,9 +27,9 @@ export const getProjects = () => dispatch => {
 };
 
 /**
- *
  * @param {String} id
  * @description get particular project by id
+ * @access public
  */
 export const getProject = id => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
@@ -46,36 +47,38 @@ export const getProject = id => dispatch => {
 
 /**
  * @description show more projects in the page
+ * @access public
  */
 export const getMoreProjects = () => ({ type: GET_MORE_PROJECTS });
 
 /**
- *
  * @param {Object} projectData {picture, description, title, skills, github, deploy, author_id}
  * @description create new project
+ * @access private
  */
 export const createProject = projectData => dispatch => {
   axios
-    .post("/projects", projectData)
+    .post("/admin/projects", projectData)
     .then(() => dispatch(getProjects()))
     .catch(err => console.error(err));
 };
 
 /**
- *
  * @param {Object} projectData {title, description, picture, skills, project_id}
  * @param {Object} history - from withRouter (react-router-dom)
  * @description update project data
+ * @access private
  */
 export const updateProject = (projectData, history) => () => {
   axios
-    .put("/projects", projectData)
+    .put("/admin/projects", projectData)
     .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
     .catch(err => console.error(err));
 };
 
 /**
  * @description change rate of the project
+ * @access public - for auth only
  */
 export const setRate = ({ project_id, sign }) => dispatch => {
   axios
@@ -85,14 +88,14 @@ export const setRate = ({ project_id, sign }) => dispatch => {
 };
 
 /**
- *
  * @param {String} id
  * @param {Object} history - from withRouter (react-router-dom)
  * @description delete project by id
+ * @access private
  */
 export const deleteProject = (id, history) => () => {
   axios
-    .delete(`/projects/${id}`)
+    .delete(`/admin/projects/${id}`)
     .then(() => history.push("/portfolio"))
     .catch(err => console.error(err));
 };

@@ -1,13 +1,6 @@
 import { Router } from "express";
+import { checkAdminPermission } from "../../controllers/permission";
 import {
-  checkAdminPermission,
-  checkAuthPermission
-} from "../controllers/permission";
-import {
-  getAllProjects,
-  formateAllProjects,
-  getProjectById,
-  parseProjectData,
   updateProjectData,
   retrieveSkillsToUpdate,
   addNewProjectSkills,
@@ -18,29 +11,9 @@ import {
   deleteProject,
   createNewProject,
   attachSkillsToNewProject
-} from "../controllers/projects";
-import { addNewLike, removeLike, toggleLike } from "../controllers/likes";
-// import client from "../db";
+} from "../../controllers/projects";
 
 const router = Router();
-
-/**
- * @method GET
- * @access public
- * @description get all projects, attach skills, return to frontend
- */
-router.get("/", getAllProjects, formateAllProjects, (req, res) => {
-  res.json(req.body.result);
-});
-
-/**
- * @method GET
- * @access public
- * @description get cretain project by id, attach skills, attach comments, return to frontend
- */
-router.get("/:id", getProjectById, parseProjectData, (req, res) => {
-  res.json(req.body.result);
-});
 
 /**
  * @method POST
@@ -69,13 +42,6 @@ router.put(
   removeOldProjectSkills,
   (req, res) => res.end()
 );
-
-/**
- * @method POST
- * @access private - auth
- * @description likes management
- */
-router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
 
 /**
  * @method DELETE

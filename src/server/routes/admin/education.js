@@ -1,22 +1,14 @@
 import { Router } from "express";
-import { checkAdminPermission } from "../controllers/permission";
+import { checkAdminPermission } from "../../controllers/permission";
 import {
-  getAllEdu,
   createEdu,
   getCurrentEdu,
   retrieveFieldsToUpdate,
   updateEdu,
   deleteEdu
-} from "../controllers/education";
+} from "../../controllers/education";
 
 const router = Router();
-
-/**
- * @method GET
- * @access public
- * @description return all education items
- */
-router.get("/", getAllEdu);
 
 /**
  * @method POST

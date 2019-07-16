@@ -8,6 +8,7 @@ export const checkAdminPermission = (req, res, next) => {
   if (!authorization) res.status(401).json(error);
 
   const access_token = JSON.parse(authorization);
+  if (!access_token) res.status(401).json(error);
   jwt.verify(access_token, process.env.SECRET_OR_KEY, (err, { exp, sub }) => {
     if (err) return res.status(401).json(err);
 
@@ -25,6 +26,8 @@ export const checkAdminPermission = (req, res, next) => {
         const { isadmin } = rows[0];
         if (!isadmin) return res.status(401).json(error);
 
+        // attach user to request
+        req.user = rows[0];
         return next();
       })
       .catch(err => res.status(401).json(err));
@@ -38,6 +41,7 @@ export const checkAuthPermission = (req, res, next) => {
   if (!authorization) res.status(401).json(error);
 
   const access_token = JSON.parse(authorization);
+  if (!access_token) res.status(401).json(error);
   jwt.verify(access_token, process.env.SECRET_OR_KEY, (err, { exp, sub }) => {
     if (err) return res.status(401).json(err);
 
@@ -49,6 +53,9 @@ export const checkAuthPermission = (req, res, next) => {
       .then(({ rows }) => {
         // check if the user exists
         if (!rows[0]) return res.redirect("/auth/logout");
+
+        // attach user to request
+        req.user = rows[0];
         return next();
       })
       .catch(err => res.status(401).json(err));

@@ -4,6 +4,7 @@ import { onError } from "./utils";
 
 /**
  * @description get all contacts
+ * @access public
  */
 export const getContacts = () => dispatch => {
   dispatch({ type: LOAD_CONTACTS, payload: true });
@@ -23,10 +24,11 @@ export const getContacts = () => dispatch => {
  *
  * @param {String} id
  * @description delete contact by id
+ * @access private - admin only
  */
 export const deleteContact = id => dispatch => {
   axios
-    .delete(`/contacts/${id}`)
+    .delete(`/admin/contacts/${id}`)
     .then(() => dispatch(getContacts()))
     .catch(err => console.error(err));
 };

@@ -1,22 +1,14 @@
 import { Router } from "express";
-import { checkAdminPermission } from "../controllers/permission";
+import { checkAdminPermission } from "../../controllers/permission";
 import {
-  getAllExp,
   createExp,
   getCurrentExp,
   retrieceFieldsToUpdate,
   updateExp,
   deleteExp
-} from "../controllers/experience";
+} from "../../controllers/experience";
 
 const router = Router();
-
-/**
- * @method GET
- * @access public
- * @description get all experience items
- */
-router.get("/", getAllExp);
 
 /**
  * @method POST
