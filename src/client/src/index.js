@@ -1,19 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { read_cookie, delete_cookie } from "sfcookies";
-import { setAuthToken } from "./store/actions/utils";
+import jwt_decode from "jwt-decode";
+import { read_cookie } from "sfcookies";
 
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store/store";
 import { SET_USER } from "./store/actions/constants";
+import { setAuthToken } from "./store/actions/utils";
+import { onLogout, onLoginError } from "./store/actions/auth";
 
-const userCookie = read_cookie("max-im");
-if (userCookie.id) {
-  store.dispatch({ type: SET_USER, payload: userCookie });
-  setAuthToken(userCookie);
-  // TODO - check expired date
+try {
+  const access_token = read_cookie("max-im");
+  const decoded = jwt_decode(access_token);
+  if (decoded && decoded.exp) {
+    if (decoded.exp * 1000 < Date.now()) store.dispatch(onLogout());
+    else {
+      store.dispatch({ type: SET_USER, payload: decoded.payload });
+      setAuthToken(access_token);
+    }
+  }
+} catch (err) {
+  console.error(err);
+  store.dispatch(onLoginError());
 }
 
 ReactDOM.render(

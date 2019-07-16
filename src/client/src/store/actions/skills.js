@@ -58,7 +58,10 @@ export const createSkill = skillData => dispatch => {
 export const createCategory = categoryData => dispatch => {
   axios
     .post("/skills/category", categoryData)
-    .then(() => dispatch(getSkillsCategories()))
+    .then(() => {
+      dispatch(getSkillsCategories());
+      dispatch(getSkills());
+    })
     .catch(err => console.error(err));
 };
 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { bake_cookie, delete_cookie } from "sfcookies";
+import jwt_decode from "jwt-decode";
 import { SET_USER, AUTH_ERROR } from "./constants";
 import { setAuthToken } from "./utils";
 
@@ -14,9 +15,13 @@ export const onLogin = resp => dispatch => {
   axios
     .post("/auth", { email, gId, name, avatar })
     .then(({ data }) => {
-      dispatch({ type: SET_USER, payload: data });
-      bake_cookie("max-im", data);
-      setAuthToken(data);
+      const { access_token } = data;
+      setAuthToken(access_token);
+      bake_cookie("max-im", access_token);
+
+      // decode token
+      const { payload } = jwt_decode(access_token);
+      dispatch({ type: SET_USER, payload });
     })
     .catch(err => console.error(err));
 };
