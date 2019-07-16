@@ -1,7 +1,8 @@
 import {
   SET_CONTACTS,
   LOAD_CONTACTS,
-  CONTACT_ERROR
+  CONTACT_ERROR,
+  DELETE_CONTACT
 } from "../actions/constants";
 
 const initialState = {
@@ -17,6 +18,12 @@ export default (state = initialState, action) => {
 
     case LOAD_CONTACTS:
       return { ...state, loading: action.payload };
+
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.filter(item => item.id !== action.payload)
+      };
 
     case CONTACT_ERROR:
       return { ...state, error: action.payload };

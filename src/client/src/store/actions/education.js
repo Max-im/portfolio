@@ -1,6 +1,6 @@
 import axios from "axios";
-import { onError } from "./utils";
 import { SET_EDU, LOAD_EDU, EDU_ERROR } from "./constants";
+import { onError } from "./utils";
 
 /**
  * @description get all educations
@@ -30,7 +30,7 @@ export const createEdu = eduData => dispatch => {
   axios
     .post("/admin/education", eduData)
     .then(() => dispatch(getEdu()))
-    .catch(err => console.error(err));
+    .catch(err => dispatch(onError(err, EDU_ERROR, "Error creating edu item")));
 };
 
 /**
@@ -40,11 +40,11 @@ export const createEdu = eduData => dispatch => {
  * @description update education item
  * @access private
  */
-export const updateEdu = (eduData, history) => () => {
+export const updateEdu = (eduData, history) => dispatch => {
   axios
     .put("/admin/education", eduData)
     .then(() => history.push("/resume"))
-    .catch(err => console.error(err));
+    .catch(err => dispatch(onError(err, EDU_ERROR, "Error updating edu item")));
 };
 
 /**
@@ -57,5 +57,5 @@ export const deleteEdu = id => dispatch => {
   axios
     .delete(`/admin/education/${id}`)
     .then(() => dispatch(getEdu()))
-    .catch(err => console.error(err));
+    .catch(err => dispatch(onError(err, EDU_ERROR, "Error deleting edu item")));
 };

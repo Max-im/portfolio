@@ -1,9 +1,5 @@
 import { Router } from "express";
-import {
-  getCategories,
-  getSkills,
-  formateSkills
-} from "../../controllers/skills";
+import { getCategories, getSkills } from "../../controllers/skills";
 
 const router = Router();
 
@@ -12,6 +8,13 @@ const router = Router();
  * @access public
  * @description get all skills
  */
-router.get("/", getCategories, getSkills, formateSkills);
+router.get("/", getSkills);
+
+/**
+ * @method GET
+ * @access public
+ * @description get all categories
+ */
+router.get("/categories", getCategories);
 
 module.exports = router;

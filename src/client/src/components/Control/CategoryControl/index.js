@@ -6,7 +6,7 @@ import { deleteCategory } from "../../../store/actions/skills";
 export class index extends Component {
   onDelete() {
     if (window.confirm("Are you sure?")) {
-      this.props.deleteCategory(this.props.category);
+      this.props.deleteCategory(this.props.id);
     }
   }
 
@@ -23,9 +23,7 @@ export class index extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
-
 export default connect(
-  mapStateToProps,
+  null,
   { deleteCategory }
 )(index);

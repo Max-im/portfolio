@@ -1,5 +1,10 @@
 import axios from "axios";
-import { SET_CONTACTS, LOAD_CONTACTS, CONTACT_ERROR } from "./constants";
+import {
+  SET_CONTACTS,
+  LOAD_CONTACTS,
+  CONTACT_ERROR,
+  DELETE_CONTACT
+} from "./constants";
 import { onError } from "./utils";
 
 /**
@@ -29,6 +34,8 @@ export const getContacts = () => dispatch => {
 export const deleteContact = id => dispatch => {
   axios
     .delete(`/admin/contacts/${id}`)
-    .then(() => dispatch(getContacts()))
-    .catch(err => console.error(err));
+    .then(() => dispatch({ type: DELETE_CONTACT, payload: id }))
+    .catch(err =>
+      dispatch(onError(err, CONTACT_ERROR, "Error deleting contact"))
+    );
 };

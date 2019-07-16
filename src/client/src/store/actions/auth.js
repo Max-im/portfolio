@@ -3,6 +3,7 @@ import { bake_cookie, delete_cookie } from "sfcookies";
 import jwt_decode from "jwt-decode";
 import { SET_USER, AUTH_ERROR } from "./constants";
 import { setAuthToken } from "./utils";
+import { onError } from "./utils";
 
 /**
  *
@@ -23,7 +24,7 @@ export const onLogin = resp => dispatch => {
       const { payload } = jwt_decode(access_token);
       dispatch({ type: SET_USER, payload });
     })
-    .catch(err => console.error(err));
+    .catch(err => dispatch(onError(err, AUTH_ERROR, "Auth error")));
 };
 
 /**

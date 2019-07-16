@@ -60,7 +60,9 @@ export const createProject = projectData => dispatch => {
   axios
     .post("/admin/projects", projectData)
     .then(() => dispatch(getProjects()))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, PROJECTS_ERROR, "Error creating project"))
+    );
 };
 
 /**
@@ -69,11 +71,13 @@ export const createProject = projectData => dispatch => {
  * @description update project data
  * @access private
  */
-export const updateProject = (projectData, history) => () => {
+export const updateProject = (projectData, history) => dispatch => {
   axios
     .put("/admin/projects", projectData)
     .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, PROJECTS_ERROR, "Error update project"))
+    );
 };
 
 /**
@@ -84,7 +88,9 @@ export const setRate = ({ project_id, sign }) => dispatch => {
   axios
     .post("/projects/likes", { project_id, sign })
     .then(() => dispatch(getProject(project_id)))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, PROJECTS_ERROR, "Error change project rate"))
+    );
 };
 
 /**
@@ -93,9 +99,11 @@ export const setRate = ({ project_id, sign }) => dispatch => {
  * @description delete project by id
  * @access private
  */
-export const deleteProject = (id, history) => () => {
+export const deleteProject = (id, history) => dispatch => {
   axios
     .delete(`/admin/projects/${id}`)
     .then(() => history.push("/portfolio"))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, PROJECTS_ERROR, "Error delete project"))
+    );
 };

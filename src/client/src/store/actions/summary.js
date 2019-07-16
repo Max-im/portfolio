@@ -29,5 +29,7 @@ export const updateSummary = (text, field) => dispatch => {
   axios
     .put("/admin/summary", { text, field })
     .then(() => dispatch(getSummary()))
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(onError(err, SUMMARY_ERROR, "Error update summary"))
+    );
 };

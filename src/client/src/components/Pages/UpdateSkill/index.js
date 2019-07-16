@@ -8,9 +8,9 @@ import Input from "../../Common/Input";
 import Select from "../../Common/Select";
 import Spinner from "../../Common/Spinner";
 import {
-  getSkillsCategories,
   getSkills,
-  updateSkill
+  updateSkill,
+  getSkillsCategories
 } from "../../../store/actions/skills";
 
 export class index extends Component {
@@ -30,22 +30,22 @@ export class index extends Component {
   };
 
   componentDidMount() {
-    this.props.getSkillsCategories();
-    if (!this.props.skills.admin) this.props.getAdminSkills();
-    else this.onStateInit();
+    if (!this.props.skills.skills) {
+      this.props.getSkills();
+      this.props.getSkillsCategories();
+    } else this.onStateInit();
   }
 
   componentDidUpdate(prev) {
-    if (!prev.skills.admin && this.props.skills.admin) this.onStateInit();
+    if (!prev.skills.skills && this.props.skills.skills) this.onStateInit();
   }
 
   onStateInit() {
     const { id } = this.props.match.params;
-    const { admin, categories } = this.props.skills;
-    const { skill_picture, source, skill, range, category } = admin.find(
+    const { skills } = this.props.skills;
+    const { skill_picture, source, skill, range, category_id } = skills.find(
       item => item.id - 0 === id - 0
     );
-    const category_id = categories.find(item => item.category === category).id;
     this.setState({ skill_picture, source, skill, range, category_id });
   }
 
@@ -62,25 +62,22 @@ export class index extends Component {
   render() {
     const {
       categories,
-      admin,
+      skills,
       error,
       categoryError,
       loading
     } = this.props.skills;
     const { id } = this.props.match.params;
-    let skill, selectedCat;
-    if (admin) {
-      skill = admin.find(item => item.id - 0 === id - 0);
-    }
-    if (categories && skill) {
-      selectedCat = categories.find(item => item.category === skill.category)
-        .id;
-    }
+
+    let theSkill;
+    if (skills) theSkill = skills.find(v => v.id - 0 === id - 0);
+
     return (
       <div className="page">
         <PageTitle text="Update Skill" />
+
         <div className="container">
-          {skill && categories && (
+          {theSkill && categories && (
             <form onSubmit={this.onSubmit.bind(this)}>
               <Input
                 onChange={this.onChange.bind(this)}
@@ -112,7 +109,7 @@ export class index extends Component {
 
               <Select
                 str="category"
-                selected={selectedCat}
+                selected={this.state.category_id}
                 onChange={this.onChange.bind(this)}
                 name="category_id"
                 arr={categories}

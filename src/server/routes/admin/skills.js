@@ -1,12 +1,10 @@
 import { Router } from "express";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
-  getCategories,
   getSkills,
   createSkill,
   createCategory,
   getCurrentSkill,
-  getCategoryId,
   retrieveFieldsToUpdate,
   updateSkill,
   deleteCategorySkills,
@@ -17,24 +15,6 @@ import {
 } from "../../controllers/skills";
 
 const router = Router();
-
-/**
- * @method GET
- * @access private - admin
- * @description get all categories
- */
-router.get("/categories", checkAdminPermission, getCategories, (req, res) => {
-  res.json(req.body.categories);
-});
-
-/**
- * @method GET
- * @access private - admin
- * @description get all skills no formated
- */
-router.get("/admin", checkAdminPermission, getSkills, (req, res) => {
-  res.json(req.body.skills);
-});
 
 /**
  * @method POST
@@ -67,9 +47,8 @@ router.put(
  * @description delete category and all related skills all project_skills
  */
 router.delete(
-  "/category/:name",
+  "/category/:id",
   checkAdminPermission,
-  getCategoryId,
   deleteProjectSkillsByCategory,
   deleteCategorySkills,
   deleteCategory

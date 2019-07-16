@@ -4,83 +4,57 @@ import client from "../db";
  * @type middleware
  * @description get all categories
  */
-export const getCategories = (req, res, next) => {
+export const getCategories = (req, res) => {
   client
     .query(`SELECT * FROM skills_categories`)
-    .then(({ rows }) => {
-      req.body.categories = rows;
-      next();
-    })
-    .catch(err => next(err));
+    .then(({ rows }) => res.json(rows))
+    .catch(err => res.status(400).json(err));
 };
 
 /**
  * @type middleware
- * @description get all skills by categories
+ * @description get all skills
  */
-export const getSkills = (req, res, next) => {
-  const { categories } = req.body;
-
-  Promise.all(
-    categories.map(category =>
-      client.query(
-        `SELECT skill, id, source, range, skill_picture 
-          FROM skills 
-          WHERE category_id=$1`,
-        [category.id]
-      )
-    )
-  )
-    .then(response => {
-      req.body.skills = response.map(item => item.rows);
-      next();
-    })
-    .catch(err => next(err));
-};
-
-/**
- * @type middleware
- * @description formate skills
- */
-export const formateSkills = (req, res) => {
-  const { skills, categories } = req.body;
-  const formated = {};
-
-  categories.forEach((item, i) => (formated[item.category] = skills[i]));
-  res.json(formated);
+export const getSkills = (req, res) => {
+  client
+    .query("SELECT * FROM skills")
+    .then(({ rows }) => res.json(rows))
+    .catch(err => res.status(400).json(err));
 };
 
 /**
  * @type middleware
  * @description create new skill
  */
-export const createSkill = (req, res, next) => {
+export const createSkill = (req, res) => {
   const { skill_picture, skill, range, source, category_id } = req.body;
   client
     .query(
       `INSERT INTO skills(skill_picture, skill, range, source, category_id) 
-        VALUES($1, $2, $3, $4, $5)`,
+        VALUES($1, $2, $3, $4, $5) 
+        RETURNING id, skill_picture, skill, range, source, category_id`,
       [skill_picture, skill, range, source, category_id]
     )
-    .then(() => res.end())
-    .catch(err => next(err));
+    .then(({ rows }) => res.json(rows[0]))
+    .catch(err => res.status(400).json(err));
 };
 
 /**
  * @type middleware
  * @description create new category
  */
-export const createCategory = (req, res, next) => {
+export const createCategory = (req, res) => {
   const { range, category } = req.body;
 
   client
     .query(
       `INSERT INTO skills_categories(range, category) 
-        VALUES($1, $2)`,
+        VALUES($1, $2) 
+        RETURNING id, range, category`,
       [range, category]
     )
-    .then(() => res.end())
-    .catch(err => next(err));
+    .then(({ rows }) => res.json(rows[0]))
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -97,7 +71,7 @@ export const getCurrentSkill = (req, res, next) => {
       req.body.currentSkill = rows[0];
       return next();
     })
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -129,25 +103,6 @@ export const updateSkill = (req, res, next) => {
     })
   )
     .then(() => res.end())
-    .catch(err => next(err));
-};
-
-/**
- * @type middleware
- * @description get category id by name
- */
-export const getCategoryId = (req, res, next) => {
-  const { name } = req.params;
-
-  client
-    .query(`SELECT id FROM skills_categories WHERE category=$1`, [name])
-    .then(({ rows }) => {
-      if (rows.length === 0) {
-        return res.status(404).end("The category not found");
-      }
-      req.body.id = rows[0].id;
-      return next();
-    })
     .catch(err => res.status(400).json(err));
 };
 
@@ -158,10 +113,10 @@ export const getCategoryId = (req, res, next) => {
 export const deleteCategorySkills = (req, res, next) => {
   client
     .query(`DELETE FROM skills WHERE category_id=$1 RETURNING id`, [
-      req.body.id
+      req.params.id
     ])
     .then(() => next())
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -170,9 +125,9 @@ export const deleteCategorySkills = (req, res, next) => {
  */
 export const deleteCategory = (req, res, next) => {
   client
-    .query(`DELETE FROM skills_categories WHERE id=$1`, [req.body.id])
+    .query(`DELETE FROM skills_categories WHERE id=$1`, [req.params.id])
     .then(() => res.end())
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -183,7 +138,7 @@ export const deleteProjectSkills = (req, res, next) => {
   client
     .query(`DELETE FROM projects_skills WHERE skill_id=$1`, [req.params.id])
     .then(() => next())
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -194,7 +149,7 @@ export const deleteSkill = (req, res, next) => {
   client
     .query(`DELETE FROM skills WHERE id=$1`, [req.params.id])
     .then(() => res.end())
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
@@ -207,8 +162,8 @@ export const deleteProjectSkillsByCategory = (req, res, next) => {
       `DELETE FROM projects_skills 
         WHERE skill_id IN 
         (SELECT id FROM skills WHERE category_id=$1)`,
-      [req.body.id]
+      [req.params.id]
     )
     .then(() => next())
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };

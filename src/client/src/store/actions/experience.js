@@ -1,6 +1,6 @@
 import axios from "axios";
-import { onError } from "./utils";
 import { SET_EXP, LOAD_EXP, EXP_ERROR } from "./constants";
+import { onError } from "./utils";
 
 /**
  * @description get all experience
@@ -29,7 +29,9 @@ export const createExp = expData => dispatch => {
   axios
     .post("/admin/experience", expData)
     .then(() => dispatch(getExp()))
-    .catch(err => console.error(err.response.data));
+    .catch(err =>
+      dispatch(onError(err, EXP_ERROR, "Error creating experience item"))
+    );
 };
 
 /**
@@ -37,11 +39,13 @@ export const createExp = expData => dispatch => {
  * @param {Object} history - from withRouter (react-router-dom)
  * @access private
  */
-export const updateExp = (expData, history) => () => {
+export const updateExp = (expData, history) => dispatch => {
   axios
     .put("/admin/experience", expData)
     .then(() => history.push("/resume"))
-    .catch(err => console.error(err.response.data));
+    .catch(err =>
+      dispatch(onError(err, EXP_ERROR, "Error updating experience item"))
+    );
 };
 
 /**
@@ -53,5 +57,7 @@ export const deleteExp = id => dispatch => {
   axios
     .delete(`/admin/experience/${id}`)
     .then(() => dispatch(getExp()))
-    .catch(err => console.error(err.response.data));
+    .catch(err =>
+      dispatch(onError(err, EXP_ERROR, "Error deleting experience item"))
+    );
 };

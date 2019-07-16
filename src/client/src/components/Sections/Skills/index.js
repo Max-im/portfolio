@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getSkills } from "../../../store/actions/skills";
+import { getSkills, getSkillsCategories } from "../../../store/actions/skills";
 import "./style.scss";
 import SkillItem from "../../Items/SkillItem";
 import Spinner from "../../Common/Spinner";
 import CategoryControl from "../../Control/CategoryControl";
-import SkillControl from "../../Control/SkillControl";
 
 export class index extends Component {
   componentDidMount() {
     this.props.getSkills();
+    this.props.getSkillsCategories();
   }
 
   static propTypes = {
     skills: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    getSkills: PropTypes.func.isRequired
+    getSkills: PropTypes.func.isRequired,
+    getSkillsCategories: PropTypes.func.isRequired
   };
 
   render() {
-    const { skills, error, loading } = this.props.skills;
+    const { skills, categories, error, loading } = this.props.skills;
     const { isadmin } = this.props.auth.user;
 
     return (
@@ -28,7 +29,34 @@ export class index extends Component {
         <div className="container">
           <h3 className="section__title">Skills</h3>
 
-          {skills && (
+          {categories && skills && (
+            <ul>
+              {categories.map(category => (
+                <li key={category.id}>
+                  {/* Category data */}
+                  <div className="category__item">
+                    <h3>{category.category}</h3>
+                    {isadmin && <CategoryControl id={category.id} />}
+                  </div>
+
+                  {/* skills list */}
+                  <ul className="skills__list">
+                    {skills
+                      .filter(v => v.category_id === category.id)
+                      .map(skill => (
+                        <SkillItem
+                          key={skill.id}
+                          skill={skill}
+                          isadmin={isadmin}
+                        />
+                      ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* {skills && (
             <ul>
               {Object.keys(skills).map(category => (
                 <li key={category}>
@@ -37,7 +65,6 @@ export class index extends Component {
                     {isadmin && <CategoryControl category={category} />}
                   </div>
 
-                  {/* Loop skills of the particular category */}
                   <ul className="skills__list">
                     {skills[category].map(skill => (
                       <li key={skill.id}>
@@ -49,7 +76,7 @@ export class index extends Component {
                 </li>
               ))}
             </ul>
-          )}
+          )} */}
 
           {error && <p className="error skills__error">{error}</p>}
           {loading && <Spinner />}
@@ -66,5 +93,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSkills }
+  { getSkillsCategories, getSkills }
 )(index);
