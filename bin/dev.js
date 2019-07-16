@@ -11,6 +11,9 @@ const app = require("../src/server");
 
 app.use(cors());
 
+// 404
+app.get("*", (req, res) => res.status(404).send());
+
 const port = process.env.PORT || 5000;
 
 // eslint-disable-next-line no-console

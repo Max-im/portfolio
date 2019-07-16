@@ -23,7 +23,12 @@ export const getSkills = (req, res, next) => {
 
   Promise.all(
     categories.map(category =>
-      client.query(`SELECT * FROM skills WHERE category_id=$1`, [category.id])
+      client.query(
+        `SELECT skill, id, source, range, skill_picture 
+          FROM skills 
+          WHERE category_id=$1`,
+        [category.id]
+      )
     )
   )
     .then(response => {

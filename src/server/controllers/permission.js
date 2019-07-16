@@ -1,34 +1,56 @@
+import jwt from "jsonwebtoken";
 import client from "../db";
 
 export const checkAdminPermission = (req, res, next) => {
   const { authorization } = req.headers;
-  if (!authorization) throw new Error("Not authorized");
-  const { gid } = JSON.parse(authorization);
-  if (!gid) throw new Error("Not authorized");
+  const error = { message: "Not authorized" };
 
-  client.query("SELECT * FROM users WHERE gid=$1", [gid]).then(({ rows }) => {
-    if (rows.length === 0) throw new Error("Not authorized");
-    else if (rows[0].isadmin === false) throw new Error("Access denied");
-    else {
-      const [user] = rows;
-      req.user = user;
-      next();
-    }
+  if (!authorization) res.status(401).json(error);
+
+  const access_token = JSON.parse(authorization);
+  jwt.verify(access_token, process.env.SECRET_OR_KEY, (err, { exp, sub }) => {
+    if (err) return res.status(401).json(err);
+
+    // check if the token doesnt expired
+    console.log(exp * 1000 - Date.now());
+    if (exp * 1000 < Date.now()) return res.redirect("/auth/logout");
+
+    return client
+      .query("SELECT * FROM users WHERE id=$1", [sub])
+      .then(({ rows }) => {
+        // check if the user exists
+        if (!rows[0]) return res.redirect("/auth/logout");
+
+        // check if the user is admin
+        const { isadmin } = rows[0];
+        if (!isadmin) return res.status(401).json(error);
+
+        return next();
+      })
+      .catch(err => res.status(401).json(err));
   });
 };
 
 export const checkAuthPermission = (req, res, next) => {
   const { authorization } = req.headers;
-  if (!authorization) throw new Error("Not authorized");
-  const { gid } = JSON.parse(authorization);
-  if (!gid) throw new Error("Not authorized");
+  const error = { message: "Not authorized" };
 
-  client.query("SELECT * FROM users WHERE gid=$1", [gid]).then(({ rows }) => {
-    if (rows.length === 0) throw new Error("Not authorized");
-    else {
-      const [user] = rows;
-      req.user = user;
-      next();
-    }
+  if (!authorization) res.status(401).json(error);
+
+  const access_token = JSON.parse(authorization);
+  jwt.verify(access_token, process.env.SECRET_OR_KEY, (err, { exp, sub }) => {
+    if (err) return res.status(401).json(err);
+
+    // check if the token doesnt expired
+    if (exp * 1000 < Date.now()) return res.redirect("/auth/logout");
+
+    return client
+      .query("SELECT * FROM users WHERE id=$1", [sub])
+      .then(({ rows }) => {
+        // check if the user exists
+        if (!rows[0]) return res.redirect("/auth/logout");
+        return next();
+      })
+      .catch(err => res.status(401).json(err));
   });
 };

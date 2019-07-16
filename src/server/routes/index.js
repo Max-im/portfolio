@@ -1,6 +1,7 @@
 import { Router } from "express";
+import auth from "./public/auth";
+
 import projects from "./projects";
-import auth from "./auth";
 import skills from "./skills";
 import contacts from "./contacts";
 import experience from "./experience";
