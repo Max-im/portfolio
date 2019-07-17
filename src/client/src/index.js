@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 import store from "./store/store";
 import { SET_USER } from "./store/actions/constants";
 import { setAuthToken } from "./store/actions/utils";
-import { onLogout, onLoginError } from "./store/actions/auth";
+import { onLogout } from "./store/actions/auth";
 
 try {
   const access_token = read_cookie("max-im");
@@ -22,8 +22,7 @@ try {
     }
   }
 } catch (err) {
-  console.error(err);
-  store.dispatch(onLoginError());
+  store.dispatch(onLogout());
 }
 
 ReactDOM.render(
