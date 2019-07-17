@@ -10,8 +10,7 @@
     "in": "cd src/client && npm i && cd ../.. && npm i",
     "lint-staged": "lint-staged",
     "initDb": "bash ./bin/dbSeed",
-    "build": "rimraf ./dist && babel -d ./dist/server ./src/server -s",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build",
+    "heroku-postbuild": "rimraf ./dist && babel -d ./dist/server ./src/server -s && NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build",
     "start": "npm run build && node bin/www"
   },
   "keywords": [],
