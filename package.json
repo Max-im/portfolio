@@ -11,7 +11,7 @@
     "lint-staged": "lint-staged",
     "initDb": "bash ./bin/dbSeed",
     "heroku-postbuild": "rimraf ./dist && babel -d ./dist/server ./src/server -s && NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build",
-    "start": "npm run build && node bin/www"
+    "start": "node bin/www"
   },
   "keywords": [],
   "dependencies": {
