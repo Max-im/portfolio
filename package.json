@@ -10,7 +10,9 @@
     "in": "cd src/client && npm i && cd ../.. && npm i",
     "lint-staged": "lint-staged",
     "initDb": "bash ./bin/dbSeed",
-    "heroku-postbuild": "rimraf ./dist && babel -d ./dist/server ./src/server -s && NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build",
+    "build-server": "rimraf ./dist && babel -d ./dist/server ./src/server -s",
+    "build-client": "NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build && mv src/client/build/ dist/client/",
+    "heroku-postbuild": "npm run build-server && npm run build-client",
     "start": "node bin/www"
   },
   "keywords": [],
@@ -26,8 +28,7 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "pg": "^7.11.0",
-    "pg-hstore": "^2.3.3",
-    "rimraf": "^2.6.3"
+    "pg-hstore": "^2.3.3"
   },
   "devDependencies": {
     "@babel/register": "^7.4.4",
@@ -41,7 +42,8 @@
     "eslint-plugin-import": "^2.17.3",
     "lint-staged": "^8.2.0",
     "nodemon": "^1.19.1",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.3"
   },
   "babel": {
     "presets": [
