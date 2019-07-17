@@ -1,5 +1,6 @@
 #!usr/bin/env node
 
+require("@babel/polyfill");
 const express = require("express");
 const app = require("../dist/server");
 const path = require("path");
