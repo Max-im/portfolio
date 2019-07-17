@@ -1,15 +1,15 @@
 #!/bin/bash
 
-export PGPASSWORD='fedb70b2b39e75ecd59d02138ed85665764242517421b23df4c3f465624d24bc'
-export USER='hibioqtrmdmyph'
+export PGPASSWORD='max'
 
+user='max'
 db="portfolio"
 
 echo "start initing DB $db"
 
-dropdb -U $USER d1afmn2ae798fj
-createdb -U $USER d1afmn2ae798fj
+dropdb -U $user $db
+createdb -U $user $db
 
-psql -U $USER d1afmn2ae798fj < './src/server/db/dump.sql'
+psql -U $user $db < './src/server/db/dump.sql'
 
 echo "db $db configured"
