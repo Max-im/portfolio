@@ -13,7 +13,6 @@ export const checkAdminPermission = (req, res, next) => {
     if (err) return res.status(401).json(err);
 
     // check if the token doesnt expired
-    console.log(exp * 1000 - Date.now());
     if (exp * 1000 < Date.now()) return res.redirect("/auth/logout");
 
     return client

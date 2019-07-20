@@ -3,6 +3,7 @@ import "./style.scss";
 import ProjectsList from "../../Sections/ProjectsList";
 import PageTitle from "../../Common/PageTitle";
 import AddProject from "../../Control/AddProject";
+import ProjectsPagination from "../../Items/ProjectsPagination";
 
 export default function index() {
   return (
@@ -15,6 +16,9 @@ export default function index() {
 
         {/* projects list */}
         <ProjectsList />
+
+        {/* pagination */}
+        <ProjectsPagination />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 export const GET_PROJECTS = "GET_PROJECTS";
 export const LOAD_PROJECTS = "LOAD_PROJECTS";
 export const GET_PROJECT = "GET_PROJECT";
-export const GET_MORE_PROJECTS = "GET_MORE_PROJECTS";
 export const LOAD_PROJECT = "LOAD_PROJECT";
+export const GET_PROJECTS_NUM = "GET_PROJECTS_NUM";
 export const PROJECTS_ERROR = "PROJECTS_ERROR";
 
 export const SET_USER = "SET_USER";

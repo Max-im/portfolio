@@ -3,8 +3,8 @@ import { onError } from "./utils";
 import {
   GET_PROJECTS,
   LOAD_PROJECTS,
+  GET_PROJECTS_NUM,
   GET_PROJECT,
-  GET_MORE_PROJECTS,
   PROJECTS_ERROR
 } from "../actions/constants";
 
@@ -12,10 +12,10 @@ import {
  * @description get all projects
  * @access public
  */
-export const getProjects = () => dispatch => {
+export const getProjects = page => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
-    .get("/projects")
+    .get(`/projects/${page}`)
     .then(res => {
       dispatch({ type: GET_PROJECTS, payload: res.data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
@@ -23,6 +23,15 @@ export const getProjects = () => dispatch => {
     .catch(err => {
       dispatch(onError(err, PROJECTS_ERROR, "Error getting projects"));
       dispatch({ type: LOAD_PROJECTS, payload: false });
+    });
+};
+
+export const getProjectsNum = () => dispatch => {
+  axios
+    .get("/projects/number")
+    .then(({ data }) => dispatch({ type: GET_PROJECTS_NUM, payload: data }))
+    .catch(err => {
+      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects number"));
     });
 };
 
@@ -34,7 +43,7 @@ export const getProjects = () => dispatch => {
 export const getProject = id => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
-    .get(`/projects/${id}`)
+    .get(`/projects/single/${id}`)
     .then(({ data }) => {
       dispatch({ type: GET_PROJECT, payload: data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
@@ -44,12 +53,6 @@ export const getProject = id => dispatch => {
       dispatch({ type: LOAD_PROJECTS, payload: false });
     });
 };
-
-/**
- * @description show more projects in the page
- * @access public
- */
-export const getMoreProjects = () => ({ type: GET_MORE_PROJECTS });
 
 /**
  * @param {Object} projectData {picture, description, title, skills, github, deploy, author_id}

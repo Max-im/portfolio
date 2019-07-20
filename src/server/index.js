@@ -14,11 +14,4 @@ logger("dev");
 // routes
 app.use("/", routes);
 
-// error handle
-// eslint-disable-next-line
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.json(err);
-});
-
 module.exports = app;

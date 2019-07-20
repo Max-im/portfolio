@@ -2,31 +2,61 @@ import client from "../db";
 
 /**
  * @route PROJECTS
+ * @description get number of projects for pagination
+ */
+export const getProjectsNumber = (req, res) => {
+  client
+    .query("SELECT COUNT(*) FROM projects")
+    .then(({ rows }) => res.json(rows[0].count - 0))
+    .catch(err => res.status(400).json(err));
+};
+
+/**
+ * @route PROJECTS
+ * @description get all projects ids on appropriate page, save them in req.body.projectsIds
+ */
+export const getPageProjects = (req, res, next) => {
+  const num = 3;
+  const skip = (req.params.page - 1) * num;
+
+  client
+    .query(`SELECT id FROM projects OFFSET $1 LIMIT $2`, [skip, num])
+    .then(({ rows }) => {
+      if (rows.length === 0) return res.json([]);
+      req.body.ids = rows;
+      return next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
+/**
+ * @route PROJECTS
  * @description save retrieve all projects data, store them into req.body.projects
  */
 export const getAllProjects = (req, res, next) => {
+  const { ids } = req.body;
+
   client
     .query(
-      `
-    SELECT proj.id, title, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range
-    FROM projects AS proj
-    JOIN projectlevels AS lev ON proj.level_id = lev.id
-    JOIN projects_skills AS ps ON proj.id = ps.project_id
-    JOIN skills AS s ON s.id = ps.skill_id
-  `
+      `SELECT proj.id, title, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range 
+      FROM projects AS proj
+      JOIN projectlevels AS lev ON proj.level_id = lev.id
+      JOIN projects_skills AS ps ON proj.id = ps.project_id
+      JOIN skills AS s ON s.id = ps.skill_id
+      WHERE proj.id IN (${ids.map(v => v.id - 0)})`
     )
     .then(({ rows }) => {
       req.body.projects = rows;
-      next();
+      return next();
     })
-    .catch(err => next(err));
+    .catch(err => res.status(400).json(err));
 };
 
 /**
  * @route PROJECTS
  * @description formated all projects data, store them into req.body.result
  */
-export const formateAllProjects = (req, res, next) => {
+export const formateAllProjects = (req, res) => {
   const { projects } = req.body;
   const projectsObj = {};
   projects.forEach(item => {
@@ -59,8 +89,7 @@ export const formateAllProjects = (req, res, next) => {
       skills: item.skills.sort((a, b) => a.range - b.range)
     }));
 
-  req.body.result = result;
-  next();
+  res.json(result);
 };
 
 /**
@@ -95,7 +124,7 @@ export const getProjectById = (req, res, next) => {
  * @route PROJECT
  * @description
  */
-export const parseProjectData = (req, res, next) => {
+export const parseProjectData = (req, res) => {
   const { projectData } = req.body;
   const row = projectData[0];
   const result = {
@@ -148,8 +177,7 @@ export const parseProjectData = (req, res, next) => {
   result.dislikes = result.dislikes.filter((v, i, a) => a.indexOf(v) === i);
   result.likes = result.likes.filter((v, i, a) => a.indexOf(v) === i);
 
-  req.body.result = result;
-  next();
+  res.jsoin(result);
 };
 
 /**
