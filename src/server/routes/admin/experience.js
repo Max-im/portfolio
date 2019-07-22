@@ -3,7 +3,7 @@ import { checkAdminPermission } from "../../controllers/permission";
 import {
   createExp,
   getCurrentExp,
-  retrieceFieldsToUpdate,
+  retrieveFieldsToUpdate,
   updateExp,
   deleteExp
 } from "../../controllers/experience";
@@ -26,7 +26,7 @@ router.put(
   "/",
   checkAdminPermission,
   getCurrentExp,
-  retrieceFieldsToUpdate,
+  retrieveFieldsToUpdate,
   updateExp
 );
 

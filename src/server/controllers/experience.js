@@ -44,7 +44,7 @@ export const getCurrentExp = (req, res, next) => {
 
   client
     .query(
-      `SELECT exp_title,  exp_company,  exp_from,  exp_to,  exp_is_current,  exp_image,  exp_description 
+      `SELECT exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description 
         FROM experience 
         WHERE id=$1`,
       [id]
@@ -61,12 +61,12 @@ export const getCurrentExp = (req, res, next) => {
  * @description retrieve fields to update
  * @path UPDATE
  */
-export const retrieceFieldsToUpdate = (req, res, next) => {
+export const retrieveFieldsToUpdate = (req, res, next) => {
   const { currentExp } = req.body;
   const toUpdate = {};
 
   Object.keys(currentExp).map(key => {
-    if (theExp[key] !== req.body[key]) toUpdate[key] = req.body[key];
+    if (currentExp[key] !== req.body[key]) toUpdate[key] = req.body[key];
     return null;
   });
 

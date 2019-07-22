@@ -1,7 +1,8 @@
 import { Router } from "express";
 import {
-  getAllProjects,
   getPageProjects,
+  getProjectsNumber,
+  getAllProjects,
   formateAllProjects,
   getProjectById,
   parseProjectData
@@ -14,26 +15,23 @@ const router = Router();
 /**
  * @method GET
  * @access public
- * @description get all projects, attach skills, return to frontend
+ * @description get number of projects
  */
-router.get(
-  "/:page",
-  getPageProjects,
-  getAllProjects,
-  formateAllProjects,
-  (req, res) => {
-    res.json(req.body.result);
-  }
-);
+router.get("/number", getProjectsNumber);
 
 /**
  * @method GET
  * @access public
  * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
-router.get("/single/:id", getProjectById, parseProjectData, (req, res) => {
-  res.json(req.body.result);
-});
+router.get("/single/:id", getProjectById, parseProjectData);
+
+/**
+ * @method GET
+ * @access public
+ * @description get cretain project by id, attach skills, attach comments, return to frontend
+ */
+router.get("/single/:id", getProjectById, parseProjectData);
 
 /**
  * @method POST
@@ -41,5 +39,12 @@ router.get("/single/:id", getProjectById, parseProjectData, (req, res) => {
  * @description likes management
  */
 router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
+
+/**
+ * @method GET
+ * @access public
+ * @description get all projects, attach skills, return to frontend
+ */
+router.get("/:page", getPageProjects, getAllProjects, formateAllProjects);
 
 module.exports = router;

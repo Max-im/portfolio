@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import ProjectItem from "../../Items/ProjectItem";
 import Spinner from "../../Common/Spinner";
-import { getProjects, getMoreProjects } from "../../../store/actions/projectes";
-import "./style.scss";
+import { getProjects } from "../../../store/actions/projectes";
+
+const assambleQuery = ({ quality }) => {
+  if (quality.length === 0) return "";
+  else return `?quality=${quality.join(",")}`;
+};
 
 export class ProjectsList extends Component {
   componentDidMount() {
@@ -13,19 +17,28 @@ export class ProjectsList extends Component {
   }
 
   componentDidUpdate(prev) {
-    if (prev.match.params.page === this.props.match.params.page) return;
-    this.onGetProjects();
+    if (prev.match.params.page !== this.props.match.params.page) {
+      this.onGetProjects();
+    }
+
+    if (
+      prev.portfolio.query.quality.length !==
+      this.props.portfolio.query.quality.length
+    ) {
+      this.onGetProjects();
+    }
   }
 
   onGetProjects() {
     const page = this.props.match.params.page || 1;
-    this.props.getProjects(page);
+    const theQuery = assambleQuery(this.props.portfolio.query);
+    this.props.history.push({ pathname: "/portfolio", search: theQuery });
+    this.props.getProjects(page, theQuery);
   }
 
   static propTypes = {
     portfolio: PropTypes.object.isRequired,
-    getProjects: PropTypes.func.isRequired,
-    getMoreProjects: PropTypes.func.isRequired
+    getProjects: PropTypes.func.isRequired
   };
 
   render() {
@@ -55,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProjects, getMoreProjects }
+  { getProjects }
 )(withRouter(ProjectsList));

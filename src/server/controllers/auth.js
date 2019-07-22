@@ -20,7 +20,7 @@ export const createNewUser = (req, res, next) => {
   const { email, gId, name, avatar, theUser } = req.body;
   if (theUser) return next();
 
-  client
+  return client
     .query(
       `INSERT INTO users(name, email, gId, avatar) 
         VALUES ($1, $2, $3, $4) 

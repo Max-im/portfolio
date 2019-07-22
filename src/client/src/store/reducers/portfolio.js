@@ -2,16 +2,22 @@ import {
   LOAD_PROJECTS,
   GET_PROJECTS,
   GET_PROJECT,
-  GET_MORE_PROJECTS,
+  GET_PROJECTS_NUM,
+  FILTER_PROJECTS,
   PROJECTS_ERROR
 } from "../actions/constants";
 
 const initialState = {
   loading: false,
   projects: null,
-  shownProjects: null,
+  projectsNum: null,
   loadIndex: 3,
   project: null,
+  query: {
+    quality: [],
+    skills: [],
+    sortBy: null
+  },
   error: null
 };
 
@@ -28,21 +34,25 @@ export default (state = initialState, action) => {
     case LOAD_PROJECTS:
       return { ...state, loading: action.payload };
 
-    case GET_MORE_PROJECTS:
-      const add = state.projects.filter(
-        (v, i) => i >= state.loadIndex && i <= state.loadIndex + 3
-      );
-      return {
-        ...state,
-        shownProjects: [...state.shownProjects, ...add],
-        loadIndex: state.loadIndex + 3
-      };
+    case GET_PROJECTS_NUM:
+      return { ...state, projectsNum: action.payload };
 
     case GET_PROJECT:
       return { ...state, project: action.payload, error: null };
 
     case PROJECTS_ERROR:
       return { ...state, error: action.payload };
+
+    case FILTER_PROJECTS:
+      const query = { ...state.query };
+      if (query[action.meta].includes(action.payload)) {
+        query[action.meta] = query[action.meta].filter(
+          item => item !== action.payload
+        );
+      } else {
+        query[action.meta] = [...query[action.meta], action.payload];
+      }
+      return { ...state, query };
 
     default:
       return state;

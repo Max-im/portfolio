@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
-  getSkills,
   createSkill,
   createCategory,
   getCurrentSkill,

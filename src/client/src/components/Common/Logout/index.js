@@ -6,7 +6,6 @@ import { onLogout } from "../../../store/actions/auth";
 
 export class index extends Component {
   componentDidMount() {
-    console.log(this.porps.match);
     this.props.onLogout();
     this.props.history.push("/");
   }

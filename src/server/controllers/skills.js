@@ -91,7 +91,7 @@ export const retrieveFieldsToUpdate = (req, res, next) => {
   return next();
 };
 
-export const updateSkill = (req, res, next) => {
+export const updateSkill = (req, res) => {
   const { toUpdate, id } = req.body;
 
   Promise.all(
@@ -123,7 +123,7 @@ export const deleteCategorySkills = (req, res, next) => {
  * @type middleware
  * @description delete category by id
  */
-export const deleteCategory = (req, res, next) => {
+export const deleteCategory = (req, res) => {
   client
     .query(`DELETE FROM skills_categories WHERE id=$1`, [req.params.id])
     .then(() => res.end())
@@ -145,7 +145,7 @@ export const deleteProjectSkills = (req, res, next) => {
  * @type middleware
  * @description delete skill by id
  */
-export const deleteSkill = (req, res, next) => {
+export const deleteSkill = (req, res) => {
   client
     .query(`DELETE FROM skills WHERE id=$1`, [req.params.id])
     .then(() => res.end())
