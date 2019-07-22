@@ -71,9 +71,11 @@
     "rules": {
       "import/prefer-default-export": 0,
       "camelcase": 0,
-      "no-console": 0
+      "no-console": 0,
+      "prefer-destructuring": 0
     }
   },
+  "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": "eslint src/server"
   }
