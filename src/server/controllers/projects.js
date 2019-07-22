@@ -2,24 +2,50 @@ import client from "../db";
 
 /**
  * @route PROJECTS
+ * @description get all projects of the appropriate page
+ */
+export const getPageProjects = (req, res, next) => {
+  const num = 3;
+  const skip = req.params.page === 1 ? 0 : (req.params.page - 1) * num;
+
+  client
+    .query(`SELECT id FROM projects OFFSET $1 LIMIT $2`, [skip, num])
+    .then(({ rows }) => {
+      req.body.projectsIds = rows;
+      next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
+/**
+ * @route PROJECTS
  * @description save retrieve all projects data, store them into req.body.projects
  */
 export const getAllProjects = (req, res, next) => {
+  const ids = req.body.projectsIds;
+
+  console.log(ids);
+
   client
-    .query(
-      `
-    SELECT proj.id, title, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range
-    FROM projects AS proj
-    JOIN projectlevels AS lev ON proj.level_id = lev.id
-    JOIN projects_skills AS ps ON proj.id = ps.project_id
-    JOIN skills AS s ON s.id = ps.skill_id
-  `
-    )
-    .then(({ rows }) => {
-      req.body.projects = rows;
-      next();
-    })
-    .catch(err => next(err));
+    .query(`SELECT * FROM projects WHERE id IN ($1)`, [ids])
+    .then(({ rows }) => console.log(rows))
+    .catch(err => console.log(err));
+
+  // client
+  //   .query(
+  //     ` SELECT proj.id, title, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range
+  //       FROM $1 AS proj
+  //       JOIN projectlevels AS lev ON proj.level_id = lev.id
+  //       JOIN projects_skills AS ps ON proj.id = ps.project_id
+  //       JOIN skills AS s ON s.id = ps.skill_id
+  //       `,
+  //     [req.body.projects]
+  //   )
+  //   .then(({ rows }) => {
+  //     req.body.projects = rows;
+  //     next();
+  //   })
+  //   .catch(err => next(err));
 };
 
 /**

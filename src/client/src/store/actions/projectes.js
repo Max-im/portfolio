@@ -12,10 +12,10 @@ import {
  * @description get all projects
  * @access public
  */
-export const getProjects = () => dispatch => {
+export const getProjects = page => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
-    .get("/projects")
+    .get(`/projects/${page}`)
     .then(res => {
       dispatch({ type: GET_PROJECTS, payload: res.data });
       dispatch({ type: LOAD_PROJECTS, payload: false });
@@ -34,7 +34,7 @@ export const getProjects = () => dispatch => {
 export const getProject = id => dispatch => {
   dispatch({ type: LOAD_PROJECTS, payload: true });
   axios
-    .get(`/projects/${id}`)
+    .get(`/projects/single/${id}`)
     .then(({ data }) => {
       dispatch({ type: GET_PROJECT, payload: data });
       dispatch({ type: LOAD_PROJECTS, payload: false });

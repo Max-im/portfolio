@@ -28,6 +28,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/resume" component={Resume} />
             <Route exact path="/portfolio" component={Portfolio} />
+            <Route exact path="/portfolio/:page" component={Portfolio} />
             <Route path="/portfolio/project/:id" component={SingleProject} />
             <Route path="/logout" component={Logout} />
             <Route path="/admin/logout" component={Logout} />

@@ -7,11 +7,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"npm run start --prefix src/client\" \"nodemon --exec babel-node bin/dev\" ",
-    "install": "cd src/client && npm i",
+    "install": "cd src/client && npm install",
     "lint-staged": "lint-staged",
     "initDb": "bash ./bin/dbSeed",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false rimraf ./dist && babel -d ./dist/server ./src/server -s && cd src/client && npm run build",
-    "start": "npm run build && node bin/www"
+    "build-server": "rimraf ./dist && babel -d ./dist/server ./src/server -s",
+    "build-client": "npm run build --prefix src/client && mv src/client/build/ dist/client/",
+    "heroku-postbuild": "npm run build-server && npm run build-client",
+    "start": "node bin/www"
   },
   "keywords": [],
   "dependencies": {
@@ -72,7 +74,6 @@
       "no-console": 0
     }
   },
-  "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": "eslint src/server"
   }

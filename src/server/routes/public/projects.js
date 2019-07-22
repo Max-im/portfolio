@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   getAllProjects,
+  getPageProjects,
   formateAllProjects,
   getProjectById,
   parseProjectData
@@ -15,16 +16,22 @@ const router = Router();
  * @access public
  * @description get all projects, attach skills, return to frontend
  */
-router.get("/", getAllProjects, formateAllProjects, (req, res) => {
-  res.json(req.body.result);
-});
+router.get(
+  "/:page",
+  getPageProjects,
+  getAllProjects,
+  formateAllProjects,
+  (req, res) => {
+    res.json(req.body.result);
+  }
+);
 
 /**
  * @method GET
  * @access public
  * @description get cretain project by id, attach skills, attach comments, return to frontend
  */
-router.get("/:id", getProjectById, parseProjectData, (req, res) => {
+router.get("/single/:id", getProjectById, parseProjectData, (req, res) => {
   res.json(req.body.result);
 });
 

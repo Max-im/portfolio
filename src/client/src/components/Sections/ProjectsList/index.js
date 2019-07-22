@@ -1,30 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import "./style.scss";
 import ProjectItem from "../../Items/ProjectItem";
-import { getProjects, getMoreProjects } from "../../../store/actions/projectes";
 import Spinner from "../../Common/Spinner";
+import { getProjects, getMoreProjects } from "../../../store/actions/projectes";
+import "./style.scss";
 
 export class ProjectsList extends Component {
   componentDidMount() {
-    this.props.getProjects();
-    window.addEventListener("scroll", this.handleScroll.bind(this));
+    this.onGetProjects();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+  componentDidUpdate(prev) {
+    if (prev.match.params.page === this.props.match.params.page) return;
+    this.onGetProjects();
   }
 
-  handleScroll() {
-    const fromBottomPx =
-      document.documentElement.scrollHeight -
-      window.pageYOffset -
-      window.innerHeight;
-
-    if (this.props.portfolio.shownProjects && fromBottomPx < 10) {
-      this.props.getMoreProjects();
-    }
+  onGetProjects() {
+    const page = this.props.match.params.page || 1;
+    this.props.getProjects(page);
   }
 
   static propTypes = {
@@ -61,4 +56,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProjects, getMoreProjects }
-)(ProjectsList);
+)(withRouter(ProjectsList));
