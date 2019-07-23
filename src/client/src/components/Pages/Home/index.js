@@ -3,8 +3,8 @@ import "./style.scss";
 
 export default function index() {
   return (
-    <div className="page">
-      <div className="container">home</div>
+    <div className="page home">
+      <h1 className="home__title">home</h1>
     </div>
   );
 }

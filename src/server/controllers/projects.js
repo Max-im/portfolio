@@ -82,7 +82,6 @@ export const getAllProjects = (req, res, next) => {
  */
 export const formateAllProjects = (req, res) => {
   const { projects, ids } = req.body;
-  const projectsObj = {};
 
   const result = ids.map(item => {
     const itemProjects = projects.filter(p => p.id === item.id);
@@ -187,7 +186,7 @@ export const parseProjectData = (req, res) => {
   result.dislikes = result.dislikes.filter((v, i, a) => a.indexOf(v) === i);
   result.likes = result.likes.filter((v, i, a) => a.indexOf(v) === i);
 
-  res.jsoin(result);
+  res.json(result);
 };
 
 /**
