@@ -28,13 +28,17 @@ export class ProjectsList extends Component {
   };
 
   render() {
-    const { shownProjects, loading, error } = this.props.portfolio;
+    const { shownProjects, loading, error, projectsNum } = this.props.portfolio;
 
     return (
       <section className="projectsList">
         <h3 className="projectsList__title">Projects list</h3>
 
         <div className="projectsList__body">
+          {projectsNum === 0 && <p>Projects not found</p>}
+          {projectsNum === 1 && <p>Found - 1 project</p>}
+          {projectsNum > 1 && <p>Found - {projectsNum} projects</p>}
+
           {shownProjects &&
             shownProjects.map(item => (
               <ProjectItem item={item} key={item.id} />

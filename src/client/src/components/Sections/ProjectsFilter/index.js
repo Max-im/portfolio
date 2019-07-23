@@ -32,10 +32,17 @@ export class index extends Component {
     this.setState({ quality: newQuality });
 
     // change URL
-    if (newQuality.length === 0) this.props.history.push("/portfolio");
-    else {
-      const theQuery = newQuality.join(",");
-      this.props.history.push(`/portfolio?quality=${theQuery}`);
+    const { sort } = queryString.parse(this.props.history.location.search);
+    if (newQuality.length === 0) {
+      if (sort) this.props.history.push(`/portfolio?sort=${sort}`);
+      else this.props.history.push("/portfolio");
+    } else {
+      const quality = newQuality.join(",");
+      if (sort)
+        this.props.history.push(`/portfolio?quality=${quality}&sort=${sort}`);
+      else {
+        this.props.history.push(`/portfolio?quality=${quality}`);
+      }
     }
 
     this.props.getProjects(1, this.props.history);

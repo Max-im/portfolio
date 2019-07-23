@@ -1,12 +1,32 @@
 import client from "../db";
 
+export const retrieveQuery = (req, res, next) => {
+  const { quality, sort } = req.query;
+
+  return client
+    .query("SELECT * FROM projectlevels")
+    .then(({ rows }) => {
+      if (!quality) req.body.quality = rows.map(item => item.id);
+      else {
+        const qualityArr = quality.split(",");
+        req.body.quality = rows
+          .filter(item => qualityArr.includes(item.level.toLowerCase()))
+          .map(item => item.id);
+      }
+      req.body.sort = sort ? sort : "level_id";
+      return next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
 /**
  * @route PROJECTS
  * @description get number of projects for pagination
  */
 export const getProjectsNumber = (req, res) => {
-  client
-    .query("SELECT COUNT(*) FROM projects")
+  const { quality } = req.body;
+  return client
+    .query(`SELECT COUNT(*) FROM projects WHERE level_id IN (${quality})`)
     .then(({ rows }) => res.json(rows[0].count - 0))
     .catch(err => res.status(400).json(err));
 };
@@ -16,12 +36,15 @@ export const getProjectsNumber = (req, res) => {
  * @description get all projects ids on appropriate page, save them in req.body.projectsIds
  */
 export const getPageProjects = (req, res, next) => {
-  // const { quality } = req.query;
+  const { quality, sort } = req.body;
   const num = 3;
   const skip = (req.params.page - 1) * num;
 
   client
-    .query(`SELECT id FROM projects OFFSET $1 LIMIT $2`, [skip, num])
+    .query(
+      `SELECT id FROM projects WHERE level_id IN (${quality}) ORDER BY ${sort} OFFSET $1 LIMIT $2 `,
+      [skip, num]
+    )
     .then(({ rows }) => {
       if (rows.length === 0) return res.json([]);
       req.body.ids = rows;
@@ -58,37 +81,23 @@ export const getAllProjects = (req, res, next) => {
  * @description formated all projects data, store them into req.body.result
  */
 export const formateAllProjects = (req, res) => {
-  const { projects } = req.body;
+  const { projects, ids } = req.body;
   const projectsObj = {};
-  projects.forEach(item => {
-    if (!projectsObj[item.id]) {
-      projectsObj[item.id] = {
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        picture: item.picture,
-        author_id: item.author_id,
-        date: item.date,
-        github: item.github,
-        deploy: item.deploy,
-        level: item.level,
-        skills: []
-      };
-    }
-    projectsObj[item.id].skills.push({
-      id: item.skill_id,
-      title: item.skill,
-      picture: item.skill_picture,
-      range: item.range
-    });
-  });
 
-  const result = Object.keys(projectsObj)
-    .map(key => projectsObj[key])
-    .map(item => ({
-      ...item,
-      skills: item.skills.sort((a, b) => a.range - b.range)
-    }));
+  const result = ids.map(item => {
+    const itemProjects = projects.filter(p => p.id === item.id);
+
+    const skills = itemProjects
+      .map(p => ({
+        id: p.skill_id,
+        title: p.skill,
+        picture: p.skill_picture,
+        range: p.range
+      }))
+      .sort((a, b) => a.range - b.range);
+
+    return { ...itemProjects[0], skills };
+  });
 
   res.json(result);
 };

@@ -1,6 +1,4 @@
 import axios from "axios";
-import queryString from "query-string";
-import { FILTER_PROJECTS } from "./constants";
 
 export const setAuthToken = token => {
   if (token)

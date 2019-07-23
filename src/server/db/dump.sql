@@ -37,9 +37,9 @@ CREATE TABLE projectlevels
 INSERT INTO projectlevels
     (level)
 VALUES
-    ('Simple'),
-    ('Medium'),
-    ('Best');
+    ('best'),
+    ('medium'),
+    ('simple');
 -- ======================================================================================
 
 
