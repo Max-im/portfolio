@@ -30,7 +30,9 @@ export class index extends Component {
         search: `?quality=${quality}&sort=${value}`
       });
     }
-    this.props.getProjects(this.props.match.params.page, this.props.history);
+
+    const page = this.props.match.params.page || 1;
+    this.props.getProjects(page, this.props.history);
   }
 
   render() {
