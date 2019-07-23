@@ -26,6 +26,10 @@ export class index extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onUploadFile(e) {
+    this.setState({ skill_picture: e.target.files[0] });
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const { skill, skill_picture, range, source, category_id } = this.state;
@@ -63,11 +67,14 @@ export class index extends Component {
               <h3 className="section__title">Add skill</h3>
 
               <form onSubmit={this.onSubmit.bind(this)}>
-                <Input
+                {/* <Input
                   name="skill_picture"
                   value={this.state.skill_picture}
                   onChange={this.onChange.bind(this)}
-                />
+                /> */}
+
+                <input type="file" onChange={this.onUploadFile.bind(this)} />
+
                 <Input
                   name="source"
                   value={this.state.source}

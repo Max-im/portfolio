@@ -56,28 +56,6 @@ export class index extends Component {
             </ul>
           )}
 
-          {/* {skills && (
-            <ul>
-              {Object.keys(skills).map(category => (
-                <li key={category}>
-                  <div>
-                    <h5 className="skills__category">{category}</h5>
-                    {isadmin && <CategoryControl category={category} />}
-                  </div>
-
-                  <ul className="skills__list">
-                    {skills[category].map(skill => (
-                      <li key={skill.id}>
-                        <SkillItem skill={skill} />
-                        {isadmin && <SkillControl id={skill.id} />}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          )} */}
-
           {error && <p className="error skills__error">{error}</p>}
           {loading && <Spinner />}
         </div>

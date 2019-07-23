@@ -1,4 +1,5 @@
 import { Router } from "express";
+import multer from "multer";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
   createSkill,
@@ -13,6 +14,7 @@ import {
   deleteSkill
 } from "../../controllers/skills";
 
+const upload = multer({ dest: "uploads/" });
 const router = Router();
 
 /**
@@ -20,7 +22,7 @@ const router = Router();
  * @access private - admin
  * @description create new skill
  */
-router.post("/", checkAdminPermission, createSkill);
+router.post("/", checkAdminPermission, upload.single("image"), createSkill);
 
 /**
  * @method POST

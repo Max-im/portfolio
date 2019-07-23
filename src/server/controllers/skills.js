@@ -27,13 +27,14 @@ export const getSkills = (req, res) => {
  * @description create new skill
  */
 export const createSkill = (req, res) => {
-  const { skill_picture, skill, range, source, category_id } = req.body;
+  const { path } = req.file;
+  const { skill, range, source, category_id } = req.body;
   client
     .query(
       `INSERT INTO skills(skill_picture, skill, range, source, category_id) 
         VALUES($1, $2, $3, $4, $5) 
         RETURNING id, skill_picture, skill, range, source, category_id`,
-      [skill_picture, skill, range, source, category_id]
+      [path, skill, range, source, category_id]
     )
     .then(({ rows }) => res.json(rows[0]))
     .catch(err => res.status(400).json(err));

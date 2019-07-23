@@ -7,7 +7,7 @@ export default function index({ skill, isadmin }) {
       <a href={skill.source} target="_blank" rel="noopener noreferrer">
         <img
           className="skill__img"
-          src={skill.skill_picture}
+          src={"http://localhost:5000/" + skill.skill_picture}
           alt={skill.skill}
         />
       </a>
