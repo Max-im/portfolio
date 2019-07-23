@@ -6,11 +6,6 @@ import ProjectItem from "../../Items/ProjectItem";
 import Spinner from "../../Common/Spinner";
 import { getProjects } from "../../../store/actions/projectes";
 
-const assambleQuery = ({ quality }) => {
-  if (quality.length === 0) return "";
-  else return `?quality=${quality.join(",")}`;
-};
-
 export class ProjectsList extends Component {
   componentDidMount() {
     this.onGetProjects();
@@ -20,20 +15,11 @@ export class ProjectsList extends Component {
     if (prev.match.params.page !== this.props.match.params.page) {
       this.onGetProjects();
     }
-
-    if (
-      prev.portfolio.query.quality.length !==
-      this.props.portfolio.query.quality.length
-    ) {
-      this.onGetProjects();
-    }
   }
 
   onGetProjects() {
     const page = this.props.match.params.page || 1;
-    const theQuery = assambleQuery(this.props.portfolio.query);
-    this.props.history.push({ pathname: "/portfolio", search: theQuery });
-    this.props.getProjects(page, theQuery);
+    this.props.getProjects(page, this.props.history);
   }
 
   static propTypes = {

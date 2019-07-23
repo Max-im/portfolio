@@ -3,7 +3,6 @@ import {
   GET_PROJECTS,
   GET_PROJECT,
   GET_PROJECTS_NUM,
-  FILTER_PROJECTS,
   PROJECTS_ERROR
 } from "../actions/constants";
 
@@ -13,11 +12,7 @@ const initialState = {
   projectsNum: null,
   loadIndex: 3,
   project: null,
-  query: {
-    quality: [],
-    skills: [],
-    sortBy: null
-  },
+
   error: null
 };
 
@@ -42,17 +37,6 @@ export default (state = initialState, action) => {
 
     case PROJECTS_ERROR:
       return { ...state, error: action.payload };
-
-    case FILTER_PROJECTS:
-      const query = { ...state.query };
-      if (query[action.meta].includes(action.payload)) {
-        query[action.meta] = query[action.meta].filter(
-          item => item !== action.payload
-        );
-      } else {
-        query[action.meta] = [...query[action.meta], action.payload];
-      }
-      return { ...state, query };
 
     default:
       return state;

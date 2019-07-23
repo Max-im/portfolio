@@ -4,7 +4,6 @@ export const GET_PROJECT = "GET_PROJECT";
 export const LOAD_PROJECT = "LOAD_PROJECT";
 export const GET_PROJECTS_NUM = "GET_PROJECTS_NUM";
 export const PROJECTS_ERROR = "PROJECTS_ERROR";
-export const FILTER_PROJECTS = "FILTER_PROJECTS";
 
 export const SET_USER = "SET_USER";
 export const AUTH_ERROR = "AUTH_ERROR";

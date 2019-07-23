@@ -7,7 +7,7 @@ import { getProjectsNum } from "../../../store/actions/projectes";
 
 export class index extends Component {
   componentDidMount() {
-    this.props.getProjectsNum();
+    this.props.getProjectsNum(this.props.history);
     if (this.props.portfolio.projectsNum) this.backToRootIfOverflow();
   }
 
@@ -60,7 +60,7 @@ export class index extends Component {
 
     return (
       <div>
-        {projectsNum && projectsNum > 1 && (
+        {projectsNum && pages.length > 1 && (
           <ul className="pagination">
             {pages.map(page => (
               <li key={page}>
@@ -71,7 +71,9 @@ export class index extends Component {
                         ? "pagination__item pagination__item_active"
                         : "pagination__item"
                     }
-                    to={"/portfolio/" + page}
+                    to={`/portfolio/${page}${
+                      this.props.history.location.search
+                    }`}
                   >
                     {page}
                   </Link>
