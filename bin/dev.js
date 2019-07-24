@@ -9,9 +9,9 @@ require("dotenv").config({ path: "./src/server/config/variables.env" });
 const express = require("express");
 const cors = require("cors");
 const app = require("../src/server");
+const path = require("path");
 
-// Frontend build include
-app.use(express.static("uploads"));
+app.use(express.static(path.join(__dirname, "../src")));
 app.use(cors());
 
 // 404

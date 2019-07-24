@@ -25,17 +25,17 @@ export class index extends Component {
     const { isadmin } = this.props.auth.user;
 
     return (
-      <section className="section skills">
+      <section className="section section__colored section__colored_1 skills">
         <div className="container">
           <h3 className="section__title">Skills</h3>
 
           {categories && skills && (
             <ul>
               {categories.map(category => (
-                <li key={category.id}>
+                <li key={category.id} className="category__list">
                   {/* Category data */}
                   <div className="category__item">
-                    <h3>{category.category}</h3>
+                    <h3 className="category__title">{category.category}</h3>
                     {isadmin && <CategoryControl id={category.id} />}
                   </div>
 

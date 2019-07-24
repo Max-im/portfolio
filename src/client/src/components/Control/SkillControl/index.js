@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteSkill } from "../../../store/actions/skills";
+import "./style.scss";
 
 export class index extends Component {
   onDelete() {
@@ -16,9 +17,15 @@ export class index extends Component {
   render() {
     const { id } = this.props;
     return (
-      <div>
-        <Link className="far fa-edit" to={"/admin/update-skill/" + id} />
-        <i className="far fa-trash-alt" onClick={this.onDelete.bind(this)} />
+      <div className="skillControl">
+        <Link
+          className="far fa-edit btn btn__edit btn_small"
+          to={"/admin/update-skill/" + id}
+        />
+        <i
+          className="fas fa-trash-alt btn btn__delete btn_small"
+          onClick={this.onDelete.bind(this)}
+        />
       </div>
     );
   }

@@ -18,7 +18,7 @@ export class index extends Component {
     return (
       <div className="contactControl">
         <i
-          className="fas fa-trash-alt contactControl__delete"
+          className="fas fa-trash-alt btn btn__delete"
           onClick={this.onDelete.bind(this, id)}
         />
       </div>

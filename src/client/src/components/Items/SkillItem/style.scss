@@ -1,8 +1,13 @@
 .skill {
   padding: 3px 5px;
   box-sizing: border-box;
-  flex: 0 0 calc(100% / 6);
+  flex: 0 0 calc(100% / 7);
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
   &__img {
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    width: 26px;
   }
 }

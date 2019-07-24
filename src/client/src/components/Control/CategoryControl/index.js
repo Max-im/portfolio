@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteCategory } from "../../../store/actions/skills";
+import "./style.scss";
 
 export class index extends Component {
   onDelete() {
@@ -16,8 +17,11 @@ export class index extends Component {
 
   render() {
     return (
-      <div>
-        <i className="far fa-trash-alt" onClick={this.onDelete.bind(this)} />
+      <div className="categoryControl">
+        <i
+          className="fas fa-trash-alt btn btn__delete"
+          onClick={this.onDelete.bind(this)}
+        />
       </div>
     );
   }

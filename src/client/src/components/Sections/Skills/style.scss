@@ -1,9 +1,14 @@
-.skills {
-  &__category {
-    margin: 15px 0 5px 0;
-    text-transform: capitalize;
+.category {
+  &__item {
+    display: flex;
     font-weight: bold;
+    line-height: 27px;
+    color: gray;
+    padding: 10px 0 2px 0;
   }
+}
+
+.skills {
   &__list {
     display: flex;
     flex-wrap: wrap;
