@@ -1,3 +1,4 @@
+import Jimp from "jimp";
 import client from "../db";
 
 /**
@@ -22,19 +23,31 @@ export const getSkills = (req, res) => {
     .catch(err => res.status(400).json(err));
 };
 
+export const resizeSkillPhoto = (req, res, next) => {
+  Jimp.read(req.file.path)
+    .then(img => {
+      img
+        .resize(32, 32)
+        .quality(60)
+        .write(`uploads/${req.file.filename}`);
+      req.body.filename = req.file.filename;
+      return next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
 /**
  * @type middleware
  * @description create new skill
  */
 export const createSkill = (req, res) => {
-  const { path } = req.file;
-  const { skill, range, source, category_id } = req.body;
+  const { skill, range, source, category_id, filename } = req.body;
   client
     .query(
       `INSERT INTO skills(skill_picture, skill, range, source, category_id) 
         VALUES($1, $2, $3, $4, $5) 
         RETURNING id, skill_picture, skill, range, source, category_id`,
-      [path, skill, range, source, category_id]
+      [filename, skill, range, source, category_id]
     )
     .then(({ rows }) => res.json(rows[0]))
     .catch(err => res.status(400).json(err));

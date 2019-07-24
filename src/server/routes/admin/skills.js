@@ -7,6 +7,7 @@ import {
   getCurrentSkill,
   retrieveFieldsToUpdate,
   updateSkill,
+  resizeSkillPhoto,
   deleteCategorySkills,
   deleteCategory,
   deleteProjectSkills,
@@ -14,7 +15,15 @@ import {
   deleteSkill
 } from "../../controllers/skills";
 
-const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage });
 const router = Router();
 
 /**
@@ -22,7 +31,13 @@ const router = Router();
  * @access private - admin
  * @description create new skill
  */
-router.post("/", checkAdminPermission, upload.single("image"), createSkill);
+router.post(
+  "/",
+  checkAdminPermission,
+  upload.single("image"),
+  resizeSkillPhoto,
+  createSkill
+);
 
 /**
  * @method POST
