@@ -11,17 +11,23 @@ export default function index() {
     <div className="page">
       <PageTitle text="Portfolio" />
 
-      <ProjectsAside />
-
       <div className="container">
-        {/* add promect */}
-        <AddProject />
+        <div className="portfolio__body">
+          <div className="portfolio__aside">
+            <ProjectsAside />
+          </div>
 
-        {/* projects list */}
-        <ProjectsList />
+          <div className="portfolio__projects">
+            {/* add promect */}
+            <AddProject />
 
-        {/* pagination */}
-        <ProjectsPagination />
+            {/* projects list */}
+            <ProjectsList />
+
+            {/* pagination */}
+            <ProjectsPagination />
+          </div>
+        </div>
       </div>
     </div>
   );

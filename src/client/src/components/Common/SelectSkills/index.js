@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getSkills, getSkillsCategories } from "../../../store/actions/skills";
 import Spinner from "../../Common/Spinner";
+import SelectSkillItem from "../../Items/SelectSkillItem";
 
 export class index extends Component {
   componentDidMount() {
@@ -28,17 +29,11 @@ export class index extends Component {
       <ul className="addProject__skills">
         {isReady &&
           skills.map(skill => (
-            <li
-              key={skill.id}
-              onClick={toggleSkill.bind(null, skill.id)}
-              className={
-                stateSkills.includes(skill.id)
-                  ? "addProject__skill addProject__skill_active"
-                  : "addProject__skill"
-              }
-            >
-              <img src={skill.skill_picture} alt={skill.skill} />
-            </li>
+            <SelectSkillItem
+              skill={skill}
+              toggleSkill={toggleSkill}
+              stateSkills={stateSkills}
+            />
           ))}
         {!isReady && <Spinner />}
       </ul>

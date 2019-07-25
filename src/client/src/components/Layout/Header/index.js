@@ -27,7 +27,7 @@ export class index extends Component {
   render() {
     const { scrollY } = this.props.general;
     return (
-      <header className={scrollY > 100 ? "header header__scrolled" : "header"}>
+      <header className={scrollY > 50 ? "header header__scrolled" : "header"}>
         <div className="container header__container">
           <MainMenu />
           <AuthMenu />

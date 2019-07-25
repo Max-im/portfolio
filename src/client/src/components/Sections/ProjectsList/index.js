@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import ProjectItem from "../../Items/ProjectItem";
 import Spinner from "../../Common/Spinner";
 import { getProjects } from "../../../store/actions/projectes";
+import "./style.scss";
 
 export class ProjectsList extends Component {
   componentDidMount() {
@@ -34,19 +35,20 @@ export class ProjectsList extends Component {
       <section className="projectsList">
         <h3 className="projectsList__title">Projects list</h3>
 
-        <div className="projectsList__body">
-          {projectsNum === 0 && <p>Projects not found</p>}
-          {projectsNum === 1 && <p>Found - 1 project</p>}
-          {projectsNum > 1 && <p>Found - {projectsNum} projects</p>}
+        {projectsNum === 0 && <p>Projects not found</p>}
+        {projectsNum === 1 && <p>Found - 1 project</p>}
+        {projectsNum > 1 && <p>Found - {projectsNum} projects</p>}
 
-          {shownProjects &&
-            shownProjects.map(item => (
+        {shownProjects && (
+          <div className="projectsList__wrapper">
+            {shownProjects.map(item => (
               <ProjectItem item={item} key={item.id} />
             ))}
+          </div>
+        )}
 
-          {error && <p className="error">{error}</p>}
-          {loading && <Spinner />}
-        </div>
+        {error && <p className="error">{error}</p>}
+        {loading && <Spinner />}
       </section>
     );
   }

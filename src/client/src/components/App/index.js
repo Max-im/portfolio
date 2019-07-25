@@ -31,7 +31,7 @@ export class index extends Component {
       <Router>
         <div className="app">
           <Header />
-          <main className={scrollY > 100 ? "main main__scrolled" : "main"}>
+          <main className={scrollY > 50 ? "main main__scrolled" : "main"}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/resume" component={Resume} />

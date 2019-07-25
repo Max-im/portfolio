@@ -50,10 +50,10 @@ export class index extends Component {
   };
 
   render() {
-    const { isAuth, user } = this.props.auth;
+    const { isadmin } = this.props.auth.user;
     return (
       <div>
-        {isAuth && user.isadmin && (
+        {isadmin && (
           <>
             <h5>Add project</h5>
             <form className="addProject" onSubmit={this.onSubmit.bind(this)}>

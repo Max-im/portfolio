@@ -10,7 +10,8 @@
 }
 
 .container {
-  width: 320px;
+  width: 100%;
+  min-width: 320px;
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
@@ -27,9 +28,15 @@
 
 .page {
   width: 100%;
+  &__body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .section {
+  width: 100%;
   background: #fff;
   padding: 15px 0 30px 0px;
   box-sizing: border-box;
@@ -97,20 +104,20 @@
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
   .container {
-    width: 480px;
+    max-width: 480px;
   }
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
   .container {
-    width: 600px;
+    max-width: 600px;
   }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
   .container {
-    width: 980px;
+    max-width: 980px;
   }
 }

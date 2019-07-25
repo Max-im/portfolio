@@ -11,3 +11,24 @@
     width: 26px;
   }
 }
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+  .skill {
+    flex: 0 0 calc(100% / 10);
+  }
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .skill {
+    flex: 0 0 calc(100% / 14);
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .skill {
+    flex: 0 0 calc(100% / 20);
+  }
+}

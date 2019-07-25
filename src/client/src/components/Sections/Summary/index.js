@@ -26,15 +26,13 @@ export class index extends Component {
         <div className="container">
           <h3 className="section__title">Summary</h3>
 
-          <div className="summary__body">
-            <img src={photo} alt={name} className="summary__img" />
+          <img src={photo} alt={name} className="summary__img" />
 
-            <UpdatedText
-              text={name}
-              field="name"
-              onUpdate={updateSummary.bind(this)}
-            />
-          </div>
+          <UpdatedText
+            text={name}
+            field="name"
+            onUpdate={updateSummary.bind(this)}
+          />
 
           <UpdatedText
             text={summary}

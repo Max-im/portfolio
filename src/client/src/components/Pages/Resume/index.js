@@ -21,37 +21,39 @@ export class index extends Component {
   render() {
     const { isadmin } = this.props.auth.user;
     return (
-      <div className="page">
+      <div className="page resume">
         <PageTitle text="resume" />
 
-        {/* summary */}
-        <Summary />
+        <div className="page__body">
+          {/* summary */}
+          <Summary />
 
-        {/* contacts */}
-        <Contacts />
+          {/* contacts */}
+          <Contacts />
 
-        {/* TODO add contact */}
+          {/* TODO add contact */}
 
-        {/* skills */}
-        <Skills />
+          {/* skills */}
+          <Skills />
 
-        {/* add category */}
-        {isadmin && <AddCategory />}
+          {/* add category */}
+          {isadmin && <AddCategory />}
 
-        {/* add skill */}
-        {isadmin && <AddSkill />}
+          {/* add skill */}
+          {isadmin && <AddSkill />}
 
-        {/* experience */}
-        <Experience />
+          {/* experience */}
+          <Experience />
 
-        {/* add exp */}
-        {isadmin && <AddExp />}
+          {/* add exp */}
+          {isadmin && <AddExp />}
 
-        {/* education */}
-        <Education />
+          {/* education */}
+          <Education />
 
-        {/* add edu */}
-        {isadmin && <AddEdu />}
+          {/* add edu */}
+          {isadmin && <AddEdu />}
+        </div>
       </div>
     );
   }

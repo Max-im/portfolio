@@ -1,0 +1,24 @@
+.portfolio {
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+  &__aside {
+    flex: 0 0 100%;
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .portfolio {
+    &__body {
+      flex-direction: row;
+    }
+    &__aside {
+      background: #fff;
+      padding: 15px;
+      box-sizing: border-box;
+      flex: 0 0 250px;
+    }
+  }
+}

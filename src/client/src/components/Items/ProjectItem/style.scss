@@ -1,16 +1,20 @@
 .projectItem {
-  position: relative;
-  flex: 0 0 90%;
-  overflow: hidden;
-  margin: 0 0 25px 0;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  &:hover {
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-    .projectItem__medias {
-      top: 10px;
+  flex: 0 0 100%;
+  padding: 0 10px 25px 10px;
+  box-sizing: border-box;
+  &__inner {
+    overflow: hidden;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    position: relative;
+    &:hover {
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+      .projectItem__medias {
+        top: 10px;
+      }
     }
   }
+
   &__level {
     position: absolute;
     top: 10px;
@@ -98,5 +102,26 @@
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+  .projectItem {
+    flex: 0 0 50%;
+  }
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .projectItem {
+    flex: 0 0 50%;
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .projectItem {
+    flex: 0 0 25%;
   }
 }
