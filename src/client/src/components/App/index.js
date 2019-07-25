@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./reset.scss";
 import "./style.scss";
@@ -18,41 +20,52 @@ import UpdateSkill from "../Pages/UpdateSkill";
 import UpdateEdu from "../Pages/UpdateEdu";
 import UpdateExp from "../Pages/UpdateExp";
 
-function App() {
-  return (
-    <Router>
-      <div className="app">
-        <Header />
-        <main className="main">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/resume" component={Resume} />
-            <Route exact path="/portfolio" component={Portfolio} />
-            <Route exact path="/portfolio/:page" component={Portfolio} />
-            <Route path="/portfolio/project/:id" component={SingleProject} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/admin/logout" component={Logout} />
+export class index extends Component {
+  static propTypes = {
+    general: PropTypes.object.isRequired
+  };
 
-            <AdminRoute
-              path="/portfolio/update-project/:id"
-              component={UpdateProject}
-            />
-            <AdminRoute exact path="/admin" component={Admin} />
-            <AdminRoute
-              path="/admin/update-skill/:id"
-              component={UpdateSkill}
-            />
-            <AdminRoute path="/admin/update-edu/:id" component={UpdateEdu} />
-            <AdminRoute path="/admin/update-exp/:id" component={UpdateExp} />
+  render() {
+    const { scrollY } = this.props.general;
+    return (
+      <Router>
+        <div className="app">
+          <Header />
+          <main className={scrollY > 100 ? "main main__scrolled" : "main"}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/resume" component={Resume} />
+              <Route exact path="/portfolio" component={Portfolio} />
+              <Route exact path="/portfolio/:page" component={Portfolio} />
+              <Route path="/portfolio/project/:id" component={SingleProject} />
+              <Route path="/logout" component={Logout} />
+              <Route path="/admin/logout" component={Logout} />
 
-            <NotFoundGenerate path="*" />
-          </Switch>
-        </main>
+              <AdminRoute
+                path="/portfolio/update-project/:id"
+                component={UpdateProject}
+              />
+              <AdminRoute exact path="/admin" component={Admin} />
+              <AdminRoute
+                path="/admin/update-skill/:id"
+                component={UpdateSkill}
+              />
+              <AdminRoute path="/admin/update-edu/:id" component={UpdateEdu} />
+              <AdminRoute path="/admin/update-exp/:id" component={UpdateExp} />
 
-        <Footer />
-      </div>
-    </Router>
-  );
+              <NotFoundGenerate path="*" />
+            </Switch>
+          </main>
+
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  general: state.general
+});
+
+export default connect(mapStateToProps)(index);

@@ -37,3 +37,5 @@ export const DELETE_EDU = "DELETE_EDU";
 export const EDU_ERROR = "EDU_ERROR";
 
 export const COMMENT_ERROR = "COMMENT_ERROR";
+
+export const SCROLL_PAGE = "SCROLL_PAGE";

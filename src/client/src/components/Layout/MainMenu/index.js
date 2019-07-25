@@ -27,30 +27,40 @@ export class index extends Component {
             >
               <i className="fas fa-home mainMenu__icon" />
             </NavLink>
+          </li>
+
+          <li className="mainMenu__item">
             <NavLink
               to="/resume"
               className="mainMenu__link"
               activeClassName="mainMenu__link_active"
             >
+              <p className="mainMenu__text">Resume</p>
               <i className="fas fa-user-tie mainMenu__icon" />
             </NavLink>
+          </li>
+          <li className="mainMenu__item">
             <NavLink
               to="/portfolio"
               className="mainMenu__link"
               activeClassName="mainMenu__link_active"
             >
+              <p className="mainMenu__text">Portfolio</p>
               <i className="fas fa-palette mainMenu__icon" />
             </NavLink>
-            {isAuth && isadmin && (
+          </li>
+          {isAuth && isadmin && (
+            <li className="mainMenu__item">
               <NavLink
                 to="/admin"
                 className="mainMenu__link"
                 activeClassName="mainMenu__link_active"
               >
+                <p className="mainMenu__text">Admin</p>
                 <i className="fas fa-user-shield mainMenu__icon" />
               </NavLink>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
     );

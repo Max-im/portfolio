@@ -1,7 +1,23 @@
 .header {
-  flex: 0 0 30px;
+  height: 0;
+  flex: 0 0 50px;
+  display: flex;
+  background: #fff;
+  transition: 0.3s;
+
+  &__scrolled {
+    position: fixed;
+    transition: 0.3s;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 99;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
   &__container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 }

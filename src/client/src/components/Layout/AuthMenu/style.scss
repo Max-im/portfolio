@@ -1,14 +1,23 @@
 .authMenu {
   position: relative;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   &__login {
-    height: 100%;
+    height: 20px;
     display: flex;
   }
   &__loginBtn {
     box-shadow: none !important;
+    display: block !important;
     & > div {
       margin: 0 !important;
       padding: 0 !important;
+    }
+    & > span {
+      display: none;
     }
   }
   &__user {

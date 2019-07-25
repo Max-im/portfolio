@@ -20,6 +20,9 @@
   flex: 1 1 100%;
   background: #eee;
   display: flex;
+  &__scrolled {
+    margin: 50px 0 0 0;
+  }
 }
 
 .page {
@@ -62,6 +65,7 @@
   padding: 3px 5px;
   background: #fff;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  z-index: 100;
 }
 
 .btn {
@@ -87,5 +91,33 @@
     height: 16px;
     line-height: 16px;
     font-size: 14px;
+  }
+}
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+  }
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .container {
+    width: 600px;
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .container {
+    width: 980px;
+  }
+}
+
+//  WIDE 1200 px
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
   }
 }
