@@ -6,35 +6,18 @@ import Input from "../../Common/Input";
 import TextArea from "../../Common/TextArea";
 import { createExp } from "../../../store/actions/experience";
 
+const initState = {
+  exp_title: "",
+  exp_company: "",
+  exp_from: "",
+  exp_to: "",
+  exp_is_current: false,
+  exp_image: "",
+  exp_description: ""
+};
+
 export class index extends Component {
-  state = {
-    exp_title: "",
-    exp_company: "",
-    exp_from: "",
-    exp_to: "",
-    exp_is_current: false,
-    exp_image: "",
-    exp_description: ""
-  };
-
-  static propTypes = {
-    auth: PropTypes.object.isRequired,
-    createExp: PropTypes.func.isRequired
-  };
-
-  onSubmit(e) {
-    e.preventDefault();
-    this.props.createExp(this.state);
-    this.setState({
-      exp_title: "",
-      exp_company: "",
-      exp_from: "",
-      exp_to: "",
-      exp_is_current: false,
-      exp_image: "",
-      exp_description: ""
-    });
-  }
+  state = { ...initState };
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -43,6 +26,21 @@ export class index extends Component {
   onToggle() {
     this.setState({ exp_is_current: !this.state.exp_is_current });
   }
+
+  onUploadFile(e) {
+    this.setState({ exp_image: e.target.files[0] });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.createExp(this.state);
+    this.setState({ ...initState });
+  }
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    createExp: PropTypes.func.isRequired
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -65,11 +63,13 @@ export class index extends Component {
                   name="exp_company"
                   value={this.state.exp_company}
                 />
-                <Input
-                  onChange={this.onChange.bind(this)}
+
+                <input
+                  type="file"
                   name="exp_image"
-                  value={this.state.exp_image}
+                  onChange={this.onUploadFile.bind(this)}
                 />
+
                 <Input
                   onChange={this.onChange.bind(this)}
                   name="exp_from"
@@ -101,7 +101,7 @@ export class index extends Component {
                   value={this.state.exp_description}
                 />
 
-                <button type="submit">Add Edu</button>
+                <button type="submit">Add Exp</button>
               </form>
             </div>
           </section>

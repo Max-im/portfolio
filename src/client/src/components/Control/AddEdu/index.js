@@ -12,10 +12,13 @@ export class index extends Component {
     edu_description: ""
   };
 
-  static propTypes = {
-    auth: PropTypes.object.isRequired,
-    createEdu: PropTypes.func.isRequired
-  };
+  onUploadFile(e) {
+    this.setState({ edu_photo: e.target.files[0] });
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -23,9 +26,10 @@ export class index extends Component {
     this.setState({ edu_photo: "", edu_title: "", edu_description: "" });
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    createEdu: PropTypes.func.isRequired
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -36,14 +40,23 @@ export class index extends Component {
             <div className="container">
               <h3 className="section__title">Add Education</h3>
               <form onSubmit={this.onSubmit.bind(this)}>
-                {Object.keys(this.state).map(item => (
-                  <Input
-                    key={item}
-                    onChange={this.onChange.bind(this)}
-                    name={item}
-                    value={this.state[item]}
-                  />
-                ))}
+                <input
+                  type="file"
+                  name="edu_photo"
+                  onChange={this.onUploadFile.bind(this)}
+                />
+
+                <Input
+                  onChange={this.onChange.bind(this)}
+                  name="edu_title"
+                  value={this.state.edu_title}
+                />
+
+                <Input
+                  onChange={this.onChange.bind(this)}
+                  name="edu_description"
+                  value={this.state.edu_description}
+                />
                 <button type="submit">Add Edu</button>
               </form>
             </div>

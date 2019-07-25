@@ -26,8 +26,12 @@ export const getExp = () => dispatch => {
  * @access private
  */
 export const createExp = expData => dispatch => {
+  const formData = new FormData();
+  const options = { headers: { "Content-Type": "multipart/form-data" } };
+  Object.keys(expData).forEach(key => formData.append(key, expData[key]));
+
   axios
-    .post("/admin/experience", expData)
+    .post("/admin/experience", formData, options)
     .then(() => dispatch(getExp()))
     .catch(err =>
       dispatch(onError(err, EXP_ERROR, "Error creating experience item"))

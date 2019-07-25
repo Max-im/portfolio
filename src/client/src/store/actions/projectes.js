@@ -60,9 +60,13 @@ export const getProject = id => dispatch => {
  * @description create new project
  * @access private
  */
-export const createProject = projectData => dispatch => {
+export const createProject = projData => dispatch => {
+  const options = { headers: { "Content-Type": "multipart/form-data" } };
+  const formData = new FormData();
+  Object.keys(projData).forEach(key => formData.append(key, projData[key]));
+
   axios
-    .post("/admin/projects", projectData)
+    .post("/admin/projects", formData, options)
     .then(() => dispatch(getProjects()))
     .catch(err =>
       dispatch(onError(err, PROJECTS_ERROR, "Error creating project"))

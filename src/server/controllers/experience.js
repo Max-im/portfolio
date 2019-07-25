@@ -26,7 +26,7 @@ export const createExp = (req, res, next) => {
         req.body.exp_from,
         req.body.exp_to,
         req.body.exp_is_current,
-        req.body.exp_image,
+        req.body.filename,
         req.body.exp_description
       ]
     )

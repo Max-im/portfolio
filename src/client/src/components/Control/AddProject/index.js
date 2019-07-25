@@ -5,10 +5,12 @@ import "./style.scss";
 import Input from "../../Common/Input";
 import { createProject } from "../../../store/actions/projectes";
 import SelectSkills from "../../Common/SelectSkills";
+import Select from "../../Common/Select";
 
 const initState = {
   picture: "",
   description: "",
+  level_id: 1,
   title: "",
   skills: [],
   github: "",
@@ -28,6 +30,10 @@ export class index extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onUploadFile(e) {
+    this.setState({ picture: e.target.files[0] });
   }
 
   onSubmit(e) {
@@ -51,21 +57,52 @@ export class index extends Component {
           <>
             <h5>Add project</h5>
             <form className="addProject" onSubmit={this.onSubmit.bind(this)}>
-              {Object.keys(this.state)
-                .filter(key => key !== "skills")
-                .map(key => (
-                  <Input
-                    key={key}
-                    name={key}
-                    value={this.state[key]}
-                    onChange={this.onChange.bind(this)}
-                    clasName="addProject__input"
-                  />
-                ))}
+              <input
+                type="file"
+                name="picture"
+                onChange={this.onUploadFile.bind(this)}
+              />
+
+              <Input
+                name="description"
+                value={this.state.description}
+                onChange={this.onChange.bind(this)}
+                clasName="addProject__input"
+              />
+              <Input
+                name="title"
+                value={this.state.title}
+                onChange={this.onChange.bind(this)}
+                clasName="addProject__input"
+              />
+              <Input
+                name="github"
+                value={this.state.github}
+                onChange={this.onChange.bind(this)}
+                clasName="addProject__input"
+              />
+              <Input
+                name="deploy"
+                value={this.state.deploy}
+                onChange={this.onChange.bind(this)}
+                clasName="addProject__input"
+              />
 
               <SelectSkills
                 stateSkills={this.state.skills}
                 toggleSkill={this.toggleSkill.bind(this)}
+              />
+
+              <Select
+                str="value"
+                onChange={this.onChange.bind(this)}
+                name="level_id"
+                selected={this.state.level_id}
+                arr={[
+                  { value: "Best", id: 1 },
+                  { value: "Medium", id: 2 },
+                  { value: "Simple", id: 3 }
+                ]}
               />
 
               <button type="submit">Add project</button>

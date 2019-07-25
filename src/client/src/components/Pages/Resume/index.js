@@ -30,6 +30,8 @@ export class index extends Component {
         {/* contacts */}
         <Contacts />
 
+        {/* TODO add contact */}
+
         {/* skills */}
         <Skills />
 

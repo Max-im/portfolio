@@ -11,7 +11,7 @@ const cors = require("cors");
 const app = require("../src/server");
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, "../src")));
+app.use(express.static(path.join(__dirname, "../")));
 app.use(cors());
 
 // 404

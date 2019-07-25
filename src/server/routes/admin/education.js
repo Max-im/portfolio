@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { checkAdminPermission } from "../../controllers/permission";
+import { upload, resize50 } from "../../controllers/common";
 import {
   createEdu,
   getCurrentEdu,
@@ -10,12 +11,19 @@ import {
 
 const router = Router();
 
+// edu_photo
 /**
  * @method POST
  * @access private - admin
  * @description create new education item
  */
-router.post("/", checkAdminPermission, createEdu);
+router.post(
+  "/",
+  checkAdminPermission,
+  upload.single("edu_photo"),
+  resize50,
+  createEdu
+);
 
 /**
  * @method PUT

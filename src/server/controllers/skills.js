@@ -23,19 +23,6 @@ export const getSkills = (req, res) => {
     .catch(err => res.status(400).json(err));
 };
 
-export const resizeSkillPhoto = (req, res, next) => {
-  Jimp.read(req.file.path)
-    .then(img => {
-      img
-        .resize(32, 32)
-        .quality(60)
-        .write(`uploads/${req.file.filename}`);
-      req.body.filename = req.file.filename;
-      return next();
-    })
-    .catch(err => res.status(400).json(err));
-};
-
 /**
  * @type middleware
  * @description create new skill

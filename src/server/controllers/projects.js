@@ -258,13 +258,20 @@ export const deleteProject = (req, res, next) => {
  * @description
  */
 export const createNewProject = (req, res, next) => {
-  const { author_id, picture, title, description, github, deploy } = req.body;
   client
     .query(
-      `INSERT INTO projects(author_id, picture, title, description, github, deploy) 
-        VALUES ($1, $2, $3, $4, $5, $6) 
+      `INSERT INTO projects(author_id, picture, title, description, github, deploy, level_id) 
+        VALUES ($1, $2, $3, $4, $5, $6,$7) 
         RETURNING id`,
-      [author_id, picture, title, description, github, deploy]
+      [
+        req.body.author_id,
+        req.body.filename,
+        req.body.title,
+        req.body.description,
+        req.body.github,
+        req.body.deploy,
+        req.body.level_id
+      ]
     )
     .then(({ rows }) => {
       req.body.project_id = rows[0].id;
@@ -281,8 +288,8 @@ export const attachSkillsToNewProject = async (req, res, next) => {
   const { skills, project_id } = req.body;
 
   Promise.all(
-    skills.map(skill_id => {
-      return client.qeury(
+    skills.split(",").map(skill_id => {
+      return client.query(
         `INSERT INTO projects_skills(project_id, skill_id) 
           VALUES ($1, $2)`,
         [project_id, skill_id]
@@ -332,7 +339,7 @@ export const updateProjectData = async (req, res, next) => {
  * @route PROJECT/UPDATE
  * @description
  */
-export const retrieveSkillsToUpdate = (req, res, next) => {
+export const retrieveSkillsToUpdate = (req, res) => {
   const { project_id, skills } = req.body;
 
   client
@@ -346,7 +353,7 @@ export const retrieveSkillsToUpdate = (req, res, next) => {
       const currentSkills = rows.map(item => item.skill_id);
       req.body.toRemove = currentSkills.filter(item => !skills.includes(item));
       req.body.toAdd = skills.filter(item => !currentSkills.includes(item));
-      next();
+      res.end();
     });
 };
 

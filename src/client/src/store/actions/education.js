@@ -27,8 +27,12 @@ export const getEdu = () => dispatch => {
  * @access private
  */
 export const createEdu = eduData => dispatch => {
+  const options = { headers: { "Content-Type": "multipart/form-data" } };
+  const formData = new FormData();
+  Object.keys(eduData).forEach(key => formData.append(key, eduData[key]));
+
   axios
-    .post("/admin/education", eduData)
+    .post("/admin/education", formData, options)
     .then(() => dispatch(getEdu()))
     .catch(err => dispatch(onError(err, EDU_ERROR, "Error creating edu item")));
 };

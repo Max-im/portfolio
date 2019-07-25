@@ -9,14 +9,16 @@ import {
   createSkill
 } from "../../../store/actions/skills";
 
+const initState = {
+  skill_picture: "",
+  source: "",
+  skill: "",
+  range: 1,
+  category_id: 1
+};
+
 export class index extends Component {
-  state = {
-    skill_picture: "",
-    source: "",
-    skill: "",
-    range: 1,
-    category_id: 1
-  };
+  state = { ...initState };
 
   componentDidMount() {
     if (this.props.auth.user.isadmin) this.props.getSkillsCategories();
@@ -32,21 +34,13 @@ export class index extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const { skill, skill_picture, range, source, category_id } = this.state;
+    const { range, category_id } = this.state;
     this.props.createSkill({
-      skill,
-      skill_picture,
+      ...this.state,
       range: range - 0,
-      source,
       category_id: category_id - 0
     });
-    this.setState({
-      skill: "",
-      skill_picture: "",
-      range: "",
-      source: "",
-      category_id: ""
-    });
+    this.setState({ ...initState });
   }
 
   static propTypes = {
@@ -67,12 +61,6 @@ export class index extends Component {
               <h3 className="section__title">Add skill</h3>
 
               <form onSubmit={this.onSubmit.bind(this)}>
-                {/* <Input
-                  name="skill_picture"
-                  value={this.state.skill_picture}
-                  onChange={this.onChange.bind(this)}
-                /> */}
-
                 <input type="file" onChange={this.onUploadFile.bind(this)} />
 
                 <Input

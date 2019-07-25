@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { upload, resize50 } from "../../controllers/common";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
   createExp,
@@ -15,7 +16,13 @@ const router = Router();
  * @access private - admin
  * @description get all experience items
  */
-router.post("/", checkAdminPermission, createExp);
+router.post(
+  "/",
+  checkAdminPermission,
+  upload.single("exp_image"),
+  resize50,
+  createExp
+);
 
 /**
  * @method PUT

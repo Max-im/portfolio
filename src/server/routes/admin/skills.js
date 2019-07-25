@@ -1,5 +1,5 @@
 import { Router } from "express";
-import multer from "multer";
+import { upload, resize32 } from "../../controllers/common";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
   createSkill,
@@ -7,7 +7,6 @@ import {
   getCurrentSkill,
   retrieveFieldsToUpdate,
   updateSkill,
-  resizeSkillPhoto,
   deleteCategorySkills,
   deleteCategory,
   deleteProjectSkills,
@@ -15,15 +14,6 @@ import {
   deleteSkill
 } from "../../controllers/skills";
 
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-const upload = multer({ storage });
 const router = Router();
 
 /**
@@ -34,8 +24,8 @@ const router = Router();
 router.post(
   "/",
   checkAdminPermission,
-  upload.single("image"),
-  resizeSkillPhoto,
+  upload.single("skill_picture"),
+  resize32,
   createSkill
 );
 

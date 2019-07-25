@@ -50,17 +50,12 @@ export const getSkillsCategories = () => dispatch => {
  */
 export const createSkill = skillData => dispatch => {
   dispatch({ type: LOADING_SKILLS, payload: true });
+  const options = { headers: { "Content-Type": "multipart/form-data" } };
   const formData = new FormData();
-  formData.append("image", skillData.skill_picture);
-  formData.append("skill", skillData.skill);
-  formData.append("range", skillData.range);
-  formData.append("source", skillData.source);
-  formData.append("category_id", skillData.category_id);
+  Object.keys(skillData).forEach(key => formData.append(key, skillData[key]));
 
   axios
-    .post("/admin/skills", formData, {
-      headers: { "Content-Type": "multipart/form-data" }
-    })
+    .post("/admin/skills", formData, options)
     .then(({ data }) => {
       dispatch({ type: ADD_SKILL, payload: data });
       dispatch({ type: LOADING_SKILLS, payload: false });

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { upload, resizeProj } from "../../controllers/common";
 import { checkAdminPermission } from "../../controllers/permission";
 import {
   updateProjectData,
@@ -23,9 +24,10 @@ const router = Router();
 router.post(
   "/",
   checkAdminPermission,
+  upload.single("picture"),
+  resizeProj,
   createNewProject,
-  attachSkillsToNewProject,
-  (req, res) => res.end()
+  attachSkillsToNewProject
 );
 
 /**
