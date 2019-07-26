@@ -8,11 +8,14 @@ import "./style.scss";
 export class index extends Component {
   state = { error: null };
 
+  componentDidMount() {
+    // TODO get rate
+  }
+
   onRate(sign) {
     const { id: project_id } = this.props.match.params;
     this.props.setRate({ project_id, sign });
   }
-
   static propTypes = {
     setRate: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,

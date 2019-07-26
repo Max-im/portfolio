@@ -6,6 +6,10 @@ import Comment from "../../Items/Comment";
 import AddComment from "../../Control/AddComment";
 
 export class index extends Component {
+  componentDidMount() {
+    // TODO get comments and upload more comments by scroll
+  }
+
   static propTypes = {
     portfolio: PropTypes.object.isRequired
   };

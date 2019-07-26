@@ -21,7 +21,7 @@ export class index extends Component {
   state = { ...initState };
 
   componentDidMount() {
-    if (this.props.auth.user.isadmin) this.props.getSkillsCategories();
+    if (!this.props.skills.categories) this.props.getSkillsCategories();
   }
 
   onChange(e) {
@@ -44,7 +44,6 @@ export class index extends Component {
   }
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
     skills: PropTypes.object.isRequired,
     getSkillsCategories: PropTypes.func.isRequired,
     createSkill: PropTypes.func.isRequired
@@ -52,60 +51,54 @@ export class index extends Component {
 
   render() {
     const { categories } = this.props.skills;
-    const { user } = this.props.auth;
     return (
-      <>
-        {user.isadmin && (
-          <section className="section">
-            <div className="container">
-              <h3 className="section__title">Add skill</h3>
+      <section className="section addSkill">
+        <div className="container">
+          <h3 className="section__title">Add skill</h3>
 
-              <form onSubmit={this.onSubmit.bind(this)}>
-                <input type="file" onChange={this.onUploadFile.bind(this)} />
+          <form onSubmit={this.onSubmit.bind(this)}>
+            <input type="file" onChange={this.onUploadFile.bind(this)} />
 
-                <Input
-                  name="source"
-                  value={this.state.source}
-                  onChange={this.onChange.bind(this)}
-                />
-                <Input
-                  name="skill"
-                  value={this.state.skill}
-                  onChange={this.onChange.bind(this)}
-                />
+            <Input
+              name="source"
+              value={this.state.source}
+              onChange={this.onChange.bind(this)}
+            />
+            <Input
+              name="skill"
+              value={this.state.skill}
+              onChange={this.onChange.bind(this)}
+            />
 
-                <Select
-                  str="value"
-                  onChange={this.onChange.bind(this)}
-                  name="range"
-                  arr={[
-                    { value: 1, id: 1 },
-                    { value: 2, id: 2 },
-                    { value: 3, id: 3 }
-                  ]}
-                />
+            <Select
+              str="value"
+              onChange={this.onChange.bind(this)}
+              name="range"
+              arr={[
+                { value: 1, id: 1 },
+                { value: 2, id: 2 },
+                { value: 3, id: 3 }
+              ]}
+            />
 
-                {categories && (
-                  <Select
-                    str="category"
-                    onChange={this.onChange.bind(this)}
-                    name="category_id"
-                    arr={categories}
-                  />
-                )}
+            {categories && (
+              <Select
+                str="category"
+                onChange={this.onChange.bind(this)}
+                name="category_id"
+                arr={categories}
+              />
+            )}
 
-                <button type="submit">Add Skill</button>
-              </form>
-            </div>
-          </section>
-        )}
-      </>
+            <button type="submit">Add Skill</button>
+          </form>
+        </div>
+      </section>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
   skills: state.skills
 });
 

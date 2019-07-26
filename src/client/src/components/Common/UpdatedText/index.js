@@ -11,9 +11,13 @@ export class index extends Component {
   }
 
   onCorrectEnd(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     this.props.onUpdate(this.state.text, this.props.field);
     this.setState({ correcting: false, text: "" });
+  }
+
+  handleKeyDown(e) {
+    if (e.key === "Enter") this.onCorrectEnd();
   }
 
   onChange(e) {
@@ -37,10 +41,11 @@ export class index extends Component {
             )}
             {correcting && (
               <form onSubmit={this.onCorrectEnd.bind(this)}>
-                <input
+                <textarea
                   type="text"
                   ref={input => (this.inp = input)}
                   onChange={this.onChange.bind(this)}
+                  onKeyDown={this.handleKeyDown.bind(this)}
                   value={stateText}
                   onBlur={this.onCorrectEnd.bind(this)}
                 />

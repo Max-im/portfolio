@@ -8,17 +8,27 @@
   }
 }
 
-//  WIDE 980 px
-@media screen and (min-width: 980px) {
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
   .portfolio {
     &__body {
       flex-direction: row;
     }
     &__aside {
-      background: #fff;
-      padding: 15px;
-      box-sizing: border-box;
-      flex: 0 0 250px;
+      flex: 0 0 150px;
+    }
+    &__projects {
+      padding: 0 10px;
+      height: 100%;
+    }
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .portfolio {
+    &__aside {
+      flex: 0 0 200px;
     }
   }
 }

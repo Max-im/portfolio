@@ -18,14 +18,13 @@ export default function index() {
           </div>
 
           <div className="portfolio__projects">
-            {/* add promect */}
-            <AddProject />
-
             {/* projects list */}
             <ProjectsList />
 
             {/* pagination */}
             <ProjectsPagination />
+            {/* add promect */}
+            <AddProject />
           </div>
         </div>
       </div>

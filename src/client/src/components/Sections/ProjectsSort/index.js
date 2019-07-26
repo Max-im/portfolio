@@ -37,39 +37,63 @@ export class index extends Component {
 
   render() {
     return (
-      <div>
-        <label>
-          <input
-            name="sortBy"
-            type="radio"
-            value="level_id"
-            onChange={this.onChange.bind(this)}
-            checked={this.state.sortBy === "level_id"}
-          />
-          by level
-        </label>
+      <div className="projectsSort">
+        <h5 className="projectsSort__title">Sort by</h5>
+        <div className="projectsSort__list">
+          <label
+            className={
+              this.state.sortBy === "level_id"
+                ? "projectsSort__label projectsSort__label_active"
+                : "projectsSort__label"
+            }
+          >
+            <input
+              name="sortBy"
+              type="radio"
+              className="hide"
+              value="level_id"
+              onChange={this.onChange.bind(this)}
+              checked={this.state.sortBy === "level_id"}
+            />
+            by level
+          </label>
 
-        <label>
-          <input
-            name="sortBy"
-            type="radio"
-            value="date"
-            onChange={this.onChange.bind(this)}
-            checked={this.state.sortBy === "date"}
-          />
-          by date
-        </label>
+          <label
+            className={
+              this.state.sortBy === "date"
+                ? "projectsSort__label projectsSort__label_active"
+                : "projectsSort__label"
+            }
+          >
+            <input
+              name="sortBy"
+              className="hide"
+              type="radio"
+              value="date"
+              onChange={this.onChange.bind(this)}
+              checked={this.state.sortBy === "date"}
+            />
+            by date
+          </label>
 
-        <label>
-          <input
-            name="sortBy"
-            type="radio"
-            value="title"
-            onChange={this.onChange.bind(this)}
-            checked={this.state.sortBy === "title"}
-          />
-          by name
-        </label>
+          <label
+            className={
+              this.state.sortBy === "title"
+                ? "projectsSort__label projectsSort__label_active"
+                : "projectsSort__label"
+            }
+          >
+            <input
+              name="sortBy"
+              type="radio"
+              className="hide"
+              value="title"
+              onChange={this.onChange.bind(this)}
+              checked={this.state.sortBy === "title"}
+            />
+            by name
+          </label>
+        </div>
       </div>
     );
   }

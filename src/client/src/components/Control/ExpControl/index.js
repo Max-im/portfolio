@@ -18,9 +18,12 @@ export class index extends Component {
     const { id } = this.props;
     return (
       <div className="expControl">
-        <Link className="far fa-edit" to={"/admin/update-exp/" + id} />
+        <Link
+          className="far fa-edit btn btn__edit"
+          to={"/admin/update-exp/" + id}
+        />
         <i
-          className="fas fa-trash-alt"
+          className="fas fa-trash-alt btn btn__delete"
           onClick={this.props.deleteExp.bind(null, id)}
         />
       </div>

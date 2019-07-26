@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import { getProjects, getProjectsNum } from "../../../store/actions/projectes";
+import "./style.scss";
 
 export class index extends Component {
   state = { quality: [] };
@@ -52,41 +53,43 @@ export class index extends Component {
   render() {
     const { quality } = this.state;
     return (
-      <div>
+      <div className="projectsFilter">
         <div>
-          <h5>Quality</h5>
-          <label>
-            <input
-              type="checkbox"
-              name="best"
-              checked={quality.includes("best")}
-              data-meta="quality"
-              onChange={this.changeFilter.bind(this)}
-            />
-            best
-          </label>
+          <h5 className="projectsFilter__title">Quality</h5>
+          <div className="projectsFilter__list">
+            <label>
+              <input
+                type="checkbox"
+                name="best"
+                checked={quality.includes("best")}
+                data-meta="quality"
+                onChange={this.changeFilter.bind(this)}
+              />
+              best
+            </label>
 
-          <label>
-            <input
-              type="checkbox"
-              name="medium"
-              data-meta="quality"
-              checked={quality.includes("medium")}
-              onChange={this.changeFilter.bind(this)}
-            />
-            medium
-          </label>
+            <label>
+              <input
+                type="checkbox"
+                name="medium"
+                data-meta="quality"
+                checked={quality.includes("medium")}
+                onChange={this.changeFilter.bind(this)}
+              />
+              medium
+            </label>
 
-          <label>
-            <input
-              type="checkbox"
-              name="simple"
-              data-meta="quality"
-              checked={quality.includes("simple")}
-              onChange={this.changeFilter.bind(this)}
-            />
-            simple
-          </label>
+            <label>
+              <input
+                type="checkbox"
+                name="simple"
+                data-meta="quality"
+                checked={quality.includes("simple")}
+                onChange={this.changeFilter.bind(this)}
+              />
+              simple
+            </label>
+          </div>
         </div>
       </div>
     );

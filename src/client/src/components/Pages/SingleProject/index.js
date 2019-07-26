@@ -16,11 +16,11 @@ export default function index() {
 
         {/* aside similar */}
 
-        {/* rate */}
-        <ProjectRate />
-
         {/* admin */}
         <SingleControl />
+
+        {/* rate */}
+        <ProjectRate />
 
         {/* comments */}
         <Comments />
