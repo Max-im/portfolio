@@ -12,7 +12,6 @@ const initialState = {
   projectsNum: null,
   loadIndex: 3,
   project: null,
-
   error: null
 };
 

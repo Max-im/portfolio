@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { setRate } from "../../../store/actions/projectes";
+import { setRate, getProjectRate } from "../../../store/actions/projectes";
 import "./style.scss";
 
 export class index extends Component {
   state = { error: null };
 
   componentDidMount() {
-    // TODO get rate
+    this.props.getProjectRate(this.props.match.params.id);
   }
 
   onRate(sign) {
@@ -18,6 +18,7 @@ export class index extends Component {
   }
   static propTypes = {
     setRate: PropTypes.func.isRequired,
+    getProjectRate: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     portfolio: PropTypes.object.isRequired
   };
@@ -72,5 +73,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setRate }
+  { setRate, getProjectRate }
 )(withRouter(index));

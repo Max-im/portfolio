@@ -31,6 +31,18 @@ export const getProjectsNumber = (req, res) => {
     .catch(err => res.status(400).json(err));
 };
 
+export const getProjectLikes = (req, res) => {
+  const { project_id } = req.params;
+  return client
+    .query(`SELECT * FROM likes WHERE project_id=$1`, [project_id])
+    .then(({ rows }) => {
+      const likes = rows.filter(item => item.sign);
+      const dislikes = rows.filter(item => !item.sign);
+      return res.json({ likes, dislikes });
+    })
+    .catch(err => res.status(400).json(err));
+};
+
 /**
  * @route PROJECTS
  * @description get all projects ids on appropriate page, save them in req.body.projectsIds

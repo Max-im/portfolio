@@ -5,6 +5,7 @@ import {
   LOAD_PROJECTS,
   GET_PROJECTS_NUM,
   GET_PROJECT,
+  GET_PROJECT_RATE,
   PROJECTS_ERROR
 } from "../actions/constants";
 
@@ -33,6 +34,15 @@ export const getProjectsNum = history => dispatch => {
     .then(({ data }) => dispatch({ type: GET_PROJECTS_NUM, payload: data }))
     .catch(err => {
       dispatch(onError(err, PROJECTS_ERROR, "Error getting projects number"));
+    });
+};
+
+export const getProjectRate = project_id => dispatch => {
+  axios
+    .get(`/projects/likes/${project_id}`)
+    .then(({ data }) => dispatch({ type: GET_PROJECT_RATE, payload: data }))
+    .catch(err => {
+      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects rate"));
     });
 };
 

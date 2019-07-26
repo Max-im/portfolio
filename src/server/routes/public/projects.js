@@ -5,6 +5,7 @@ import {
   getProjectsNumber,
   getAllProjects,
   formateAllProjects,
+  getProjectLikes,
   getProjectById,
   parseProjectData
 } from "../../controllers/projects";
@@ -40,6 +41,13 @@ router.get("/single/:id", getProjectById, parseProjectData);
  * @description likes management
  */
 router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
+
+/**
+ * @method GET
+ * @access public
+ * @description get likes
+ */
+router.get("/likes/:project_id", getProjectLikes);
 
 /**
  * @method GET
