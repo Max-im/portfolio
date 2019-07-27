@@ -13,12 +13,12 @@ export class index extends Component {
   }
 
   static propTypes = {
-    portfolio: PropTypes.object.isRequired,
+    project: PropTypes.object.isRequired,
     getProject: PropTypes.func.isRequired
   };
 
   render() {
-    const { project, loading, error } = this.props.portfolio;
+    const { project, loading, error } = this.props.project;
     const isReady = project && !loading;
     return (
       <section className="section">
@@ -61,7 +61,7 @@ export class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  portfolio: state.portfolio
+  project: state.project
 });
 
 export default connect(

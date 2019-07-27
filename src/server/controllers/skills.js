@@ -1,4 +1,3 @@
-import Jimp from "jimp";
 import client from "../db";
 
 /**

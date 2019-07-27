@@ -43,6 +43,24 @@ export const getProjectLikes = (req, res) => {
     .catch(err => res.status(400).json(err));
 };
 
+export const getComments = (req, res) => {
+  const { step, project_id } = req.params;
+  const skip = (step - 1) * 10;
+
+  return client
+    .query(
+      ` SELECT * FROM comments 
+        JOIN users ON users.id = comments.author_id
+        WHERE project_id=$1
+        ORDER BY comments.id DESC 
+        OFFSET $2 LIMIT 10
+        `,
+      [project_id, skip]
+    )
+    .then(({ rows }) => res.json(rows))
+    .catch(err => res.status(400).json(err));
+};
+
 /**
  * @route PROJECTS
  * @description get all projects ids on appropriate page, save them in req.body.projectsIds

@@ -29,37 +29,33 @@ export class index extends Component {
     const { isAuth, user } = this.props.auth;
     return (
       <div>
-        {isAuth && (
-          <>
-            <h5>Add Comment</h5>
-            <div className="addComment">
-              <div className="addComment__user">
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="addComment__avatar"
-                />
-                <p className="addComment__name">{user.name}</p>
-              </div>
-              <textarea
-                onChange={this.onChange.bind(this)}
-                name="commentText"
-                id="commentText"
-                cols="30"
-                rows="7"
-                value={this.state.commentText}
-                className="addComment__textArea"
-              />
-              <i
-                className="far fa-comment addComment__btn"
-                onClick={this.onAddComment.bind(this)}
-              >
-                {" "}
-                Add Comment
-              </i>
-            </div>
-          </>
-        )}
+        <h5>Add Comment</h5>
+        <div className="addComment">
+          <div className="addComment__user">
+            <img
+              src={user.avatar}
+              alt={user.name}
+              className="addComment__avatar"
+            />
+            <p className="addComment__name">{user.name}</p>
+          </div>
+          <textarea
+            onChange={this.onChange.bind(this)}
+            name="commentText"
+            id="commentText"
+            cols="30"
+            rows="7"
+            value={this.state.commentText}
+            className="addComment__textArea"
+          />
+          <i
+            className="far fa-comment addComment__btn"
+            onClick={this.onAddComment.bind(this)}
+          >
+            {" "}
+            Add Comment
+          </i>
+        </div>
       </div>
     );
   }

@@ -20,40 +20,40 @@ export class index extends Component {
     setRate: PropTypes.func.isRequired,
     getProjectRate: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    portfolio: PropTypes.object.isRequired
+    project: PropTypes.object.isRequired
   };
 
   render() {
-    const { project } = this.props.portfolio;
+    const { likes, dislikes } = this.props.project;
     const { isAuth, user } = this.props.auth;
 
     return (
       <section className="section rate">
         <h3 className="section__title">Rate</h3>
-        {project && (
+        {likes && dislikes && (
           <div className="rate__icons">
             {/* LIKES */}
             <i
               className={
-                isAuth && project.likes.includes(user.id)
+                isAuth && likes.includes(user.id)
                   ? "fas fa-thumbs-up rate__icon rate__icon_active"
                   : "fas fa-thumbs-up rate__icon"
               }
               onClick={this.onRate.bind(this, true)}
             >
-              {"-" + project.likes.length}
+              {"-" + likes.length}
             </i>
 
             {/* DISLIKES */}
             <i
               className={
-                isAuth && project.dislikes.includes(user.id)
+                isAuth && dislikes.includes(user.id)
                   ? "fas fa-thumbs-down rate__icon rate__icon_active"
                   : "fas fa-thumbs-down rate__icon"
               }
               onClick={this.onRate.bind(this, false)}
             >
-              {"-" + project.dislikes.length}
+              {"-" + dislikes.length}
             </i>
 
             {this.state.error && (
@@ -68,7 +68,7 @@ export class index extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  portfolio: state.portfolio
+  project: state.project
 });
 
 export default connect(

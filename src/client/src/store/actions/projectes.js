@@ -3,9 +3,12 @@ import { onError } from "./utils";
 import {
   GET_PROJECTS,
   LOAD_PROJECTS,
+  LOADING_COMMENTS,
   GET_PROJECTS_NUM,
   GET_PROJECT,
   GET_PROJECT_RATE,
+  GET_COMMETNS,
+  LOAD_PROJECT,
   PROJECTS_ERROR
 } from "../actions/constants";
 
@@ -28,6 +31,10 @@ export const getProjects = (page, history) => dispatch => {
     });
 };
 
+/**
+ * @description get all projects number
+ * @access public
+ */
 export const getProjectsNum = history => dispatch => {
   axios
     .get(`/projects/number${history.location.search}`)
@@ -37,6 +44,28 @@ export const getProjectsNum = history => dispatch => {
     });
 };
 
+/**
+ * @description get particular project comments
+ * @access public
+ */
+export const getProjectComments = (project_id, step) => dispatch => {
+  dispatch({ type: LOADING_COMMENTS, payload: true });
+  axios
+    .get(`/projects/comments/${project_id}/${step}`)
+    .then(({ data }) => {
+      dispatch({ type: GET_COMMETNS, payload: data });
+      dispatch({ type: LOADING_COMMENTS, payload: false });
+    })
+    .catch(err => {
+      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects rate"));
+      dispatch({ type: LOADING_COMMENTS, payload: false });
+    });
+};
+
+/**
+ * @description get all particular rate
+ * @access public
+ */
 export const getProjectRate = project_id => dispatch => {
   axios
     .get(`/projects/likes/${project_id}`)
@@ -52,16 +81,16 @@ export const getProjectRate = project_id => dispatch => {
  * @access public
  */
 export const getProject = id => dispatch => {
-  dispatch({ type: LOAD_PROJECTS, payload: true });
+  dispatch({ type: LOAD_PROJECT, payload: true });
   axios
     .get(`/projects/single/${id}`)
     .then(({ data }) => {
       dispatch({ type: GET_PROJECT, payload: data });
-      dispatch({ type: LOAD_PROJECTS, payload: false });
+      dispatch({ type: LOAD_PROJECT, payload: false });
     })
     .catch(err => {
       dispatch(onError(err, PROJECTS_ERROR, "Error getting project"));
-      dispatch({ type: LOAD_PROJECTS, payload: false });
+      dispatch({ type: LOAD_PROJECT, payload: false });
     });
 };
 
