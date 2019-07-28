@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import CommentControl from "../../Control/CommentControl";
 import FormatedDate from "../../Common/FormatedDate";
 
 export default function index({ comment }) {
@@ -17,6 +18,8 @@ export default function index({ comment }) {
         <p className="comment__text">{comment.text}</p>
         <FormatedDate date={comment.date} clasName="comment__date" />
       </div>
+
+      <CommentControl comment={comment} />
     </li>
   );
 }

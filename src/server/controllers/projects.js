@@ -36,8 +36,8 @@ export const getProjectLikes = (req, res) => {
   return client
     .query(`SELECT * FROM likes WHERE project_id=$1`, [project_id])
     .then(({ rows }) => {
-      const likes = rows.filter(item => item.sign);
-      const dislikes = rows.filter(item => !item.sign);
+      const likes = rows.filter(v => v.sign).map(v => v.user_id);
+      const dislikes = rows.filter(v => !v.sign).map(v => v.user_id);
       return res.json({ likes, dislikes });
     })
     .catch(err => res.status(400).json(err));
@@ -49,10 +49,12 @@ export const getComments = (req, res) => {
 
   return client
     .query(
-      ` SELECT * FROM comments 
-        JOIN users ON users.id = comments.author_id
+      ` SELECT c.id AS id, date, avatar, author_id, text, project_id 
+        FROM comments AS c 
+        JOIN users AS u 
+        ON u.id = c.author_id
         WHERE project_id=$1
-        ORDER BY comments.id DESC 
+        ORDER BY c.id DESC 
         OFFSET $2 LIMIT 10
         `,
       [project_id, skip]
@@ -139,16 +141,11 @@ export const getProjectById = (req, res, next) => {
   client
     .query(
       `SELECT proj.id, title, description, picture, proj.date, github, deploy, level,
-              c.id AS comment_id, c.author_id AS comment_author,  c.date AS comment_date, text, avatar, name,
-              skill_id, skill, skill_picture, range,
-              sign, l.user_id AS like_user
+              skill_id, skill, skill_picture, range
         FROM projects AS proj
         JOIN projectlevels AS lev ON proj.level_id = lev.id
         JOIN projects_skills AS ps ON proj.id = ps.project_id
-        JOIN comments AS c ON proj.id = c.project_id
-        JOIN users AS u ON u.id = c.author_id
         JOIN skills AS s ON s.id = ps.skill_id
-        JOIN likes AS l ON proj.id = l.project_id
         WHERE proj.id=$1`,
       [req.params.id]
     )
@@ -175,10 +172,7 @@ export const parseProjectData = (req, res) => {
     github: row.github,
     deploy: row.deploy,
     level: row.level,
-    skills: {},
-    comments: {},
-    likes: [],
-    dislikes: []
+    skills: {}
   };
 
   projectData.forEach(item => {
@@ -190,31 +184,9 @@ export const parseProjectData = (req, res) => {
         picture: item.skill_picture
       };
     }
-
-    // add comments
-    if (!result.comments[item.comment_id]) {
-      result.comments[item.comment_id] = {
-        id: item.comment_id,
-        author: item.comment_author,
-        date: item.comment_date,
-        text: item.text,
-        avatar: item.avatar,
-        name: item.name
-      };
-    }
-
-    // add likes
-    if (item.sign) result.likes.push(item.like_user);
-
-    // add dislikes
-    if (!item.sign) result.dislikes.push(item.like_user);
   });
 
-  const com = result.comments;
-  result.comments = Object.keys(com).map(key => com[key]);
   result.skills = Object.keys(result.skills).map(key => result.skills[key]);
-  result.dislikes = result.dislikes.filter((v, i, a) => a.indexOf(v) === i);
-  result.likes = result.likes.filter((v, i, a) => a.indexOf(v) === i);
 
   res.json(result);
 };

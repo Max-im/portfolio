@@ -8,6 +8,8 @@ export const GET_PROJECT_RATE = "GET_PROJECT_RATE";
 export const GET_COMMETNS = "GET_COMMETNS";
 export const LOAD_PROJECT = "LOAD_PROJECT";
 export const LOADING_COMMENTS = "LOADING_COMMENTS";
+export const ADD_COMMENT = "ADD_COMMENT";
+export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 export const SET_USER = "SET_USER";
 export const AUTH_ERROR = "AUTH_ERROR";

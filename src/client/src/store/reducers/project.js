@@ -3,6 +3,8 @@ import {
   GET_PROJECT_RATE,
   GET_COMMETNS,
   LOADING_COMMENTS,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
   LOAD_PROJECT
 } from "../actions/constants";
 
@@ -26,6 +28,15 @@ export default (state = initialState, action) => {
 
     case LOADING_COMMENTS:
       return { ...state, loadComments: action.payload };
+
+    case ADD_COMMENT:
+      return { ...state, comments: [action.payload, ...state.comments] };
+
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.filter(item => item.id !== action.payload)
+      };
 
     case GET_PROJECT_RATE:
       return {

@@ -1,23 +1,22 @@
 import { Router } from "express";
-import client from "../../db";
 import { checkAuthPermission } from "../../controllers/permission";
+import {
+  createComment,
+  returnSingleComment,
+  checkIfUserIsAuthor,
+  deleteComment
+} from "../../controllers/comments";
 
 const router = Router();
 
 /**
  * create comment
  */
-router.post("/", checkAuthPermission, (req, res, next) => {
-  const { project_id, author_id, text } = req.body;
+router.post("/", checkAuthPermission, createComment, returnSingleComment);
 
-  client
-    .query(
-      `INSERT INTO comments(project_id, author_id, text) 
-        VALUES ($1, $2, $3)`,
-      [project_id, author_id, text]
-    )
-    .then(() => res.end())
-    .catch(err => next(err));
-});
+/**
+ * delete comment
+ */
+router.delete("/:id", checkAuthPermission, checkIfUserIsAuthor, deleteComment);
 
 module.exports = router;

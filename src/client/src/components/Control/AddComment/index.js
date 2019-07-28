@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./style.scss";
-import { createComment } from "../../../store/actions/comments";
+import { createComment } from "../../../store/actions/projectes";
 
 export class index extends Component {
   state = { commentText: "" };

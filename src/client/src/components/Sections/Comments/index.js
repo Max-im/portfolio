@@ -46,7 +46,7 @@ export class index extends Component {
   };
 
   render() {
-    const { isAuth } = this.props.auth;
+    const { isAuth, user } = this.props.auth;
     const { comments, loading } = this.props.project;
     const isReady = comments.length > 0;
     return (
@@ -58,7 +58,7 @@ export class index extends Component {
             {isReady && (
               <ul>
                 {comments.map(comment => (
-                  <Comment comment={comment} key={comment.id} />
+                  <Comment comment={comment} key={comment.id} user={user} />
                 ))}
               </ul>
             )}

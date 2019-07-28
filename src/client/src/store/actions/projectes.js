@@ -5,6 +5,9 @@ import {
   LOAD_PROJECTS,
   LOADING_COMMENTS,
   GET_PROJECTS_NUM,
+  COMMENT_ERROR,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
   GET_PROJECT,
   GET_PROJECT_RATE,
   GET_COMMETNS,
@@ -60,6 +63,19 @@ export const getProjectComments = (project_id, step) => dispatch => {
       dispatch(onError(err, PROJECTS_ERROR, "Error getting projects rate"));
       dispatch({ type: LOADING_COMMENTS, payload: false });
     });
+};
+
+/**
+ * @param {Object} data {text, project_id, author_id }
+ * @description add comment
+ */
+export const createComment = data => dispatch => {
+  axios
+    .post("/comment", data)
+    .then(({ data }) => dispatch({ type: ADD_COMMENT, payload: data }))
+    .catch(err =>
+      dispatch(onError(err, COMMENT_ERROR, "Error creating comment"))
+    );
 };
 
 /**
@@ -134,7 +150,7 @@ export const updateProject = (projectData, history) => dispatch => {
 export const setRate = ({ project_id, sign }) => dispatch => {
   axios
     .post("/projects/likes", { project_id, sign })
-    .then(() => dispatch(getProject(project_id)))
+    .then(() => dispatch(getProjectRate(project_id)))
     .catch(err =>
       dispatch(onError(err, PROJECTS_ERROR, "Error change project rate"))
     );
@@ -150,6 +166,15 @@ export const deleteProject = (id, history) => dispatch => {
   axios
     .delete(`/admin/projects/${id}`)
     .then(() => history.push("/portfolio"))
+    .catch(err =>
+      dispatch(onError(err, PROJECTS_ERROR, "Error delete project"))
+    );
+};
+
+export const deleteComment = id => dispatch => {
+  axios
+    .delete(`/comment/${id}`)
+    .then(() => dispatch({ type: REMOVE_COMMENT, payload: id }))
     .catch(err =>
       dispatch(onError(err, PROJECTS_ERROR, "Error delete project"))
     );
