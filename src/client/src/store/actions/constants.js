@@ -28,6 +28,7 @@ export const SET_CONTACTS = "SET_CONTACTS";
 export const LOAD_CONTACTS = "LOAD_CONTACTS";
 export const CONTACT_ERROR = "CONTACT_ERROR";
 export const DELETE_CONTACT = "DELETE_CONTACT";
+export const ADD_CONTACT = "ADD_CONTACT";
 
 export const SET_EXP = "SET_EXP";
 export const LOAD_EXP = "LOAD_EXP";

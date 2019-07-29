@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.scss";
+import Select from "../../Common/Select";
 import Input from "../../Common/Input";
 import { createEdu } from "../../../store/actions/education";
 
@@ -52,10 +53,16 @@ export class index extends Component {
                   value={this.state.edu_title}
                 />
 
-                <Input
+                <Select
+                  str="value"
                   onChange={this.onChange.bind(this)}
-                  name="edu_description"
-                  value={this.state.edu_description}
+                  name="level_id"
+                  selected={this.state.level_id}
+                  arr={[
+                    { value: "Best", id: 1 },
+                    { value: "Medium", id: 2 },
+                    { value: "Simple", id: 3 }
+                  ]}
                 />
                 <button type="submit">Add Edu</button>
               </form>

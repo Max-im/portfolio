@@ -7,9 +7,6 @@ import {
 
 const router = Router();
 
-/**
- * @description register login user
- */
 router.post("/", getExistingUser, createNewUser, returnToken);
 
 router.get("/logout");

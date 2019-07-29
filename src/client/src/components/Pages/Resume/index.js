@@ -11,6 +11,7 @@ import AddEdu from "../../Control/AddEdu";
 import AddExp from "../../Control/AddExp";
 import AddSkill from "../../Control/AddSkill";
 import AddCategory from "../../Control/AddCategory";
+import AddContact from "../../Control/AddContact";
 import "./style.scss";
 
 export class index extends Component {
@@ -31,7 +32,8 @@ export class index extends Component {
           {/* contacts */}
           <Contacts />
 
-          {/* TODO add contact */}
+          {/* add contact */}
+          {isadmin && <AddContact />}
 
           {/* skills */}
           <Skills />
