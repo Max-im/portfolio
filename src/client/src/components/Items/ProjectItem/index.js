@@ -4,10 +4,8 @@ import "./style.scss";
 import FormatedDate from "../../Common/FormatedDate";
 
 export default function index({ item }) {
-  const isDev = process.env.NODE_ENV === "development";
-  const root = isDev ? "http://localhost:5000/uploads/" : "";
   let imgUrl = item.picture;
-  if (!item.picture.match("^http")) imgUrl = `${root}${item.picture}`;
+  if (!item.picture.match("^http")) imgUrl = `/photo/${item.picture}`;
 
   return (
     <div className="projectItem">

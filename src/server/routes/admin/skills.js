@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { upload, resize32 } from "../../controllers/common";
 import { checkAdminPermission } from "../../controllers/permission";
+import createSkillValidation from "../../validation/skills";
 import {
   createSkill,
   createCategory,
@@ -26,6 +27,7 @@ router.post(
   checkAdminPermission,
   upload.single("skill_picture"),
   resize32,
+  createSkillValidation,
   createSkill
 );
 
