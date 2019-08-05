@@ -32,13 +32,6 @@ router.get("/single/:id", getProjectById, parseProjectData);
 /**
  * @method GET
  * @access public
- * @description get cretain project by id, attach skills, attach comments, return to frontend
- */
-router.get("/single/:id", getProjectById, parseProjectData);
-
-/**
- * @method GET
- * @access public
  * @description get batch of the particular project comments by id and step
  */
 router.get("/comments/:project_id/:step", getComments);

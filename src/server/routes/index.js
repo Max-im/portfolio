@@ -8,7 +8,6 @@ import experience from "./public/experience";
 import summary from "./public/summary";
 import projects from "./public/projects";
 import comment from "./public/comment";
-import photo from "./public/photo";
 
 import adminContacts from "./admin/contacts";
 import adminSkills from "./admin/skills";
@@ -21,7 +20,6 @@ const router = Router();
 
 // public and auth rotes
 router.use("/auth", auth);
-router.use("/photo", photo);
 router.use("/contacts", contacts);
 router.use("/skills", skills);
 router.use("/education", education);

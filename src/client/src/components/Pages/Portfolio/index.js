@@ -23,6 +23,7 @@ export default function index() {
 
             {/* pagination */}
             <ProjectsPagination />
+
             {/* add promect */}
             <AddProject />
           </div>

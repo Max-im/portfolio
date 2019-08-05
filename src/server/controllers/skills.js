@@ -1,3 +1,4 @@
+import fs from "fs";
 import client from "../db";
 
 /**
@@ -147,8 +148,14 @@ export const deleteProjectSkills = (req, res, next) => {
  */
 export const deleteSkill = (req, res) => {
   client
-    .query(`DELETE FROM skills WHERE id=$1`, [req.params.id])
-    .then(() => res.end())
+    .query(`DELETE FROM skills WHERE id=$1 RETURNING skill_picture`, [
+      req.params.id
+    ])
+    .then(({ rows }) => {
+      const { skill_picture } = rows[0];
+      fs.unlink(`uploads/${skill_picture}`, err => err && console.log(err));
+      res.end();
+    })
     .catch(err => res.status(400).json(err));
 };
 

@@ -1,10 +1,6 @@
 import React from "react";
 
 export default function index({ toggleSkill, skill, stateSkills }) {
-  let imgUrl = skill.skill_picture;
-  if (!skill.skill_picture.match("^http"))
-    imgUrl = `/photo/${skill.skill_picture}`;
-
   return (
     <li
       onClick={toggleSkill.bind(null, skill.id)}
@@ -14,7 +10,7 @@ export default function index({ toggleSkill, skill, stateSkills }) {
           : "addProject__skill"
       }
     >
-      <img src={imgUrl} alt={skill.skill} />
+      <img src={`/uploads/${skill.skill_picture}`} alt={skill.skill} />
     </li>
   );
 }

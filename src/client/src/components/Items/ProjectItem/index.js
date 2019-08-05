@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 import FormatedDate from "../../Common/FormatedDate";
+import defaultPic from "../../../assets/project-default.jpg";
 
 export default function index({ item }) {
-  let imgUrl = item.picture;
-  if (!item.picture.match("^http")) imgUrl = `/photo/${item.picture}`;
+  let imgUrl = defaultPic;
+  if (false) imgUrl = `/uploads/${item.picture}`;
 
   return (
     <div className="projectItem">
@@ -43,7 +44,7 @@ export default function index({ item }) {
               .map(skill => (
                 <li className="projectItem__skill" key={skill.id}>
                   <img
-                    src={skill.picture}
+                    src={`/uploads/${skill.picture}`}
                     alt={skill.title}
                     className="projectItem__skillImg"
                   />

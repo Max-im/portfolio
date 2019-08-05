@@ -172,7 +172,7 @@ CREATE TABLE skills
     id SERIAL PRIMARY KEY,
     skill CHARACTER varying(64),
     skill_picture CHARACTER varying(128),
-    source CHARACTER varying(64),
+    source CHARACTER varying(128),
     range INTEGER,
     category_id INTEGER REFERENCES skills_categories(id)
 );
@@ -180,33 +180,35 @@ CREATE TABLE skills
 
 -- insert
 INSERT INTO skills
-    (skill, category_id, skill_picture, range)
+    (skill, category_id, skill_picture, range, source)
 VALUES
-    ('angular', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/angular.png?raw=true', 1),
-    ('react', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/react.png?raw=true', 1),
-    ('redux', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/redux.png?raw=true', 1),
-    ('vue', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/vue.png?raw=true', 1),
-    ('js', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/js.png?raw=true', 2),
-    ('jquery', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jquery.png?raw=true', 3),
-    ('html', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/html.png?raw=true', 3),
-    ('sass', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sass.png?raw=true', 2),
-    ('mobile', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mobile.png?raw=true', 2),
-    ('bem', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bem.png?raw=true', 3),
-    ('bootstrap', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/bootstrap.png?raw=true', 3),
-    ('ts', 1, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/ts.png?raw=true', 2),
-    ('node', 2, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/node.png?raw=true', 1),
-    ('postgres', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/postgres.png?raw=true', 1),
-    ('mongodb', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mongoDB.png?raw=true', 1),
-    ('sequelize', 3, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sequelize.png?raw=true', 2),
-    ('mocha', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/mocha.png?raw=true', 1),
-    ('chai', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/chai.png?raw=true', 2),
-    ('jest', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/jest.png?raw=true', 1),
-    ('sinon', 4, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/sinon.png?raw=true', 2),
-    ('babel', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/babel.png?raw=true', 2),
-    ('eslint', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/eslint.png?raw=true', 2),
-    ('webpack', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/webpack.png?raw=true', 2),
-    ('opengraph', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/openGraph.png?raw=true', 3),
-    ('schema', 5, 'https://github.com/Max-im/webpack-start-tmpl/raw/master/icons/schema.png?raw=true', 3);
+    ('angular', 1, 'angular.png', 1, 'https://angular.io/'),
+    ('react', 1, 'react.png', 1, 'https://reactjs.org/'),
+    ('redux', 1, 'redux.png', 1, 'https://redux.js.org/'),
+    ('vue', 1, 'vue.png', 1, 'https://vuejs.org/'),
+    ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'),
+    ('jquery', 1, 'jquery.png', 3, 'https://jquery.com/'),
+    ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
+    ('css', 1, 'css.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
+    ('sass', 1, 'sass.png', 2, 'https://sass-lang.com/'),
+    ('mobile', 1, 'mobile.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first'),
+    ('canvas', 1, 'canvas.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API'),
+    ('bem', 1, 'bem.png', 3, 'https://en.bem.info/methodology/'),
+    ('bootstrap', 1, 'bootstrap.png', 3, 'https://getbootstrap.com/'),
+    ('ts', 1, 'ts.png', 2, 'https://www.typescriptlang.org/'),
+    ('node', 2, 'node.png', 1, 'https://nodejs.org/en/'),
+    ('postgres', 3, 'postgres.png', 1, 'https://www.postgresql.org/'),
+    ('graphql', 3, 'graphql.png', 1, 'https://graphql.org/'),
+    ('rest', 3, 'rest.png', 1, 'https://developer.mozilla.org/en-US/docs/Glossary/REST'),
+    ('mongodb', 3, 'mongoDB.png', 1, 'https://www.mongodb.com/'),
+    ('sequelize', 3, 'sequelize.png', 2, 'https://sequelize.org/'),
+    ('mocha', 4, 'mocha.png', 1, 'https://mochajs.org/'),
+    ('jest', 4, 'jest.png', 1, 'https://jestjs.io/'),
+    ('babel', 5, 'babel.png', 2, 'https://babeljs.io/'),
+    ('eslint', 5, 'eslint.png', 2, 'https://eslint.org/'),
+    ('webpack', 5, 'webpack.png', 2, 'https://webpack.js.org/'),
+    ('opengraph', 5, 'openGraph.png', 3, 'https://ogp.me/'),
+    ('schema', 5, 'schema.png', 3, 'https://schema.org/');
 
 -- ======================================================================================
 

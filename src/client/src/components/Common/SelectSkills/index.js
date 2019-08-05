@@ -30,6 +30,7 @@ export class index extends Component {
         {isReady &&
           skills.map(skill => (
             <SelectSkillItem
+              key={skill.id}
               skill={skill}
               toggleSkill={toggleSkill}
               stateSkills={stateSkills}
