@@ -1,0 +1,64 @@
+.contacts {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  &__list {
+    min-height: 315px;
+    flex: 0 0 100%;
+  }
+}
+
+.addContact {
+  flex: 0 0 100%;
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    margin: 0 0 10px 0;
+    width: 100%;
+  }
+  &__input {
+    width: 100%;
+    display: block;
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  justify-content: flex-start;
+  &:hover {
+    .contact__img {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+    }
+  }
+  &__content {
+    flex: 1 1 100%;
+  }
+  &__img {
+    width: 27px;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+  }
+}
+
+.contactControl {
+  margin: 0 0 0 10px;
+  justify-self: end;
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .contacts {
+    &__list {
+      flex: 0 0 48%;
+    }
+  }
+  .addContact {
+    flex: 0 0 48%;
+  }
+}

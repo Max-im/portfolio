@@ -1,0 +1,23 @@
+.edu {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  &__img {
+    width: 50px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 10px 0 0;
+    border: 1px solid #dadada;
+  }
+  &__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: red;
+    cursor: pointer;
+    opacity: 0.6;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

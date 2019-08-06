@@ -6,10 +6,10 @@ export default class index extends Component {
     return (
       <input
         type="text"
+        className={clasName}
         name={name}
         placeholder={name}
         value={value}
-        className={clasName}
         onChange={onChange}
       />
     );

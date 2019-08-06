@@ -1,28 +1,20 @@
 import React from "react";
 import "./style.scss";
 import PageTitle from "../../Common/PageTitle";
-import SingleProjectCommon from "../../Sections/SingleProjectCommon";
-import Comments from "../../Sections/Comments";
-import SingleControl from "../../Sections/SingleControl";
-import ProjectRate from "../../Sections/ProjectRate";
+import SingleCommon from "../../Sections/SingleProject/SingleCommon";
+import SingleControl from "../../Sections/SingleProject/SingleControll";
+import ProjectRate from "../../Sections/SingleProject/ProjectRate";
+import Comments from "../../Sections/SingleProject/Comments";
 
 export default function index() {
   return (
     <div className="page">
       <PageTitle text="Project" />
       <div className="container">
-        {/* common data */}
-        <SingleProjectCommon />
-
-        {/* aside similar */}
-
-        {/* admin */}
+        <SingleCommon />
+        {/* TODO aside similar */}
         <SingleControl />
-
-        {/* rate */}
         <ProjectRate />
-
-        {/* comments */}
         <Comments />
       </div>
     </div>

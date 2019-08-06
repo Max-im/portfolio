@@ -53,7 +53,8 @@ CREATE TABLE projects
     id SERIAL PRIMARY KEY,
     title CHARACTER varying(64),
     description CHARACTER varying(256),
-    picture CHARACTER varying(256),
+    picture CHARACTER varying(128),
+    custom_picture BOOLEAN DEFAULT false,
     author_id INTEGER REFERENCES users(id),
     date date DEFAULT CURRENT_TIMESTAMP,
     level_id INTEGER REFERENCES projectlevels(id),
@@ -63,13 +64,13 @@ CREATE TABLE projects
 
 -- insert
 INSERT INTO projects
-    (title, description, picture, author_id, level_id)
+    (title, description, author_id, level_id)
 VALUES
-    ('one', 'descr one', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 1),
-    ('two', 'descr two', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 2),
-    ('three', 'descr three', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 3),
-    ('four', 'descr four', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 3),
-    ('five', 'descr five', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtwZ8EnpOYoQKm1t-lDY7oaR6-yqycubmXLObfM5V21nDPSbV', 1, 1);
+    ('one', 'descr one', 1, 1),
+    ('two', 'descr two', 1, 2),
+    ('three', 'descr three', 1, 3),
+    ('four', 'descr four', 1, 3),
+    ('five', 'descr five', 1, 1);
 
 -- ======================================================================================
 
@@ -257,20 +258,20 @@ CREATE TABLE contacts
     id SERIAL PRIMARY KEY,
     contact_title CHARACTER varying(64),
     contact_value CHARACTER varying(64),
-    contact_type CHARACTER varying(64),
-    contact_picture CHARACTER varying(128)
+    contact_picture CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO contacts
-    (contact_title, contact_value, contact_type, contact_picture)
+    (contact_title, contact_value, contact_picture)
 VALUES
-    ('Phone', '+38-050-77-23-169', 'text', 'https://www.beechwoodhomes.com.au/images/icons/phone-icon.png'),
-    ('Email', 'pogidaevmo@gmail.com', 'text', 'https://cdn1.iconfinder.com/data/icons/Momentum_MatteEntireSet/32/gmail.png'),
-    ('LinkedIn', 'https://www.linkedin.com/in/maxim-pozhidaev-16726811a/', 'link', 'https://www.gera.in/images/linkedin-icon.png' ),
-    ('Facebook', 'https://www.facebook.com/max.pozhidaev.7', 'link', 'https://www.unishowinc.com/wp-content/uploads/2017/05/p-4749-456113619615.gif'),
-    ('GitHub', 'https://github.com/Max-im', 'link', 'https://image.flaticon.com/icons/png/128/25/25231.png'),
-    ('CodePen', 'https://codepen.io/max-im/', 'link', 'https://cdn1.iconfinder.com/data/icons/logos-and-brands-3/512/59_Codepen_logo_logos-128.png');
+    ('Phone', '+38-050-77-23-169', 'phone.png'),
+    ('Email', 'pogidaevmo@gmail.com', 'mail.png'),
+    ('Skype', 'pogidaev_mo', 'skype.png'),
+    ('LinkedIn', 'https://www.linkedin.com/in/maxim-pozhidaev-16726811a/', 'ln.png' ),
+    ('Facebook', 'https://www.facebook.com/max.pozhidaev.7', 'fb.png'),
+    ('GitHub', 'https://github.com/Max-im', 'git.png'),
+    ('CodePen', 'https://codepen.io/max-im/', 'codepen.png');
 
 -- ======================================================================================
 
@@ -297,10 +298,10 @@ CREATE TABLE experience
 INSERT INTO experience
     (range, exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
 VALUES
-    (1, 'Specialist', 'PrivateBank', '06.2006', '03.2007', false, 'https://gravitsapa.info/wp-content/uploads/2017/01/pb.png', 'Conclusion of loan agreements; Attraction of consumers'),
-    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', '03.2007', '09.2014', false, 'https://max-im.github.io/img/experience/gaz.jpg', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
-    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '09.2014', '01.2018', false, 'https://max-im.github.io/img/experience/chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
-    (4, 'JS Developer', 'iDeals solutions', '01.208', '', true, 'https://is4-ssl.mzstatic.com/image/thumb/Purple49/v4/4f/87/a3/4f87a3be-b6e9-49e3-d6e9-2f92c7340775/source/256x256bb.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
+    (1, 'Specialist', 'PrivateBank', 'Jun 2006', 'Mar 2007', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
+    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', 'Mar 2007', 'Sep 2014', false, 'gaz.jpg', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
+    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', 'Sep 2014', 'Jan 2018', false, 'chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
+    (4, 'JS Developer', 'iDeals solutions', 'Jan 2018', '', true, 'ideals.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
 
 
 -- ======================================================================================
@@ -346,7 +347,7 @@ CREATE TABLE education
 INSERT INTO education
     (range, edu_photo, edu_title, edu_description)
 VALUES
-    (1, 'https://max-im.github.io/img/experience/donNu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
+    (1, 'donnu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
 -- ======================================================================================
 
 

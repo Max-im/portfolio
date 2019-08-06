@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getSkills, getSkillsCategories } from "../../../store/actions/skills";
 import Spinner from "../../Common/Spinner";
-import SelectSkillItem from "../../Items/SelectSkillItem";
+import SelectSkillItem from "../../Common/SelectSkillItem";
 
 export class index extends Component {
   componentDidMount() {

@@ -57,12 +57,27 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #f8cdda, #1d2b64);
+      background: linear-gradient(45deg, #134e5e, #71b280);
       opacity: 0.3;
       z-index: -1;
     }
     &_1 {
       background: url("../../assets/brickwall.png");
+    }
+  }
+  &__btn {
+    background: #009688;
+    border: none;
+    padding: 7px 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    opacity: 0.8;
+    transition: 0.3s;
+    letter-spacing: 0.8px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    &:hover {
+      opacity: 1;
     }
   }
 }

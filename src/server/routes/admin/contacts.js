@@ -1,4 +1,5 @@
 import { Router } from "express";
+import fs from "fs";
 import { upload, resize32 } from "../../controllers/common";
 import client from "../../db";
 import { checkAdminPermission } from "../../controllers/permission";
@@ -12,8 +13,16 @@ const router = Router();
 router.delete("/:id", checkAdminPermission, (req, res, next) => {
   const { id } = req.params;
   client
-    .query("DELETE FROM contacts WHERE id=$1", [id])
-    .then(() => res.end())
+    .query(
+      `DELETE FROM contacts 
+      WHERE id=$1 
+      RETURNING contact_picture`,
+      [id]
+    )
+    .then(({ rows }) => {
+      fs.unlink(`uploads/${rows[0].contact_picture}`);
+      res.end();
+    })
     .catch(err => next(err));
 });
 
@@ -26,18 +35,22 @@ router.post(
   checkAdminPermission,
   upload.single("contact_picture"),
   resize32,
+  // validate
   (req, res) => {
-    const { contact_title, contact_value, contact_type, filename } = req.body;
+    const { contact_title, contact_value, filename } = req.body;
     client
       .query(
         ` INSERT INTO 
-        contacts(contact_title, contact_value, contact_type, contact_picture) 
-        VALUES($1, $2, $3, $4) 
-        RETURNING id, contact_title, contact_value, contact_type, contact_picture`,
-        [contact_title, contact_value, contact_type, filename]
+          contacts(contact_title, contact_value, contact_picture) 
+          VALUES($1, $2, $3) 
+          RETURNING id, contact_title, contact_value, contact_picture`,
+        [contact_title, contact_value, filename]
       )
       .then(({ rows }) => res.json(rows[0]))
-      .catch(err => res.status(400).json(err));
+      .catch(err => {
+        fs.unlink(`uploads/${filename}`, err => err && console.log(err));
+        return res.status(400).json(err);
+      });
   }
 );
 

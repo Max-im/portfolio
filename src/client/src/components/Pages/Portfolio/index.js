@@ -1,10 +1,9 @@
 import React from "react";
 import "./style.scss";
-import ProjectsList from "../../Sections/ProjectsList";
 import PageTitle from "../../Common/PageTitle";
-import AddProject from "../../Control/AddProject";
-import ProjectsPagination from "../../Items/ProjectsPagination";
-import ProjectsAside from "../../Sections/ProjectsAside";
+import ProjectsAside from "../../Sections/Projects/Aside";
+import ProjectsList from "../../Sections/Projects/ProjectsList";
+import ProjectsPagination from "../../Sections/Projects/ProjectsPagination";
 
 export default function index() {
   return (
@@ -18,14 +17,8 @@ export default function index() {
           </div>
 
           <div className="portfolio__projects">
-            {/* projects list */}
             <ProjectsList />
-
-            {/* pagination */}
             <ProjectsPagination />
-
-            {/* add promect */}
-            <AddProject />
           </div>
         </div>
       </div>
