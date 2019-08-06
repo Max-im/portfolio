@@ -10,7 +10,7 @@ export default function index({ toggleSkill, skill, stateSkills }) {
           : "addProject__skill"
       }
     >
-      <img src={`/uploads/${skill.skill_picture}`} alt={skill.skill} />
+      <img src={`/photo/${skill.skill_picture}`} alt={skill.skill} />
     </li>
   );
 }

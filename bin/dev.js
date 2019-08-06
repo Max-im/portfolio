@@ -6,12 +6,9 @@ require("@babel/register");
 require("dotenv").config({ path: "./src/server/config/variables.env" });
 
 // eslint-disable-next-line
-const express = require("express");
 const cors = require("cors");
 const app = require("../src/server");
-const path = require("path");
 
-app.use(express.static(path.join(__dirname, "../")));
 app.use(cors());
 
 // 404

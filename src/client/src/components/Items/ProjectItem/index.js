@@ -6,7 +6,7 @@ import defaultPic from "../../../assets/project-default.jpg";
 
 export default function index({ item }) {
   let imgUrl = defaultPic;
-  if (false) imgUrl = `/uploads/${item.picture}`;
+  if (false) imgUrl = `/photo/${item.picture}`;
 
   return (
     <div className="projectItem">
@@ -44,7 +44,7 @@ export default function index({ item }) {
               .map(skill => (
                 <li className="projectItem__skill" key={skill.id}>
                   <img
-                    src={`/uploads/${skill.picture}`}
+                    src={`/photo/${skill.picture}`}
                     alt={skill.title}
                     className="projectItem__skillImg"
                   />
