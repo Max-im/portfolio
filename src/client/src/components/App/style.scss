@@ -1,7 +1,6 @@
 .app {
-  display: flex;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 0 50px;
+  font-family: "Roboto", sans-serif, Arial, Helvetica;
 }
 
 .hide {
@@ -17,8 +16,11 @@
 }
 
 .main {
-  flex: 1 1 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  min-height: 100vh;
   background: #eee;
+  background: red;
   display: flex;
   &__scrolled {
     margin: 50px 0 0 0;

@@ -5,6 +5,11 @@ import { onLogout } from "../../../store/actions/auth";
 import defaultUser from "../../../assets/defaultUser.png";
 
 export class UserMenu extends Component {
+  onLogout() {
+    if (!window.confirm("Are you sure you want to logout?")) return;
+    this.props.onLogout();
+  }
+
   static propTypes = {
     onLogout: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
@@ -19,11 +24,15 @@ export class UserMenu extends Component {
           src={isAuth ? user.avatar : defaultUser}
           alt="user"
         />
+
         <p className="userMenu__name">{isAuth ? user.name : "User"}</p>
         {isAuth && (
-          <p className="userMenu__logout" onClick={this.props.onLogout}>
-            Logout
-          </p>
+          <i
+            className="fas fa-sign-out-alt userMenu__logout"
+            onClick={this.onLogout.bind(this)}
+          >
+            <p className="userMenu__logoutTooltip">Logout</p>
+          </i>
         )}
       </div>
     );
