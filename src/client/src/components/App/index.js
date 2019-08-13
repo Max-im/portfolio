@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./reset.scss";
 import "./style.scss";
 
-import Header from "../Layout/Header";
-import Footer from "../Layout/Footer";
+import Aside from "../Layout/Aside/Aside";
 import Home from "../Pages/Home";
 import Resume from "../Pages/Resume";
 import Portfolio from "../Pages/Portfolio";
@@ -26,12 +25,11 @@ export class index extends Component {
   };
 
   render() {
-    const { scrollY } = this.props.general;
     return (
       <Router>
         <div className="app">
-          <Header />
-          <main className={scrollY > 50 ? "main main__scrolled" : "main"}>
+          <Aside />
+          <main className="main">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/resume" component={Resume} />
@@ -56,8 +54,6 @@ export class index extends Component {
               <NotFoundGenerate path="*" />
             </Switch>
           </main>
-
-          <Footer />
         </div>
       </Router>
     );
