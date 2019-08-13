@@ -15,6 +15,7 @@ export default class Home extends Component {
     return (
       <div className="page home">
         <div className="home__left">
+          <div className="home__bottom" />
           <p className={loaded ? "home__name home__name_active" : "home__name"}>
             Maxim
           </p>
@@ -89,7 +90,9 @@ export default class Home extends Component {
             </li>
           </ul>
         </div>
-        <div className="home__right" />
+        <div className="home__right">
+          <div className="home__top" />
+        </div>
       </div>
     );
   }
