@@ -139,14 +139,14 @@
   box-sizing: border-box;
   text-align: center;
   &__img {
-    width: 120px;
+    width: 80px;
     border-radius: 50%;
     box-shadow: 0 0 3px rgba(170, 170, 170, 0.8);
     padding: 5px;
     box-sizing: border-box;
   }
   &__name {
-    font-size: 18px;
+    font-size: 16px;
     color: #aaa;
     padding: 15px 25px 0 25px;
     position: relative;
@@ -204,5 +204,24 @@
       transform: rotate(45deg);
       z-index: -2;
     }
+  }
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .userMenu {
+    &__img {
+      width: 120px;
+    }
+    &__name {
+      font-size: 22px;
+    }
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .container {
+    max-width: 980px;
   }
 }

@@ -6,7 +6,7 @@ import "./reset.scss";
 import "./style.scss";
 
 import Aside from "../Layout/Aside/Aside";
-import Home from "../Pages/Home";
+import Home from "../Pages/Home/Home";
 import Resume from "../Pages/Resume";
 import Portfolio from "../Pages/Portfolio";
 import SingleProject from "../Pages/SingleProject";
