@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { read_cookie } from "sfcookies";
 
-import App from "./components/App";
+import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store/store";
 import { SET_USER } from "./store/actions/constants";

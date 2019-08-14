@@ -1,9 +1,11 @@
 .home {
   width: 100%;
+  min-width: 270px;
   display: flex;
   z-index: 1;
   overflow: hidden;
-  background: url("../../../assets/brick.png");
+  background: url("../../../assets/homebg.jpg");
+  background-size: cover;
   &__top {
     position: absolute;
     top: 0;
@@ -73,14 +75,14 @@
     font-size: 18px;
     padding: 8px 15px;
     color: #aaa;
-    top: 30%;
+    top: 25%;
     left: 0%;
     letter-spacing: 1.5px;
     opacity: 0;
     transition: 0.6s ease-in;
     &_active {
       opacity: 1;
-      top: 25%;
+      top: 20%;
     }
   }
   &__title {

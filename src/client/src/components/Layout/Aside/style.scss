@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -96,6 +96,7 @@
 // AUTH MENU
 // ===========================================================
 .authMenu {
+  flex: 0 0 50px;
   padding: 0 0 15px 0;
   width: 100%;
   background: #122738;
@@ -123,7 +124,7 @@
   left: -270px;
   box-sizing: border-box;
   width: 270px;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   transition: 0.4s ease-in;
   &_active {
@@ -216,6 +217,9 @@
     &__name {
       font-size: 22px;
     }
+  }
+  .authMenu {
+    padding: 0;
   }
 }
 
