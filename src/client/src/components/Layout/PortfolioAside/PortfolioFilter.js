@@ -52,41 +52,68 @@ export class PortfolioFilter extends Component {
   render() {
     const { quality } = this.state;
     return (
-      <div className="projectsFilter">
+      <div className="aside__block portfolioFilter">
         <div>
-          <h5 className="projectsFilter__title">Quality</h5>
-          <div className="projectsFilter__list">
-            <label>
+          <h5 className="aside__title">Quality</h5>
+          <div className="portfolioFilter__list">
+            <label className={"portfolioFilter__item"}>
               <input
                 type="checkbox"
                 name="best"
+                className="hide"
                 checked={quality.includes("best")}
                 data-meta="quality"
                 onChange={this.changeFilter.bind(this)}
               />
-              best
+              <p
+                className={
+                  quality.includes("best")
+                    ? "portfolioFilter__btn portfolioFilter__btn_active"
+                    : "portfolioFilter__btn"
+                }
+              >
+                Best
+              </p>
             </label>
 
-            <label>
+            <label className="portfolioFilter__item">
               <input
                 type="checkbox"
                 name="medium"
                 data-meta="quality"
+                className="hide"
                 checked={quality.includes("medium")}
                 onChange={this.changeFilter.bind(this)}
               />
-              medium
+              <p
+                className={
+                  quality.includes("medium")
+                    ? "portfolioFilter__btn portfolioFilter__btn_active"
+                    : "portfolioFilter__btn"
+                }
+              >
+                Medium
+              </p>
             </label>
 
-            <label>
+            <label className="portfolioFilter__item">
               <input
                 type="checkbox"
                 name="simple"
                 data-meta="quality"
+                className="hide"
                 checked={quality.includes("simple")}
                 onChange={this.changeFilter.bind(this)}
               />
-              simple
+              <p
+                className={
+                  quality.includes("simple")
+                    ? "portfolioFilter__btn portfolioFilter__btn_active"
+                    : "portfolioFilter__btn"
+                }
+              >
+                Simple
+              </p>
             </label>
           </div>
         </div>

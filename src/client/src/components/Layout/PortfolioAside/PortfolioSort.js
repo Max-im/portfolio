@@ -35,62 +35,69 @@ export class index extends Component {
   }
 
   render() {
+    const { sortBy } = this.state;
     return (
-      <div className="projectsSort">
-        <h5 className="projectsSort__title">Sort by</h5>
-        <div className="projectsSort__list">
-          <label
-            className={
-              this.state.sortBy === "level_id"
-                ? "projectsSort__label projectsSort__label_active"
-                : "projectsSort__label"
-            }
-          >
+      <div className="aside__block portfolioSort">
+        <h5 className="aside__title">Sort by</h5>
+        <div className="portfolioSort__list">
+          <label className="portfolioSort__item">
             <input
               name="sortBy"
               type="radio"
               className="hide"
               value="level_id"
               onChange={this.onChange.bind(this)}
-              checked={this.state.sortBy === "level_id"}
+              checked={sortBy === "level_id"}
             />
-            by level
+            <p
+              className={
+                sortBy === "level_id"
+                  ? "portfolioSort__btn portfolioSort__btn_active"
+                  : "portfolioSort__btn"
+              }
+            >
+              Level
+            </p>
           </label>
 
-          <label
-            className={
-              this.state.sortBy === "date"
-                ? "projectsSort__label projectsSort__label_active"
-                : "projectsSort__label"
-            }
-          >
+          <label className="portfolioSort__item">
             <input
               name="sortBy"
               className="hide"
               type="radio"
               value="date"
               onChange={this.onChange.bind(this)}
-              checked={this.state.sortBy === "date"}
+              checked={sortBy === "date"}
             />
-            by date
+            <p
+              className={
+                sortBy === "date"
+                  ? "portfolioSort__btn portfolioSort__btn_active"
+                  : "portfolioSort__btn"
+              }
+            >
+              Date
+            </p>
           </label>
 
-          <label
-            className={
-              this.state.sortBy === "title"
-                ? "projectsSort__label projectsSort__label_active"
-                : "projectsSort__label"
-            }
-          >
+          <label className="portfolioSort__item">
             <input
               name="sortBy"
               type="radio"
               className="hide"
               value="title"
               onChange={this.onChange.bind(this)}
-              checked={this.state.sortBy === "title"}
+              checked={sortBy === "title"}
             />
-            by name
+            <p
+              className={
+                sortBy === "title"
+                  ? "portfolioSort__btn portfolioSort__btn_active"
+                  : "portfolioSort__btn"
+              }
+            >
+              Name
+            </p>
           </label>
         </div>
       </div>

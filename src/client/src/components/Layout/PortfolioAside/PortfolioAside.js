@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PortfolioFilter from "./PortfolioFilter";
+import PortfolioSort from "./PortfolioSort";
+import "./style.scss";
 
 export class PortfolioAside extends Component {
   static propTypes = {
@@ -12,13 +14,14 @@ export class PortfolioAside extends Component {
   render() {
     const { pathname } = this.props.location;
     return (
-      <div>
+      <>
         {pathname === "/portfolio" && (
-          <>
+          <div className="portfolioAside">
             <PortfolioFilter />
-          </>
+            <PortfolioSort />
+          </div>
         )}
-      </div>
+      </>
     );
   }
 }

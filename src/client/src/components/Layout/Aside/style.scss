@@ -13,6 +13,13 @@
   justify-content: space-between;
   box-sizing: border-box;
   border-right: 1px solid rgba(240, 225, 225, 0.5);
+  &__block {
+    margin: 0 0 50px 0;
+  }
+  &__title {
+    color: #fff;
+    margin: 0 0 10px 0;
+  }
 }
 
 // MAIN MENU
