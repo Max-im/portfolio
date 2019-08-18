@@ -47,9 +47,9 @@ router.post(
         [contact_title, contact_value, filename]
       )
       .then(({ rows }) => res.json(rows[0]))
-      .catch(err => {
+      .catch(error => {
         fs.unlink(`uploads/${filename}`, err => err && console.log(err));
-        return res.status(400).json(err);
+        return res.status(400).json(error);
       });
   }
 );

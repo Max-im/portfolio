@@ -35,19 +35,19 @@ export class ProjectsList extends Component {
     const { isadmin } = this.props.auth.user;
 
     return (
-      <section className="projectsList">
-        <h3 className="projectsList__title">Projects list</h3>
+      <section className="projects">
+        <h3 className="projects__title">Projects list</h3>
 
         {projectsNum === 0 && <p>Projects not found</p>}
         {projectsNum === 1 && <p>Found - 1 project</p>}
         {projectsNum > 1 && <p>Found - {projectsNum} projects</p>}
 
         {shownProjects && (
-          <div className="projectsList__wrapper">
+          <ul className="projects__list">
             {shownProjects.map(item => (
               <ProjectItem item={item} key={item.id} />
             ))}
-          </div>
+          </ul>
         )}
 
         {isadmin && <AddProject />}
