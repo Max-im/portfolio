@@ -9,7 +9,6 @@ const initialState = {
   loading: false,
   projects: null,
   projectsNum: null,
-  loadIndex: 3,
   error: null
 };
 
@@ -19,7 +18,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         projects: action.payload,
-        shownProjects: action.payload.filter((v, i) => i < state.loadIndex),
         error: null
       };
 

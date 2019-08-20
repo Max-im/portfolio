@@ -10,7 +10,7 @@ import "./style.scss";
 export default function Resume() {
   return (
     <div className="page resume">
-      <PageTitle text="resume" />
+      <PageTitle text="resume" subtext="information about me" />
 
       <div className="page__body">
         <Summary />

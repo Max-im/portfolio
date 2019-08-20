@@ -11,26 +11,15 @@ export default class index extends Component {
   }
 
   render() {
-    const { text } = this.props;
-    const { launch } = this.state;
+    const { text, subtext } = this.props;
     return (
       <div className="pageTitle">
-        <div
-          className={
-            launch
-              ? "pageTitle__container pageTitle__container_active"
-              : "pageTitle__container"
-          }
-        />
-        <h1
-          className={
-            launch
-              ? "pageTitle__text pageTitle__text_active"
-              : "pageTitle__text"
-          }
-        >
-          {text}
-        </h1>
+        <div className="container">
+          <div className="pageTitle__body">
+            <h1 className="pageTitle__text">{text}</h1>
+            {subtext && <p className="pageTitle__subtext">{subtext}</p>}
+          </div>
+        </div>
       </div>
     );
   }

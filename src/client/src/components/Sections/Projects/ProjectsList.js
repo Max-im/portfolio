@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ProjectItem from "./ProjectItem";
-import AddProject from "./AddProject";
 import Spinner from "../../Common/Spinner";
 import { getProjects } from "../../../store/actions/projectes";
 import "./style.scss";
@@ -31,26 +30,17 @@ export class ProjectsList extends Component {
   };
 
   render() {
-    const { shownProjects, loading, error, projectsNum } = this.props.portfolio;
-    const { isadmin } = this.props.auth.user;
+    const { projects, loading, error } = this.props.portfolio;
 
     return (
       <section className="projects">
-        <h3 className="projects__title">Projects list</h3>
-
-        {projectsNum === 0 && <p>Projects not found</p>}
-        {projectsNum === 1 && <p>Found - 1 project</p>}
-        {projectsNum > 1 && <p>Found - {projectsNum} projects</p>}
-
-        {shownProjects && (
+        {projects && (
           <ul className="projects__list">
-            {shownProjects.map(item => (
+            {projects.map(item => (
               <ProjectItem item={item} key={item.id} />
             ))}
           </ul>
         )}
-
-        {isadmin && <AddProject />}
 
         {error && <p className="error">{error}</p>}
         {loading && <Spinner />}

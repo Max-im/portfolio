@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getProjects } from "../../../store/actions/projectes";
 
-export class index extends Component {
+export class PortfolioSort extends Component {
   state = { sortBy: "level_id" };
 
   static propTypes = {
@@ -37,10 +37,16 @@ export class index extends Component {
   render() {
     const { sortBy } = this.state;
     return (
-      <div className="aside__block portfolioSort">
-        <h5 className="aside__title">Sort by</h5>
+      <div className="portfolioSort">
+        <h5 className="portfolio__title">Sort by</h5>
         <div className="portfolioSort__list">
-          <label className="portfolioSort__item">
+          <label
+            className={
+              sortBy === "level_id"
+                ? "portfolioSort__item portfolioSort__item_active"
+                : "portfolioSort__item"
+            }
+          >
             <input
               name="sortBy"
               type="radio"
@@ -49,18 +55,16 @@ export class index extends Component {
               onChange={this.onChange.bind(this)}
               checked={sortBy === "level_id"}
             />
-            <p
-              className={
-                sortBy === "level_id"
-                  ? "portfolioSort__btn portfolioSort__btn_active"
-                  : "portfolioSort__btn"
-              }
-            >
-              Level
-            </p>
+            Level
           </label>
 
-          <label className="portfolioSort__item">
+          <label
+            className={
+              sortBy === "date"
+                ? "portfolioSort__item portfolioSort__item_active"
+                : "portfolioSort__item"
+            }
+          >
             <input
               name="sortBy"
               className="hide"
@@ -69,18 +73,16 @@ export class index extends Component {
               onChange={this.onChange.bind(this)}
               checked={sortBy === "date"}
             />
-            <p
-              className={
-                sortBy === "date"
-                  ? "portfolioSort__btn portfolioSort__btn_active"
-                  : "portfolioSort__btn"
-              }
-            >
-              Date
-            </p>
+            Date
           </label>
 
-          <label className="portfolioSort__item">
+          <label
+            className={
+              sortBy === "title"
+                ? "portfolioSort__item portfolioSort__item_active"
+                : "portfolioSort__item"
+            }
+          >
             <input
               name="sortBy"
               type="radio"
@@ -89,15 +91,7 @@ export class index extends Component {
               onChange={this.onChange.bind(this)}
               checked={sortBy === "title"}
             />
-            <p
-              className={
-                sortBy === "title"
-                  ? "portfolioSort__btn portfolioSort__btn_active"
-                  : "portfolioSort__btn"
-              }
-            >
-              Name
-            </p>
+            Name
           </label>
         </div>
       </div>
@@ -108,4 +102,4 @@ export class index extends Component {
 export default connect(
   null,
   { getProjects }
-)(withRouter(index));
+)(withRouter(PortfolioSort));
