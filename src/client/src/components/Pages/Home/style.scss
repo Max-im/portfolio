@@ -146,6 +146,7 @@
     display: none;
     font-family: "Roboto", sans-serif, Arial, Helvetica;
     z-index: 1;
+    animation: shake 0.3s linear;
     &:before {
       content: "";
       position: absolute;
@@ -168,6 +169,24 @@
       transform: rotate(45deg);
       z-index: -2;
     }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 

@@ -73,7 +73,7 @@
     text-transform: capitalize;
     font-weight: 100;
     letter-spacing: 1px;
-
+    animation: shake 0.3s linear;
     z-index: 1;
     &:before {
       content: "";
@@ -212,6 +212,24 @@
       transform: rotate(45deg);
       z-index: -2;
     }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
