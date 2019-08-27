@@ -1,0 +1,51 @@
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes homesocial {
+  from {
+    opacity: 0;
+    top: 90%;
+  }
+  to {
+    opacity: 1;
+    top: 85%;
+  }
+}
+
+@keyframes showtitle {
+  from {
+    opacity: 0;
+    top: -30px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes showsubtitle {
+  from {
+    left: -300px;
+  }
+  85% {
+    left: 10px;
+  }
+  to {
+    left: 0px;
+  }
+}

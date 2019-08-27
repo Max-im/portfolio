@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./reset.scss";
 import "./style.scss";
+import "./animation.scss";
 
 import Aside from "../Layout/Aside/Aside";
 import Home from "../Pages/Home/Home";

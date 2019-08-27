@@ -69,6 +69,11 @@
       top: 15%;
     }
   }
+  &__social {
+    position: absolute;
+    left: 0%;
+    animation: homesocial 0.6s ease-in-out 0.3s forwards;
+  }
   &__surname {
     position: absolute;
     background: #122738;
@@ -101,93 +106,6 @@
       right: 0%;
     }
   }
-  &__contactList {
-    position: absolute;
-    top: 90%;
-    left: 0%;
-    opacity: 0;
-    transition: 0.4s ease-in;
-    display: flex;
-    &_active {
-      opacity: 1;
-      top: 85%;
-    }
-  }
-  &__link {
-    background: #fff;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 20px;
-    display: block;
-    color: #777;
-    border-right: 1px solid #eee;
-    &:hover {
-      color: #0088ff;
-      text-shadow: 1px 1px 1px rgba(170, 170, 170, 0.5);
-      .home__tooltip {
-        display: inline;
-      }
-    }
-  }
-  &__tooltip {
-    position: absolute;
-    top: -40px;
-    left: 5px;
-    line-height: 20px;
-    text-transform: capitalize;
-    color: #fff;
-    white-space: nowrap;
-    font-weight: 100;
-    font-size: 16px;
-    padding: 3px 5px;
-    display: none;
-    font-family: "Roboto", sans-serif, Arial, Helvetica;
-    z-index: 1;
-    animation: shake 0.3s linear;
-    &:before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #122738;
-      left: 0;
-      top: 0;
-    }
-    &:after {
-      content: "";
-      position: absolute;
-      box-shadow: 0 0 2px rgba(170, 170, 170, 0.5);
-      width: 10px;
-      height: 10px;
-      background: #122738;
-      bottom: -5px;
-      left: 10px;
-      transform: rotate(45deg);
-      z-index: -2;
-    }
-  }
-}
-
-@keyframes shake {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(5deg);
-  }
-  50% {
-    transform: rotate(-5deg);
-  }
-  75% {
-    transform: rotate(5deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
 }
 
 //  WIDE 480 px
@@ -217,16 +135,8 @@
       font-size: 22px;
       padding: 14px 18px;
     }
-    &__contactList {
+    &__social {
       left: 100%;
-    }
-    &__tooltip {
-      width: 90px;
-      left: -33px;
-      &:after {
-        bottom: -5px;
-        left: 48px;
-      }
     }
   }
 }
@@ -246,18 +156,6 @@
     &__title {
       font-size: 36px;
       padding: 18px 30px;
-    }
-    &__contactList {
-      left: 100%;
-    }
-    &__link {
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-    }
-    &__tooltip {
-      width: 90px;
-      left: -20px;
     }
   }
 }

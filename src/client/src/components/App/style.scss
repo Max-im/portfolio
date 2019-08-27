@@ -40,15 +40,25 @@
 .section {
   width: 100%;
   background: #fff;
-  padding: 15px 0 30px 0px;
+  padding: 30px 0px 50px 0;
   box-sizing: border-box;
   z-index: 1;
   &__title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #616161;
-    text-align: center;
-    padding: 10px 0;
+    font-size: 22px;
+    letter-spacing: 1.2px;
+    color: #122738;
+    padding: 0 0 15px 0;
+    &::first-letter {
+      background: #0088ff;
+      text-align: center;
+      padding: 0 4px;
+      margin: 0 1px 0 0;
+      letter-spacing: 0px;
+      color: #fff;
+      border: 1px solid #122738;
+      box-sizing: border-box;
+      width: 50px;
+    }
   }
   &__colored {
     position: relative;

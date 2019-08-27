@@ -1,0 +1,57 @@
+.social {
+  display: flex;
+  &__item {
+    position: relative;
+    border: 1px solid #eee;
+    border-right: none;
+    &:hover {
+      .social__tooltip {
+        display: block;
+      }
+    }
+    &:last-child {
+      border: 1px solid #eee;
+    }
+  }
+  &__link {
+    display: block;
+    font-size: 18px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #fff;
+    color: #777;
+    cursor: pointer;
+    &:hover {
+      color: #0088ff;
+    }
+  }
+  &__tooltip {
+    position: absolute;
+    display: none;
+    width: 90px;
+    left: -25px;
+    top: -30px;
+    color: #fff;
+    white-space: nowrap;
+    font-weight: 100;
+    font-size: 16px;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif, Arial, Helvetica;
+    background: #122738;
+    text-align: center;
+    animation: shake 0.3s linear;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #122738;
+      bottom: -5px;
+      left: 38px;
+      transform: rotate(45deg);
+      z-index: -2;
+    }
+  }
+}

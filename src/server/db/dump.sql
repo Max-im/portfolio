@@ -318,14 +318,14 @@ CREATE TABLE summary
     id SERIAL PRIMARY KEY,
     photo CHARACTER varying(64),
     name CHARACTER varying(64),
-    summary CHARACTER varying(128)
+    summary CHARACTER varying(1024)
 );
 
 -- insert
 INSERT INTO summary
     (photo, name, summary)
 VALUES
-    ('https://max-im.github.io/img/myPhoto.jpg', 'Maxim Pozhidayev', 'I am a javaScript developer');
+    ('https://max-im.github.io/img/myPhoto.jpg', 'Maksim Pozhydaiev', 'I am a deep motivated JavaScript developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set times. It is important to me to see results of my work and to impact on the result.');
 -- ======================================================================================
 
 
