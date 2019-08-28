@@ -9,6 +9,7 @@ import summary from "./public/summary";
 import projects from "./public/projects";
 import comment from "./public/comment";
 import photo from "./public/photo";
+import social from "./public/social";
 
 import adminContacts from "./admin/contacts";
 import adminSkills from "./admin/skills";
@@ -21,6 +22,7 @@ const router = Router();
 
 // public and auth rotes
 router.use("/auth", auth);
+router.use("/social", social);
 router.use("/photo", photo);
 router.use("/contacts", contacts);
 router.use("/skills", skills);

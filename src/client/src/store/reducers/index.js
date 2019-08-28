@@ -8,9 +8,11 @@ import experience from "./experience";
 import summary from "./summary";
 import education from "./education";
 import project from "./project";
+import social from "./social";
 
 export default combineReducers({
   general,
+  social,
   portfolio,
   project,
   auth,

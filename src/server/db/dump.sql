@@ -22,6 +22,31 @@ VALUES
 -- ======================================================================================
 
 
+-- SOCIAL
+-- ======================================================================================
+-- init
+CREATE TABLE social
+(
+    id SERIAL PRIMARY KEY,
+    path CHARACTER varying(128) NOT NULL,
+    tooltip CHARACTER varying(64) NOT NULL,
+    classes CHARACTER varying(128) NOT NULL
+);
+
+-- insert
+INSERT INTO social
+    (path, tooltip, classes)
+VALUES
+    ('https://www.facebook.com/max.pozhidaev.7', 'Facebook', 'fab fa-facebook-square'),
+    ('https://www.linkedin.com/in/max-im', 'LinkedIn', 'fab fa-linkedin'),
+    ('https://twitter.com/MPozhidayev', 'Twitter', 'fab fa-twitter-square'),
+    ('https://github.com/max-im', 'GitHub', 'fab fa-github-square'),
+    ('https://codepen.io/max-im', 'CodPen', 'fab fa-codepen');
+
+
+-- ======================================================================================
+
+
 
 
 -- PROJECT LEVELS

@@ -3,6 +3,9 @@ export const LOAD_PROJECTS = "LOAD_PROJECTS";
 export const GET_PROJECTS_NUM = "GET_PROJECTS_NUM";
 export const PROJECTS_ERROR = "PROJECTS_ERROR";
 
+export const GET_SOCIAL = "GET_SOCIAL";
+export const SOCIAL_ERROR = "SOCIAL_ERROR";
+
 export const GET_PROJECT = "GET_PROJECT";
 export const GET_PROJECT_RATE = "GET_PROJECT_RATE";
 export const GET_COMMETNS = "GET_COMMETNS";
