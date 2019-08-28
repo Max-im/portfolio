@@ -27,7 +27,7 @@ export class index extends Component {
     const { isadmin } = this.props.auth.user;
 
     return (
-      <section className="section section__colored section__colored_1 skills">
+      <section className="section skills">
         <div className="container">
           <h3 className="section__title">Skills</h3>
 

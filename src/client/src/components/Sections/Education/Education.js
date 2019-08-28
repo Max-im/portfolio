@@ -23,12 +23,12 @@ export class index extends Component {
     const { isadmin } = this.props.auth.user;
 
     return (
-      <section className="section">
+      <section className="section edu">
         <div className="container">
           <h3 className="section__title">Education</h3>
 
           {edu && (
-            <ul>
+            <ul className="edu__list">
               {edu.map(eduItem => (
                 <EduItem key={eduItem.id} edu={eduItem} isadmin={isadmin} />
               ))}

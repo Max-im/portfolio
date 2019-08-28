@@ -58,7 +58,7 @@ export class index extends Component {
     }
 
     return (
-      <div>
+      <>
         {projectsNum && pages.length > 1 && (
           <ul className="pagination">
             {pages.map(page => (
@@ -82,7 +82,7 @@ export class index extends Component {
             ))}
           </ul>
         )}
-      </div>
+      </>
     );
   }
 }

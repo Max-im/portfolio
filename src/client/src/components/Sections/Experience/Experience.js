@@ -23,11 +23,11 @@ export class index extends Component {
     const { isadmin } = this.props.auth.user;
 
     return (
-      <section className="section">
+      <section className="section exp">
         <div className="container">
           <h3 className="section__title">Experience</h3>
 
-          <ul>
+          <ul className="exp__list">
             {exp &&
               exp.map(expItem => (
                 <ExpItem key={expItem.id} exp={expItem} isadmin={isadmin} />

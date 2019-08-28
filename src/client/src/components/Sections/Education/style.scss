@@ -1,13 +1,30 @@
 .edu {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    flex: 0 0 33%;
+  }
+  &__inner {
+    margin: 0 10px;
+    position: relative;
+    text-align: center;
+  }
   &__img {
-    width: 50px;
-    padding: 5px;
-    box-sizing: border-box;
-    margin: 0 10px 0 0;
-    border: 1px solid #dadada;
+    background: #122738;
+    padding: 10px;
+    width: 70px;
+    margin: 0 0 15px 0;
+  }
+  &__title {
+    margin: 0 0 15px 0;
+    font-weight: bold;
+    font-size: 18px;
+    color: #122738;
+  }
+  &__desc {
+    color: #122738;
   }
   &__delete {
     position: absolute;

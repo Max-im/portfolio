@@ -26,7 +26,7 @@ export class Portfolio extends Component {
       <div className="page portfolio">
         <PageTitle text="Portfolio" subtext={subtext} />
 
-        <div className="container">
+        <div className="container portfolio__container">
           {/* filter projects */}
           {isadmin && <AddProject />}
           <div className="portfolio__filter">
