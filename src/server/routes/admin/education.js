@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkAdminPermission } from "../../controllers/permission";
-import { upload, resize50 } from "../../controllers/common";
+import { upload, resize100 } from "../../controllers/common";
 import {
   createEdu,
   getCurrentEdu,
@@ -21,7 +21,7 @@ router.post(
   "/",
   checkAdminPermission,
   upload.single("edu_photo"),
-  resize50,
+  resize100,
   createEdu
 );
 

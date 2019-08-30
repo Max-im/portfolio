@@ -4,7 +4,7 @@
     font-weight: bold;
     line-height: 27px;
     color: #122738;
-    padding: 0px 0 10px 0;
+    margin: 0px 0 15px 0;
   }
 }
 
@@ -18,16 +18,30 @@
 
 .skill {
   box-sizing: border-box;
-  &__img {
-    padding: 15px;
-    border: 1px solid #eee;
-    border-right: 0px;
-    width: 22px;
-  }
-  &:last-child {
+  flex: 0 0 calc(100% / 7);
+  padding: 0 25px;
+  margin: 0 0 40px 0;
+  &:hover {
     .skill__img {
-      border: 1px solid #eee;
+      filter: none;
+      opacity: 1;
     }
+  }
+  &__link {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    color: #79589f;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  &__img {
+    width: 50px;
+    display: block;
+    margin: 0 auto 20px auto;
+    filter: grayscale(100);
+    opacity: 0.6;
   }
 }
 
@@ -39,27 +53,21 @@
 }
 
 .skillControl {
+  position: absolute;
+  width: 100%;
+  left: 0;
   display: flex;
   align-items: center;
 }
 
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
-  .skill {
-    flex: 0 0 calc(100% / 10);
-  }
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
-  .skill {
-    flex: 0 0 calc(100% / 14);
-  }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
-  .skill {
-    flex: 0 0 calc(100% / 20);
-  }
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { upload, resize32 } from "../../controllers/common";
+import { upload, resize50 } from "../../controllers/common";
 import { checkAdminPermission } from "../../controllers/permission";
 import createSkillValidation from "../../validation/skills";
 import {
@@ -26,7 +26,7 @@ router.post(
   "/",
   checkAdminPermission,
   upload.single("skill_picture"),
-  resize32,
+  resize50,
   createSkillValidation,
   createSkill
 );

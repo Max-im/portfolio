@@ -208,33 +208,26 @@ CREATE TABLE skills
 INSERT INTO skills
     (skill, category_id, skill_picture, range, source)
 VALUES
+    ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
+    ('css', 1, 'css.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
+    ('sass', 1, 'sass.png', 2, 'https://sass-lang.com/'),
+    ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'),
+    ('jquery', 1, 'jquery.png', 3, 'https://jquery.com/'),
     ('angular', 1, 'angular.png', 1, 'https://angular.io/'),
     ('react', 1, 'react.png', 1, 'https://reactjs.org/'),
     ('redux', 1, 'redux.png', 1, 'https://redux.js.org/'),
     ('vue', 1, 'vue.png', 1, 'https://vuejs.org/'),
-    ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'),
-    ('jquery', 1, 'jquery.png', 3, 'https://jquery.com/'),
-    ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
-    ('css', 1, 'css.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
-    ('sass', 1, 'sass.png', 2, 'https://sass-lang.com/'),
-    ('mobile', 1, 'mobile.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Responsive/Mobile_first'),
-    ('canvas', 1, 'canvas.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API'),
-    ('bem', 1, 'bem.png', 3, 'https://en.bem.info/methodology/'),
-    ('bootstrap', 1, 'bootstrap.png', 3, 'https://getbootstrap.com/'),
     ('ts', 1, 'ts.png', 2, 'https://www.typescriptlang.org/'),
     ('node', 2, 'node.png', 1, 'https://nodejs.org/en/'),
-    ('postgres', 3, 'postgres.png', 1, 'https://www.postgresql.org/'),
-    ('graphql', 3, 'graphql.png', 1, 'https://graphql.org/'),
     ('rest', 3, 'rest.png', 1, 'https://developer.mozilla.org/en-US/docs/Glossary/REST'),
-    ('mongodb', 3, 'mongoDB.png', 1, 'https://www.mongodb.com/'),
+    ('mongodb', 3, 'mongodb.png', 1, 'https://www.mongodb.com/'),
+    ('postgres', 3, 'psql.png', 1, 'https://www.postgresql.org/'),
     ('sequelize', 3, 'sequelize.png', 2, 'https://sequelize.org/'),
     ('mocha', 4, 'mocha.png', 1, 'https://mochajs.org/'),
     ('jest', 4, 'jest.png', 1, 'https://jestjs.io/'),
     ('babel', 5, 'babel.png', 2, 'https://babeljs.io/'),
     ('eslint', 5, 'eslint.png', 2, 'https://eslint.org/'),
-    ('webpack', 5, 'webpack.png', 2, 'https://webpack.js.org/'),
-    ('opengraph', 5, 'openGraph.png', 3, 'https://ogp.me/'),
-    ('schema', 5, 'schema.png', 3, 'https://schema.org/');
+    ('webpack', 5, 'webpack.png', 2, 'https://webpack.js.org/');
 
 -- ======================================================================================
 
@@ -324,9 +317,9 @@ INSERT INTO experience
     (range, exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
 VALUES
     (1, 'Specialist', 'PrivateBank', 'Jun 2006', 'Mar 2007', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
-    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', 'Mar 2007', 'Sep 2014', false, 'gaz.jpg', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
-    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', 'Sep 2014', 'Jan 2018', false, 'chnpp.jpg', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
-    (4, 'JS Developer', 'iDeals solutions', 'Jan 2018', '', true, 'ideals.jpg', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
+    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', 'Mar 2007', 'Sep 2014', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
+    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', 'Sep 2014', 'Jan 2018', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
+    (4, 'JS Developer', 'iDeals solutions', 'Jan 2018', '', true, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs');
 
 
 -- ======================================================================================
@@ -372,7 +365,7 @@ CREATE TABLE education
 INSERT INTO education
     (range, edu_photo, edu_title, edu_description)
 VALUES
-    (1, 'donnu.jpg', 'Graduated DON NU', 'Human resources management and labor economics');
+    (1, 'donnu.png', 'Graduated DON NU', 'Human resources management and labor economics');
 -- ======================================================================================
 
 

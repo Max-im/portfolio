@@ -38,6 +38,19 @@ export const resize32 = (req, res, next) => {
     .catch(err => res.status(400).json(err));
 };
 
+export const resize100 = (req, res, next) => {
+  Jimp.read(req.file.path)
+    .then(img => {
+      img
+        .resize(100, 100)
+        .quality(60)
+        .write(`uploads/${req.file.filename}`);
+      req.body.filename = req.file.filename;
+      return next();
+    })
+    .catch(err => res.status(400).json(err));
+};
+
 export const resizeProj = (req, res, next) => {
   Jimp.read(req.file.path)
     .then(img => {
