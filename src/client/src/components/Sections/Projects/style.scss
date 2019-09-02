@@ -63,16 +63,12 @@
   padding: 0 10px;
   box-sizing: border-box;
   text-align: center;
-  &__content {
-    position: relative;
-    width: 100%;
-    background: #fff;
-  }
+  background: #fff;
   &__overlay {
     opacity: 0;
     transition: 0.3s;
     position: absolute;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.5);
     top: 0;
     left: 0;
     width: 100%;
@@ -81,64 +77,76 @@
   }
   &__link {
     margin: auto;
-    color: #122738;
-    font-size: 50px;
+    color: #fff;
+    font-size: 0px;
+    border-radius: 50%;
+    padding: 0px;
+    background: #0088ff;
+    transition: 0.4s;
   }
-  &__imgWrap {
+  &__img {
+    width: 100%;
+    transition: 0.4s;
+  }
+  &__title {
+    font-size: 22px;
+    letter-spacing: 1.2px;
+    font-variant: small-caps;
+    color: #122738;
+    padding: 5px 0;
+  }
+  &__level {
+    position: absolute;
+    top: 10px;
+    right: -100%;
+    transition: 0.6s;
+    padding: 4px 10px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    font-weight: bold;
+    background: #122738;
+    color: #aaa;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  &__inner {
+    position: relative;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
     width: 100%;
     overflow: hidden;
     &:hover {
       .projectItem__img {
         transform: scale(1.1);
-        filter: grayscale(20);
+        filter: grayscale(1);
       }
       .projectItem__overlay {
         opacity: 1;
       }
+      .projectItem__link {
+        font-size: 40px;
+        padding: 15px;
+      }
+      .projectItem__level {
+        right: 0px;
+      }
     }
-  }
-  &__img {
-    width: 100%;
-    transition: 0.4s;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  &__title {
-    font-size: 22px;
-    font-variant: small-caps;
-    text-align: left;
-    color: #122738;
-    padding: 5px 0;
   }
 }
 
 .projectSkillsList {
   display: flex;
-  bottom: 10px;
-  right: 10px;
   &__item {
     width: 40px;
     height: 40px;
     background: #fff;
     position: relative;
     display: flex;
-    &:after {
-      content: "";
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      right: 0;
-      top: 0;
-      background: #eee;
-    }
+    border: 1px solid #eee;
+    border-right: none;
+    box-sizing: border-box;
   }
   &__item:last-child {
-    &::after {
-      display: none;
-    }
+    border-right: 1px solid #eee;
   }
 
   &__img {

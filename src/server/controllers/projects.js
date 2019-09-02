@@ -94,7 +94,7 @@ export const getAllProjects = (req, res, next) => {
 
   client
     .query(
-      `SELECT proj.id, title, custom_picture, description, picture, author_id, date, github, deploy, level, skill_id, skill, skill_picture, range 
+      `SELECT proj.id, title, custom_picture, picture, author_id, level, skill_id, skill, skill_picture, range 
       FROM projects AS proj
       JOIN projectlevels AS lev ON proj.level_id = lev.id
       JOIN projects_skills AS ps ON proj.id = ps.project_id

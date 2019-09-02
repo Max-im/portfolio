@@ -9,17 +9,18 @@ export default function ProjectItem({ item }) {
 
   return (
     <li className="projectItem">
-      <div className="projectItem__content">
-        <div className="projectItem__imgWrap">
-          <img src={imgUrl} alt={item.title} className="projectItem__img" />
-          <Link
-            to={"/portfolio/project/" + item.id}
-            className="projectItem__overlay"
-          >
-            <i className="fas fa-search projectItem__link" />
-          </Link>
-        </div>
+      <div className="projectItem__inner">
+        <img src={imgUrl} alt={item.title} className="projectItem__img" />
+        <p className="projectItem__level">{item.level}</p>
+        <Link
+          to={"/portfolio/project/" + item.id}
+          className="projectItem__overlay"
+        >
+          <i className="fas fa-search projectItem__link" />
+        </Link>
       </div>
+      <SkillsList item={item} />
+      <p className="projectItem__title">{item.title}</p>
     </li>
   );
 }
