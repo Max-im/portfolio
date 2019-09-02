@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getProject } from "../../../store/actions/projectes";
 import defaultPic from "../../../assets/project-default.jpg";
+import Spinner from "../../Common/Spinner";
+import SkillsList from "./SkillsList";
 import "./style.scss";
 
 export class CommonData extends Component {
@@ -20,15 +22,16 @@ export class CommonData extends Component {
   render() {
     const { project, loading, error } = this.props.project;
     const isReady = project && !loading;
+    console.log(project);
     return (
       <section className="section">
         <h1 className="section__title">
           {isReady ? project.title : "Project"}
         </h1>
 
-        {!isReady ? (
-          "Loading..."
-        ) : (
+        {!isReady && <Spinner />}
+
+        {isReady && (
           <div>
             <img
               src={project.custom_picture ? project.picture : defaultPic}
@@ -36,17 +39,7 @@ export class CommonData extends Component {
               className="aboutSingleProject__img"
             />
             <p>{project.description}</p>
-            <ul>
-              {project.skills.map(skill => (
-                <li key={skill.id}>
-                  <img
-                    src={`/photo/${skill.picture}`}
-                    alt={skill.title}
-                    className="aboutSingleProject__skill"
-                  />
-                </li>
-              ))}
-            </ul>
+            <SkillsList item={project} />
 
             <p>{new Date(project.date).toDateString()}</p>
           </div>
