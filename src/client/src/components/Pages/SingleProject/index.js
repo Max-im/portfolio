@@ -9,7 +9,7 @@ import Comments from "../../Sections/SingleProject/Comments";
 export default function index() {
   return (
     <div className="page">
-      <PageTitle text="Project" />
+      <PageTitle text="Project" subtext="Single project information" />
       <div className="container">
         <SingleCommon />
         {/* TODO aside similar */}

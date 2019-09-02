@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getProject } from "../../../store/actions/projectes";
-import FormatedDate from "../../Common/FormatedDate";
 import defaultPic from "../../../assets/project-default.jpg";
 import "./style.scss";
 
@@ -48,10 +47,8 @@ export class CommonData extends Component {
                 </li>
               ))}
             </ul>
-            <FormatedDate
-              date={project.date}
-              clasName="aboutSingleProject__date"
-            />
+
+            <p>{new Date(project.date).toDateString()}</p>
           </div>
         )}
 

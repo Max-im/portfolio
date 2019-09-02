@@ -1,6 +1,5 @@
 import React from "react";
 import CommentControl from "./CommentControl";
-import FormatedDate from "../../Common/FormatedDate";
 
 export default function index({ comment }) {
   return (
@@ -15,7 +14,7 @@ export default function index({ comment }) {
       </div>
       <div className="comment__body">
         <p className="comment__text">{comment.text}</p>
-        <FormatedDate date={comment.date} clasName="comment__date" />
+        <p>{new Date(comment.date).toDateString()}</p>
       </div>
 
       <CommentControl comment={comment} />

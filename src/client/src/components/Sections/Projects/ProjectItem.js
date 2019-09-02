@@ -19,8 +19,9 @@ export default function ProjectItem({ item }) {
           <i className="fas fa-search projectItem__link" />
         </Link>
       </div>
-      <SkillsList item={item} />
       <p className="projectItem__title">{item.title}</p>
+      <SkillsList item={item} />
+      <p className="projectItem__date">{new Date(item.date).toDateString()}</p>
     </li>
   );
 }
