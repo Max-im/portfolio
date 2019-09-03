@@ -21,17 +21,12 @@ export class CommonData extends Component {
 
   render() {
     const { project, loading, error } = this.props.project;
-    const isReady = project && !loading;
-    console.log(project);
+
     return (
       <section className="section">
-        <h1 className="section__title">
-          {isReady ? project.title : "Project"}
-        </h1>
+        {loading && <Spinner />}
 
-        {!isReady && <Spinner />}
-
-        {isReady && (
+        {project && (
           <div>
             <img
               src={project.custom_picture ? project.picture : defaultPic}
