@@ -34,18 +34,20 @@ export default class SkillsList extends Component {
               className="aboutSingleProject__skillsList"
               style={{ left: -60 * step }}
             >
-              {item.skills.map(skill => (
-                <li className="aboutSingleProject__skill" key={skill.id}>
-                  <p className="aboutSingleProject__skillTooltip">
-                    {skill.title}
-                  </p>
-                  <img
-                    src={`/photo/${skill.picture}`}
-                    alt={skill.title}
-                    className="aboutSingleProject__skillImg"
-                  />
-                </li>
-              ))}
+              {item.skills
+                .sort((a, b) => (a.range > b.range ? 1 : -1))
+                .map(skill => (
+                  <li className="aboutSingleProject__skill" key={skill.id}>
+                    <p className="aboutSingleProject__skillTooltip">
+                      {skill.title}
+                    </p>
+                    <img
+                      src={`/photo/${skill.picture}`}
+                      alt={skill.title}
+                      className="aboutSingleProject__skillImg"
+                    />
+                  </li>
+                ))}
             </ul>
           </div>
           <i
