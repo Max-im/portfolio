@@ -10,22 +10,17 @@
   &__skillsWrap {
     position: relative;
     padding: 0 0 50px 0;
-    overflow: hidden;
     width: 241px;
   }
   &__skillsList {
     display: flex;
+    align-items: center;
     position: relative;
     left: 0;
     transition: 0.4s;
   }
   &__skill {
     position: relative;
-    &:last-child {
-      .aboutSingleProject__skillImg {
-        border: 1px solid #eee;
-      }
-    }
     &:hover {
       .aboutSingleProject__skillTooltip {
         display: block;
@@ -33,12 +28,18 @@
     }
   }
   &__skillImg {
-    border: 1px solid #eee;
-    border-right: none;
-    width: 60px;
-    height: 60px;
-    padding: 20px;
+    width: 0px;
+    height: 0px;
+    transition: 0.3s;
     box-sizing: border-box;
+    &_shown {
+      position: relative;
+      border: 1px solid #eee;
+      border-right: none;
+      padding: 20px;
+      width: 60px;
+      height: 60px;
+    }
   }
   &__skillTooltip {
     background: #122738;
@@ -73,6 +74,8 @@
     color: #2196f3;
     opacity: 0.7;
     transition: 0.3s;
+    position: relative;
+    z-index: 1;
     &:hover {
       opacity: 1;
       text-shadow: 1px 0px 1px rgba(170, 170, 170, 5);

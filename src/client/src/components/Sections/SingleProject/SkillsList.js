@@ -29,27 +29,29 @@ export default class SkillsList extends Component {
             style={{ fontSize: min ? 0 : "22px" }}
           />
 
-          <div className="aboutSingleProject__skillsWrap">
-            <ul
-              className="aboutSingleProject__skillsList"
-              style={{ left: -60 * step }}
-            >
-              {item.skills.map(skill => (
-                <li className="aboutSingleProject__skill" key={skill.id}>
-                  <p className="aboutSingleProject__skillTooltip">
-                    {skill.title}
-                  </p>
-                  <img
-                    src={`/photo/${skill.picture}`}
-                    alt={skill.title}
-                    className="aboutSingleProject__skillImg"
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="aboutSingleProject__skillsList">
+            {item.skills.map((skill, i) => (
+              <li className="aboutSingleProject__skill" key={skill.id}>
+                <p className="aboutSingleProject__skillTooltip">
+                  {skill.title}
+                </p>
+                <img
+                  src={`/photo/${skill.picture}`}
+                  alt={skill.title}
+                  className={
+                    i >= step && i < 4 + step
+                      ? "aboutSingleProject__skillImg aboutSingleProject__skillImg_shown "
+                      : "aboutSingleProject__skillImg "
+                  }
+                  style={{
+                    borderRight: i === 3 + step ? "1px solid #eee" : "none"
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
           <i
-            className="fas fa-chevron-right aboutSingleProject__control"
+            className="fas fa-chevron-right aboutSingleProject__control aboutSingleProject__control_right"
             onClick={this.onStep.bind(this, 1)}
             style={{ fontSize: max ? 0 : "22px" }}
           />
