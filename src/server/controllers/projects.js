@@ -187,7 +187,10 @@ export const parseProjectData = (req, res) => {
     }
   });
 
-  result.skills = Object.keys(result.skills).map(key => result.skills[key]);
+  result.skills = Object.keys(result.skills)
+    .sort((a, b) => (a.range > b.range ? -1 : 1))
+    .map(key => result.skills[key]);
+
   res.json(result);
 };
 
