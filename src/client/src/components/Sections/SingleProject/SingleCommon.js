@@ -1,56 +1,54 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { getProject } from "../../../store/actions/projectes";
-import defaultPic from "../../../assets/project-default.jpg";
-import Spinner from "../../Common/Spinner";
-import SkillsList from "./SkillsList";
+import React from "react";
 import "./style.scss";
 
-export class CommonData extends Component {
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props.getProject(id);
-  }
+export default function SingleCommon({ project }) {
+  return (
+    <section className="section aboutProject">
+      <div className="aboutProject__content">
+        <div className="aboutProject__item">
+          <p className="aboutProject__contentKey">
+            <span className="aboutProject__subtitle">Title</span>
+          </p>
+          <p className="aboutProject__contentValue"> {project.title}</p>
+        </div>
+        <div className="aboutProject__item">
+          <p className="aboutProject__contentKey">
+            <span className="aboutProject__subtitle">Description</span>
+          </p>
+          <p className="aboutProject__contentValue">{project.description}</p>
+        </div>
+        <div className="aboutProject__item">
+          <p className="aboutProject__contentKey">
+            <span className="aboutProject__subtitle">Start date</span>
+          </p>
+          <p className="aboutProject__contentValue">
+            {new Date(project.date).toDateString()}
+          </p>
+        </div>
+        <div className="aboutProject__item">
+          <p className="aboutProject__contentKey">
+            <span className="aboutProject__subtitle">Level</span>
+          </p>
+          <p className="aboutProject__contentValue">{project.level}</p>
+        </div>
 
-  static propTypes = {
-    project: PropTypes.object.isRequired,
-    getProject: PropTypes.func.isRequired
-  };
-
-  render() {
-    const { project, loading, error } = this.props.project;
-
-    return (
-      <section className="section">
-        {loading && <Spinner />}
-
-        {project && (
-          <div>
-            <img
-              src={project.custom_picture ? project.picture : defaultPic}
-              alt={project.title}
-              className="aboutSingleProject__img"
-            />
-            <p>{project.description}</p>
-            <SkillsList item={project} />
-
-            <p>{new Date(project.date).toDateString()}</p>
+        {project.github && (
+          <div className="aboutProject__item">
+            <p className="aboutProject__contentKey">
+              <span className="aboutProject__subtitle">GitHub</span>
+            </p>
+            <p className="aboutProject__contentValue">{project.github}</p>
           </div>
         )}
-
-        {error && <p className="error">{error}</p>}
-      </section>
-    );
-  }
+        {project.github && (
+          <div className="aboutProject__item">
+            <p className="aboutProject__contentKey">
+              <span className="aboutProject__subtitle">Deploy</span>
+            </p>
+            <p className="aboutProject__contentValue">{project.deploy}</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
-
-const mapStateToProps = state => ({
-  project: state.project
-});
-
-export default connect(
-  mapStateToProps,
-  { getProject }
-)(withRouter(CommonData));

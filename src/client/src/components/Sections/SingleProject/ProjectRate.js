@@ -27,16 +27,16 @@ export class index extends Component {
     const { isAuth, user } = this.props.auth;
 
     return (
-      <section className="section rate">
+      <section className="section projectRate">
         <h3 className="section__title">Rate</h3>
         {likes && dislikes && (
-          <div className="rate__icons">
+          <div className="projectRate__icons">
             {/* LIKES */}
             <i
               className={
                 isAuth && likes.includes(user.id)
-                  ? "fas fa-thumbs-up rate__icon rate__icon_active"
-                  : "fas fa-thumbs-up rate__icon"
+                  ? "fas fa-thumbs-up projectRate__icon projectRate__icon_active"
+                  : "fas fa-thumbs-up projectRate__icon"
               }
               onClick={this.onRate.bind(this, true)}
             >
@@ -47,8 +47,8 @@ export class index extends Component {
             <i
               className={
                 isAuth && dislikes.includes(user.id)
-                  ? "fas fa-thumbs-down rate__icon rate__icon_active"
-                  : "fas fa-thumbs-down rate__icon"
+                  ? "fas fa-thumbs-down projectRate__icon projectRate__icon_active"
+                  : "fas fa-thumbs-down projectRate__icon"
               }
               onClick={this.onRate.bind(this, false)}
             >

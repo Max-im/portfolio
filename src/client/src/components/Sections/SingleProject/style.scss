@@ -1,7 +1,36 @@
-.aboutSingleProject {
-  &__img {
-    width: 100%;
+.singleProject {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.projectImg {
+  width: 50%;
+  padding: 0 15px 0 0;
+  box-sizing: border-box;
+}
+
+.aboutProject {
+  width: 50%;
+  &__item {
+    display: flex;
+    margin: 0px 0 25px 0;
   }
+  &__contentKey {
+    flex: 0 0 25%;
+  }
+  &__subtitle {
+    background: #eee;
+    color: #122738;
+    padding: 3px 10px;
+    border: 1px solid #aaa;
+  }
+  &__contentValue {
+    margin: 0 0 0 15px;
+  }
+}
+
+.projectSkills {
+  flex: 0 0 50%;
   &__skills {
     display: flex;
     align-items: flex-start;
@@ -22,7 +51,7 @@
   &__skill {
     position: relative;
     &:hover {
-      .aboutSingleProject__skillTooltip {
+      .projectSkills__skillTooltip {
         display: block;
       }
     }
@@ -100,11 +129,12 @@
   }
 }
 
-.rate {
+.projectRate {
+  flex: 0 0 50%;
   &__icons {
     display: flex;
     align-items: center;
-    color: gray;
+    color: #aaa;
     font-size: 20px;
   }
   &__icon {
