@@ -32,7 +32,9 @@ export default class ProjectSkills extends Component {
           <ul className="projectSkills__skillsList">
             {project.skills.map((skill, i) => (
               <li className="projectSkills__skill" key={skill.id}>
-                <p className="projectSkills__skillTooltip">{skill.title}</p>
+                <p className="tooltip projectSkills__skillTooltip">
+                  {skill.title}
+                </p>
                 <img
                   src={`/photo/${skill.picture}`}
                   alt={skill.title}

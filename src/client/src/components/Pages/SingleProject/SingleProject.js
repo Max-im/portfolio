@@ -27,22 +27,20 @@ export class SingleProject extends Component {
     return (
       <div className="page">
         {project && (
-          <>
+          <div className="container singleProject">
             <PageTitle
               text={project.title}
               subtext="Single project information"
             />
-            <div className="container singleProject">
-              <ProjectImg project={project} />
-              <SingleCommon project={project} />
-              {/* TODO aside similar */}
-              <ProjectSkills project={project} />
-              {/* TODO make stateless component */}
-              <ProjectRate />
-              <SingleControl />
-              <Comments />
-            </div>
-          </>
+            <ProjectImg project={project} />
+            <SingleCommon project={project} />
+            {/* TODO aside similar */}
+            <ProjectSkills project={project} />
+            {/* TODO make stateless component */}
+            <ProjectRate />
+            <SingleControl />
+            <Comments />
+          </div>
         )}
       </div>
     );

@@ -1,9 +1,7 @@
 .pageTitle {
-  z-index: 1;
   width: 100%;
   margin: 30px 0 50px 0;
   &__body {
-    position: relative;
     overflow: hidden;
     border-left: 5px solid #0088ff;
     padding: 0 0 0 10px;
@@ -14,22 +12,57 @@
     position: relative;
     font-weight: bold;
     letter-spacing: 2px;
-    text-shadow: 1px 1px 1px #fff;
     text-transform: uppercase;
-    font-size: 48px;
+    font-size: 36px;
     transition: 0.6s;
     animation: showtitle 0.4s ease-out forwards;
     font-family: "Montserrat", sans-serif;
-    line-height: 50px;
     padding: 0 0 5px 0;
   }
   &__subtext {
     color: #122738;
-    font-size: 22px;
+    font-size: 18px;
     left: -300px;
     position: relative;
+    padding: 0 0 5px 0;
     animation: showsubtitle 1s ease-out 0.5s forwards;
     text-shadow: 1px 1px 1px #fff;
     font-family: "Montserrat", sans-serif;
+  }
+}
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+  .pageTitle {
+    &__text {
+      font-size: 40px;
+    }
+    &__subtext {
+      font-size: 20px;
+    }
+  }
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+  .pageTitle {
+    &__text {
+      font-size: 44px;
+    }
+    &__subtext {
+      font-size: 22px;
+    }
+  }
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
+  .pageTitle {
+    &__text {
+      font-size: 48px;
+    }
+    &__subtext {
+      font-size: 24px;
+    }
   }
 }
