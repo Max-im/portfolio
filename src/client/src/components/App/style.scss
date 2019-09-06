@@ -14,7 +14,7 @@
 .container {
   width: 100%;
   min-width: 250px;
-  max-width: 100%;
+  max-width: 1170px;
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
@@ -112,21 +112,12 @@
 
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
-  .container {
-    max-width: 480px;
-  }
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
-  .container {
-    max-width: 600px;
-  }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
-  .container {
-    max-width: 980px;
-  }
 }

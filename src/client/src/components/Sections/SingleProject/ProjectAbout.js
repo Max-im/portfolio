@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 
-export default function SingleCommon({ project }) {
+export default function ProjectAbout({ project }) {
   return (
     <section className="section aboutProject">
       <div className="aboutProject__content">

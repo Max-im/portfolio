@@ -16,7 +16,8 @@ export class index extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onAddComment() {
+  onAddComment(e) {
+    e.preventDefault();
     const { commentText: text } = this.state;
     const { id: project_id } = this.props.match.params;
     const { id: author_id } = this.props.auth.user;
@@ -27,35 +28,27 @@ export class index extends Component {
   render() {
     const { user } = this.props.auth;
     return (
-      <div>
-        <h5>Add Comment</h5>
-        <div className="addComment">
-          <div className="addComment__user">
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="addComment__avatar"
-            />
-            <p className="addComment__name">{user.name}</p>
-          </div>
-          <textarea
-            onChange={this.onChange.bind(this)}
-            name="commentText"
-            id="commentText"
-            cols="30"
-            rows="7"
-            value={this.state.commentText}
-            className="addComment__textArea"
+      <form className="addComment" onSubmit={this.onAddComment.bind(this)}>
+        <textarea
+          onChange={this.onChange.bind(this)}
+          name="commentText"
+          id="commentText"
+          placeholder="Add comment"
+          cols="30"
+          rows="7"
+          value={this.state.commentText}
+          className="addComment__textArea"
+        />
+        <button className="addComment__btn" type="submit">
+          <img
+            src={user.avatar}
+            alt={user.name}
+            className="addComment__avatar"
           />
-          <i
-            className="far fa-comment addComment__btn"
-            onClick={this.onAddComment.bind(this)}
-          >
-            {" "}
-            Add Comment
-          </i>
-        </div>
-      </div>
+          <i className="far fa-comment addComment__icon" />
+          Add Comment
+        </button>
+      </form>
     );
   }
 }

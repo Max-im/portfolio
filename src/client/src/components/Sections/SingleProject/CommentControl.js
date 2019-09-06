@@ -16,7 +16,7 @@ export class index extends Component {
       <div>
         {(comment.author_id === user.id || user.isadmin) && (
           <i
-            className="fas fa-trash-alt btn btn__delete"
+            className="fas fa-trash-alt btn btn__delete comment__delete"
             onClick={this.props.deleteComment.bind(this, comment.id)}
           />
         )}

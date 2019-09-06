@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import "./style.scss";
 import { getProject } from "../../../store/actions/projectes";
 import PageTitle from "../../Common/PageTitle";
 import ProjectImg from "../../Sections/SingleProject/SingleImage";
-import SingleCommon from "../../Sections/SingleProject/SingleCommon";
+import ProjectAbout from "../../Sections/SingleProject/ProjectAbout";
 import SingleControl from "../../Sections/SingleProject/SingleControll";
 import ProjectRate from "../../Sections/SingleProject/ProjectRate";
 import Comments from "../../Sections/SingleProject/Comments";
@@ -26,22 +25,25 @@ export class SingleProject extends Component {
     const { project } = this.props.project;
     return (
       <div className="page">
-        {project && (
-          <div className="container singleProject">
-            <PageTitle
-              text={project.title}
-              subtext="Single project information"
-            />
-            <ProjectImg project={project} />
-            <SingleCommon project={project} />
-            {/* TODO aside similar */}
-            <ProjectSkills project={project} />
-            {/* TODO make stateless component */}
-            <ProjectRate />
-            <SingleControl />
-            <Comments />
-          </div>
-        )}
+        <div className="container singleProject">
+          {project && (
+            <>
+              <PageTitle
+                text={project.title}
+                subtext="Single project information"
+              />
+              <ProjectImg project={project} />
+              <ProjectAbout project={project} />
+              <ProjectSkills project={project} />
+            </>
+          )}
+
+          {/* TODO aside similar */}
+          {/* TODO make stateless component */}
+          <ProjectRate />
+          <SingleControl />
+          <Comments />
+        </div>
       </div>
     );
   }
