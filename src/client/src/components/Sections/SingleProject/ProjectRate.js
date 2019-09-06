@@ -31,29 +31,35 @@ export class index extends Component {
         <h3 className="section__title">Rate</h3>
         {likes && dislikes && (
           <div className="projectRate__icons">
-            {/* LIKES */}
-            <i
-              className={
-                isAuth && likes.includes(user.id)
-                  ? "fas fa-thumbs-up projectRate__icon projectRate__icon_active"
-                  : "fas fa-thumbs-up projectRate__icon"
-              }
-              onClick={this.onRate.bind(this, true)}
-            >
-              {"-" + likes.length}
-            </i>
+            <div className="projectRate__item">
+              {/* LIKES */}
+              <i
+                className={
+                  isAuth && likes.includes(user.id)
+                    ? "fas fa-thumbs-up projectRate__icon projectRate__icon_active"
+                    : "fas fa-thumbs-up projectRate__icon"
+                }
+                onClick={this.onRate.bind(this, true)}
+              />
+              <p className="tooltip projectRate__tooltip">
+                Like {likes.length}
+              </p>
+            </div>
 
             {/* DISLIKES */}
-            <i
-              className={
-                isAuth && dislikes.includes(user.id)
-                  ? "fas fa-thumbs-down projectRate__icon projectRate__icon_active"
-                  : "fas fa-thumbs-down projectRate__icon"
-              }
-              onClick={this.onRate.bind(this, false)}
-            >
-              {"-" + dislikes.length}
-            </i>
+            <div className="projectRate__item">
+              <i
+                className={
+                  isAuth && dislikes.includes(user.id)
+                    ? "fas fa-thumbs-down projectRate__icon projectRate__icon_active"
+                    : "fas fa-thumbs-down projectRate__icon"
+                }
+                onClick={this.onRate.bind(this, false)}
+              />
+              <p className="tooltip projectRate__tooltip">
+                Dislike {dislikes.length}
+              </p>
+            </div>
 
             {this.state.error && (
               <p className="section__error">{this.state.error}</p>
