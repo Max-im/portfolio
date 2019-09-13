@@ -6,13 +6,34 @@ import SkillItem from "./SkillItem";
 import AddCategory from "./AddCategory";
 import AddSkill from "./AddSkill";
 import Spinner from "../../Common/Spinner";
+import Category from "./Category";
 import CategoryControl from "./CategoryControl";
 import "./style.scss";
 
 export class index extends Component {
+  state = { catIds: [] };
+
   componentDidMount() {
     this.props.getSkills();
     this.props.getSkillsCategories();
+  }
+
+  componentDidUpdate(prev) {
+    if (!prev.skills.categories && this.props.skills.categories) {
+      const catIds = this.props.skills.categories.map(i => i.id);
+      this.setState({ catIds });
+    }
+  }
+
+  toggleActiveCategory(id) {
+    let newCat = this.state.catIds;
+
+    if (newCat.includes(id)) {
+      newCat = newCat.filter(item => item !== id);
+    } else {
+      newCat.push(id);
+    }
+    this.setState({ catIds: newCat });
   }
 
   static propTypes = {
@@ -32,30 +53,32 @@ export class index extends Component {
           <h3 className="section__title">Skills</h3>
 
           {categories && skills && (
-            <ul>
-              {categories.map(category => (
-                <li key={category.id} className="category__list">
-                  {/* Category data */}
-                  <div className="category__item">
-                    <h3 className="category__title">{category.category}</h3>
-                    {isadmin && <CategoryControl id={category.id} />}
-                  </div>
+            <>
+              <ul className="categories">
+                {categories.map(category => (
+                  <Category
+                    key={category.id}
+                    category={category}
+                    active={this.state.catIds}
+                    toggleActiveCategory={this.toggleActiveCategory.bind(
+                      this,
+                      category.id
+                    )}
+                  />
+                ))}
+              </ul>
 
-                  {/* skills list */}
-                  <ul className="skills__list">
-                    {skills
-                      .filter(v => v.category_id === category.id)
-                      .map(skill => (
-                        <SkillItem
-                          key={skill.id}
-                          skill={skill}
-                          isadmin={isadmin}
-                        />
-                      ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+              <ul className="skills__list">
+                {skills.map(skill => (
+                  <SkillItem
+                    key={skill.id}
+                    skill={skill}
+                    isadmin={isadmin}
+                    active={this.state.catIds}
+                  />
+                ))}
+              </ul>
+            </>
           )}
 
           {isadmin && (

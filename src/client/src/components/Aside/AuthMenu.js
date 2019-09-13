@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import { onLogin, onLoginError } from "../../../store/actions/auth";
+import { onLogin, onLoginError } from "../../store/actions/auth";
 
 export class AuthMenu extends Component {
   static propTypes = {

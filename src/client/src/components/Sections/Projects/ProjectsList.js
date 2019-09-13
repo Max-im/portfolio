@@ -33,7 +33,7 @@ export class ProjectsList extends Component {
     const { projects, loading, error } = this.props.portfolio;
 
     return (
-      <section className="projects">
+      <section className="section projects">
         {projects && (
           <ul className="projects__list">
             {projects.map(item => (
@@ -43,6 +43,7 @@ export class ProjectsList extends Component {
         )}
 
         {error && <p className="error">{error}</p>}
+
         {loading && <Spinner />}
       </section>
     );

@@ -13,8 +13,16 @@ export class index extends Component {
 
   onRate(sign) {
     const { id: project_id } = this.props.match.params;
+    const { isAuth } = this.props.auth;
+    if (!isAuth) return this.onLoginError();
     this.props.setRate({ project_id, sign });
   }
+
+  onLoginError() {
+    this.setState({ error: "You must login first!" });
+    setTimeout(() => this.setState({ error: null }), 5000);
+  }
+
   static propTypes = {
     setRate: PropTypes.func.isRequired,
     getProjectRate: PropTypes.func.isRequired,
@@ -27,39 +35,43 @@ export class index extends Component {
     const { isAuth, user } = this.props.auth;
 
     return (
-      <section className="section rate">
+      <section className="section projectRate">
         <h3 className="section__title">Rate</h3>
+
         {likes && dislikes && (
-          <div className="rate__icons">
-            {/* LIKES */}
-            <i
-              className={
-                isAuth && likes.includes(user.id)
-                  ? "fas fa-thumbs-up rate__icon rate__icon_active"
-                  : "fas fa-thumbs-up rate__icon"
-              }
-              onClick={this.onRate.bind(this, true)}
-            >
-              {"-" + likes.length}
-            </i>
+          <div className="projectRate__icons">
+            <div className="projectRate__item">
+              {/* LIKES */}
+              <i
+                className={
+                  isAuth && likes.includes(user.id)
+                    ? "fas fa-thumbs-up projectRate__icon projectRate__icon_active"
+                    : "fas fa-thumbs-up projectRate__icon"
+                }
+                onClick={this.onRate.bind(this, true)}
+              />
+              <p className="tooltip projectRate__tooltip">
+                Like {likes.length}
+              </p>
+            </div>
 
             {/* DISLIKES */}
-            <i
-              className={
-                isAuth && dislikes.includes(user.id)
-                  ? "fas fa-thumbs-down rate__icon rate__icon_active"
-                  : "fas fa-thumbs-down rate__icon"
-              }
-              onClick={this.onRate.bind(this, false)}
-            >
-              {"-" + dislikes.length}
-            </i>
-
-            {this.state.error && (
-              <p className="section__error">{this.state.error}</p>
-            )}
+            <div className="projectRate__item">
+              <i
+                className={
+                  isAuth && dislikes.includes(user.id)
+                    ? "fas fa-thumbs-down projectRate__icon projectRate__icon_active"
+                    : "fas fa-thumbs-down projectRate__icon"
+                }
+                onClick={this.onRate.bind(this, false)}
+              />
+              <p className="tooltip projectRate__tooltip">
+                Dislike {dislikes.length}
+              </p>
+            </div>
           </div>
         )}
+        {this.state.error && <p className="error">{this.state.error}</p>}
       </section>
     );
   }

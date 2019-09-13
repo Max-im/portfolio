@@ -140,7 +140,7 @@ export const formateAllProjects = (req, res) => {
 export const getProjectById = (req, res, next) => {
   client
     .query(
-      `SELECT proj.id, title, description, picture, proj.date, github, deploy, level,
+      `SELECT proj.id, title, description, picture, proj.date, s.range, github, deploy, level,
               skill_id, skill, skill_picture, range
         FROM projects AS proj
         JOIN projectlevels AS lev ON proj.level_id = lev.id
@@ -181,12 +181,16 @@ export const parseProjectData = (req, res) => {
       result.skills[item.skill_id] = {
         id: item.skill_id,
         title: item.skill,
-        picture: item.skill_picture
+        picture: item.skill_picture,
+        range: item.range
       };
     }
   });
 
-  result.skills = Object.keys(result.skills).map(key => result.skills[key]);
+  result.skills = Object.keys(result.skills)
+    .sort((a, b) => (a.range > b.range ? -1 : 1))
+    .map(key => result.skills[key]);
+
   res.json(result);
 };
 

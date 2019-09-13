@@ -49,8 +49,8 @@ export class index extends Component {
     const { comments, loading } = this.props.project;
     const isReady = comments.length > 0;
     return (
-      <section className="section">
-        <h3 className="section__title">comments</h3>
+      <section className="section projectComments">
+        <h3 className="section__title">Comments</h3>
         {!loading && (
           <>
             {isAuth && <AddComment />}

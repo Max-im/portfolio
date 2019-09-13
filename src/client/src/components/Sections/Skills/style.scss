@@ -1,10 +1,24 @@
-.category {
+.categories {
+  display: flex;
   &__item {
     display: flex;
-    font-weight: bold;
     line-height: 27px;
-    color: #122738;
-    margin: 0px 0 15px 0;
+    color: #aaa;
+    padding: 5px 20px;
+    border: 1px solid #aaa;
+    border-right: none;
+    margin: 0px 0 35px 0;
+    cursor: pointer;
+    &:last-child {
+      border-right: 1px solid #aaa;
+    }
+    &:hover {
+      color: #122738;
+    }
+    &_active {
+      background: #0088ff;
+      color: #fff;
+    }
   }
 }
 
@@ -17,31 +31,52 @@
 }
 
 .skill {
-  box-sizing: border-box;
   flex: 0 0 calc(100% / 8);
-  padding: 0 25px;
   margin: 0 0 40px 0;
+  padding: 0 25px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: 0.3s;
   &:hover {
     .skill__img {
       filter: none;
       opacity: 1;
     }
   }
+  &_hide {
+    animation: hideSkill 0.4s ease-in 0.3s forwards;
+  }
   &__link {
+    padding: 10px;
     text-align: center;
     display: block;
-    margin: 0 auto;
     color: #79589f;
     font-size: 14px;
     font-weight: bold;
     text-transform: capitalize;
+    transition: 0.3s;
+    &:hover {
+      background: #cdcdcd;
+    }
+  }
+  &__imgWrap {
+    background: #eee;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    border-radius: 100%;
   }
   &__img {
-    width: 50px;
+    width: 25px;
+    height: 25px;
     display: block;
-    margin: 0 auto 20px auto;
-    filter: grayscale(100);
-    opacity: 0.6;
+    margin: auto;
+  }
+  &__text {
+    color: #122738;
+    font-weight: 100;
+    letter-spacing: 1.2px;
   }
 }
 

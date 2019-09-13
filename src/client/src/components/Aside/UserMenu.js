@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { onLogout } from "../../../store/actions/auth";
-import defaultUser from "../../../assets/defaultUser.png";
+import { onLogout } from "../../store/actions/auth";
+import defaultUser from "../../assets/defaultUser.png";
 
 export class UserMenu extends Component {
   onLogout() {

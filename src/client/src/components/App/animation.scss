@@ -38,6 +38,16 @@
   }
 }
 
+@keyframes hideSkill {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
 @keyframes showsubtitle {
   from {
     left: -300px;

@@ -4,11 +4,11 @@ import "./reset.scss";
 import "./style.scss";
 import "./animation.scss";
 
-import Aside from "../Layout/Aside/Aside";
+import Aside from "../Aside/Aside";
 import Home from "../Pages/Home/Home";
 import Resume from "../Pages/Resume/Resume";
 import Portfolio from "../Pages/Portfolio/Portfolio";
-import SingleProject from "../Pages/SingleProject";
+import SingleProject from "../Pages/SingleProject/SingleProject";
 import Admin from "../Pages/Admin";
 import AdminRoute from "../Common/AdminRoute";
 import Logout from "../Common/Logout";

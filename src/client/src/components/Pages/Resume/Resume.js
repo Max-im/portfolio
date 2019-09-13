@@ -9,9 +9,9 @@ import "./style.scss";
 export default function Resume() {
   return (
     <div className="page resume">
-      <PageTitle text="resume" subtext="Information about me" />
+      <div className="container">
+        <PageTitle text="resume" subtext="Information about me" />
 
-      <div className="page__body">
         <About />
         <Skills />
         <Experience />
