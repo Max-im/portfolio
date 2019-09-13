@@ -83,6 +83,7 @@
     padding: 0px;
     background: #0088ff;
     transition: 0.6s;
+    text-shadow: 1px 1px 1px rgba(170, 170, 170, 0.8);
   }
   &__img {
     width: 100%;
@@ -105,7 +106,7 @@
     letter-spacing: 1.2px;
     font-weight: bold;
     background: #122738;
-    color: #aaa;
+    color: #fff;
     text-transform: uppercase;
     z-index: 1;
   }
