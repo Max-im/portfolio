@@ -16,10 +16,10 @@ export default function About() {
 
           <div className="about__social">
             <h5 className="about__name">Maksim Pozhydaiev</h5>
-            <Contacts />
             <Social />
           </div>
         </div>
+        <Contacts />
         <AboutText />
       </div>
     </section>

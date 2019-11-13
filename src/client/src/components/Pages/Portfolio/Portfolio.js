@@ -7,6 +7,7 @@ import ProjectsPagination from "../../Sections/Projects/ProjectsPagination";
 import AddProject from "../../Sections/Projects/AddProject";
 import PortfolioSort from "../../Sections/Projects/PortfolioSort";
 import PortfolioFilter from "../../Sections/Projects/PortfolioFilter";
+import Breadcrumbs from "../../Sections/Breadcrumbs/Breadcrumbs";
 
 export class Portfolio extends Component {
   static propTypes = {
@@ -15,17 +16,18 @@ export class Portfolio extends Component {
   };
 
   render() {
+    const breadcrumbs = [{ href: "/", title: "Home" }, { title: "Portfolio" }];
     const { isadmin } = this.props.auth.user;
     const { projectsNum } = this.props.portfolio;
     let subtext;
     if (!projectsNum) subtext = "Projects not found";
     if (projectsNum === 1) subtext = "Found - 1 project";
     if (projectsNum > 1) subtext = `Found - ${projectsNum} projects`;
-
     return (
       <div className="page portfolio">
         <div className="container portfolio__container">
           <PageTitle text="Portfolio" subtext={subtext} />
+          <Breadcrumbs arr={breadcrumbs} />
 
           {/* filter projects */}
           {isadmin && <AddProject />}

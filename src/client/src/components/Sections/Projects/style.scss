@@ -59,46 +59,52 @@
 
 .projectItem {
   margin: 0px 0 25px 0;
-  width: 33%;
+  width: 25%;
   padding: 0 10px;
   box-sizing: border-box;
   text-align: center;
   background: #fff;
-  &__overlay {
-    opacity: 0;
-    transition: 0.2s;
+  &__link {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    display: block;
+    transition: 0.3s;
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      .projectItem__hovered {
+        height: 60px;
+        transition: 0.3s;
+      }
+    }
+  }
+  &__meta {
     position: absolute;
-    background: rgba(255, 255, 255, 0.5);
-    top: 0;
+    bottom: 0px;
     left: 0;
     width: 100%;
-    height: 100%;
-    display: flex;
-  }
-  &__link {
-    margin: auto;
-    color: #fff;
-    font-size: 0px;
-    border-radius: 50%;
-    padding: 0px;
-    background: #0088ff;
-    transition: 0.4s;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
   }
   &__img {
     width: 100%;
-    transition: 0.4s;
+  }
+  &__hovered {
+    height: 0;
+    transition: 0.3s;
   }
   &__title {
     font-size: 22px;
     letter-spacing: 1.2px;
     font-variant: small-caps;
     color: #122738;
-    padding: 5px 0;
+    padding: 10px 0;
   }
   &__level {
     position: absolute;
     top: 10px;
-    right: -100%;
+    right: 0%;
     transition: 0.6s;
     padding: 4px 10px;
     font-size: 12px;
@@ -113,28 +119,6 @@
     font-size: 12px;
     color: #999;
     margin: 10px 0 0 0;
-  }
-  &__inner {
-    position: relative;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    overflow: hidden;
-    &:hover {
-      .projectItem__img {
-        transform: scale(1.1);
-        filter: grayscale(1);
-      }
-      .projectItem__overlay {
-        opacity: 1;
-      }
-      .projectItem__link {
-        font-size: 26px;
-        padding: 15px;
-      }
-      .projectItem__level {
-        right: 0px;
-      }
-    }
   }
 }
 
@@ -156,7 +140,7 @@
 }
 
 .pagination {
-  margin: 0 0 25px 0;
+  margin: 0 auto 50px auto;
   display: flex;
   &__item {
     color: #aaa;

@@ -9,6 +9,7 @@ import SingleControl from "../../Sections/SingleProject/SingleControll";
 import ProjectRate from "../../Sections/SingleProject/ProjectRate";
 import Comments from "../../Sections/SingleProject/Comments";
 import ProjectSkills from "../../Sections/SingleProject/ProjectSkills";
+import Breadcrumbs from "../../Sections/Breadcrumbs/Breadcrumbs";
 
 export class SingleProject extends Component {
   componentDidMount() {
@@ -23,6 +24,11 @@ export class SingleProject extends Component {
 
   render() {
     const { project } = this.props.project;
+    const breadcrumbs = [
+      { href: "/", title: "Home" },
+      { href: "/portfolio", title: "Portfolio" },
+      { title: "Project " + (project ? project.title : "") }
+    ];
     return (
       <div className="page">
         <div className="container singleProject">
@@ -32,6 +38,7 @@ export class SingleProject extends Component {
                 text={project.title}
                 subtext="Single project information"
               />
+              <Breadcrumbs arr={breadcrumbs} />
               <ProjectImg project={project} />
               <ProjectAbout project={project} />
               <ProjectSkills project={project} />
@@ -53,7 +60,4 @@ const mapStateToProps = state => ({
   project: state.project
 });
 
-export default connect(
-  mapStateToProps,
-  { getProject }
-)(SingleProject);
+export default connect(mapStateToProps, { getProject })(SingleProject);

@@ -9,19 +9,20 @@ export default function ProjectItem({ item }) {
 
   return (
     <li className="projectItem">
-      <div className="projectItem__inner">
+      <Link to={"/portfolio/project/" + item.id} className="projectItem__link">
         <img src={imgUrl} alt={item.title} className="projectItem__img" />
         <p className="projectItem__level">{item.level}</p>
-        <Link
-          to={"/portfolio/project/" + item.id}
-          className="projectItem__overlay"
-        >
-          <i className="fas fa-search projectItem__link" />
-        </Link>
-      </div>
-      <p className="projectItem__title">{item.title}</p>
-      <SkillsList item={item} />
-      <p className="projectItem__date">{new Date(item.date).toDateString()}</p>
+
+        <div className="projectItem__meta">
+          <p className="projectItem__title">{item.title}</p>
+          <div className="projectItem__hovered">
+            <SkillsList item={item} />
+            <p className="projectItem__date">
+              {new Date(item.date).toDateString()}
+            </p>
+          </div>
+        </div>
+      </Link>
     </li>
   );
 }

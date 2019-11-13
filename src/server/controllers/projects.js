@@ -69,7 +69,7 @@ export const getComments = (req, res) => {
  */
 export const getPageProjects = (req, res, next) => {
   const { quality, sort } = req.body;
-  const num = 3;
+  const num = 4;
   const skip = (req.params.page - 1) * num;
 
   client

@@ -1,0 +1,32 @@
+.breadcrumbs {
+  display: inline-block;
+  margin: 0 0 40px 0;
+  &__list {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 5px 5px;
+  }
+
+  &__slash {
+    margin: 0 10px;
+  }
+  &__link {
+    background: #0088ff;
+    padding: 5px 10px;
+    color: #fff;
+    margin: 0 30px 0 0;
+    position: relative;
+    &:after {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      display: block;
+      width: 19px;
+      height: 19px;
+      top: 4px;
+      right: -10px;
+      transform: rotate(45deg);
+      background: #0088ff;
+    }
+  }
+}
