@@ -16,7 +16,7 @@ export class Portfolio extends Component {
   };
 
   render() {
-    const breadcrumbs = [{ href: "/", title: "Home" }, { title: "Portfolio" }];
+    const breadcrumbs = ["home", "portfolio"];
     const { isadmin } = this.props.auth.user;
     const { projectsNum } = this.props.portfolio;
     let subtext;

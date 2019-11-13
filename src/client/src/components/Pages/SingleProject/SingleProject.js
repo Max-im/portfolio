@@ -24,11 +24,7 @@ export class SingleProject extends Component {
 
   render() {
     const { project } = this.props.project;
-    const breadcrumbs = [
-      { href: "/", title: "Home" },
-      { href: "/portfolio", title: "Portfolio" },
-      { title: "Project " + (project ? project.title : "") }
-    ];
+    const breadcrumbs = ["home", "portfolio", "project"];
     return (
       <div className="page">
         <div className="container singleProject">

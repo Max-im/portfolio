@@ -8,7 +8,7 @@ import Breadcrumbs from "../../Sections/Breadcrumbs/Breadcrumbs";
 import "./style.scss";
 
 export default function Resume() {
-  const breadcrumbs = [{ href: "/", title: "Home" }, { title: "Resume" }];
+  const breadcrumbs = ["home", "resume"];
   return (
     <div className="page resume">
       <div className="container">
