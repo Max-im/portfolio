@@ -43,7 +43,6 @@ VALUES
     ('https://github.com/max-im', 'GitHub', 'fab fa-github-square'),
     ('https://codepen.io/max-im', 'CodPen', 'fab fa-codepen');
 
-
 -- ======================================================================================
 
 
@@ -76,19 +75,19 @@ VALUES
 CREATE TABLE projects
 (
     id SERIAL PRIMARY KEY,
-    title CHARACTER varying(64),
+    title CHARACTER varying(64) NOT NULL,
     description CHARACTER varying(256),
     picture CHARACTER varying(128),
     custom_picture BOOLEAN DEFAULT false,
     date date DEFAULT CURRENT_TIMESTAMP,
     level_id INTEGER REFERENCES projectlevels(id),
-    github CHARACTER varying(64),
+    cource CHARACTER varying(64),
     deploy CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO projects
-    (title, description, level_id, github, deploy)
+    (title, description, level_id, cource, deploy)
 VALUES
     ('Wheel-shop', 'Page displays a wheel shop example', 3, 'https://github.com/Max-im/tires-shop', 'https://max-im.github.io/pages/wheels/'),
     ('Senior-citizen', 'Senior sitizen landing page implemented on atomic platform', 3, 'https://github.com/Max-im/senior-citizen-landing', 'https://max-im.github.io/pages/senior-citizen/'),
@@ -146,7 +145,7 @@ CREATE TABLE comments
     id SERIAL PRIMARY KEY,
     project_id INTEGER REFERENCES projects(id),
     author_id INTEGER REFERENCES users(id),
-    text CHARACTER varying(1024),
+    text CHARACTER varying(1024) NOT NULL,
     date date DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -154,16 +153,48 @@ CREATE TABLE comments
 INSERT INTO comments
     (project_id, author_id, text)
 VALUES
-    (1, 2, 'User first comment - project #1'),
-    (2, 2, 'User first comment - project #2'),
-    (3, 2, 'User first comment - project #3'),
-    (4, 2, 'User first comment - project #4'),
-    (5, 2, 'User first comment - project #5'),
-    (1, 1, 'Admin first comment - project #1'),
-    (2, 1, 'Admin first comment - project #2'),
-    (3, 1, 'Admin first comment - project #3'),
-    (4, 1, 'Admin first comment - project #4'),
-    (5, 1, 'Admin first comment - project #5');
+    (1, 2, 'comment 111'),
+    (2, 2, 'comment 111'),
+    (3, 2, 'comment 111'),
+    (4, 2, 'comment 111'),
+    (5, 2, 'comment 111'),
+    (6, 2, 'comment 111'),
+    (7, 2, 'comment 111'),
+    (8, 2, 'comment 111'),
+    (9, 2, 'comment 111'),
+    (10, 2, 'comment 111'),
+    (11, 2, 'comment 111'),
+    (12, 2, 'comment 111'),
+    (13, 2, 'comment 111'),
+    (14, 2, 'comment 111'),
+    (15, 2, 'comment 111'),
+    (16, 2, 'comment 111'),
+    (17, 2, 'comment 111'),
+    (18, 2, 'comment 111'),
+    (19, 2, 'comment 111'),
+    (20, 2, 'comment 111'),
+    (21, 2, 'comment 111'),
+    (22, 2, 'comment 111'),
+    (23, 2, 'comment 111'),
+    (24, 2, 'comment 111'),
+    (25, 2, 'comment 111'),
+    (26, 2, 'comment 111'),
+    (27, 2, 'comment 111'),
+    (28, 2, 'comment 111'),
+    (29, 2, 'comment 111'),
+    (30, 2, 'comment 111'),
+    (31, 2, 'comment 111'),
+    (32, 2, 'comment 111'),
+    (33, 2, 'comment 111'),
+    (34, 2, 'comment 111'),
+    (35, 2, 'comment 111'),
+    (36, 2, 'comment 111'),
+    (37, 2, 'comment 111'),
+    (38, 2, 'comment 111'),
+    (39, 2, 'comment 111'),
+    (40, 2, 'comment 111'),
+    (41, 2, 'comment 111'),
+    (42, 2, 'comment 111');
 
 -- ======================================================================================
 
@@ -198,8 +229,6 @@ VALUES
 
 
 
-
-
 -- SKILLS CATEGORIES
 -- ======================================================================================
 -- init
@@ -220,9 +249,6 @@ VALUES
     ('Tests', 4),
     ('Other', 5);
 -- ======================================================================================
-
-
-
 
 
 
@@ -422,21 +448,19 @@ CREATE TABLE contacts
     id SERIAL PRIMARY KEY,
     contact_title CHARACTER varying(64),
     contact_value CHARACTER varying(64),
-    contact_picture CHARACTER varying(64)
+    contact_picture CHARACTER varying(64),
+    classname CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO contacts
-    (contact_title, contact_value, contact_picture)
+    (contact_title, contact_value, contact_picture, classname)
 VALUES
-    ('Phone', '+38-050-77-23-169', 'phone.png'),
-    ('Email', 'pogidaevmo@gmail.com', 'mail.png'),
-    ('Skype', 'pogidaev_mo', 'skype.png');
+    ('Phone', '+38-050-77-23-169', 'phone.png', 'fas fa-phone-alt'),
+    ('Email', 'pogidaevmo@gmail.com', 'mail.png', 'fas fa-envelope'),
+    ('Skype', 'pogidaev_mo', 'skype.png', 'fab fa-skype');
 
 -- ======================================================================================
-
-
-
 
 
 
@@ -446,7 +470,6 @@ VALUES
 CREATE TABLE experience
 (
     id SERIAL PRIMARY KEY,
-    range INTEGER UNIQUE,
     exp_title CHARACTER varying(64),
     exp_company CHARACTER varying(64),
     exp_from DATE,
@@ -458,13 +481,13 @@ CREATE TABLE experience
 
 -- insert
 INSERT INTO experience
-    (range, exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
+    (exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
 VALUES
-    (1, 'Specialist', 'PrivateBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
-    (2, 'Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
-    (3, 'Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
-    (4, 'JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
-    (5, 'JS Developer', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
+    ('Specialist', 'PrivateBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
+    ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
+    ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
+    ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
+    ('JS Developer', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
 
 
 -- ======================================================================================
@@ -500,7 +523,6 @@ VALUES
 CREATE TABLE education
 (
     id SERIAL PRIMARY KEY,
-    range INTEGER UNIQUE,
     edu_photo CHARACTER varying(64),
     edu_title CHARACTER varying(64),
     edu_description CHARACTER varying(64),
@@ -511,11 +533,7 @@ CREATE TABLE education
 
 -- insert
 INSERT INTO education
-    (range, edu_photo, edu_title, edu_description, start_date, finish_date)
+    (edu_photo, edu_title, edu_description, start_date, finish_date)
 VALUES
-    (1, 'donnu.png', 'DON NU', 'Human resources management and labor economics', '2003-09-01', '2008-06-01');
+    ('donnu.png', 'DON NU', 'Human resources management and labor economics', '2003-09-01', '2008-06-01');
 -- ======================================================================================
-
-
-
-
