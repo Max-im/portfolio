@@ -1,12 +1,11 @@
 import React from "react";
 import SkillControl from "./SkillControl";
 
-export default function index({ skill, isadmin, active }) {
+export default function index({ skill, isadmin }) {
   return (
     <li
-      className={
-        active.includes(skill.category_id) ? "skill" : "skill skill_hide"
-      }
+      data-order={skill.category_id}
+      className={"skill mix cat" + skill.category_id}
     >
       <a
         href={skill.source}

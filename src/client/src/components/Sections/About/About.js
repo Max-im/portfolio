@@ -1,7 +1,5 @@
-import AboutText from "./AboutText";
-import AboutPhoto from "./AboutPhoto";
-import Contacts from "./Contacts";
-import Social from "../../Common/Social/Social";
+import DescribeBlock from "./DescribeBlock";
+import PhotoBlock from "./PhotoBlock";
 import "./style.scss";
 
 import React from "react";
@@ -12,15 +10,9 @@ export default function About() {
       <div className="container">
         <h3 className="section__title">About</h3>
         <div className="about__body">
-          <AboutPhoto />
-
-          <div className="about__social">
-            <h5 className="about__name">Maksim Pozhydaiev</h5>
-            <Social />
-          </div>
+          <PhotoBlock />
+          <DescribeBlock />
         </div>
-        <Contacts />
-        <AboutText />
       </div>
     </section>
   );

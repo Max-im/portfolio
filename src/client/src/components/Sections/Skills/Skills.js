@@ -9,8 +9,14 @@ import Spinner from "../../Common/Spinner";
 import Category from "./Category";
 import CategoryControl from "./CategoryControl";
 import "./style.scss";
+import mixitup from "mixitup";
 
 export class index extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+
   state = { catIds: [] };
 
   componentDidMount() {
@@ -25,17 +31,6 @@ export class index extends Component {
     }
   }
 
-  toggleActiveCategory(id) {
-    let newCat = this.state.catIds;
-
-    if (newCat.includes(id)) {
-      newCat = newCat.filter(item => item !== id);
-    } else {
-      newCat.push(id);
-    }
-    this.setState({ catIds: newCat });
-  }
-
   static propTypes = {
     skills: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
@@ -46,6 +41,9 @@ export class index extends Component {
   render() {
     const { skills, categories, error, loading } = this.props.skills;
     const { isadmin } = this.props.auth.user;
+    if (this.myRef.current) {
+      mixitup(this.myRef.current);
+    }
 
     return (
       <section className="section skills">
@@ -55,27 +53,17 @@ export class index extends Component {
           {categories && skills && (
             <>
               <ul className="categories">
+                <li data-filter="all" className="categories__item">
+                  All
+                </li>
                 {categories.map(category => (
-                  <Category
-                    key={category.id}
-                    category={category}
-                    active={this.state.catIds}
-                    toggleActiveCategory={this.toggleActiveCategory.bind(
-                      this,
-                      category.id
-                    )}
-                  />
+                  <Category key={category.id} category={category} />
                 ))}
               </ul>
 
-              <ul className="skills__list">
+              <ul className="skills__list" ref={this.myRef}>
                 {skills.map(skill => (
-                  <SkillItem
-                    key={skill.id}
-                    skill={skill}
-                    isadmin={isadmin}
-                    active={this.state.catIds}
-                  />
+                  <SkillItem key={skill.id} skill={skill} isadmin={isadmin} />
                 ))}
               </ul>
             </>
@@ -101,7 +89,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getSkillsCategories, getSkills }
-)(index);
+export default connect(mapStateToProps, { getSkillsCategories, getSkills })(
+  index
+);

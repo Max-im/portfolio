@@ -18,7 +18,7 @@ export class AboutText extends Component {
   render() {
     const { summary } = this.props.summary;
     return (
-      <div className="about__text">
+      <div className="about__describeBlock">
         <UpdatedText
           text={summary}
           field="summary"
@@ -33,7 +33,6 @@ const mapStateToProps = state => ({
   summary: state.summary
 });
 
-export default connect(
-  mapStateToProps,
-  { getSummary, updateSummary }
-)(AboutText);
+export default connect(mapStateToProps, { getSummary, updateSummary })(
+  AboutText
+);

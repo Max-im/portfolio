@@ -1,16 +1,9 @@
 import React from "react";
 
-export default function Category({ category, active, toggleActiveCategory }) {
+export default function Category({ category }) {
   return (
-    <div
-      className={
-        active.includes(category.id)
-          ? "categories__item categories__item_active"
-          : "categories__item"
-      }
-      onClick={toggleActiveCategory}
-    >
+    <li data-filter={".cat" + category.id} className="categories__item">
       {category.category}
-    </div>
+    </li>
   );
 }

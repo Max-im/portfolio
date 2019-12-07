@@ -2,46 +2,55 @@
   &__body {
     display: flex;
   }
+  &__photoBlock {
+    flex: 0 0 35%;
+  }
+  &__describeBlock {
+    flex: 0 0 65%;
+    text-indent: 35px;
+    text-align: justify;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 25px;
+    background: #122738;
+    font-weight: 100;
+    color: #fff;
+    display: flex;
+  }
   &__imgWrap {
-    flex: 0 0 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     overflow: hidden;
     background: #eee;
     border: 1px solid #aaa;
-    margin: 0 15px 0 0;
+    margin: 0 0 15px 0;
   }
   &__img {
     width: 100%;
   }
-  &__social {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
   &__name {
     color: #122738;
-    font-size: 22px;
-    margin: 0 0 10px 0;
-  }
-  &__text {
-    margin: 35px 0 0 0;
-    text-indent: 35px;
-    font-size: 18px;
-    line-height: 26px;
-    min-height: 70px;
+    font-size: 28px;
+    margin: 20px 0 10px 0;
   }
   &__contacts {
     display: flex;
-    margin: 35px 0 30px 0;
+    flex-direction: column;
+    margin: 30px 0;
   }
   &__contact {
     display: flex;
-    margin: 0 30px 3px 0;
+    margin: 0 0px 5px 0;
   }
   &__contactIcon {
     display: block;
-    width: 25px;
-    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+    box-sizing: border-box;
     margin: 0 5px 0 0;
     background: #122738;
     text-align: center;

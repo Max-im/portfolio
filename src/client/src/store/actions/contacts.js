@@ -16,14 +16,9 @@ export const getContacts = () => dispatch => {
   dispatch({ type: LOAD_CONTACTS, payload: true });
   axios
     .get("/contacts")
-    .then(({ data }) => {
-      dispatch({ type: SET_CONTACTS, payload: data });
-      dispatch({ type: LOAD_CONTACTS, payload: false });
-    })
-    .catch(err => {
-      dispatch(onError(err, CONTACT_ERROR, "Error getting contacts"));
-      dispatch({ type: LOAD_CONTACTS, payload: false });
-    });
+    .then(({ data }) => dispatch({ type: SET_CONTACTS, payload: data }))
+    .catch(er => dispatch(onError(er, CONTACT_ERROR, "Error getting contacts")))
+    .finally(() => dispatch({ type: LOAD_CONTACTS, payload: false }));
 };
 
 /**

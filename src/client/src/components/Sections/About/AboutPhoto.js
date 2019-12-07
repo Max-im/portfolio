@@ -1,10 +1,22 @@
-import React from "react";
-import avatar from "../../../assets/avatar.jpg";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default function AboutPhoto() {
-  return (
-    <div className="about__imgWrap">
-      <img src={avatar} alt="my photo" className="about__img" />
-    </div>
-  );
+export class AboutPhoto extends Component {
+  render() {
+    const { photo, name } = this.props.summary;
+    return (
+      <>
+        <div className="about__imgWrap">
+          <img src={photo} alt="my photo" className="about__img" />
+        </div>
+        <h5 className="about__name">{name}</h5>
+      </>
+    );
+  }
 }
+
+const mapStateToProps = state => ({
+  summary: state.summary
+});
+
+export default connect(mapStateToProps, {})(AboutPhoto);

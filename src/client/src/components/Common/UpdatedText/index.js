@@ -33,7 +33,7 @@ export class index extends Component {
     const { correcting, text: stateText } = this.state;
     const { text } = this.props;
     return (
-      <div>
+      <>
         {isadmin ? (
           <div>
             {!correcting && (
@@ -55,7 +55,7 @@ export class index extends Component {
         ) : (
           <p>{text}</p>
         )}
-      </div>
+      </>
     );
   }
 }
