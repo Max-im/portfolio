@@ -448,17 +448,16 @@ CREATE TABLE contacts
     id SERIAL PRIMARY KEY,
     contact_title CHARACTER varying(64),
     contact_value CHARACTER varying(64),
-    contact_picture CHARACTER varying(64),
     classname CHARACTER varying(64)
 );
 
 -- insert
 INSERT INTO contacts
-    (contact_title, contact_value, contact_picture, classname)
+    (contact_title, contact_value, classname)
 VALUES
-    ('Phone', '+38-050-77-23-169', 'phone.png', 'fas fa-phone-alt'),
-    ('Email', 'pogidaevmo@gmail.com', 'mail.png', 'fas fa-envelope'),
-    ('Skype', 'pogidaev_mo', 'skype.png', 'fab fa-skype');
+    ('Phone', '+38-050-77-23-169', 'fas fa-phone'),
+    ('Email', 'pogidaevmo@gmail.com', 'fas fa-envelope'),
+    ('Skype', 'pogidaev_mo', 'fab fa-skype');
 
 -- ======================================================================================
 

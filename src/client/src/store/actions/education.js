@@ -10,14 +10,9 @@ export const getEdu = () => dispatch => {
   dispatch({ type: LOADING_EDU, payload: true });
   axios
     .get("/education")
-    .then(({ data }) => {
-      dispatch({ type: GET_EDU, payload: data });
-      dispatch({ type: LOADING_EDU, payload: false });
-    })
-    .catch(err => {
-      dispatch(onError(err, EDU_ERROR, "Getting education error"));
-      dispatch({ type: LOADING_EDU, payload: false });
-    });
+    .then(({ data }) => dispatch({ type: GET_EDU, payload: data }))
+    .catch(err => dispatch(onError(err, EDU_ERROR, "Getting education error")))
+    .finally(() => dispatch({ type: LOADING_EDU, payload: false }));
 };
 
 /**

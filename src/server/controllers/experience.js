@@ -6,7 +6,7 @@ import client from "../db";
  */
 export const getAllExp = (req, res, next) => {
   client
-    .query(`SELECT * FROM experience ORDER BY range DESC`)
+    .query(`SELECT * FROM experience ORDER BY exp_from DESC`)
     .then(({ rows }) => res.json(rows))
     .catch(err => next(err));
 };

@@ -4,8 +4,8 @@ import "./reset.scss";
 import "./style.scss";
 import "./animation.scss";
 
-import Aside from "../Aside/Aside";
 import Home from "../Pages/Home/Home";
+import Aside from "../Aside/Aside";
 import Resume from "../Pages/Resume/Resume";
 import Portfolio from "../Pages/Portfolio/Portfolio";
 import SingleProject from "../Pages/SingleProject/SingleProject";

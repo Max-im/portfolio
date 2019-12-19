@@ -14,26 +14,10 @@ export class Contacts extends Component {
         {contacts &&
           contacts.map(item => (
             <li className="about__contact" key={item.id}>
-              <img
-                className="about__contactIcon"
-                src={"/photo/" + item.contact_picture}
-                alt={item.contact_title}
-              />
+              <i className={item.classname + " about__icon"}></i>
               <p className="about__contactValue">{item.contact_value}</p>
             </li>
           ))}
-        {/* <li className="about__contact">
-          <i className="fas fa-phone-square about__contactIcon" />
-          <p className="about__contactValue">+38 (050) 772-31-69</p>
-        </li>
-        <li className="about__contact">
-          <i className="fas fa-envelope about__contactIcon"></i>
-          <p className="about__contactValue">pogidaevmo@gmail.com</p>
-        </li>
-        <li className="about__contact">
-          <i className="fab fa-skype about__contactIcon"></i>
-          <p className="about__contactValue">pogidaev_mo</p>
-        </li> */}
       </ul>
     );
   }

@@ -1,5 +1,7 @@
 import DescribeBlock from "./DescribeBlock";
-import PhotoBlock from "./PhotoBlock";
+import AboutPhoto from "./AboutPhoto";
+import Contacts from "./Contacts";
+import Social from "../../Common/Social/Social";
 import "./style.scss";
 
 import React from "react";
@@ -10,7 +12,11 @@ export default function About() {
       <div className="container">
         <h3 className="section__title">About</h3>
         <div className="about__body">
-          <PhotoBlock />
+          <div className="about__photoBlock">
+            <AboutPhoto />
+            <Contacts />
+            <Social />
+          </div>
           <DescribeBlock />
         </div>
       </div>

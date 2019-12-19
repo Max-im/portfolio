@@ -22,7 +22,6 @@ export const getContacts = () => dispatch => {
 };
 
 /**
- *
  * @param {String} id
  * @description delete contact by id
  * @access private - admin only
@@ -31,11 +30,14 @@ export const deleteContact = id => dispatch => {
   axios
     .delete(`/admin/contacts/${id}`)
     .then(() => dispatch({ type: DELETE_CONTACT, payload: id }))
-    .catch(err =>
-      dispatch(onError(err, CONTACT_ERROR, "Error deleting contact"))
-    );
+    .catch(err => dispatch(onError(err, CONTACT_ERROR, "Delete contact")));
 };
 
+/**
+ * @param {Object} data
+ * @description create contact
+ * @access private - admin only
+ */
 export const createContact = data => dispatch => {
   const options = { headers: { "Content-Type": "multipart/form-data" } };
   const formData = new FormData();

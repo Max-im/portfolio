@@ -6,10 +6,7 @@ import client from "../db";
  */
 export const getAllEdu = (req, res, next) => {
   client
-    .query(
-      `SELECT * FROM education 
-        ORDER BY range DESC`
-    )
+    .query(`SELECT * FROM education ORDER BY start_date DESC`)
     .then(({ rows }) => res.json(rows))
     .catch(err => next(err));
 };

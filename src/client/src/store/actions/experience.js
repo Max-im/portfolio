@@ -10,14 +10,9 @@ export const getExp = () => dispatch => {
   dispatch({ type: LOAD_EXP, payload: true });
   axios
     .get("/experience")
-    .then(({ data }) => {
-      dispatch({ type: LOAD_EXP, payload: false });
-      dispatch({ type: SET_EXP, payload: data });
-    })
-    .catch(err => {
-      dispatch(onError(err, EXP_ERROR, "Getting experience error, try again"));
-      dispatch({ type: LOAD_EXP, payload: false });
-    });
+    .then(({ data }) => dispatch({ type: SET_EXP, payload: data }))
+    .catch(err => dispatch(onError(err, EXP_ERROR, "Getting experience error")))
+    .finally(() => dispatch({ type: LOAD_EXP, payload: false }));
 };
 
 /**

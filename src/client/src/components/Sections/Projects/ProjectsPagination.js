@@ -32,7 +32,7 @@ export class index extends Component {
   render() {
     const { projectsNum } = this.props.portfolio;
     let pagesNum, curPage, pages;
-    const itemsOnPage = 3;
+    const itemsOnPage = 12;
 
     if (projectsNum) {
       pagesNum = Math.ceil(projectsNum / itemsOnPage);
@@ -70,9 +70,7 @@ export class index extends Component {
                         ? "pagination__item pagination__item_active"
                         : "pagination__item"
                     }
-                    to={`/portfolio/${page}${
-                      this.props.history.location.search
-                    }`}
+                    to={`/portfolio/${page}${this.props.history.location.search}`}
                   >
                     {page}
                   </Link>
@@ -91,7 +89,4 @@ const mapStateToProps = state => ({
   portfolio: state.portfolio
 });
 
-export default connect(
-  mapStateToProps,
-  { getProjectsNum }
-)(withRouter(index));
+export default connect(mapStateToProps, { getProjectsNum })(withRouter(index));

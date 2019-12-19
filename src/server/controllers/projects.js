@@ -69,7 +69,7 @@ export const getComments = (req, res) => {
  */
 export const getPageProjects = (req, res, next) => {
   const { quality, sort } = req.body;
-  const num = 10;
+  const num = 12;
   const skip = (req.params.page - 1) * num;
 
   client
@@ -140,8 +140,8 @@ export const formateAllProjects = (req, res) => {
 export const getProjectById = (req, res, next) => {
   client
     .query(
-      `SELECT proj.id, title, description, picture, proj.date, s.range, github, deploy, level,
-              skill_id, skill, skill_picture, range
+      `SELECT proj.id, title, description, picture, proj.date, s.range, source, deploy, level,
+              skill_id, skill, skill_picture
         FROM projects AS proj
         JOIN projectlevels AS lev ON proj.level_id = lev.id
         JOIN projects_skills AS ps ON proj.id = ps.project_id

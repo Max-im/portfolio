@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
   summary: state.summary
 });
 
-export default connect(mapStateToProps, {})(AboutPhoto);
+export default connect(mapStateToProps)(AboutPhoto);

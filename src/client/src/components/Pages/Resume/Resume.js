@@ -14,7 +14,6 @@ export default function Resume() {
       <div className="container">
         <PageTitle text="resume" subtext="Information about me" />
         <Breadcrumbs arr={breadcrumbs} />
-
         <About />
         <Skills />
         <Experience />
