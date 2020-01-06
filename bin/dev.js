@@ -7,7 +7,7 @@ require("dotenv").config({ path: "./src/server/config/variables.env" });
 
 // eslint-disable-next-line
 const cors = require("cors");
-const app = require("../src/server");
+const app = require("../server");
 
 app.use(cors());
 
