@@ -15,36 +15,34 @@ import {
   PROJECTS_ERROR
 } from "../actions/constants";
 
+const _getProjectsNum = type => axios.get(`/projects/number/${type}`);
+const _getProjects = (page, type) => axios.get(`/projects/${page}/${type}`);
+
+export const getProjectsData = (page = 1, type) => dispatch => {
+  Promise.all([_getProjectsNum(type), _getProjects(page, type)])
+    .then(([num, projects]) => {
+      dispatch({ type: GET_PROJECTS, payload: projects.data });
+      dispatch({ type: GET_PROJECTS_NUM, payload: num.data });
+    })
+    .catch(err => console.log(err));
+};
+
 /**
  * @description get all projects
  * @access public
  */
 export const getProjects = (page, history) => dispatch => {
-  dispatch({ type: LOAD_PROJECTS, payload: true });
-
-  axios
-    .get(`/projects/${page}${history.location.search}`)
-    .then(res => {
-      dispatch({ type: GET_PROJECTS, payload: res.data });
-      dispatch({ type: LOAD_PROJECTS, payload: false });
-    })
-    .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects"));
-      dispatch({ type: LOAD_PROJECTS, payload: false });
-    });
-};
-
-/**
- * @description get all projects number
- * @access public
- */
-export const getProjectsNum = history => dispatch => {
-  axios
-    .get(`/projects/number${history.location.search}`)
-    .then(({ data }) => dispatch({ type: GET_PROJECTS_NUM, payload: data }))
-    .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects number"));
-    });
+  // dispatch({ type: LOAD_PROJECTS, payload: true });
+  // axios
+  //   .get(`/projects/${page}${history.location.search}`)
+  //   .then(res => {
+  //     dispatch({ type: GET_PROJECTS, payload: res.data });
+  //     dispatch({ type: LOAD_PROJECTS, payload: false });
+  //   })
+  //   .catch(err => {
+  //     dispatch(onError(err, PROJECTS_ERROR, "Error getting projects"));
+  //     dispatch({ type: LOAD_PROJECTS, payload: false });
+  //   });
 };
 
 /**

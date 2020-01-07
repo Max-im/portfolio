@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getSkills, getSkillsCategories } from "../../../store/actions/skills";
+import { getSkills } from "../../../store/actions/resume";
 import SkillItem from "./SkillItem";
-import AddCategory from "./AddCategory";
-import AddSkill from "./AddSkill";
 import Spinner from "../../Common/Spinner";
-import Category from "./Category";
-import CategoryControl from "./CategoryControl";
 import "./style.scss";
 import mixitup from "mixitup";
 
@@ -21,7 +17,6 @@ export class index extends Component {
 
   componentDidMount() {
     this.props.getSkills();
-    this.props.getSkillsCategories();
   }
 
   componentDidUpdate(prev) {
@@ -39,7 +34,7 @@ export class index extends Component {
   };
 
   render() {
-    const { skills, categories, error, loading } = this.props.skills;
+    const { skills, categories, error } = this.props.skills;
     const { isadmin } = this.props.auth.user;
     if (this.myRef.current) {
       mixitup(this.myRef.current);
@@ -53,31 +48,31 @@ export class index extends Component {
           {categories && skills && (
             <>
               <ul className="categories">
-                <li data-filter="all" className="categories__item">
+                {/* <li data-filter="all" className="categories__item">
                   All
-                </li>
+                </li> */}
                 {categories.map(category => (
-                  <Category key={category.id} category={category} />
+                  <li
+                    key={category.name}
+                    data-filter={
+                      category.name === "All" ? "all" : ".cat" + category.name
+                    }
+                    className="categories__item"
+                  >
+                    {category.name}
+                  </li>
                 ))}
               </ul>
 
               <ul className="skills__list" ref={this.myRef}>
                 {skills.map(skill => (
-                  <SkillItem key={skill.id} skill={skill} isadmin={isadmin} />
+                  <SkillItem key={skill.name} skill={skill} />
                 ))}
               </ul>
             </>
           )}
 
-          {isadmin && (
-            <>
-              <AddCategory />
-              <AddSkill />
-            </>
-          )}
-
           {error && <p className="error skills__error">{error}</p>}
-          {loading && <Spinner />}
         </div>
       </section>
     );
@@ -89,6 +84,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getSkillsCategories, getSkills })(
-  index
-);
+export default connect(mapStateToProps, { getSkills })(index);

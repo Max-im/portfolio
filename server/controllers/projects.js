@@ -1,5 +1,423 @@
 import client from "../db";
 
+/**
+ * @route PROJECTS
+ * @description get number of projects for pagination
+ */
+export const getProjectsNumber = (req, res) => {
+  res.json(10);
+};
+
+export const getPageProjects = (req, res) => {
+  res.json([
+    {
+      title: "Furniture-shop",
+      picture: null,
+      description: "Furniture shop page",
+      level: "Best",
+      date: "2020/01/01",
+      source: "https://github.com/Max-im/furniture",
+      show: "https://max-im.github.io/pages/furniture/",
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "redux",
+          category: "Frontend",
+          icon: "redux.png",
+          url: "https://redux.js.org/"
+        },
+        {
+          name: "vue",
+          category: "Other",
+          icon: "vue.png",
+          url: "https://vuejs.org/"
+        },
+        {
+          name: "ts",
+          category: "Backend",
+          icon: "ts.png",
+          url: "https://www.typescriptlang.org/"
+        },
+        {
+          name: "node",
+          category: "Backend",
+          icon: "node.png",
+          url: "https://nodejs.org/en/"
+        },
+        {
+          name: "rest",
+          category: "Database",
+          icon: "rest.png",
+          url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+        },
+        {
+          name: "mongodb",
+          category: "Database",
+          icon: "mongodb.png",
+          url: "https://www.mongodb.com/"
+        },
+        {
+          name: "postgres",
+          category: "Tests",
+          icon: "psql.png",
+          url: "https://www.postgresql.org/"
+        },
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Furniture-shop:Vue",
+      picture: null,
+      description: "Furniture shop page implemented on Vue framework",
+      level: "Best",
+      date: "2020/01/01",
+      source: "https://github.com/Max-im/furniture-shop",
+      show: "https://max-im.github.io/pages/furniture-Shop-home/",
+      skills: [
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Quotes",
+      picture: null,
+      description: "Landing page design example",
+      level: "Best",
+      date: "2020/01/01",
+      source: "https://github.com/Max-im/quotes",
+      show: "https://max-im.github.io/pages/quotes/",
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "postgres",
+          category: "Tests",
+          icon: "psql.png",
+          url: "https://www.postgresql.org/"
+        },
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Webcoders",
+      picture: null,
+      description: "Example meeting website page",
+      level: "Best",
+      date: "2020/01/01",
+      source: "https://github.com/Max-im/testWebCoder",
+      show: "https://max-im.github.io/pages/WebCoders/",
+      skills: [
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Node-simple-page",
+      picture: null,
+      description: "Example of webpage, implemented on Node.js",
+      level: "Medium",
+      date: "2020/01/01",
+      source: "https://github.com/Max-im/node-simple-page",
+      show: null,
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "redux",
+          category: "Frontend",
+          icon: "redux.png",
+          url: "https://redux.js.org/"
+        },
+        {
+          name: "vue",
+          category: "Other",
+          icon: "vue.png",
+          url: "https://vuejs.org/"
+        },
+        {
+          name: "postgres",
+          category: "Tests",
+          icon: "psql.png",
+          url: "https://www.postgresql.org/"
+        },
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Game:Arkanoid",
+      picture: null,
+      description: "Implementation arkanoid game",
+      level: "Medium",
+      date: "2020/01/01",
+      source: "https://codepen.io/max-im/pen/mddaNmZ",
+      show: "https://codepen.io/max-im/full/mddaNmZ",
+      skills: [
+        {
+          name: "node",
+          category: "Backend",
+          icon: "node.png",
+          url: "https://nodejs.org/en/"
+        },
+        {
+          name: "rest",
+          category: "Database",
+          icon: "rest.png",
+          url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+        },
+        {
+          name: "mongodb",
+          category: "Database",
+          icon: "mongodb.png",
+          url: "https://www.mongodb.com/"
+        },
+        {
+          name: "postgres",
+          category: "Tests",
+          icon: "psql.png",
+          url: "https://www.postgresql.org/"
+        },
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Pattern:Factory",
+      picture: null,
+      description: "Factory Pattern Implementation",
+      level: "Medium",
+      date: "2020/01/01",
+      source: "https://codepen.io/max-im/pen/abbRYVY",
+      show: "https://codepen.io/max-im/full/abbRYVY",
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "redux",
+          category: "Frontend",
+          icon: "redux.png",
+          url: "https://redux.js.org/"
+        },
+        {
+          name: "vue",
+          category: "Other",
+          icon: "vue.png",
+          url: "https://vuejs.org/"
+        },
+        {
+          name: "ts",
+          category: "Backend",
+          icon: "ts.png",
+          url: "https://www.typescriptlang.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "CSS:Filters",
+      picture: null,
+      description: "Visualisation of CSS Filters applying",
+      level: "Simple",
+      date: "2020/01/01",
+      source: "https://codepen.io/max-im/pen/abbXNab",
+      show: "https://codepen.io/max-im/full/abbXNab",
+      skills: [
+        {
+          name: "ts",
+          category: "Backend",
+          icon: "ts.png",
+          url: "https://www.typescriptlang.org/"
+        },
+        {
+          name: "node",
+          category: "Backend",
+          icon: "node.png",
+          url: "https://nodejs.org/en/"
+        },
+        {
+          name: "rest",
+          category: "Database",
+          icon: "rest.png",
+          url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+        },
+        {
+          name: "mongodb",
+          category: "Database",
+          icon: "mongodb.png",
+          url: "https://www.mongodb.com/"
+        },
+        {
+          name: "postgres",
+          category: "Tests",
+          icon: "psql.png",
+          url: "https://www.postgresql.org/"
+        },
+        {
+          name: "sequelize",
+          category: "Tests",
+          icon: "sequelize.png",
+          url: "https://sequelize.org/"
+        },
+        {
+          name: "mocha",
+          category: "Other",
+          icon: "mocha.png",
+          url: "https://mochajs.org/"
+        }
+      ]
+    },
+    {
+      title: "Algorithm:quickSort",
+      picture: null,
+      description: "Displaying algorithm of quick sort step by step",
+      level: "Simple",
+      date: "2020/01/01",
+      source: "https://codepen.io/max-im/pen/qBBgzeP",
+      show: "https://codepen.io/max-im/full/qBBgzeP",
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "redux",
+          category: "Frontend",
+          icon: "redux.png",
+          url: "https://redux.js.org/"
+        },
+        {
+          name: "vue",
+          category: "Other",
+          icon: "vue.png",
+          url: "https://vuejs.org/"
+        }
+      ]
+    },
+    {
+      title: "Algorithm:benchmark",
+      picture: null,
+      description:
+        "Sample to help estimate performance different loops approches in scopes",
+      level: "Simple",
+      date: "2020/01/01",
+      source: "https://codepen.io/max-im/pen/KKKJOpp",
+      show: "https://codepen.io/max-im/full/KKKJOpp",
+      skills: [
+        {
+          name: "react",
+          category: "Frontend",
+          icon: "react.png",
+          url: "https://reactjs.org/"
+        },
+        {
+          name: "node",
+          category: "Backend",
+          icon: "node.png",
+          url: "https://nodejs.org/en/"
+        },
+        {
+          name: "rest",
+          category: "Database",
+          icon: "rest.png",
+          url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+        },
+        {
+          name: "mongodb",
+          category: "Database",
+          icon: "mongodb.png",
+          url: "https://www.mongodb.com/"
+        }
+      ]
+    }
+  ]);
+};
+
 export const retrieveQuery = (req, res, next) => {
   const { quality, sort } = req.query;
 
@@ -16,18 +434,6 @@ export const retrieveQuery = (req, res, next) => {
       req.body.sort = sort ? sort : "level_id";
       return next();
     })
-    .catch(err => res.status(400).json(err));
-};
-
-/**
- * @route PROJECTS
- * @description get number of projects for pagination
- */
-export const getProjectsNumber = (req, res) => {
-  const { quality } = req.body;
-  return client
-    .query(`SELECT COUNT(*) FROM projects WHERE level_id IN (${quality})`)
-    .then(({ rows }) => res.json(rows[0].count - 0))
     .catch(err => res.status(400).json(err));
 };
 
@@ -60,28 +466,6 @@ export const getComments = (req, res) => {
       [project_id, skip]
     )
     .then(({ rows }) => res.json(rows))
-    .catch(err => res.status(400).json(err));
-};
-
-/**
- * @route PROJECTS
- * @description get all projects ids on appropriate page, save them in req.body.projectsIds
- */
-export const getPageProjects = (req, res, next) => {
-  const { quality, sort } = req.body;
-  const num = 12;
-  const skip = (req.params.page - 1) * num;
-
-  client
-    .query(
-      `SELECT id FROM projects WHERE level_id IN (${quality}) ORDER BY ${sort} OFFSET $1 LIMIT $2 `,
-      [skip, num]
-    )
-    .then(({ rows }) => {
-      if (rows.length === 0) return res.json([]);
-      req.body.ids = rows;
-      return next();
-    })
     .catch(err => res.status(400).json(err));
 };
 

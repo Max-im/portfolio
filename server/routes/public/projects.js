@@ -1,10 +1,7 @@
 import { Router } from "express";
 import {
-  getPageProjects,
-  retrieveQuery,
   getProjectsNumber,
-  getAllProjects,
-  formateAllProjects,
+  getPageProjects,
   getComments,
   getProjectLikes,
   getProjectById,
@@ -20,7 +17,7 @@ const router = Router();
  * @access public
  * @description get number of projects
  */
-router.get("/number", retrieveQuery, getProjectsNumber);
+router.get("/number/:type", getProjectsNumber);
 
 /**
  * @method GET
@@ -50,17 +47,6 @@ router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
  */
 router.get("/likes/:project_id", getProjectLikes);
 
-/**
- * @method GET
- * @access public
- * @description get all projects, attach skills, return to frontend
- */
-router.get(
-  "/:page",
-  retrieveQuery,
-  getPageProjects,
-  getAllProjects,
-  formateAllProjects
-);
+router.get("/:page/:type", getPageProjects);
 
 module.exports = router;

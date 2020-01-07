@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { getProjectsNum } from "../../../store/actions/projectes";
 
 export class index extends Component {
-  componentDidMount() {
-    this.props.getProjectsNum(this.props.history);
-    if (this.props.portfolio.projectsNum) this.backToRootIfOverflow();
-  }
-
   componentDidUpdate(prev) {
     if (!prev.portfolio.projectsNum && this.props.portfolio.projectsNum) {
       this.backToRootIfOverflow();
@@ -25,8 +19,7 @@ export class index extends Component {
   }
 
   static propTypes = {
-    portfolio: PropTypes.object.isRequired,
-    getProjectsNum: PropTypes.func.isRequired
+    portfolio: PropTypes.object.isRequired
   };
 
   render() {
@@ -89,4 +82,4 @@ const mapStateToProps = state => ({
   portfolio: state.portfolio
 });
 
-export default connect(mapStateToProps, { getProjectsNum })(withRouter(index));
+export default connect(mapStateToProps, {})(withRouter(index));

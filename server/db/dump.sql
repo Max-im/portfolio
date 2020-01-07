@@ -486,7 +486,7 @@ VALUES
     ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
     ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
     ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
-    ('JS Developer', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
+    ('Web Develper', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
 
 
 -- ======================================================================================

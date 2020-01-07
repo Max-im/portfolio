@@ -3,22 +3,12 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { connect } from "react-redux";
-import { getProjects, getProjectsNum } from "../../../store/actions/projectes";
 
 export class PortfolioFilter extends Component {
   state = { quality: [] };
 
-  componentDidMount() {
-    const { quality } = queryString.parse(this.props.history.location.search);
-    if (!quality) return;
-    const qualityArr = quality.split(",");
-    this.setState({ quality: qualityArr });
-  }
-
   static propTypes = {
-    portfolio: PropTypes.object.isRequired,
-    getProjects: PropTypes.func.isRequired,
-    getProjectsNum: PropTypes.func.isRequired
+    portfolio: PropTypes.object.isRequired
   };
 
   changeFilter(e) {
@@ -44,9 +34,6 @@ export class PortfolioFilter extends Component {
         this.props.history.push(`/portfolio?quality=${quality}`);
       }
     }
-
-    this.props.getProjects(1, this.props.history);
-    this.props.getProjectsNum(this.props.history);
   }
 
   render() {
@@ -120,7 +107,4 @@ const mapStateToProps = state => ({
   portfolio: state.portfolio
 });
 
-export default connect(
-  mapStateToProps,
-  { getProjects, getProjectsNum }
-)(withRouter(PortfolioFilter));
+export default connect(mapStateToProps, {})(withRouter(PortfolioFilter));

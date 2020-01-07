@@ -1,41 +1,34 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getEdu } from "../../../store/actions/education";
+import { getEducation } from "../../../store/actions/resume";
 import EduItem from "./EduItem";
-import AddEdu from "./AddEdu";
 import Spinner from "../../Common/Spinner";
-import "./style.scss";
+import "../../../sass/education.scss";
 
 export class index extends Component {
   componentDidMount() {
-    this.props.getEdu();
+    this.props.getEducation();
   }
 
   static propTypes = {
     education: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    getEdu: PropTypes.func.isRequired
+    getEducation: PropTypes.func.isRequired
   };
 
   render() {
-    const { edu, loading, error } = this.props.education;
-    const { isadmin } = this.props.auth.user;
+    const { list, loading, error } = this.props.education;
 
     return (
       <section className="section edu">
         <div className="container">
           <h3 className="section__title">Education</h3>
 
-          {edu && (
-            <ul className="edu__list">
-              {edu.map(eduItem => (
-                <EduItem key={eduItem.id} edu={eduItem} isadmin={isadmin} />
-              ))}
-            </ul>
-          )}
+          <ul className="edu__list">
+            {list && list.map(edu => <EduItem key={edu.id} edu={edu} />)}
+          </ul>
 
-          {isadmin && <AddEdu />}
           {error && <p className="error">{error}</p>}
           {loading && <Spinner />}
         </div>
@@ -49,7 +42,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getEdu }
-)(index);
+export default connect(mapStateToProps, { getEducation })(index);

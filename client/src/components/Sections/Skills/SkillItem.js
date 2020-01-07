@@ -1,14 +1,13 @@
 import React from "react";
-import SkillControl from "./SkillControl";
 
-export default function index({ skill, isadmin }) {
+export default function index({ skill }) {
   return (
     <li
-      data-order={skill.category_id}
-      className={"skill mix cat" + skill.category_id}
+      data-order={skill.category}
+      className={"skill mix cat" + skill.category}
     >
       <a
-        href={skill.source}
+        href={skill.url}
         target="_blank"
         rel="noopener noreferrer"
         className="skill__link"
@@ -16,13 +15,12 @@ export default function index({ skill, isadmin }) {
         <div className="skill__imgWrap">
           <img
             className="skill__img"
-            src={`/photo/${skill.skill_picture}`}
-            alt={skill.skill}
+            src={`/photo/${skill.icon}`}
+            alt={skill.name}
           />
         </div>
-        <p className="skill__text">{skill.skill}</p>
+        <p className="skill__text">{skill.name}</p>
       </a>
-      {isadmin && <SkillControl id={skill.id} />}
     </li>
   );
 }

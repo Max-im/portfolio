@@ -66,54 +66,48 @@
   background: #fff;
   &__link {
     position: relative;
-    overflow: hidden;
     width: 100%;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     display: block;
-    transition: 0.3s;
     &:hover {
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-      .projectItem__hovered {
-        height: 60px;
-        transition: 0.3s;
+      .projectItem__meta {
+        height: 50px;
       }
     }
   }
-  &__meta {
+  &__body {
     position: absolute;
-    bottom: 0px;
     left: 0;
     width: 100%;
+    bottom: 0px;
     background: #fff;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    padding: 0 0 15px 0;
+  }
+  &__meta {
+    overflow: hidden;
+    height: 0;
+    transition: 0.4s;
   }
   &__img {
     width: 100%;
-  }
-  &__hovered {
-    height: 0;
-    transition: 0.3s;
   }
   &__title {
     font-size: 22px;
     letter-spacing: 1.2px;
     font-variant: small-caps;
     color: #122738;
-    padding: 10px 0;
+    padding: 15px 0;
   }
   &__level {
-    position: absolute;
-    top: 10px;
-    right: 0%;
-    transition: 0.6s;
-    padding: 4px 10px;
     font-size: 12px;
     letter-spacing: 1.2px;
     font-weight: bold;
     background: #122738;
     color: #fff;
     text-transform: uppercase;
-    z-index: 1;
+    display: inline-block;
+    padding: 3px 15px;
+    margin: 0 0 5px 0;
   }
   &__date {
     font-size: 12px;

@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getExp } from "../../../store/actions/experience";
+import { getExperience } from "../../../store/actions/resume";
 import ExpItem from "./ExpItem";
 import AddExp from "./AddExp";
 import Spinner from "../../Common/Spinner";
-import "./style.scss";
+import "../../../sass/experience.scss";
 
 export class index extends Component {
   componentDidMount() {
-    this.props.getExp();
+    this.props.getExperience();
   }
 
   static propTypes = {
     experience: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    getExp: PropTypes.func.isRequired
+    getExperience: PropTypes.func.isRequired
   };
 
   render() {
-    const { exp, error, loading } = this.props.experience;
-    const { isadmin } = this.props.auth.user;
+    const { list, error, loading } = this.props.experience;
 
     return (
       <section className="section exp">
@@ -28,16 +27,11 @@ export class index extends Component {
           <h3 className="section__title">Experience</h3>
 
           <ul className="exp__list">
-            {exp &&
-              exp.map(expItem => (
-                <ExpItem key={expItem.id} exp={expItem} isadmin={isadmin} />
-              ))}
+            {list && list.map(exp => <ExpItem key={exp.id} exp={exp} />)}
           </ul>
 
           {error && <p className="error">{error}</p>}
-          {loading && <Spinner />}
         </div>
-        {isadmin && <AddExp />}
       </section>
     );
   }
@@ -48,7 +42,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getExp }
-)(index);
+export default connect(mapStateToProps, { getExperience })(index);

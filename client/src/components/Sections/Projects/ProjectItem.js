@@ -1,26 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SkillsList from "./SkillsList";
-import defaultPic from "../../../assets/project-default.jpg";
 
-export default function ProjectItem({ item }) {
-  let imgUrl = defaultPic;
-  if (item.custom_picture) imgUrl = `/photo/${item.picture}`;
-
+export default function ProjectItem({ project }) {
   return (
     <li className="projectItem">
-      <Link to={"/portfolio/project/" + item.id} className="projectItem__link">
-        <img src={imgUrl} alt={item.title} className="projectItem__img" />
-        <p className="projectItem__level">{item.level}</p>
-
-        <div className="projectItem__meta">
-          <p className="projectItem__title">{item.title}</p>
-          <div className="projectItem__hovered">
-            <SkillsList item={item} />
-            <p className="projectItem__date">
-              {new Date(item.date).toDateString()}
-            </p>
+      <Link
+        to={"/portfolio/project/" + project.id}
+        className="projectItem__link"
+      >
+        <img
+          src={`/photo/${project.picture}`}
+          alt={project.title}
+          className="projectItem__img"
+        />
+        <div className="projectItem__body">
+          <p className="projectItem__title">{project.title}</p>
+          <div className="projectItem__meta">
+            <p className="projectItem__level">{project.level}</p>
+            <SkillsList skills={project.skills} />
           </div>
+          <p className="projectItem__date">
+            {new Date(project.date).toDateString()}
+          </p>
         </div>
       </Link>
     </li>

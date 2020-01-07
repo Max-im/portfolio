@@ -6,10 +6,13 @@ import client from "../db";
  * @description get all categories
  */
 export const getCategories = (req, res) => {
-  client
-    .query(`SELECT * FROM skills_categories`)
-    .then(({ rows }) => res.json(rows))
-    .catch(err => res.status(400).json(err));
+  res.json([
+    { name: "Frontend" },
+    { name: "Backend" },
+    { name: "Database" },
+    { name: "Tests" },
+    { name: "Other" }
+  ]);
 };
 
 /**
@@ -17,11 +20,71 @@ export const getCategories = (req, res) => {
  * @description get all skills
  */
 export const getSkills = (req, res) => {
-  client
-    .query("SELECT * FROM skills")
-    .then(({ rows }) => res.json(rows))
-    .catch(err => res.status(400).json(err));
+  res.json([
+    {
+      name: "react",
+      category: "Frontend",
+      icon: "react.png",
+      url: "https://reactjs.org/"
+    },
+    {
+      name: "redux",
+      category: "Frontend",
+      icon: "redux.png",
+      url: "https://redux.js.org/"
+    },
+    {
+      name: "vue",
+      category: "Other",
+      icon: "vue.png",
+      url: "https://vuejs.org/"
+    },
+    {
+      name: "ts",
+      category: "Backend",
+      icon: "ts.png",
+      url: "https://www.typescriptlang.org/"
+    },
+    {
+      name: "node",
+      category: "Backend",
+      icon: "node.png",
+      url: "https://nodejs.org/en/"
+    },
+    {
+      name: "rest",
+      category: "Database",
+      icon: "rest.png",
+      url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+    },
+    {
+      name: "mongodb",
+      category: "Database",
+      icon: "mongodb.png",
+      url: "https://www.mongodb.com/"
+    },
+    {
+      name: "postgres",
+      category: "Tests",
+      icon: "psql.png",
+      url: "https://www.postgresql.org/"
+    },
+    {
+      name: "sequelize",
+      category: "Tests",
+      icon: "sequelize.png",
+      url: "https://sequelize.org/"
+    },
+    {
+      name: "mocha",
+      category: "Other",
+      icon: "mocha.png",
+      url: "https://mochajs.org/"
+    }
+  ]);
 };
+
+// ////////////////////////////////////////////////////////////
 
 /**
  * @type middleware

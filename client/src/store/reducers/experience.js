@@ -1,15 +1,15 @@
-import { SET_EXP, LOAD_EXP, EXP_ERROR } from "../actions/constants";
+import { GET_EXPERIENCE, LOAD_EXP, EXP_ERROR } from "../constants";
 
 const initialState = {
   loading: false,
-  exp: null,
+  list: null,
   error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_EXP:
-      return { ...state, exp: action.payload, error: null };
+    case GET_EXPERIENCE:
+      return { ...state, list: action.payload, error: null };
 
     case LOAD_EXP:
       return { ...state, loading: action.payload };

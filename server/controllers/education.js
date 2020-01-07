@@ -1,5 +1,17 @@
 import client from "../db";
 
+export const getEducation = (req, res) => {
+  res.json([
+    {
+      icon: "donnu.png",
+      title: "DON NU",
+      description: "Human resources management and labor economics",
+      from: "2003-09-01",
+      to: "2008-06-01"
+    }
+  ]);
+};
+
 /**
  * @type middleware
  * @description return all education items

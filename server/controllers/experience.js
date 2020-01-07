@@ -1,5 +1,59 @@
 import client from "../db";
 
+export const getExperience = (req, res) => {
+  res.json([
+    {
+      title: "Specialist",
+      company: "PrivateBank",
+      from: "2006-03-01",
+      to: "2007-06-01",
+      isCurrent: false,
+      icon: "privatbank.png",
+      description: "Conclusion of loan agreements; Attraction of consumers"
+    },
+    {
+      title: "Economist - Head of Labor and Wages Department",
+      company: "Regional gas company",
+      from: "2007-06-01",
+      to: "2014-09-01",
+      isCurrent: false,
+      icon: "gorgaz.png",
+      description:
+        "Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports"
+    },
+    {
+      title: "Engineer on the organization and standardization of work",
+      company: "Chernobyl nuclear power plant",
+      from: "2014-09-15",
+      to: "2018-01-08",
+      isCurrent: false,
+      icon: "chnpp.png",
+      description:
+        "Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions"
+    },
+    {
+      title: "JS Developer",
+      company: "iDeals solutions",
+      from: "2018-01-09",
+      to: "2019-09-06",
+      isCurrent: false,
+      icon: "ideals.png",
+      description:
+        "Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs"
+    },
+    {
+      title: "Web Develper",
+      company: "Astound Commerce",
+      from: "2019-09-09",
+      to: null,
+      isCurrent: true,
+      icon: "astound.png",
+      description:
+        "Develop complicated E-Commerce Solutions on Demandware platphorm"
+    }
+  ]);
+};
+
 /**
  * @type middleware
  * @description return all experience data

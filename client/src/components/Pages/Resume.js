@@ -15,9 +15,9 @@ export default function Resume() {
         <PageTitle text="resume" subtext="Information about me" />
         <Breadcrumbs arr={breadcrumbs} />
         <About />
-        {/* <Skills /> */}
-        {/* <Experience /> */}
-        {/* <Education /> */}
+        <Skills />
+        <Experience />
+        <Education />
       </div>
     </div>
   );
