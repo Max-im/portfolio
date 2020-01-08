@@ -2,68 +2,68 @@ import React, { Component } from "react";
 import queryString from "query-string";
 import { withRouter } from "react-router-dom";
 
-export class PortfolioSort extends Component {
-  state = { sort: "quality" };
+export class ProjectsAmount extends Component {
+  state = { amount: "6" };
 
   componentDidMount = () => {
     const { search } = this.props.location;
-    const { sort } = queryString.parse(search);
-    if (sort) {
-      this.setState({ sort });
+    const parsed = queryString.parse(search);
+    if (parsed.amount) {
+      this.setState({ amount: parsed.amount });
     }
   };
 
   onChange = e => {
     const { value } = e.target;
-    this.setState({ sort: value });
+    this.setState({ amount: value });
     const { pathname, search } = this.props.location;
     const parsed = queryString.parse(search);
-    if (value === "quality") {
-      delete parsed.sort;
+    if (value === "6") {
+      delete parsed.amount;
     } else {
-      parsed.sort = value;
+      parsed.amount = value;
     }
     const query = queryString.stringify(parsed);
     this.props.history.push({ pathname, search: `?${query}` });
   };
 
   render() {
-    const { sort } = this.state;
+    const { amount } = this.state;
     return (
       <div className="projectsAside__block">
-        <h5 className="projectsAside__title">Sort by</h5>
+        <h5 className="projectsAside__title">Show on page</h5>
         <div className="projectsAside__list">
-          <label className={sort === "quality" ? "btn btn_active" : "btn"}>
+          <label className={amount === "6" ? "btn btn_active" : "btn"}>
             <input
               type="radio"
               className="hide"
-              value="quality"
+              value="6"
               onChange={this.onChange}
-              checked={sort === "quality"}
+              checked={amount === "6"}
             />
-            Quality
+            6
           </label>
 
-          <label className={sort === "date" ? "btn btn_active" : "btn"}>
+          <label className={amount === "9" ? "btn btn_active" : "btn"}>
             <input
               className="hide"
               type="radio"
-              value="date"
+              value="9"
               onChange={this.onChange}
-              checked={sort === "date"}
+              checked={amount === "9"}
             />
-            Date
+            9
           </label>
 
-          <label className={sort === "title" ? "btn btn_active" : "btn"}>
+          <label className={amount === "15" ? "btn btn_active" : "btn"}>
             <input
               type="radio"
               className="hide"
-              value="title"
+              value="15"
               onChange={this.onChange}
-              checked={sort === "title"}
+              checked={amount === "15"}
             />
-            Title
+            15
           </label>
         </div>
       </div>
@@ -71,4 +71,4 @@ export class PortfolioSort extends Component {
   }
 }
 
-export default withRouter(PortfolioSort);
+export default withRouter(ProjectsAmount);

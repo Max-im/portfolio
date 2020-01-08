@@ -47,6 +47,6 @@ router.post("/likes", checkAuthPermission, addNewLike, removeLike, toggleLike);
  */
 router.get("/likes/:project_id", getProjectLikes);
 
-router.get("/:page/:type", getPageProjects);
+router.get("/:page", getPageProjects);
 
 module.exports = router;

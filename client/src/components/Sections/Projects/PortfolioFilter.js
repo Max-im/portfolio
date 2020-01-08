@@ -1,79 +1,81 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import queryString from 'query-string';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 
 export class PortfolioFilter extends Component {
   state = { quality: [] };
 
-  static propTypes = {
-    portfolio: PropTypes.object.isRequired
+  componentDidMount = () => {
+    const { search } = this.props.location;
+    const parsed = queryString.parse(search);
+    if (parsed.quality) {
+      const quality = parsed.quality.split(",");
+      this.setState({ quality });
+    }
   };
 
-  changeFilter(e) {
-    // change local state
+  onChange = e => {
+    const { name } = e.target;
     let newQuality = [];
-    if (this.state.quality.includes(e.target.name)) {
-      newQuality = this.state.quality.filter(item => item !== e.target.name);
+    if (this.state.quality.includes(name)) {
+      newQuality = this.state.quality.filter(item => item !== name);
     } else {
-      newQuality = [...this.state.quality, e.target.name];
+      newQuality = [...this.state.quality, name];
     }
     this.setState({ quality: newQuality });
-
-    // change URL
-    const { sort } = queryString.parse(this.props.history.location.search);
-    if (newQuality.length === 0) {
-      if (sort) this.props.history.push(`/portfolio?sort=${sort}`);
-      else this.props.history.push('/portfolio');
+    const { pathname, search } = this.props.location;
+    const parsed = queryString.parse(search);
+    if (newQuality.length > 0) {
+      parsed.quality = newQuality.join(",");
     } else {
-      const quality = newQuality.join(',');
-      if (sort) this.props.history.push(`/portfolio?quality=${quality}&sort=${sort}`);
-      else {
-        this.props.history.push(`/portfolio?quality=${quality}`);
-      }
+      delete parsed.quality;
     }
-  }
+    const query = queryString.stringify(parsed);
+    this.props.history.push({ pathname, search: `?${query}` });
+  };
 
   render() {
     const { quality } = this.state;
     return (
-      <div className="portfolioFilter">
+      <div className="projectsAside__block">
         <div>
-          <h5 className="portfolioSort__title">Filter</h5>
-          <div className="portfolioSort__list">
-            <label className={quality.includes('best') ? 'btn btn_active' : 'btn'}>
+          <h5 className="projectsAside__title">Filter</h5>
+          <div className="projectsAside__list">
+            <label
+              className={quality.includes("best") ? "btn btn_active" : "btn"}
+            >
               <input
                 type="checkbox"
                 name="best"
                 className="hide"
-                checked={quality.includes('best')}
-                data-meta="quality"
-                onChange={this.changeFilter.bind(this)}
+                checked={quality.includes("best")}
+                onChange={this.onChange}
               />
               Best
             </label>
 
-            <label className={quality.includes('medium') ? 'btn btn_active' : 'btn'}>
+            <label
+              className={quality.includes("medium") ? "btn btn_active" : "btn"}
+            >
               <input
                 type="checkbox"
                 name="medium"
-                data-meta="quality"
                 className="hide"
-                checked={quality.includes('medium')}
-                onChange={this.changeFilter.bind(this)}
+                checked={quality.includes("medium")}
+                onChange={this.onChange}
               />
               Medium
             </label>
 
-            <label className={quality.includes('simple') ? 'btn btn_active' : 'btn'}>
+            <label
+              className={quality.includes("simple") ? "btn btn_active" : "btn"}
+            >
               <input
                 type="checkbox"
                 name="simple"
-                data-meta="quality"
                 className="hide"
-                checked={quality.includes('simple')}
-                onChange={this.changeFilter.bind(this)}
+                checked={quality.includes("simple")}
+                onChange={this.onChange}
               />
               Simple
             </label>
@@ -84,8 +86,4 @@ export class PortfolioFilter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  portfolio: state.portfolio
-});
-
-export default connect(mapStateToProps, {})(withRouter(PortfolioFilter));
+export default withRouter(PortfolioFilter);

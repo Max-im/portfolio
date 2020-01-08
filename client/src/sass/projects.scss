@@ -15,7 +15,7 @@
     margin: 10px 0 5px 0;
     font-family: "Montserrat", sans-serif;
   }
-  &__content{
+  &__content {
     display: flex;
   }
 }
@@ -39,19 +39,18 @@
   width: 280px;
   box-sizing: border-box;
   border: 1px solid #eee;
-}
-
-.portfolioSort {
-  margin: 0 0 30px 0;
+  &__block {
+    margin: 0 0 25px 0;
+  }
+  &__title {
+    color: #777;
+    margin: 0 0 10px 0;
+  }
   &__list {
     display: flex;
     .btn {
       flex: 33%;
     }
-  }
-  &__title{
-    color: #777;
-    margin: 0 0 10px 0;
   }
 }
 
@@ -66,7 +65,9 @@
   &__link {
     position: relative;
     width: 100%;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    // box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border: 2px solid #eee;
+    box-sizing: border-box;
     display: block;
     &:hover {
       .projectItem__meta {
@@ -148,14 +149,11 @@
     line-height: 40px;
     text-align: center;
     &:hover {
-      color: #0088ff;
+      color: #122738;
     }
     &_active {
       background: #0088ff;
       color: #fff;
-      &:hover {
-        color: #fff;
-      }
     }
   }
   &:last-child {

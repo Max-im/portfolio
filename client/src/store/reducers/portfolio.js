@@ -1,12 +1,12 @@
 import {
-  LOAD_PROJECTS,
+  PROJECTS_READY,
   GET_PROJECTS,
   GET_PROJECTS_NUM,
   PROJECTS_ERROR
-} from "../actions/constants";
+} from "../constants";
 
 const initialState = {
-  loading: false,
+  isReady: false,
   projects: null,
   projectsNum: null,
   error: null
@@ -21,8 +21,8 @@ export default (state = initialState, action) => {
         error: null
       };
 
-    case LOAD_PROJECTS:
-      return { ...state, loading: action.payload };
+    case PROJECTS_READY:
+      return { ...state, isReady: action.payload };
 
     case GET_PROJECTS_NUM:
       return { ...state, projectsNum: action.payload };

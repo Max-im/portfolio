@@ -2,7 +2,6 @@ import axios from "axios";
 import { onError } from "./utils";
 import {
   GET_PROJECTS,
-  LOAD_PROJECTS,
   LOADING_COMMENTS,
   GET_PROJECTS_NUM,
   COMMENT_ERROR,
@@ -14,35 +13,21 @@ import {
   LOAD_PROJECT,
   PROJECTS_ERROR
 } from "../actions/constants";
+import { PROJECTS_READY } from "../constants";
 
 const _getProjectsNum = type => axios.get(`/projects/number/${type}`);
-const _getProjects = (page, type) => axios.get(`/projects/${page}/${type}`);
+const _getProj = (page, q) => axios.get(`/projects/${page}${q}`);
 
-export const getProjectsData = (page = 1, type) => dispatch => {
-  Promise.all([_getProjectsNum(type), _getProjects(page, type)])
+// TODO remove type
+export const getProjectsData = (query, page = 1, type) => dispatch => {
+  dispatch({ type: PROJECTS_READY, payload: false });
+  Promise.all([_getProjectsNum(type), _getProj(page, type, query)])
     .then(([num, projects]) => {
       dispatch({ type: GET_PROJECTS, payload: projects.data });
       dispatch({ type: GET_PROJECTS_NUM, payload: num.data });
+      dispatch({ type: PROJECTS_READY, payload: true });
     })
     .catch(err => console.log(err));
-};
-
-/**
- * @description get all projects
- * @access public
- */
-export const getProjects = (page, history) => dispatch => {
-  // dispatch({ type: LOAD_PROJECTS, payload: true });
-  // axios
-  //   .get(`/projects/${page}${history.location.search}`)
-  //   .then(res => {
-  //     dispatch({ type: GET_PROJECTS, payload: res.data });
-  //     dispatch({ type: LOAD_PROJECTS, payload: false });
-  //   })
-  //   .catch(err => {
-  //     dispatch(onError(err, PROJECTS_ERROR, "Error getting projects"));
-  //     dispatch({ type: LOAD_PROJECTS, payload: false });
-  //   });
 };
 
 /**
@@ -120,7 +105,7 @@ export const createProject = projData => dispatch => {
 
   axios
     .post("/admin/projects", formData, options)
-    .then(() => dispatch(getProjects()))
+    .then(() => {})
     .catch(err =>
       dispatch(onError(err, PROJECTS_ERROR, "Error creating project"))
     );
