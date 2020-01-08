@@ -1,5 +1,5 @@
 import {
-  LOADING_SKILLS,
+  SKILLS_READY,
   GET_SKILLS,
   GET_CATEGORIES,
   SKILL_ERROR
@@ -14,8 +14,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_SKILLS:
-      return { ...state, loading: action.payload };
+    case SKILLS_READY:
+      return { ...state, isReady: action.payload };
 
     case GET_SKILLS:
       return { ...state, skills: action.payload, error: null };

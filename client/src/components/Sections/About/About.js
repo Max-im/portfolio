@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Contacts from "./Contacts";
 import Social from "../../Common/Social/Social";
+import Spinner from "../../Common/Spinner";
 import { getAbout } from "../../../store/actions/resume";
 import "../../../sass/about.scss";
 
 export class About extends Component {
   componentDidMount() {
-    this.props.getAbout();
+    if (!this.props.about.isReady) {
+      this.props.getAbout();
+    }
   }
 
   render() {
@@ -37,6 +40,7 @@ export class About extends Component {
             </div>
           )}
         </div>
+        {!about.isReady && <Spinner />}
       </section>
     );
   }

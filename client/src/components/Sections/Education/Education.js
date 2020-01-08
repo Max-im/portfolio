@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getEducation } from "../../../store/actions/resume";
 import EduItem from "./EduItem";
 import Spinner from "../../Common/Spinner";
+import { getEducation } from "../../../store/actions/resume";
 import "../../../sass/education.scss";
 
 export class index extends Component {
   componentDidMount() {
-    this.props.getEducation();
+    if (!this.props.education.isReady) {
+      this.props.getEducation();
+    }
   }
 
   static propTypes = {
@@ -18,7 +20,7 @@ export class index extends Component {
   };
 
   render() {
-    const { list, loading, error } = this.props.education;
+    const { list, isReady, error } = this.props.education;
 
     return (
       <section className="section edu">
@@ -26,11 +28,11 @@ export class index extends Component {
           <h3 className="section__title">Education</h3>
 
           <ul className="edu__list">
-            {list && list.map(edu => <EduItem key={edu.id} edu={edu} />)}
+            {isReady && list.map(edu => <EduItem key={edu.id} edu={edu} />)}
           </ul>
 
           {error && <p className="error">{error}</p>}
-          {loading && <Spinner />}
+          {!isReady && <Spinner />}
         </div>
       </section>
     );

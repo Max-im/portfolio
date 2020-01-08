@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   GET_ABOUT,
   GET_SKILLS,
+  SKILLS_READY,
   GET_CATEGORIES,
   GET_EXPERIENCE,
   GET_EDUCATION
@@ -18,6 +19,7 @@ const _getSkills = () => axios.get("/resume/skills");
 const _getCategories = () => axios.get("/resume/skills-categories");
 
 export const getSkills = () => dispatch => {
+  dispatch({type: SKILLS_READY, payload: false});
   Promise.all([_getSkills(), _getCategories()])
     .then(([skills, categories]) => {
       dispatch({ type: GET_SKILLS, payload: skills.data });
@@ -27,7 +29,7 @@ export const getSkills = () => dispatch => {
       });
     })
     .catch(err => console.log(err))
-    .finally();
+    .finally(() => dispatch({type: SKILLS_READY, payload: true}));
 };
 
 export const getExperience = () => dispatch => {

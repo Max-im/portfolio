@@ -20,7 +20,7 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const GET_SKILLS = "GET_SKILLS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SKILL_ERROR = "SKILL_ERROR";
-export const LOADING_SKILLS = "LOADING_SKILLS";
+export const SKILLS_READY = "SKILLS_READY";
 
 export const SET_CONTACTS = "SET_CONTACTS";
 export const LOAD_CONTACTS = "LOAD_CONTACTS";
@@ -47,3 +47,4 @@ export const SCROLL_PAGE = "SCROLL_PAGE";
 // =======================
 export const GET_ABOUT = "GET_ABOUT";
 export const GET_EXPERIENCE = "GET_EXPERIENCE";
+

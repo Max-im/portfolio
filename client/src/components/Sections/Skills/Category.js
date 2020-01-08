@@ -1,9 +1,12 @@
-import React from "react";
+import React from 'react';
 
 export default function Category({ category }) {
   return (
-    <li data-filter={".cat" + category.id} className="categories__item">
-      {category.category}
+    <li
+      data-filter={category.name === 'All' ? 'all' : '.cat' + category.name}
+      className="categories__item"
+    >
+      {category.name}
     </li>
   );
 }
