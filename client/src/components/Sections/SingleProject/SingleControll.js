@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { deleteProject } from "../../../store/actions/projectes";
+import { deleteProject } from "../../../store/actions/projects";
 
 export class index extends Component {
   onDelete(id) {

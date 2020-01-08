@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { setRate, getProjectRate } from "../../../store/actions/projectes";
+import { setRate, getProjectRate } from "../../../store/actions/projects";
 
 export class index extends Component {
   state = { error: null };

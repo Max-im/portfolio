@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteComment } from "../../../store/actions/projectes";
+import { deleteComment } from "../../../store/actions/projects";
 
 export class index extends Component {
   static propTypes = {

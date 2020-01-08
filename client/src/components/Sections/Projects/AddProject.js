@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Input from "../../Common/Input";
-import { createProject } from "../../../store/actions/projectes";
+import { createProject } from "../../../store/actions/projects";
 import SelectSkills from "../../Common/SelectSkills";
 import Select from "../../Common/Select";
 

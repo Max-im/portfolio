@@ -8,7 +8,7 @@ import ProjectsPagination from '../Sections/Projects/ProjectsPagination';
 import PortfolioSort from '../Sections/Projects/PortfolioSort';
 import PortfolioFilter from '../Sections/Projects/PortfolioFilter';
 import ProjectsAside from '../Sections/Projects/ProjectsAside';
-import { getProjectsData } from '../../store/actions/projectes';
+import { getProjectsData } from '../../store/actions/projects';
 import '../../sass/projects.scss';
 
 export class Projects extends Component {
@@ -20,6 +20,10 @@ export class Projects extends Component {
 
   componentDidMount() {
     this.props.getProjectsData();
+  }
+
+  componentDidUpdate(prev) {
+    console.log(prev)
   }
 
   render() {

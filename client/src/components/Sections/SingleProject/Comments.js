@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
-import { getProjectComments } from "../../../store/actions/projectes";
+import { getProjectComments } from "../../../store/actions/projects";
 
 export class index extends Component {
   state = { step: 1 };

@@ -16,14 +16,22 @@ export class Skills extends Component {
 
   state = { catIds: [] };
 
-  componentDidMount() {
+  componentDidMount = () => {
     if (!this.props.skills.isReady) {
       this.props.getSkills();
+    } else {
+      this.initMixitup();
     }
   }
 
-  componentDidUpdate(prev) {
+  componentDidUpdate = (prev) => {
     if (!prev.skills.categories && this.props.skills.categories) {
+      this.initMixitup();
+    }
+  }
+
+  initMixitup = () => {
+    if (!this.props.skills.error) {
       const catIds = this.props.skills.categories.map(i => i.id);
       this.setState({ catIds });
     }
@@ -45,7 +53,7 @@ export class Skills extends Component {
         <div className="container">
           <h3 className="section__title">Skills</h3>
 
-          {!error && isReady && (
+          {skills && categories && (
             <>
               <ul className="categories">
                 {categories.map(cat => (

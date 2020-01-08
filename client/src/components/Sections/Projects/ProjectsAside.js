@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PortfolioSort from './PortfolioSort';
+import PortfolioFilter from './PortfolioFilter';
 
 class ProjectsAside extends Component {
   state = { mt: 30 }
@@ -25,7 +27,8 @@ class ProjectsAside extends Component {
   render(){
     return (
       <div className="projectsAside" style={{marginTop: this.state.mt}}>
-       lorem
+       <PortfolioSort />
+       <PortfolioFilter />
       </div>
     );
   }

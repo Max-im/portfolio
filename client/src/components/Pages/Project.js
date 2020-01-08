@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProject } from "../../store/actions/projectes";
+import { getProject } from "../../store/actions/projects";
 import PageTitle from "../Common/PageTitle";
 import ProjectImg from "../Sections/SingleProject/SingleImage";
 import ProjectAbout from "../Sections/SingleProject/ProjectAbout";

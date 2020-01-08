@@ -85,28 +85,24 @@
 }
 
 .btn {
-  width: 27px;
-  height: 27px;
-  line-height: 27px;
   text-align: center;
+  padding: 7px 12px;
   cursor: pointer;
-  border-radius: 50%;
+  color: #aaa;
+  background: #fff;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  background: #fff;
   &:hover {
-    transition: 0.1s;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    background: #fff;
+    color: #122738;
   }
-  &__delete {
-    color: red;
+  &_active{
+    background: #0088ff;
+    color: #fff;
   }
-  &__edit {
-    color: gray;
-  }
-  &_small {
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    font-size: 14px;
+  &:first-child {
+    border-left: 1px solid #aaa;
   }
 }
 
