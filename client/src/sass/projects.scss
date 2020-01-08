@@ -15,6 +15,9 @@
     margin: 10px 0 5px 0;
     font-family: "Montserrat", sans-serif;
   }
+  &__content{
+    display: flex;
+  }
 }
 
 .projects {
@@ -26,6 +29,16 @@
     max-width: 1170px;
     margin: auto;
   }
+}
+
+.projectsAside {
+  padding: 15px;
+  align-self: start;
+  min-height: 600px;
+  order: 1;
+  width: 280px;
+  box-sizing: border-box;
+  border: 1px solid #eee;
 }
 
 .portfolioSort {
@@ -92,7 +105,7 @@
     width: 100%;
   }
   &__title {
-    font-size: 22px;
+    font-size: 18px;
     letter-spacing: 1.2px;
     font-variant: small-caps;
     color: #122738;

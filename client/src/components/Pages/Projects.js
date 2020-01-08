@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import PageTitle from "../Common/PageTitle";
-import ProjectsList from "../Sections/Projects/ProjectsList";
-import ProjectsPagination from "../Sections/Projects/ProjectsPagination";
-import PortfolioSort from "../Sections/Projects/PortfolioSort";
-import PortfolioFilter from "../Sections/Projects/PortfolioFilter";
-import Breadcrumbs from "../Sections/Breadcrumbs/Breadcrumbs";
-import { getProjectsData } from "../../store/actions/projectes";
-import "../../sass/projects.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import PageTitle from '../Common/PageTitle';
+import Breadcrumbs from '../Sections/Breadcrumbs/Breadcrumbs';
+import ProjectsList from '../Sections/Projects/ProjectsList';
+import ProjectsPagination from '../Sections/Projects/ProjectsPagination';
+import PortfolioSort from '../Sections/Projects/PortfolioSort';
+import PortfolioFilter from '../Sections/Projects/PortfolioFilter';
+import ProjectsAside from '../Sections/Projects/ProjectsAside';
+import { getProjectsData } from '../../store/actions/projectes';
+import '../../sass/projects.scss';
 
 export class Projects extends Component {
   static propTypes = {
@@ -22,11 +23,11 @@ export class Projects extends Component {
   }
 
   render() {
-    const breadcrumbs = ["home", "portfolio"];
+    const breadcrumbs = ['home', 'portfolio'];
     const { projectsNum, projects } = this.props.portfolio;
     let subtext;
-    if (!projectsNum) subtext = "Projects not found";
-    else if (projectsNum === 1) subtext = "Found - 1 project";
+    if (!projectsNum) subtext = 'Projects not found';
+    else if (projectsNum === 1) subtext = 'Found - 1 project';
     else if (projectsNum > 1) subtext = `Found - ${projectsNum} projects`;
 
     return (
@@ -35,12 +36,15 @@ export class Projects extends Component {
           <PageTitle text="Portfolio" subtext={subtext} />
           <Breadcrumbs arr={breadcrumbs} />
 
-          <div className="portfolio__filter">
-            {/* <PortfolioFilter /> */}
-            {/* <PortfolioSort /> */}
+          <div className="portfolio__content">
+            <ProjectsAside />
+            {/* <div className="portfolio__filter"> */}
+              {/* <PortfolioFilter /> */}
+              {/* <PortfolioSort /> */}
+            {/* </div> */}
+            <ProjectsList projects={projects} />
           </div>
-          <ProjectsList projects={projects} />
-          {/* <ProjectsPagination /> */}
+            {/* <ProjectsPagination /> */}
         </div>
       </div>
     );
