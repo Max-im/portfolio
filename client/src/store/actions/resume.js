@@ -25,7 +25,7 @@ export const getSkills = () => dispatch => {
       dispatch({ type: GET_SKILLS, payload: skills.data });
       dispatch({
         type: GET_CATEGORIES,
-        payload: [{ name: "All" }, ...categories.data]
+        payload: [{ id: 'all', name: "All" }, ...categories.data]
       });
     })
     .catch(err => console.log(err))

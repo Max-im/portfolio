@@ -3,6 +3,7 @@ import client from "../db";
 export const getEducation = (req, res) => {
   res.json([
     {
+      id: 1,
       icon: "donnu.png",
       title: "DON NU",
       description: "Human resources management and labor economics",

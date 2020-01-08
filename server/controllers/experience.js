@@ -3,6 +3,7 @@ import client from "../db";
 export const getExperience = (req, res) => {
   res.json([
     {
+      id: 1,
       title: "Specialist",
       company: "PrivateBank",
       from: "2006-03-01",
@@ -12,6 +13,7 @@ export const getExperience = (req, res) => {
       description: "Conclusion of loan agreements; Attraction of consumers"
     },
     {
+      id: 2,
       title: "Economist - Head of Labor and Wages Department",
       company: "Regional gas company",
       from: "2007-06-01",
@@ -22,6 +24,7 @@ export const getExperience = (req, res) => {
         "Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports"
     },
     {
+      id: 3,
       title: "Engineer on the organization and standardization of work",
       company: "Chernobyl nuclear power plant",
       from: "2014-09-15",
@@ -32,6 +35,7 @@ export const getExperience = (req, res) => {
         "Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions"
     },
     {
+      id: 4,
       title: "JS Developer",
       company: "iDeals solutions",
       from: "2018-01-09",
@@ -42,6 +46,7 @@ export const getExperience = (req, res) => {
         "Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs"
     },
     {
+      id: 5,
       title: "Web Develper",
       company: "Astound Commerce",
       from: "2019-09-09",

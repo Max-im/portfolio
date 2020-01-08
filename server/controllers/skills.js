@@ -7,11 +7,11 @@ import client from "../db";
  */
 export const getCategories = (req, res) => {
   res.json([
-    { name: "Frontend" },
-    { name: "Backend" },
-    { name: "Database" },
-    { name: "Tests" },
-    { name: "Other" }
+    { id: 1, name: "Frontend" },
+    { id: 2, name: "Backend" },
+    { id: 3, name: "Database" },
+    { id: 4, name: "Tests" },
+    { id: 5, name: "Other" }
   ]);
 };
 
@@ -24,60 +24,70 @@ export const getSkills = (req, res) => {
     {
       name: "react",
       category: "Frontend",
+      id: 1,
       icon: "react.png",
       url: "https://reactjs.org/"
     },
     {
       name: "redux",
       category: "Frontend",
+      id: 2,
       icon: "redux.png",
       url: "https://redux.js.org/"
     },
     {
       name: "vue",
       category: "Other",
+      id: 3,
       icon: "vue.png",
       url: "https://vuejs.org/"
     },
     {
       name: "ts",
       category: "Backend",
+      id: 4,
       icon: "ts.png",
       url: "https://www.typescriptlang.org/"
     },
     {
       name: "node",
       category: "Backend",
+      id: 5,
       icon: "node.png",
       url: "https://nodejs.org/en/"
     },
     {
       name: "rest",
       category: "Database",
+      id: 6,
       icon: "rest.png",
       url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
     },
     {
       name: "mongodb",
       category: "Database",
+      id: 7,
       icon: "mongodb.png",
       url: "https://www.mongodb.com/"
     },
     {
       name: "postgres",
       category: "Tests",
+      id: 8,
       icon: "psql.png",
       url: "https://www.postgresql.org/"
     },
     {
       name: "sequelize",
       category: "Tests",
+      id: 9,
       icon: "sequelize.png",
       url: "https://sequelize.org/"
     },
     {
       name: "mocha",
       category: "Other",
+      id: 10,
       icon: "mocha.png",
       url: "https://mochajs.org/"
     }
