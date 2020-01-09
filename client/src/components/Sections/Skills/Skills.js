@@ -6,7 +6,7 @@ import SkillItem from './SkillItem';
 import Category from './Category';
 import Spinner from "../../Common/Spinner";
 import { getSkills } from '../../../store/actions/resume';
-import './style.scss';
+import '../../../sass/skills.scss';
 
 export class Skills extends Component {
   constructor(props) {

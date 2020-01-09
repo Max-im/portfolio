@@ -1,5 +1,6 @@
 import React from "react";
 import ProjectItem from "./ProjectItem";
+import Shown from '../../hoc/Shown';
 
 export default function ProjectsList({ projects }) {
   return (
@@ -7,7 +8,7 @@ export default function ProjectsList({ projects }) {
       {projects && (
         <ul className="projects__list">
           {projects.map(project => (
-            <ProjectItem project={project} key={project.id} />
+            <Shown component={ProjectItem} project={project} key={project.id} className="projectItem"/>
           ))}
         </ul>
       )}

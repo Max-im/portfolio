@@ -1,6 +1,7 @@
 import React from "react";
 import PageTitle from "../Common/PageTitle";
 import Breadcrumbs from "../Sections/Breadcrumbs/Breadcrumbs";
+import Shown from '../hoc/Shown';
 import About from "../Sections/About/About";
 import Skills from "../Sections/Skills/Skills";
 import Experience from "../Sections/Experience/Experience";
@@ -14,9 +15,9 @@ export default function Resume() {
         <PageTitle text="resume" subtext="Information about me" />
         <Breadcrumbs arr={["home", "resume"]} />
         <About />
-        <Skills />
-        <Experience />
-        <Education />
+        <Shown component={Skills} className="section" />
+        <Shown component={Experience} className="section" />
+        <Shown component={Education} className="section" />
       </div>
     </div>
   );

@@ -1,33 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import store from '../../store/store';
 
-class PageAside extends Component {
-  state = { mt: 30 };
+export default function PageAside ({component:Component, ...rest}) {
+    const {common} = store.getState();
+    const limit = 200;
+    const mt = common.scroll > limit ? common.scroll - limit : 30
 
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener("scroll", this.handleScroll);
-  };
-
-  handleScroll = e => {
-    const limit = 220;
-    const scroll = document.documentElement.scrollTop;
-    if (scroll > limit) {
-      this.setState({ mt: 30 + scroll - limit });
-    } else if (this.state.mt !== 30) {
-      this.setState({ mt: 30 });
-    }
-  };
-  render() {
-    const {component:Comp} = this.props;
     return (
-      <aside className="pageAside" style={{ marginTop: this.state.mt }}>
-        <Comp />
+      <aside className="pageAside" style={{ marginTop: mt }}>
+        <Component {...rest} />
       </aside>
     );
-  }
 }
-
-export default PageAside;

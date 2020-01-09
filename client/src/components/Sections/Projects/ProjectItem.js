@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SkillsList from "./SkillsList";
 
-export default function ProjectItem({ project }) {
+export default function ProjectItem({ project, ...rest }) {
   return (
-    <li className="projectItem">
+    <>
       <Link
         to={"/portfolio/project/" + project.id}
         className="projectItem__link"
@@ -25,6 +25,6 @@ export default function ProjectItem({ project }) {
           </p>
         </div>
       </Link>
-    </li>
+    </>
   );
 }

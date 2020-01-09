@@ -10,6 +10,7 @@ import education from "./education";
 import project from "./project";
 import social from "./social";
 import about from "./about";
+import common from "./common";
 
 export default combineReducers({
   general,
@@ -22,5 +23,6 @@ export default combineReducers({
   experience,
   summary,
   education,
-  about
+  about,
+  common
 });
