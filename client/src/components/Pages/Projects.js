@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import PageTitle from "../Common/PageTitle";
 import Breadcrumbs from "../Sections/Breadcrumbs/Breadcrumbs";
+import PageAside from '../hoc/PageAside';
 import ProjectsList from "../Sections/Projects/ProjectsList";
 import ProjectsAside from "../Sections/Projects/ProjectsAside";
 import ProjectsPagination from "../Sections/Projects/ProjectsPagination";
@@ -51,8 +52,8 @@ export class Projects extends Component {
 
           {isReady && (
             <>
-              <div className="portfolio__content">
-                <ProjectsAside />
+              <div className="page__content">
+                <PageAside component={ProjectsAside} />
                 <ProjectsList projects={projects} />
               </div>
               <ProjectsPagination projectsNum={projectsNum} />

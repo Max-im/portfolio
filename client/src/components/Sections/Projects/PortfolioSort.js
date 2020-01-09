@@ -31,9 +31,9 @@ export class PortfolioSort extends Component {
   render() {
     const { sort } = this.state;
     return (
-      <div className="projectsAside__block">
-        <h5 className="projectsAside__title">Sort by</h5>
-        <div className="projectsAside__list">
+      <div className="pageAside__block">
+        <h5 className="pageAside__title">Sort by</h5>
+        <div className="pageAside__list">
           <label className={sort === "quality" ? "btn btn_active" : "btn"}>
             <input
               type="radio"

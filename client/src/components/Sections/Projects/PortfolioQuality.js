@@ -44,10 +44,10 @@ export class PortfolioQuality extends Component {
   render() {
     const { quality } = this.state;
     return (
-      <div className="projectsAside__block">
+      <div className="pageAside__block">
         <div>
-          <h5 className="projectsAside__title">Filter by quality</h5>
-          <div className="projectsAside__list">
+          <h5 className="pageAside__title">Filter by quality</h5>
+          <div className="pageAside__list">
             <label
               className={quality.includes("best") ? "btn btn_active" : "btn"}
             >

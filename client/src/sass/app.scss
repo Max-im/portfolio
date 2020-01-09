@@ -35,6 +35,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+  &__content{
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .section {
@@ -103,6 +107,30 @@
   }
   &:first-child {
     border-left: 1px solid #aaa;
+  }
+}
+
+.pageAside {
+  min-height: 600px;
+  padding: 15px;
+  align-self: start;
+  order: 1;
+  justify-self: end;
+  width: 280px;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  &__block {
+    margin: 0 0 25px 0;
+  }
+  &__title {
+    color: #777;
+    margin: 0 0 10px 0;
+  }
+  &__list {
+    display: flex;
+    .btn {
+      flex: 33%;
+    }
   }
 }
 

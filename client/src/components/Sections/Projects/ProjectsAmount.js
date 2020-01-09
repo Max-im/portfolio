@@ -31,9 +31,9 @@ export class ProjectsAmount extends Component {
   render() {
     const { amount } = this.state;
     return (
-      <div className="projectsAside__block">
-        <h5 className="projectsAside__title">Show on page</h5>
-        <div className="projectsAside__list">
+      <div className="pageAside__block">
+        <h5 className="pageAside__title">Show on page</h5>
+        <div className="pageAside__list">
           <label className={amount === "9" ? "btn btn_active" : "btn"}>
             <input
               type="radio"

@@ -31,29 +31,6 @@
   }
 }
 
-.projectsAside {
-  padding: 15px;
-  align-self: start;
-  min-height: 600px;
-  order: 1;
-  width: 280px;
-  box-sizing: border-box;
-  border: 1px solid #aaa;
-  &__block {
-    margin: 0 0 25px 0;
-  }
-  &__title {
-    color: #777;
-    margin: 0 0 10px 0;
-  }
-  &__list {
-    display: flex;
-    .btn {
-      flex: 33%;
-    }
-  }
-}
-
 .projectItem {
   margin: 0px 0 25px 0;
   width: 33%;
