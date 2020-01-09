@@ -13,21 +13,6 @@ export const getEducation = (req, res) => {
   ]);
 };
 
-/**
- * @type middleware
- * @description return all education items
- */
-export const getAllEdu = (req, res, next) => {
-  client
-    .query(`SELECT * FROM education ORDER BY start_date DESC`)
-    .then(({ rows }) => res.json(rows))
-    .catch(err => next(err));
-};
-
-/**
- * @type middleware
- * @description create new education item
- */
 export const createEdu = (req, res, next) => {
   const { filename, edu_title, edu_description } = req.body;
 
@@ -41,11 +26,6 @@ export const createEdu = (req, res, next) => {
     .catch(err => next(err));
 };
 
-/**
- * @type middleware
- * @description get particular edu item data
- * @path /UPDATE/:id
- */
 export const getCurrentEdu = (req, res, next) => {
   const { id } = req.body;
 
@@ -64,11 +44,6 @@ export const getCurrentEdu = (req, res, next) => {
     .catch(err => next(err));
 };
 
-/**
- * @type middleware
- * @description retrieve fields to update
- * @path /UPDATE/:id
- */
 export const retrieveFieldsToUpdate = (req, res, next) => {
   const { currentEdu } = req.body;
   const toUpdate = {};

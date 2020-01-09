@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ExpItem from "./ExpItem";
-import AddExp from "./AddExp";
 import Spinner from "../../Common/Spinner";
 import { getExperience } from "../../../store/actions/resume";
 import "../../../sass/experience.scss";
 
 export class index extends Component {
   componentDidMount() {
-    if(!this.props.experience.isReady) {
+    if (!this.props.experience.isReady) {
       this.props.getExperience();
     }
   }
@@ -24,7 +23,7 @@ export class index extends Component {
     const { list, error, isReady } = this.props.experience;
 
     return (
-      <section className="section exp">
+      <section className="section section_colored exp">
         <div className="container">
           <h3 className="section__title">Experience</h3>
 

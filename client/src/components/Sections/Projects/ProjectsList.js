@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectItem from "./ProjectItem";
+import ProjectCart from "./ProjectCart";
 
 export default function ProjectsList({ projects }) {
   return (
@@ -7,7 +7,7 @@ export default function ProjectsList({ projects }) {
       {projects && (
         <ul className="projects__list">
           {projects.map(project => (
-            <ProjectItem project={project} key={project.id} />
+            <ProjectCart project={project} key={project.id} />
           ))}
         </ul>
       )}

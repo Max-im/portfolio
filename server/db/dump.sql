@@ -510,7 +510,7 @@ CREATE TABLE summary
 INSERT INTO summary
     (photo, name, summary)
 VALUES
-    ('https://max-im.github.io/img/myPhoto.jpg', 'Maksim Pozhydaiev', 'I am a deep motivated JavaScript developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set times. It is important to me to see results of my work and to impact on the result.');
+    ('https://max-im.github.io/img/myPhoto.jpg', 'Maksim Pozhydaiev', 'I am a deep motivated Web developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set termins. It is important to me seeing results of my work and to impact on the result.');
 -- ======================================================================================
 
 

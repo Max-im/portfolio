@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SkillsList from "./SkillsList";
 
-export default function ProjectItem({ project }) {
+export default function ProjectCart({ project }) {
   return (
     <li className="projectItem">
       <Link

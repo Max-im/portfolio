@@ -10,14 +10,12 @@ import "../../sass/resume.scss";
 export default function Resume() {
   return (
     <div className="page resume">
-      <div className="container">
-        <PageTitle text="resume" subtext="Information about me" />
-        <Breadcrumbs arr={["home", "resume"]} />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-      </div>
+      <PageTitle text="resume" subtext="Information about me" />
+      <Breadcrumbs arr={["home", "resume"]} />
+      <About />
+      <Skills />
+      <Experience />
+      <Education />
     </div>
   );
 }
