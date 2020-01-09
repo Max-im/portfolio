@@ -5,23 +5,19 @@ import {
   LOADING_COMMENTS,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  LOAD_PROJECT
-} from "../actions/constants";
+  PROJECT_READY
+} from "../constants";
 
 const initialState = {
-  loading: false,
+  isReady: false,
   project: null,
-  comments: [],
-  likes: null,
-  dislikes: null,
-  loadComments: false,
   error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_PROJECT:
-      return { ...state, loading: action.payload };
+    case PROJECT_READY:
+      return { ...state, isReady: action.payload };
 
     case GET_PROJECT:
       return { ...state, project: action.payload };

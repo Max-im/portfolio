@@ -1,5 +1,5 @@
-import axios from "axios";
-import { onError } from "./utils";
+import axios from 'axios';
+import { onError } from './utils';
 import {
   GET_PROJECTS,
   LOADING_COMMENTS,
@@ -11,9 +11,10 @@ import {
   GET_PROJECT_RATE,
   GET_COMMETNS,
   LOAD_PROJECT,
-  PROJECTS_ERROR
-} from "../actions/constants";
-import { PROJECTS_READY } from "../constants";
+  PROJECTS_ERROR,
+  PROJECT_READY
+} from '../constants';
+import { PROJECTS_READY } from '../constants';
 
 const _getProjectsNum = type => axios.get(`/projects/number/${type}`);
 const _getProj = (page, q) => axios.get(`/projects/${page}${q}`);
@@ -30,6 +31,17 @@ export const getProjectsData = (query, page = 1, type) => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const getProject = id => dispatch => {
+  dispatch({ type: PROJECT_READY, payload: false });
+  axios
+    .get(`/projects/single/${id}`)
+    .then(({ data }) => dispatch({ type: GET_PROJECT, payload: data }))
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'alt')))
+    .finally(() => dispatch({ type: PROJECT_READY, payload: true }));
+};
+
+/////////////////////////////////////////////////////////
+
 /**
  * @description get particular project comments
  * @access public
@@ -43,7 +55,7 @@ export const getProjectComments = (project_id, step) => dispatch => {
       dispatch({ type: LOADING_COMMENTS, payload: false });
     })
     .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects rate"));
+      dispatch(onError(err, PROJECTS_ERROR, 'Error getting projects rate'));
       dispatch({ type: LOADING_COMMENTS, payload: false });
     });
 };
@@ -54,11 +66,9 @@ export const getProjectComments = (project_id, step) => dispatch => {
  */
 export const createComment = data => dispatch => {
   axios
-    .post("/comment", data)
+    .post('/comment', data)
     .then(({ data }) => dispatch({ type: ADD_COMMENT, payload: data }))
-    .catch(err =>
-      dispatch(onError(err, COMMENT_ERROR, "Error creating comment"))
-    );
+    .catch(err => dispatch(onError(err, COMMENT_ERROR, 'Error creating comment')));
 };
 
 /**
@@ -70,26 +80,7 @@ export const getProjectRate = project_id => dispatch => {
     .get(`/projects/likes/${project_id}`)
     .then(({ data }) => dispatch({ type: GET_PROJECT_RATE, payload: data }))
     .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, "Error getting projects rate"));
-    });
-};
-
-/**
- * @param {String} id
- * @description get particular project by id
- * @access public
- */
-export const getProject = id => dispatch => {
-  dispatch({ type: LOAD_PROJECT, payload: true });
-  axios
-    .get(`/projects/single/${id}`)
-    .then(({ data }) => {
-      dispatch({ type: GET_PROJECT, payload: data });
-      dispatch({ type: LOAD_PROJECT, payload: false });
-    })
-    .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, "Error getting project"));
-      dispatch({ type: LOAD_PROJECT, payload: false });
+      dispatch(onError(err, PROJECTS_ERROR, 'Error getting projects rate'));
     });
 };
 
@@ -99,16 +90,14 @@ export const getProject = id => dispatch => {
  * @access private
  */
 export const createProject = projData => dispatch => {
-  const options = { headers: { "Content-Type": "multipart/form-data" } };
+  const options = { headers: { 'Content-Type': 'multipart/form-data' } };
   const formData = new FormData();
   Object.keys(projData).forEach(key => formData.append(key, projData[key]));
 
   axios
-    .post("/admin/projects", formData, options)
+    .post('/admin/projects', formData, options)
     .then(() => {})
-    .catch(err =>
-      dispatch(onError(err, PROJECTS_ERROR, "Error creating project"))
-    );
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error creating project')));
 };
 
 /**
@@ -119,11 +108,9 @@ export const createProject = projData => dispatch => {
  */
 export const updateProject = (projectData, history) => dispatch => {
   axios
-    .put("/admin/projects", projectData)
+    .put('/admin/projects', projectData)
     .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
-    .catch(err =>
-      dispatch(onError(err, PROJECTS_ERROR, "Error update project"))
-    );
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error update project')));
 };
 
 /**
@@ -132,11 +119,9 @@ export const updateProject = (projectData, history) => dispatch => {
  */
 export const setRate = ({ project_id, sign }) => dispatch => {
   axios
-    .post("/projects/likes", { project_id, sign })
+    .post('/projects/likes', { project_id, sign })
     .then(() => dispatch(getProjectRate(project_id)))
-    .catch(err =>
-      dispatch(onError(err, PROJECTS_ERROR, "Error change project rate"))
-    );
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error change project rate')));
 };
 
 /**
@@ -148,17 +133,13 @@ export const setRate = ({ project_id, sign }) => dispatch => {
 export const deleteProject = (id, history) => dispatch => {
   axios
     .delete(`/admin/projects/${id}`)
-    .then(() => history.push("/portfolio"))
-    .catch(err =>
-      dispatch(onError(err, PROJECTS_ERROR, "Error delete project"))
-    );
+    .then(() => history.push('/portfolio'))
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error delete project')));
 };
 
 export const deleteComment = id => dispatch => {
   axios
     .delete(`/comment/${id}`)
     .then(() => dispatch({ type: REMOVE_COMMENT, payload: id }))
-    .catch(err =>
-      dispatch(onError(err, PROJECTS_ERROR, "Error delete project"))
-    );
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error delete project')));
 };

@@ -449,6 +449,51 @@ export const getPageProjects = (req, res) => {
   ]);
 };
 
+export const getSingleProject = (req, res) => {
+  res.json({
+    id: 10,
+    title: "Algorithm:benchmark",
+    picture: null,
+    description:
+      "Sample to help estimate performance different loops approches in scopes",
+    level: "Simple",
+    date: "2020/01/01",
+    source: "https://codepen.io/max-im/pen/KKKJOpp",
+    show: "https://codepen.io/max-im/full/KKKJOpp",
+    skills: [
+      {
+        id: 1,
+        name: "react",
+        category: "Frontend",
+        icon: "react.png",
+        url: "https://reactjs.org/"
+      },
+      {
+        id: 2,
+        name: "node",
+        category: "Backend",
+        icon: "node.png",
+        url: "https://nodejs.org/en/"
+      },
+      {
+        id: 3,
+        name: "rest",
+        category: "Database",
+        icon: "rest.png",
+        url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+      },
+      {
+        id: 4,
+        name: "mongodb",
+        category: "Database",
+        icon: "mongodb.png",
+        url: "https://www.mongodb.com/"
+      }
+    ],
+    comments:[]
+  })
+}
+
 export const retrieveQuery = (req, res, next) => {
   const { quality, sort } = req.query;
 

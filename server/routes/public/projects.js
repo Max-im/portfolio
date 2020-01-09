@@ -4,27 +4,18 @@ import {
   getPageProjects,
   getComments,
   getProjectLikes,
-  getProjectById,
-  parseProjectData
+  getSingleProject
 } from "../../controllers/projects";
 import { checkAuthPermission } from "../../controllers/permission";
 import { addNewLike, removeLike, toggleLike } from "../../controllers/likes";
 
 const router = Router();
 
-/**
- * @method GET
- * @access public
- * @description get number of projects
- */
+
 router.get("/number/:type", getProjectsNumber);
 
-/**
- * @method GET
- * @access public
- * @description get cretain project by id, attach skills, attach comments, return to frontend
- */
-router.get("/single/:id", getProjectById, parseProjectData);
+
+router.get("/single/:id", getSingleProject);
 
 /**
  * @method GET

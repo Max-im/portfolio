@@ -48,3 +48,4 @@ export const SCROLL_PAGE = "SCROLL_PAGE";
 export const GET_ABOUT = "GET_ABOUT";
 export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const PROJECTS_READY = "PROJECTS_READY";
+export const PROJECT_READY = "PROJECT_READY";
