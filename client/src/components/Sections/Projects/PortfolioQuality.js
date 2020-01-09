@@ -2,14 +2,21 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 
-export class PortfolioFilter extends Component {
+export class PortfolioQuality extends Component {
   state = { quality: [] };
 
   componentDidMount = () => {
-    const { search } = this.props.location;
+    // TODO validate url params
+    const { pathname, search } = this.props.location;
     const parsed = queryString.parse(search);
     if (parsed.quality) {
-      const quality = parsed.quality.split(",");
+      let quality = parsed.quality.split(",");
+      if (quality.length >= 3) {
+        quality = [];
+        parsed.quality = []
+        const query = queryString.stringify(parsed);
+        this.props.history.push({ pathname, search: `?${query}` });
+      }
       this.setState({ quality });
     }
   };
@@ -39,7 +46,7 @@ export class PortfolioFilter extends Component {
     return (
       <div className="projectsAside__block">
         <div>
-          <h5 className="projectsAside__title">Filter</h5>
+          <h5 className="projectsAside__title">Filter by quality</h5>
           <div className="projectsAside__list">
             <label
               className={quality.includes("best") ? "btn btn_active" : "btn"}
@@ -86,4 +93,4 @@ export class PortfolioFilter extends Component {
   }
 }
 
-export default withRouter(PortfolioFilter);
+export default withRouter(PortfolioQuality);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PortfolioSort from "./PortfolioSort";
-import PortfolioFilter from "./PortfolioFilter";
+import PortfolioQuality from "./PortfolioQuality";
 import ProjectsAmount from "./ProjectsAmount";
 
 class ProjectsAside extends Component {
@@ -29,7 +29,7 @@ class ProjectsAside extends Component {
       <div className="projectsAside" style={{ marginTop: this.state.mt }}>
         <PortfolioSort />
         <ProjectsAmount />
-        <PortfolioFilter />
+        <PortfolioQuality />
       </div>
     );
   }

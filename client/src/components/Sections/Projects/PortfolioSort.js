@@ -6,6 +6,7 @@ export class PortfolioSort extends Component {
   state = { sort: "quality" };
 
   componentDidMount = () => {
+    // TODO validate url params
     const { search } = this.props.location;
     const { sort } = queryString.parse(search);
     if (sort) {

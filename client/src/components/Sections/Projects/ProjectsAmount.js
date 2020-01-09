@@ -3,9 +3,10 @@ import queryString from "query-string";
 import { withRouter } from "react-router-dom";
 
 export class ProjectsAmount extends Component {
-  state = { amount: "6" };
+  state = { amount: "9" };
 
   componentDidMount = () => {
+    // TODO validate url params
     const { search } = this.props.location;
     const parsed = queryString.parse(search);
     if (parsed.amount) {
@@ -18,7 +19,7 @@ export class ProjectsAmount extends Component {
     this.setState({ amount: value });
     const { pathname, search } = this.props.location;
     const parsed = queryString.parse(search);
-    if (value === "6") {
+    if (value === "9") {
       delete parsed.amount;
     } else {
       parsed.amount = value;
@@ -33,21 +34,10 @@ export class ProjectsAmount extends Component {
       <div className="projectsAside__block">
         <h5 className="projectsAside__title">Show on page</h5>
         <div className="projectsAside__list">
-          <label className={amount === "6" ? "btn btn_active" : "btn"}>
-            <input
-              type="radio"
-              className="hide"
-              value="6"
-              onChange={this.onChange}
-              checked={amount === "6"}
-            />
-            6
-          </label>
-
           <label className={amount === "9" ? "btn btn_active" : "btn"}>
             <input
-              className="hide"
               type="radio"
+              className="hide"
               value="9"
               onChange={this.onChange}
               checked={amount === "9"}
@@ -57,13 +47,24 @@ export class ProjectsAmount extends Component {
 
           <label className={amount === "15" ? "btn btn_active" : "btn"}>
             <input
-              type="radio"
               className="hide"
+              type="radio"
               value="15"
               onChange={this.onChange}
               checked={amount === "15"}
             />
             15
+          </label>
+
+          <label className={amount === "30" ? "btn btn_active" : "btn"}>
+            <input
+              type="radio"
+              className="hide"
+              value="30"
+              onChange={this.onChange}
+              checked={amount === "30"}
+            />
+            30
           </label>
         </div>
       </div>
