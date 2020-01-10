@@ -38,6 +38,7 @@
   &__content {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
   }
 }
 
@@ -118,12 +119,10 @@
 }
 
 .pageAside {
-  min-height: 600px;
-  padding: 15px;
-  align-self: start;
+  padding: 5px;
   order: 1;
   justify-self: end;
-  width: 280px;
+  flex: 0 0 100%;
   box-sizing: border-box;
   border: 1px solid #aaa;
   &__block {
@@ -149,6 +148,9 @@
       font-size: 28px;
     }
   }
+  .pageAside {
+    padding: 10px 15%;
+  }
 }
 
 //  WIDE 600 px
@@ -160,15 +162,31 @@
       padding: 0 0 20px 0;
     }
   }
+  .pageAside {
+    padding: 10px 25%;
+  }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
+  .page {
+    &__content {
+      display: flex;
+      flex-direction: row;
+    }
+  }
   .section {
     padding: 25px 0px 50px 0;
     &__title {
       font-size: 36px;
       padding: 0 0 50px 0;
     }
+  }
+  .pageAside {
+    padding: 10px;
+    flex: 0 0 280px;
+    order: 3;
+    margin: 25px 0 0 0;
+    align-self: start;
   }
 }

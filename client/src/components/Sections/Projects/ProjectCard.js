@@ -6,7 +6,7 @@ export default function ProjectCard({ project, ...rest }) {
   return (
     <>
       <Link to={'/portfolio/project/' + project.id} className="projectItem__link">
-        <img src={`/photo/${project.picture}`} alt={project.title} className="projectItem__img" style={{minHeight: "245px"}} />
+        <img src={`/photo/${project.picture}`} alt={project.title} className="projectItem__img" />
         <div className="projectItem__body">
           <p className="projectItem__title">{project.title}</p>
           <div className="projectItem__meta">
