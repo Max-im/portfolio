@@ -1,12 +1,21 @@
 .categories {
   display: flex;
+  flex-direction: column;
   margin: 0 0 25px 0;
+  .btn {
+    border-bottom: none;
+    border-left: 1px solid #aaa;
+    &:last-child {
+      border-bottom: 1px solid #aaa;
+    }
+  }
 }
+
 .mixitup-control-active {
-  background: #0088ff;
-  color: #fff;
+  background: #0088ff !important;
+  color: #fff !important;
   &:hover {
-    color: #122738;
+    color: #122738 !important;
   }
 }
 
@@ -14,73 +23,83 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 0 15px 0;
   }
 }
 
 .skill {
-  flex: 0 0 calc(100% / 8);
-  margin: 0 0 40px 0;
-  padding: 0 25px;
-  box-sizing: border-box;
+  flex: 0 0 calc(100% / 5);
+  margin: 0 0 30px 0;
   overflow: hidden;
-  &__link {
-    padding: 10px;
-    text-align: center;
-    display: block;
-    color: #79589f;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: capitalize;
-    transition: 0.3s;
-    &:hover {
-      background: #cdcdcd;
-    }
-  }
   &__imgWrap {
-    background: #eee;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px auto;
     display: flex;
-    border-radius: 100%;
   }
   &__img {
-    width: 25px;
-    height: 25px;
+    width: 60%;
+    max-width: 40px;
     display: block;
     margin: auto;
   }
   &__text {
-    color: #122738;
-    font-weight: 100;
-    letter-spacing: 1.2px;
+    display: none;
   }
-}
-
-.categoryControl {
-  margin: 0 0 0 10px;
-  &__delete {
-    color: red;
-  }
-}
-
-.skillControl {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  display: flex;
-  align-items: center;
 }
 
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
+  .categories {
+    flex-direction: row;
+    margin: 0 0 30px 0;
+    .btn {
+      border-left: none;
+      font-size: 14px;
+      border-bottom: 1px solid #aaa;
+    }
+  }
+  .skill {
+    flex: 0 0 calc(100% / 8);
+    margin: 0 0 40px 0;
+    &__img {
+      width: 50%;
+    }
+  }
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
+  .categories {
+    .btn {
+      font-size: 16px;
+    }
+  }
+  .skill {
+    flex: 0 0 calc(100% / 8);
+    margin: 0 0 40px 0;
+    text-align: center;
+    &__img {
+      width: 30px;
+    }
+    &__text {
+      display: block;
+      letter-spacing: 0.1px;
+      margin: 10px 0 0 0;
+      color: #122738;
+      font-size: 12px;
+    }
+  }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
+  .skill {
+    flex: 0 0 calc(100% / 8);
+    margin: 0 0 40px 0;
+    text-align: center;
+    &__img {
+      width: 40px;
+    }
+    &__text {
+      display: block;
+      font-size: 16px;
+    }
+  }
 }
