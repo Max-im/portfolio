@@ -20,7 +20,7 @@ export default class Shown extends React.Component {
     }
     
     return (
-      <div ref={this.shownRef} className={className} style={styles}>
+      <div ref={this.shownRef} className={className} >
         <Component {...rest}  />
       </div>
     );
