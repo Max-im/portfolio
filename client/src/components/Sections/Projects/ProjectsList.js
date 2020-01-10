@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectItem from "./ProjectItem";
+import ProjectCard from "./ProjectCard";
 import Shown from '../../hoc/Shown';
 
 export default function ProjectsList({ projects }) {
@@ -8,7 +8,7 @@ export default function ProjectsList({ projects }) {
       {projects && (
         <ul className="projects__list">
           {projects.map(project => (
-            <Shown component={ProjectItem} project={project} key={project.id} className="projectItem"/>
+            <Shown component={ProjectCard} project={project} key={project.id} className="projectItem"/>
           ))}
         </ul>
       )}

@@ -16,7 +16,7 @@ export class About extends Component {
   render() {
     const { about } = this.props;
     return (
-      <section className="section about">
+      <section className="section section_colored about">
         <div className="container">
           <h3 className="section__title">About</h3>
           {about.isReady && (
@@ -33,10 +33,12 @@ export class About extends Component {
                   {about.name} {about.lastName}
                 </h5>
                 <Contacts contacts={about.contacts} />
-                <Social social={about.social} />
+                <div className="about__social">
+                  <Social social={about.social} />
+                </div>
               </div>
 
-              <div className="about__describeBlock">{about.summary}</div>
+              <div className="about__summary">{about.summary}</div>
             </div>
           )}
         </div>

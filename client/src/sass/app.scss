@@ -1,10 +1,18 @@
 .app {
-  position: absolute;
-  top: 0;
-  left: 50px;
   font-family: "Roboto", sans-serif, Arial, Helvetica;
-  min-width: 250px;
-  width: calc(100% - 50px);
+  min-width: 320px;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0 0 50px;
+  box-sizing: border-box;
+}
+
+.main {
+  font-family: Ubuntu, Helvetica, sans-serif, Arial;
+  display: flex;
+  min-height: 100vh;
+  display: flex;
+  min-width: 270px;
 }
 
 .hide {
@@ -13,19 +21,11 @@
 
 .container {
   width: 100%;
-  min-width: 250px;
+  min-width: 270px;
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
-}
-
-.main {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  min-height: 100vh;
-  display: flex;
-  min-width: 250px;
 }
 
 .page {
@@ -35,7 +35,7 @@
     display: flex;
     flex-wrap: wrap;
   }
-  &__content{
+  &__content {
     display: flex;
     justify-content: space-between;
   }
@@ -44,15 +44,22 @@
 .section {
   width: 100%;
   background: #fff;
-  padding: 30px 0px 50px 0;
+  padding: 10px 0px 30px 0;
   box-sizing: border-box;
   z-index: 1;
   position: relative;
+  &_colored {
+    background: linear-gradient(to bottom, #fff, rgba(238, 238, 238, 0.5));
+  }
+  &_rcolored {
+    background: linear-gradient(to top, #fff, rgba(238, 238, 238, 0.5));
+  }
   &__title {
     font-size: 26px;
     letter-spacing: 1.5px;
-    color: #122738;
-    padding: 0 0 35px 0;
+    color: #777;
+    text-shadow: 1px 1px 1px #122738;
+    padding: 0 0 15px 0;
   }
 }
 
@@ -136,12 +143,32 @@
 
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
+  .section {
+    padding: 15px 0px 30px 0;
+    &__title {
+      font-size: 28px;
+    }
+  }
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
+  .section {
+    padding: 20px 0px 40px 0;
+    &__title {
+      font-size: 32px;
+      padding: 0 0 20px 0;
+    }
+  }
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
+  .section {
+    padding: 25px 0px 50px 0;
+    &__title {
+      font-size: 36px;
+      padding: 0 0 50px 0;
+    }
+  }
 }

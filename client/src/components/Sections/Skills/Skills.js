@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import mixitup from 'mixitup';
-import SkillItem from './SkillItem';
-import Category from './Category';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import mixitup from "mixitup";
+import SkillItem from "./SkillItem";
+import Category from "./Category";
 import Spinner from "../../Common/Spinner";
 import { getSkills } from '../../../store/actions/resume';
 import '../../../sass/skills.scss';
@@ -22,20 +22,20 @@ export class Skills extends Component {
     } else {
       this.initMixitup();
     }
-  }
+  };
 
-  componentDidUpdate = (prev) => {
+  componentDidUpdate = prev => {
     if (!prev.skills.categories && this.props.skills.categories) {
       this.initMixitup();
     }
-  }
+  };
 
   initMixitup = () => {
     if (!this.props.skills.error) {
       const catIds = this.props.skills.categories.map(i => i.id);
       this.setState({ catIds });
     }
-  }
+  };
 
   static propTypes = {
     skills: PropTypes.object.isRequired,
@@ -49,7 +49,7 @@ export class Skills extends Component {
     }
 
     return (
-      <section className="section skills">
+      <section className="section section_rcolored skills">
         <div className="container">
           <h3 className="section__title">Skills</h3>
 
@@ -57,7 +57,7 @@ export class Skills extends Component {
             <>
               <ul className="categories">
                 {categories.map(cat => (
-                  <Category category={cat} key={cat.id}/>
+                  <Category category={cat} key={cat.id} />
                 ))}
               </ul>
 

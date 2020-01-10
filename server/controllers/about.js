@@ -22,7 +22,12 @@ export const getAbout = (req, res) => {
         name: "Linkedin",
         url: "http://linkedin.com"
       },
-      { id: 4, classes: "fab fa-codepen", name: "Codepen", url: "http://codepen.com" },
+      {
+        id: 4,
+        classes: "fab fa-codepen",
+        name: "Codepen",
+        url: "http://codepen.com"
+      },
       {
         id: 5,
         classes: "fab fa-twitter-square",
@@ -40,7 +45,8 @@ export const getAbout = (req, res) => {
       },
       { id: 3, classes: "fab fa-skype", value: "pogidaev_mo", type: "text" }
     ],
-    summary: "Lorem",
+    summary:
+      "I am a deep motivated Web developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set times. It is important to me to see results of my work and to impact on the result.",
     avatar: "avatar.jpg"
   });
 };

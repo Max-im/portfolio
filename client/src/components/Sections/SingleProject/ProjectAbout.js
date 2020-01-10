@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ProjectAbout({ project }) {
   return (
-    <section className="section">
+    <section>
       <div>
         <div className="">
           <p className="aboutProject__contentKey">

@@ -4,7 +4,7 @@ export default function ProjectSkills({ skills }) {
   return (
     <ul>
       {skills.map(skill => (
-        <li>
+        <li key={skill.id}>
           <img alt={skill.name} src={"/photo/"+skill.icon} />
         </li>
       ))}

@@ -8,21 +8,19 @@ export default class Shown extends React.Component {
   }
 
   render() {
-    const {component: Component, ...rest} = this.props;
+    const {component: Component, className, ...rest} = this.props;
+    const element = this.shownRef.current;
     const { common } = store.getState();
     const slideInAt = (common.scroll + window.innerHeight) - 300;
-    const element = this.shownRef.current;
-    const styles = {transition: '0.4s', position: "relative", top: 0}
-    if (element) {
-      if(slideInAt < element.offsetTop) {
-        styles.opacity = 0;
-        styles.visibility = "collapse";
-        styles.top= "50px";
-      }
+    const shown = {transition: 'ease-out 0.4s', position: 'relative',  transform: 'none'};
+    const hidden = {transition: 'ease-out 0.4s', position: 'relative',  transform: 'translate(0px, 50px)', opacity: 0, visibility : 'collapse'};
+    let styles = shown;
+    if (element && slideInAt < element.offsetTop) {
+        styles = hidden;
     }
     
     return (
-      <div ref={this.shownRef} {...rest} style={styles}>
+      <div ref={this.shownRef} className={className} style={styles}>
         <Component {...rest}  />
       </div>
     );

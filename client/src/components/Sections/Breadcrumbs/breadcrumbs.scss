@@ -1,6 +1,5 @@
 .breadcrumbs {
-  display: inline-block;
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   &__list {
     display: flex;
     align-items: center;
@@ -12,21 +11,33 @@
   }
   &__link {
     background: #0088ff;
-    padding: 5px 10px;
+    padding: 3px 7px;
     color: #fff;
-    margin: 0 20px 0 0;
+    margin: 0 15px 0 0;
     position: relative;
     &:after {
       content: "";
       z-index: -1;
       position: absolute;
       display: block;
-      width: 19px;
-      height: 19px;
+      width: 16px;
+      height: 16px;
       top: 4px;
-      right: -10px;
+      right: -8px;
       transform: rotate(45deg);
       background: #0088ff;
     }
   }
+}
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+}
+
+//  WIDE 600 px
+@media screen and (min-width: 600px) {
+}
+
+//  WIDE 980 px
+@media screen and (min-width: 980px) {
 }
