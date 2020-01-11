@@ -3,7 +3,7 @@ import queryString from "query-string";
 import { withRouter } from "react-router-dom";
 
 export class ProjectsAmount extends Component {
-  state = { amount: "9" };
+  state = { amount: "12" };
 
   componentDidMount = () => {
     // TODO validate url params
@@ -19,7 +19,7 @@ export class ProjectsAmount extends Component {
     this.setState({ amount: value });
     const { pathname, search } = this.props.location;
     const parsed = queryString.parse(search);
-    if (value === "9") {
+    if (value === "12") {
       delete parsed.amount;
     } else {
       parsed.amount = value;
@@ -34,37 +34,37 @@ export class ProjectsAmount extends Component {
       <div className="pageAside__block">
         <h5 className="pageAside__title">Show on page</h5>
         <div className="pageAside__list">
-          <label className={amount === "9" ? "btn btn_active" : "btn"}>
+          <label className={amount === "12" ? "btn btn_active" : "btn"}>
             <input
               type="radio"
               className="hide"
-              value="9"
+              value="12"
               onChange={this.onChange}
-              checked={amount === "9"}
+              checked={amount === "12"}
             />
-            9
+            12
           </label>
 
-          <label className={amount === "15" ? "btn btn_active" : "btn"}>
+          <label className={amount === "24" ? "btn btn_active" : "btn"}>
             <input
               className="hide"
               type="radio"
-              value="15"
+              value="24"
               onChange={this.onChange}
-              checked={amount === "15"}
+              checked={amount === "24"}
             />
-            15
+            24
           </label>
 
-          <label className={amount === "30" ? "btn btn_active" : "btn"}>
+          <label className={amount === "48" ? "btn btn_active" : "btn"}>
             <input
               type="radio"
               className="hide"
-              value="30"
+              value="48"
               onChange={this.onChange}
-              checked={amount === "30"}
+              checked={amount === "48"}
             />
-            30
+            48
           </label>
         </div>
       </div>

@@ -23,7 +23,7 @@ export class index extends Component {
     const { list, isReady, error } = this.props.education;
 
     return (
-      <section className="section section_rcolored edu">
+      <section className="edu">
         <div className="container">
           <h3 className="section__title">Education</h3>
 

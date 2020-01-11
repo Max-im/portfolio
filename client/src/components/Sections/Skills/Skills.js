@@ -5,8 +5,8 @@ import mixitup from "mixitup";
 import SkillItem from "./SkillItem";
 import Category from "./Category";
 import Spinner from "../../Common/Spinner";
-import { getSkills } from '../../../store/actions/resume';
-import '../../../sass/skills.scss';
+import { getSkills } from "../../../store/actions/resume";
+import "../../../sass/skills.scss";
 
 export class Skills extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ export class Skills extends Component {
     }
 
     return (
-      <section className="section section_rcolored skills">
+      <section className="skills">
         <div className="container">
           <h3 className="section__title">Skills</h3>
 
