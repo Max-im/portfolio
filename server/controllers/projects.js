@@ -369,7 +369,7 @@ export const getPageProjects = (req, res) => {
           category: "Database",
           icon: "rest.png",
           url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
-        },
+        }
       ]
     },
     {
@@ -777,14 +777,172 @@ export const getSingleProject = (req, res) => {
       }
     ],
     comments: [
-      {id: 1, date: '2019/01/01', text: "lorem ipsum"},
-      {id: 2, date: '2019/01/01', text: "lorem ipsum"},
-      {id: 3, date: '2019/01/01', text: "lorem ipsum"},
-      {id: 4, date: '2019/01/01', text: "lorem ipsum"},
-      {id: 5, date: '2019/01/01', text: "lorem ipsum"}
+      { id: 1, date: "2019/01/01", text: "lorem ipsum" },
+      { id: 2, date: "2019/01/01", text: "lorem ipsum" },
+      { id: 3, date: "2019/01/01", text: "lorem ipsum" },
+      { id: 4, date: "2019/01/01", text: "lorem ipsum" },
+      { id: 5, date: "2019/01/01", text: "lorem ipsum" }
+    ],
+    likes: [],
+    dislikes: [],
+    similar: [
+      {
+        id: 7,
+        title: "Pattern:Factory",
+        picture: null,
+        description: "Factory Pattern Implementation",
+        level: "Medium",
+        date: "2020/01/01",
+        source: "https://codepen.io/max-im/pen/abbRYVY",
+        show: "https://codepen.io/max-im/full/abbRYVY",
+        skills: [
+          {
+            id: 1,
+            name: "react",
+            category: "Frontend",
+            icon: "react.png",
+            url: "https://reactjs.org/"
+          },
+          {
+            id: 2,
+            name: "redux",
+            category: "Frontend",
+            icon: "redux.png",
+            url: "https://redux.js.org/"
+          },
+          {
+            id: 3,
+            name: "vue",
+            category: "Other",
+            icon: "vue.png",
+            url: "https://vuejs.org/"
+          },
+          {
+            id: 4,
+            name: "ts",
+            category: "Backend",
+            icon: "ts.png",
+            url: "https://www.typescriptlang.org/"
+          },
+          {
+            id: 5,
+            name: "mocha",
+            category: "Other",
+            icon: "mocha.png",
+            url: "https://mochajs.org/"
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: "CSS:Filters",
+        picture: null,
+        description: "Visualisation of CSS Filters applying",
+        level: "Simple",
+        date: "2020/01/01",
+        source: "https://codepen.io/max-im/pen/abbXNab",
+        show: "https://codepen.io/max-im/full/abbXNab",
+        skills: [
+          {
+            id: 1,
+            name: "ts",
+            category: "Backend",
+            icon: "ts.png",
+            url: "https://www.typescriptlang.org/"
+          },
+          {
+            id: 2,
+            name: "node",
+            category: "Backend",
+            icon: "node.png",
+            url: "https://nodejs.org/en/"
+          },
+          {
+            id: 3,
+            name: "rest",
+            category: "Database",
+            icon: "rest.png",
+            url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+          }
+        ]
+      },
+      {
+        id: 9,
+        title: "Algorithm:quickSort",
+        picture: null,
+        description: "Displaying algorithm of quick sort step by step",
+        level: "Simple",
+        date: "2020/01/01",
+        source: "https://codepen.io/max-im/pen/qBBgzeP",
+        show: "https://codepen.io/max-im/full/qBBgzeP",
+        skills: [
+          {
+            id: 1,
+            name: "react",
+            category: "Frontend",
+            icon: "react.png",
+            url: "https://reactjs.org/"
+          },
+          {
+            id: 2,
+            name: "redux",
+            category: "Frontend",
+            icon: "redux.png",
+            url: "https://redux.js.org/"
+          },
+          {
+            id: 3,
+            name: "vue",
+            category: "Other",
+            icon: "vue.png",
+            url: "https://vuejs.org/"
+          }
+        ]
+      },
+      {
+        id: 10,
+        title: "Algorithm:benchmark",
+        picture: null,
+        description:
+          "Sample to help estimate performance different loops approches in scopes",
+        level: "Simple",
+        date: "2020/01/01",
+        source: "https://codepen.io/max-im/pen/KKKJOpp",
+        show: "https://codepen.io/max-im/full/KKKJOpp",
+        skills: [
+          {
+            id: 1,
+            name: "react",
+            category: "Frontend",
+            icon: "react.png",
+            url: "https://reactjs.org/"
+          },
+          {
+            id: 2,
+            name: "node",
+            category: "Backend",
+            icon: "node.png",
+            url: "https://nodejs.org/en/"
+          },
+          {
+            id: 3,
+            name: "rest",
+            category: "Database",
+            icon: "rest.png",
+            url: "https://developer.mozilla.org/en-US/docs/Glossary/REST"
+          },
+          {
+            id: 4,
+            name: "mongodb",
+            category: "Database",
+            icon: "mongodb.png",
+            url: "https://www.mongodb.com/"
+          }
+        ]
+      }
     ]
-  })
-}
+  });
+};
 
 export const retrieveQuery = (req, res, next) => {
   const { quality, sort } = req.query;
