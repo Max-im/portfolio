@@ -164,10 +164,16 @@
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
+  .projectItem {
+    min-height: 200px;
+  }
 }
 
 
 //  WIDE 1170 px
 @media screen and (min-width: 1170px) {
+  .projectItem {
+    min-height: 245px;
+  }
   
 }
