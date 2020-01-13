@@ -1,4 +1,5 @@
 .about {
+  min-height: calc(100vh - 250px);
   &__body {
     display: flex;
     flex-direction: column;
