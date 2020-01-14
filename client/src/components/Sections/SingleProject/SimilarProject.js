@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SimilarList({ item }) {
   return (
-    <li className="project__similarCard">
+    < >
       <Link
         className="project__similarLink"
         to={"/portfolio/project/" + item.id}
@@ -11,6 +11,6 @@ export default function SimilarList({ item }) {
         <img src={"/photo/" + item.picture} />
         <h4 className="project__similarTitle">{item.title}</h4>
       </Link>
-    </li>
+    </>
   );
 }

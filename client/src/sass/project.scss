@@ -4,6 +4,10 @@
     display: flex;
     justify-content: space-between;
   }
+  &__info{
+    flex: 1 1 50%;
+    overflow: hidden;
+  }
   &__picture {
     width: 500px;
     min-height: 500px;

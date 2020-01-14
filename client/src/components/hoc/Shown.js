@@ -38,7 +38,6 @@ class Shown extends React.Component {
       transition: "ease-out 0.4s",
       position: "relative",
       transform: "translate(0px, 50px)",
-      opacity: 0,
       visibility: "collapse"
     };
     const styles = this.state.shown ? shown : hidden;

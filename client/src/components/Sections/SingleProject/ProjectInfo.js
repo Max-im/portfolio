@@ -9,7 +9,7 @@ import Comments from "./Comments";
 
 export default function ProjectInfo({ project }) {
   return (
-    <div>
+    <div className="project__info">
       {project && (
         <>
           <ProjectImg project={project} />

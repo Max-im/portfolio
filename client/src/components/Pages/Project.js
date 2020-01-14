@@ -24,16 +24,16 @@ export class SingleProject extends Component {
     const { project, isReady } = this.props.project;
     return (
       <div className="page">
-        {isReady && (
-          <div className="container project">
-            <PageTitle text="Project" subtext="Single project information" />
-            <Breadcrumbs arr={["home", "portfolio", "project"]} />
+        <div className="container project">
+          <PageTitle text="Project" subtext="Single project information" />
+          <Breadcrumbs arr={["home", "portfolio", "project"]} />
+          {isReady && (
             <div className="page__content">
               <PageAside component={ProjectAside} />
               <ProjectInfo project={project} />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
