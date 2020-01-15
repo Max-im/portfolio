@@ -6,7 +6,6 @@
   }
   &__info{
     flex: 1 1 50%;
-    overflow: hidden;
   }
   &__picture {
     width: 500px;
@@ -56,12 +55,17 @@
     width: 30px;
     height: 30px;
   }
-  &__similar {
-    display: flex;
+  &__similarLink{
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+  }
+  &__similarImg{
+    width: 100%;
   }
   &__similarTitle {
     color: #122738;
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 

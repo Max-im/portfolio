@@ -8,7 +8,7 @@ export default function SimilarList({ item }) {
         className="project__similarLink"
         to={"/portfolio/project/" + item.id}
       >
-        <img src={"/photo/" + item.picture} />
+        <img src={"/photo/" + item.picture} className="project__similarImg"/>
         <h4 className="project__similarTitle">{item.title}</h4>
       </Link>
     </>
