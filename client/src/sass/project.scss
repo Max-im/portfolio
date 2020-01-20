@@ -67,6 +67,36 @@
     color: #122738;
     font-size: 18px;
   }
+  &__sourceList{
+    display: flex;
+    justify-content: center;
+  }
+  &__rate{
+    display: flex;
+    justify-content: center;
+    &:hover{
+      .project__rateLen{
+        opacity: 1;
+      }
+    }
+  }
+  &__rateLen{
+    transition: .3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #0088ff;
+    color: #fff;
+    font-size: 11px;
+    width: 16px;
+    opacity: 0;
+    line-height: 16px;
+    text-align: center;
+  }
+  &__rateValue {
+    font-weight: bold;
+    color: #122738;
+  }
 }
 
 .comment {

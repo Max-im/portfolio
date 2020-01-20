@@ -744,8 +744,12 @@ export const getSingleProject = (req, res) => {
       "Sample to help estimate performance different loops approches in scopes",
     level: "Simple",
     date: "2020/01/01",
-    source: "https://codepen.io/max-im/pen/KKKJOpp",
-    show: "https://codepen.io/max-im/full/KKKJOpp",
+    source: [
+      {id: 1, classes: "fab fa-codepen", name: "codepen", url:"https://codepen.io/max-im/pen/KKKJOpp"},
+      {id: 2, classes: "fab fa-git", name: "github", url:"https://github.com/max-im"},
+      {id: 3, classes: "fab fa-jsfiddle", name: ".netfiddle", url:"https://dotnetfiddle"},
+      {id: 4, classes: "fas fa-desktop", name: "open", url:"https://codepen.io/max-im/full/KKKJOpp"}
+    ],
     skills: [
       {
         id: 1,
@@ -783,8 +787,18 @@ export const getSingleProject = (req, res) => {
       { id: 4, date: "2019/01/01", text: "lorem ipsum" },
       { id: 5, date: "2019/01/01", text: "lorem ipsum" }
     ],
-    likes: [],
-    dislikes: [],
+    likes: [
+      {id: 1, name: "name1"},
+      {id: 2, name: "name2"},
+      {id: 3, name: "name3"},
+      {id: 4, name: "name4"},
+      {id: 5, name: "name5"}
+    ],
+    dislikes: [
+      {id: 1, name: "name1"},
+      {id: 2, name: "name2"},
+      {id: 3, name: "name3"},
+    ],
     similar: [
       {
         id: 7,
