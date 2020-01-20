@@ -53,7 +53,7 @@ export class Projects extends Component {
           {isReady && (
             <>
               <div className="page__content">
-                <PageAside component={ProjectsAside} className="projects__aside"/>
+                <PageAside component={ProjectsAside} className="projects__aside" title="sort and filter"/>
                 <ProjectsList projects={projects} />
               </div>
               <ProjectsPagination projectsNum={projectsNum} />

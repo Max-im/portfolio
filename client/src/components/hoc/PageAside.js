@@ -1,7 +1,7 @@
 import React from 'react';
 import store from '../../store/store';
 
-export default function PageAside ({component:Component, className, ...rest}) {
+export default function PageAside ({component:Component, title, className, ...rest}) {
     const {common} = store.getState();
     const limit = 200;
     const top = common.scroll > limit ? common.scroll - limit : 0
@@ -10,7 +10,10 @@ export default function PageAside ({component:Component, className, ...rest}) {
     return (
       <aside className={"pageAside "+className} >
         <div className={"pageAside__wrapper"} style={{top}}>
-          <Component {...rest} />
+          <>
+            {title && <p className="pageAside__mainTitle">{title}</p> }
+            <Component {...rest} />
+          </>
         </div>
       </aside>
     );

@@ -29,7 +29,7 @@ export class SingleProject extends Component {
           <Breadcrumbs arr={["home", "portfolio", "project"]} />
           {isReady && (
             <div className="page__content">
-              <PageAside component={ProjectAside} project={project}/>
+              <PageAside component={ProjectAside} project={project} title="Related" />
               <ProjectInfo project={project} />
             </div>
           )}
