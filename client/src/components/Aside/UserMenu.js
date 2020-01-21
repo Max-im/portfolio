@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { onLogout } from "../../store/actions/auth";
-import defaultUser from "../../assets/defaultUser.png";
 
 export class UserMenu extends Component {
   onLogout() {
@@ -21,7 +20,7 @@ export class UserMenu extends Component {
       <div className="userMenu">
         <img
           className="userMenu__img"
-          src={isAuth ? user.avatar : defaultUser}
+          src={isAuth ? user.avatar : null}
           alt="user"
         />
 

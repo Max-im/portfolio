@@ -1,5 +1,5 @@
 import React from "react";
-import { computeExperiencePeriod } from "../../../helpers/computeExpPeriod";
+import { computeExperiencePeriod } from "../../../utils/computeExpPeriod";
 
 export default function ExpItem({ exp }) {
   const date = computeExperiencePeriod(exp);

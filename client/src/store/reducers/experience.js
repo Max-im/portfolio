@@ -1,4 +1,4 @@
-import { GET_EXPERIENCE, LOAD_EXP, EXP_ERROR } from "../constants";
+import { GET_EXPERIENCE, EXP_ERROR } from "../constants";
 
 const initialState = {
   isReady: false,

@@ -1,28 +1,20 @@
 import { combineReducers } from "redux";
-import general from "./general";
-import portfolio from "./portfolio";
-import auth from "./auth";
-import skills from "./skills";
-import contacts from "./contacts";
-import experience from "./experience";
-import summary from "./summary";
-import education from "./education";
-import project from "./project";
-import social from "./social";
-import about from "./about";
 import common from "./common";
+import about from "./about";
+import skills from "./skills";
+import experience from "./experience";
+import education from "./education";
+import portfolio from "./portfolio";
+import project from "./project";
+import auth from './auth';
 
 export default combineReducers({
-  general,
-  social,
+  common,
+  about,
+  skills,
+  experience,
+  education,
   portfolio,
   project,
-  auth,
-  skills,
-  contacts,
-  experience,
-  summary,
-  education,
-  about,
-  common
+  auth
 });

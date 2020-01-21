@@ -1,20 +1,13 @@
 import axios from 'axios';
-import { onError } from './utils';
 import {
   GET_PROJECTS,
-  LOADING_COMMENTS,
   GET_PROJECTS_NUM,
-  COMMENT_ERROR,
-  ADD_COMMENT,
-  REMOVE_COMMENT,
-  GET_PROJECT,
-  GET_PROJECT_RATE,
-  GET_COMMETNS,
-  LOAD_PROJECT,
   PROJECTS_ERROR,
-  PROJECT_READY
+  PROJECTS_READY,
+  PROJECT_READY,
+  GET_PROJECT,
 } from '../constants';
-import { PROJECTS_READY } from '../constants';
+import { onError } from './utils';
 
 const _getProjectsNum = type => axios.get(`/projects/number/${type}`);
 const _getProj = (page, q) => axios.get(`/projects/${page}${q}`);
@@ -38,108 +31,4 @@ export const getProject = id => dispatch => {
     .then(({ data }) => dispatch({ type: GET_PROJECT, payload: data }))
     .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'alt')))
     .finally(() => dispatch({ type: PROJECT_READY, payload: true }));
-};
-
-/////////////////////////////////////////////////////////
-
-/**
- * @description get particular project comments
- * @access public
- */
-export const getProjectComments = (project_id, step) => dispatch => {
-  dispatch({ type: LOADING_COMMENTS, payload: true });
-  axios
-    .get(`/projects/comments/${project_id}/${step}`)
-    .then(({ data }) => {
-      dispatch({ type: GET_COMMETNS, payload: data });
-      dispatch({ type: LOADING_COMMENTS, payload: false });
-    })
-    .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, 'Error getting projects rate'));
-      dispatch({ type: LOADING_COMMENTS, payload: false });
-    });
-};
-
-/**
- * @param {Object} data {text, project_id, author_id }
- * @description add comment
- */
-export const createComment = data => dispatch => {
-  axios
-    .post('/comment', data)
-    .then(({ data }) => dispatch({ type: ADD_COMMENT, payload: data }))
-    .catch(err => dispatch(onError(err, COMMENT_ERROR, 'Error creating comment')));
-};
-
-/**
- * @description get all particular rate
- * @access public
- */
-export const getProjectRate = project_id => dispatch => {
-  axios
-    .get(`/projects/likes/${project_id}`)
-    .then(({ data }) => dispatch({ type: GET_PROJECT_RATE, payload: data }))
-    .catch(err => {
-      dispatch(onError(err, PROJECTS_ERROR, 'Error getting projects rate'));
-    });
-};
-
-/**
- * @param {Object} projectData {picture, description, title, skills, github, deploy, author_id}
- * @description create new project
- * @access private
- */
-export const createProject = projData => dispatch => {
-  const options = { headers: { 'Content-Type': 'multipart/form-data' } };
-  const formData = new FormData();
-  Object.keys(projData).forEach(key => formData.append(key, projData[key]));
-
-  axios
-    .post('/admin/projects', formData, options)
-    .then(() => {})
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error creating project')));
-};
-
-/**
- * @param {Object} projectData {title, description, picture, skills, project_id}
- * @param {Object} history - from withRouter (react-router-dom)
- * @description update project data
- * @access private
- */
-export const updateProject = (projectData, history) => dispatch => {
-  axios
-    .put('/admin/projects', projectData)
-    .then(() => history.push(`/portfolio/project/${projectData.project_id}`))
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error update project')));
-};
-
-/**
- * @description change rate of the project
- * @access public - for auth only
- */
-export const setRate = ({ project_id, sign }) => dispatch => {
-  axios
-    .post('/projects/likes', { project_id, sign })
-    .then(() => dispatch(getProjectRate(project_id)))
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error change project rate')));
-};
-
-/**
- * @param {String} id
- * @param {Object} history - from withRouter (react-router-dom)
- * @description delete project by id
- * @access private
- */
-export const deleteProject = (id, history) => dispatch => {
-  axios
-    .delete(`/admin/projects/${id}`)
-    .then(() => history.push('/portfolio'))
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error delete project')));
-};
-
-export const deleteComment = id => dispatch => {
-  axios
-    .delete(`/comment/${id}`)
-    .then(() => dispatch({ type: REMOVE_COMMENT, payload: id }))
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'Error delete project')));
 };

@@ -1,51 +1,36 @@
-export const GET_PROJECTS = "GET_PROJECTS";
-export const LOAD_PROJECTS = "LOAD_PROJECTS";
-export const GET_PROJECTS_NUM = "GET_PROJECTS_NUM";
-export const PROJECTS_ERROR = "PROJECTS_ERROR";
+// common 
+export const SCROLL_PAGE = "SCROLL_PAGE";
 
-export const GET_SOCIAL = "GET_SOCIAL";
-export const SOCIAL_ERROR = "SOCIAL_ERROR";
+// about 
+export const GET_ABOUT = "GET_ABOUT";
 
-export const GET_PROJECT = "GET_PROJECT";
-export const GET_PROJECT_RATE = "GET_PROJECT_RATE";
-export const GET_COMMETNS = "GET_COMMETNS";
-export const LOAD_PROJECT = "LOAD_PROJECT";
-export const LOADING_COMMENTS = "LOADING_COMMENTS";
-export const ADD_COMMENT = "ADD_COMMENT";
-export const REMOVE_COMMENT = "REMOVE_COMMENT";
-
-export const SET_USER = "SET_USER";
-export const AUTH_ERROR = "AUTH_ERROR";
-
+// skills 
+export const SKILLS_READY = "SKILLS_READY";
 export const GET_SKILLS = "GET_SKILLS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SKILL_ERROR = "SKILL_ERROR";
-export const SKILLS_READY = "SKILLS_READY";
 
-export const SET_CONTACTS = "SET_CONTACTS";
-export const LOAD_CONTACTS = "LOAD_CONTACTS";
-export const CONTACT_ERROR = "CONTACT_ERROR";
-export const DELETE_CONTACT = "DELETE_CONTACT";
-export const ADD_CONTACT = "ADD_CONTACT";
-
-export const SET_EXP = "SET_EXP";
+// experience 
+export const GET_EXPERIENCE = "GET_EXPERIENCE";
 export const LOAD_EXP = "LOAD_EXP";
 export const EXP_ERROR = "EXP_ERROR";
 
-export const SET_SUMMARY = "SET_SUMMARY";
-export const LOAD_SUMMARY = "LOAD_SUMMARY";
-export const SUMMARY_ERROR = "SUMMARY_ERROR";
-
+// education 
+export const LOADING_EDU = "LOADING_EDU";
 export const GET_EDUCATION = "GET_EDUCATION";
-export const LOADING_EDU = "LOADLOADING_EDU";
 export const EDU_ERROR = "EDU_ERROR";
 
-export const COMMENT_ERROR = "COMMENT_ERROR";
-
-export const SCROLL_PAGE = "SCROLL_PAGE";
-
-// =======================
-export const GET_ABOUT = "GET_ABOUT";
-export const GET_EXPERIENCE = "GET_EXPERIENCE";
+// portfolio 
 export const PROJECTS_READY = "PROJECTS_READY";
+export const GET_PROJECTS = "GET_PROJECTS";
+export const GET_PROJECTS_NUM = "GET_PROJECTS_NUM";
+export const PROJECTS_ERROR = "PROJECTS_ERROR";
+
+// project 
 export const PROJECT_READY = "PROJECT_READY";
+export const GET_PROJECT = "GET_PROJECT";
+
+
+// auth not ready!
+export const SET_USER = "SET_USER";
+export const AUTH_ERROR = "AUTH_ERROR";

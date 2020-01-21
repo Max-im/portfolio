@@ -1,9 +1,8 @@
 import axios from "axios";
 import { bake_cookie, delete_cookie } from "sfcookies";
 import jwt_decode from "jwt-decode";
-import { SET_USER, AUTH_ERROR } from "./constants";
-import { setAuthToken } from "./utils";
-import { onError } from "./utils";
+import { SET_USER, AUTH_ERROR } from "../constants";
+import { onError, setAuthToken } from "./utils";
 
 /**
  *

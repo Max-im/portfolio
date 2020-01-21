@@ -1,4 +1,4 @@
-import { SET_USER, AUTH_ERROR, GET_ABOUT } from "../constants";
+import { GET_ABOUT } from "../constants";
 
 const initialState = {
   summary: null,

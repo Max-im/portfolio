@@ -1,30 +1,50 @@
+-- ROLES
+CREATE TABLE roles
+(
+    id SERIAL PRIMARY KEY,
+    name CHARACTER varying(64)
+);
+
+INSERT INTO roles
+    (name)
+VALUES
+    ('admin'),
+    ('user');
+
+-- PERMISSIONS
+CREATE TABLE permissions
+(
+    id SERIAL PRIMARY KEY,
+    name CHARACTER varying(64)
+);
+
+INSERT INTO permissions
+    (name)
+VALUES
+    ('user'),
+    ('admin');
+
+
 -- AUTH
--- ======================================================================================
--- init
 CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
-    name CHARACTER varying(64),
-    email CHARACTER varying(64),
+    name CHARACTER varying(64) NOT NULL,
+    email CHARACTER varying(64) NOT NULL,
     gId CHARACTER varying(64),
     avatar CHARACTER varying(256),
-    isAdmin BOOLEAN DEFAULT false
+    role INTEGER REFERENCES roles(id) DEFAULT 2
 );
 
--- insert
 INSERT INTO users
-    (name, email, gid, avatar, isadmin)
+    (name, email, gid, avatar, role)
 VALUES
-    ('Maksym Pozhydaiev', 'pogidaevmo@gmail.com', '104819189707149372033', 'https://lh3.googleusercontent.com/a-/AAuE7mA8JqijgfrAcE2afv9ZrSZiZaB-uoxDSnSS35Wgyg=s96-c', true),
-    ('User1', 'user1@gmail.com', '110822060876468110000', 'https://s3.amazonaws.com/uifaces/faces/twitter/eitarafa/128.jpg', false),
-    ('User2', 'user1@gmail.com', '110822060876468110001', 'https://s3.amazonaws.com/uifaces/faces/twitter/divya/128.jpg', false);
-
--- ======================================================================================
+    ('Maksym Pozhydaiev', 'pogidaevmo@gmail.com', '104819189707149372033', 'https://lh3.googleusercontent.com/a-/AAuE7mA8JqijgfrAcE2afv9ZrSZiZaB-uoxDSnSS35Wgyg=s96-c', 1),
+    ('User1', 'user1@gmail.com', '110822060876468110000', 'https://s3.amazonaws.com/uifaces/faces/twitter/eitarafa/128.jpg'),
+    ('User2', 'user1@gmail.com', '110822060876468110001', 'https://s3.amazonaws.com/uifaces/faces/twitter/divya/128.jpg');
 
 
 -- SOCIAL
--- ======================================================================================
--- init
 CREATE TABLE social
 (
     id SERIAL PRIMARY KEY,
@@ -33,7 +53,6 @@ CREATE TABLE social
     classes CHARACTER varying(128) NOT NULL
 );
 
--- insert
 INSERT INTO social
     (path, tooltip, classes)
 VALUES
@@ -43,51 +62,39 @@ VALUES
     ('https://github.com/max-im', 'GitHub', 'fab fa-github-square'),
     ('https://codepen.io/max-im', 'CodPen', 'fab fa-codepen');
 
--- ======================================================================================
-
-
-
 
 -- PROJECT LEVELS
--- ======================================================================================
--- init
 CREATE TABLE projectlevels
 (
     id SERIAL PRIMARY KEY,
     level CHARACTER varying(64)
 );
 
--- insert
 INSERT INTO projectlevels
     (level)
 VALUES
     ('best'),
     ('medium'),
     ('simple');
--- ======================================================================================
 
 
 
 
 -- PROJECTS
--- ======================================================================================
--- init
 CREATE TABLE projects
 (
     id SERIAL PRIMARY KEY,
     title CHARACTER varying(64) NOT NULL,
     description CHARACTER varying(256),
     picture CHARACTER varying(128),
-    custom_picture BOOLEAN DEFAULT false,
     date date DEFAULT CURRENT_TIMESTAMP,
-    level_id INTEGER REFERENCES projectlevels(id),
-    cource CHARACTER varying(64),
-    deploy CHARACTER varying(64)
+    level INTEGER REFERENCES projectlevels(id),
+    source 
 );
 
 -- insert
 INSERT INTO projects
-    (title, description, level_id, cource, deploy)
+    (title, description, level)
 VALUES
     ('Wheel-shop', 'Page displays a wheel shop example', 3, 'https://github.com/Max-im/tires-shop', 'https://max-im.github.io/pages/wheels/'),
     ('Senior-citizen', 'Senior sitizen landing page implemented on atomic platform', 3, 'https://github.com/Max-im/senior-citizen-landing', 'https://max-im.github.io/pages/senior-citizen/'),
@@ -132,14 +139,9 @@ VALUES
     ('Effect:GamburgerMenu', 'Gamburger menu example', 3 , 'https://codepen.io/max-im/pen/WoMZxw', 'https://codepen.io/max-im/full/WoMZxw'),
     ('Game:WhackAMole', 'Game where you need to catch a grounddog', 3, 'https://codepen.io/max-im/pen/NWWQXEL', 'https://codepen.io/max-im/full/NWWQXEL');
 
--- ======================================================================================
-
-
 
 
 -- COMMENTS
--- ======================================================================================
--- init
 CREATE TABLE comments
 (
     id SERIAL PRIMARY KEY,
@@ -149,7 +151,6 @@ CREATE TABLE comments
     date date DEFAULT CURRENT_TIMESTAMP
 );
 
--- insert
 INSERT INTO comments
     (project_id, author_id, text)
 VALUES
@@ -196,42 +197,45 @@ VALUES
     (41, 2, 'comment 111'),
     (42, 2, 'comment 111');
 
--- ======================================================================================
-
 
 
 -- LIKES
--- ======================================================================================
--- init
 CREATE TABLE likes
 (
     id SERIAL PRIMARY KEY,
-    project_id INTEGER REFERENCES projects(id),
-    user_id INTEGER REFERENCES users(id),
-    sign BOOLEAN
+    project INTEGER REFERENCES projects(id),
+    user INTEGER REFERENCES users(id),
 );
 
--- insert
 INSERT INTO likes
-    (project_id, user_id, sign)
+    (project, user)
 VALUES
-    (1, 2, true),
-    (1, 1, true),
-    (2, 1, true),
-    (2, 2, false),
-    (3, 1, true),
-    (4, 1, false),
-    (4, 2, false),
-    (5, 1, true),
-    (5, 2, false);
+    (1, 2),
+    (1, 1),
+    (2, 1),
+    (2, 2),
+    (3, 1),
+    (4, 1),
+    (4, 2),
+    (5, 1),
+    (5, 2);
 
--- ======================================================================================
+-- DISLIKES
+CREATE TABLE dislikes
+(
+    id SERIAL PRIMARY KEY,
+    project INTEGER REFERENCES projects(id),
+    user INTEGER REFERENCES users(id),
+);
 
+INSERT INTO dislikes
+    (project, user)
+VALUES
+    (1, 2),
+    (5, 1);
 
 
 -- SKILLS CATEGORIES
--- ======================================================================================
--- init
 CREATE TABLE skills_categories
 (
     id SERIAL PRIMARY KEY,
@@ -239,7 +243,6 @@ CREATE TABLE skills_categories
     category CHARACTER varying(64)
 );
 
--- insert
 INSERT INTO skills_categories
     (category, range)
 VALUES
@@ -248,27 +251,21 @@ VALUES
     ('Database', 3),
     ('Tests', 4),
     ('Other', 5);
--- ======================================================================================
-
 
 
 -- SKILLS
--- ======================================================================================
--- init
 CREATE TABLE skills
 (
     id SERIAL PRIMARY KEY,
-    skill CHARACTER varying(64),
-    skill_picture CHARACTER varying(128),
-    source CHARACTER varying(128),
+    name CHARACTER varying(64),
+    icon CHARACTER varying(128),
+    url CHARACTER varying(128),
     range INTEGER,
-    category_id INTEGER REFERENCES skills_categories(id)
+    category INTEGER REFERENCES skills_categories(id)
 );
 
-
--- insert
 INSERT INTO skills
-    (skill, category_id, skill_picture, range, source)
+    (name, category, icon, range, url)
 VALUES
     ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
     ('css', 1, 'css.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
@@ -291,12 +288,9 @@ VALUES
     ('eslint', 5, 'eslint.png', 2, 'https://eslint.org/'),
     ('webpack', 5, 'webpack.png', 2, 'https://webpack.js.org/');
 
--- ======================================================================================
 
 
 -- PROJECTS_SKILLS
--- ======================================================================================
--- init
 CREATE TABLE projects_skills
 (
     id SERIAL PRIMARY KEY,
@@ -304,7 +298,6 @@ CREATE TABLE projects_skills
     skill_id INTEGER REFERENCES skills(id)
 );
 
--- insert
 INSERT INTO projects_skills
     (project_id, skill_id)
 VALUES
@@ -435,52 +428,41 @@ VALUES
     (42, 2),
     (42, 3);
 
--- ======================================================================================
-
-
 
 
 -- CONTACTS
--- ======================================================================================
--- init
 CREATE TABLE contacts
 (
     id SERIAL PRIMARY KEY,
-    contact_title CHARACTER varying(64),
-    contact_value CHARACTER varying(64),
-    classname CHARACTER varying(64)
+    classes CHARACTER varying(64),
+    value CHARACTER varying(64),
+    type CHARACTER varying(64)
 );
 
--- insert
 INSERT INTO contacts
-    (contact_title, contact_value, classname)
+    (classes, value, type)
 VALUES
-    ('Phone', '+38-050-77-23-169', 'fas fa-phone'),
-    ('Email', 'pogidaevmo@gmail.com', 'fas fa-envelope'),
-    ('Skype', 'pogidaev_mo', 'fab fa-skype');
-
--- ======================================================================================
+    ('fas fa-phone', '+38-050-77-23-169', 'text'),
+    ('fas fa-envelope', 'pogidaevmo@gmail.com', 'link'),
+    ('fab fa-skype', 'pogidaev_mo', 'text');
 
 
 
 -- EXPERIENCE
--- ======================================================================================
--- init
 CREATE TABLE experience
 (
     id SERIAL PRIMARY KEY,
-    exp_title CHARACTER varying(64),
-    exp_company CHARACTER varying(64),
-    exp_from DATE,
-    exp_to DATE,
-    exp_is_current BOOLEAN DEFAULT false,
-    exp_image CHARACTER varying(128),
-    exp_description CHARACTER varying(1024)
+    title CHARACTER varying(64),
+    company CHARACTER varying(64),
+    from DATE,
+    to DATE,
+    is_current BOOLEAN DEFAULT false,
+    icon CHARACTER varying(128),
+    description CHARACTER varying(1024)
 );
 
--- insert
 INSERT INTO experience
-    (exp_title, exp_company, exp_from, exp_to, exp_is_current, exp_image, exp_description)
+    (title, company, from, to, is_current, icon, description)
 VALUES
     ('Specialist', 'PrivateBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
     ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
@@ -489,50 +471,44 @@ VALUES
     ('Web Develper', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
 
 
--- ======================================================================================
 
 
 
 
 
--- SUMMARY RESUME
--- ======================================================================================
--- init
-CREATE TABLE summary
+-- ABOUT
+CREATE TABLE about
 (
     id SERIAL PRIMARY KEY,
-    photo CHARACTER varying(64),
     name CHARACTER varying(64),
-    summary CHARACTER varying(1024)
+    lastname CHARACTER varying(64),
+    title CHARACTER varying(64),
+    avatar CHARACTER varying(64),
+    summary CHARACTER varying(1024)б
+    social,
+    contacts
 );
 
--- insert
 INSERT INTO summary
-    (photo, name, summary)
+    ()
 VALUES
-    ('https://max-im.github.io/img/myPhoto.jpg', 'Maksim Pozhydaiev', 'I am a deep motivated Web developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set termins. It is important to me seeing results of my work and to impact on the result.');
--- ======================================================================================
+    ();
 
 
 
 
 -- EDUCATION
--- ======================================================================================
--- init
 CREATE TABLE education
 (
     id SERIAL PRIMARY KEY,
-    edu_photo CHARACTER varying(64),
-    edu_title CHARACTER varying(64),
-    edu_description CHARACTER varying(64),
-    start_date DATE,
-    finish_date DATE,
-    is_in_proccess BOOLEAN DEFAULT false
+    icon CHARACTER varying(64),
+    title CHARACTER varying(64),
+    description CHARACTER varying(64),
+    from DATE,
+    to DATE
 );
 
--- insert
 INSERT INTO education
-    (edu_photo, edu_title, edu_description, start_date, finish_date)
+    (icon, title, description, from, to)
 VALUES
     ('donnu.png', 'DON NU', 'Human resources management and labor economics', '2003-09-01', '2008-06-01');
--- ======================================================================================

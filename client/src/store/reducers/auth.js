@@ -1,9 +1,8 @@
-import { SET_USER, AUTH_ERROR } from "../actions/constants";
+import { SET_USER, AUTH_ERROR } from "../constants";
 
 const initialState = {
-  user: {},
-  isAuth: false,
-  error: null
+    isAuth: null,
+    error: null
 };
 
 export default (state = initialState, action) => {
@@ -11,13 +10,8 @@ export default (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload,
-        isAuth: Object.keys(action.payload).length > 0,
-        error: null
+        isAuth: false
       };
-
-    case AUTH_ERROR:
-      return { ...state, error: action.payload };
 
     default:
       return state;

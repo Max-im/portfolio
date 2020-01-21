@@ -1,4 +1,4 @@
-import { GET_EDUCATION, LOADING_EDU, EDU_ERROR } from "../constants";
+import { GET_EDUCATION, EDU_ERROR } from "../constants";
 
 const initialState = {
   isReady: false,

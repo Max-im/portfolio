@@ -7,7 +7,7 @@ import { read_cookie } from "sfcookies";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store/store";
-import { SET_USER } from "./store/actions/constants";
+import { SET_USER } from "./store/constants";
 import { setAuthToken } from "./store/actions/utils";
 import { onLogout } from "./store/actions/auth";
 
