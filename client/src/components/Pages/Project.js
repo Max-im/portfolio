@@ -6,6 +6,7 @@ import Breadcrumbs from "../Sections/Breadcrumbs/Breadcrumbs";
 import PageAside from "../hoc/PageAside";
 import ProjectAside from "../Sections/SingleProject/ProjectAside";
 import ProjectInfo from "../Sections/SingleProject/ProjectInfo";
+import Spinner from "../Common/Spinner";
 import { getProject } from "../../store/actions/projects";
 import "../../sass/project.scss";
 
@@ -21,18 +22,21 @@ export class SingleProject extends Component {
   };
 
   render() {
-    const { project, isReady } = this.props.project;
+    const { project, isReady, error } = this.props.project;
+    const show = isReady && !error;
     return (
       <div className="page">
         <div className="container project">
           <PageTitle text="Project" subtext="Single project information" />
           <Breadcrumbs arr={["home", "portfolio", "project"]} />
-          {isReady && (
+          {show && (
             <div className="page__content">
               <PageAside component={ProjectAside} project={project} title="Related" />
               <ProjectInfo project={project} />
             </div>
           )}
+          {!show && <Spinner />}
+          {error && <p className="error">{error}</p>}
         </div>
       </div>
     );

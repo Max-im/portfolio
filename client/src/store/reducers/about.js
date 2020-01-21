@@ -1,4 +1,4 @@
-import { GET_ABOUT } from "../constants";
+import { GET_ABOUT, ABOUT_READY } from "../constants";
 
 const initialState = {
   summary: null,
@@ -15,11 +15,10 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ABOUT:
-      return {
-        ...state,
-        ...action.payload,
-        isReady: true
-      };
+      return { ...state, ...action.payload, error: null };
+
+    case ABOUT_READY:
+      return { ...state, isReady: action.payload };
 
     default:
       return state;

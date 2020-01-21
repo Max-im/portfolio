@@ -23,7 +23,7 @@ export const onLogin = resp => dispatch => {
       const { payload } = jwt_decode(access_token);
       dispatch({ type: SET_USER, payload });
     })
-    .catch(err => dispatch(onError(err, AUTH_ERROR, "Auth error")));
+    .catch(err => dispatch(onError(err, AUTH_ERROR)));
 };
 
 /**

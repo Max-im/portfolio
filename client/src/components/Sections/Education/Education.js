@@ -21,18 +21,18 @@ export class index extends Component {
 
   render() {
     const { list, isReady, error } = this.props.education;
-
+    const show = isReady && !error;
     return (
       <section className="edu">
         <div className="container">
           <h3 className="section__title">Education</h3>
 
           <ul className="edu__list">
-            {isReady && list.map(edu => <EduItem key={edu.id} edu={edu} />)}
+            {show && list.map(edu => <EduItem key={edu.id} edu={edu} />)}
           </ul>
 
+          {!show && <Spinner />}
           {error && <p className="error">{error}</p>}
-          {!isReady && <Spinner />}
         </div>
       </section>
     );

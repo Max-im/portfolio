@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as CONSTANTS from '../constants';
 
 export const setAuthToken = token => {
   if (token)
@@ -6,12 +7,14 @@ export const setAuthToken = token => {
   else delete axios.defaults.headers.common["Authorization"];
 };
 
-export const onError = (err, type, payload) => dispatch => {
-  if (err.response && err.response.data) {
-    console.error(err.response.data);
-    dispatch({ type, payload: err.response.data });
+export const onError = (err, type) => dispatch => {
+  let payload = '';
+  if (err && err.response && err.response.data) {
+    payload = err.response.data;
+  } else if (err && err.message && typeof err.message === 'string') {
+    payload = err.message;
   } else {
-    console.error(err);
-    dispatch({ type, payload });
+    payload = CONSTANTS[type + "_MSG"];
   }
+  dispatch({type, payload});
 };

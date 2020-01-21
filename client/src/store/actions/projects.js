@@ -6,6 +6,7 @@ import {
   PROJECTS_READY,
   PROJECT_READY,
   GET_PROJECT,
+  PROJECT_ERROR
 } from '../constants';
 import { onError } from './utils';
 
@@ -19,9 +20,9 @@ export const getProjectsData = (query, page = 1, type) => dispatch => {
     .then(([num, projects]) => {
       dispatch({ type: GET_PROJECTS, payload: projects.data });
       dispatch({ type: GET_PROJECTS_NUM, payload: num.data });
-      dispatch({ type: PROJECTS_READY, payload: true });
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch(onError(err, PROJECTS_ERROR)))
+    .finally(() => dispatch({ type: PROJECTS_READY, payload: true }))
 };
 
 export const getProject = id => dispatch => {
@@ -29,6 +30,6 @@ export const getProject = id => dispatch => {
   axios
     .get(`/projects/single/${id}`)
     .then(({ data }) => dispatch({ type: GET_PROJECT, payload: data }))
-    .catch(err => dispatch(onError(err, PROJECTS_ERROR, 'alt')))
+    .catch(err => dispatch(onError(err, PROJECT_ERROR)))
     .finally(() => dispatch({ type: PROJECT_READY, payload: true }));
 };

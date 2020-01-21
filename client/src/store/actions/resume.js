@@ -1,18 +1,29 @@
 import axios from "axios";
 import {
   GET_ABOUT,
+  ABOUT_ERROR,
+  ABOUT_READY,
   GET_SKILLS,
   SKILLS_READY,
+  SKILL_ERROR,
   GET_CATEGORIES,
   GET_EXPERIENCE,
-  GET_EDUCATION
+  EXP_READY,
+  EXP_ERROR,
+  GET_EDUCATION,
+  EDU_READY,
+  EDU_ERROR
 } from "../constants";
+import {onError} from './utils';
 
 export const getAbout = () => dispatch => {
+  dispatch({ type: ABOUT_READY, payload: false });
+
   axios
     .get("/resume/about")
     .then(({ data }) => dispatch({ type: GET_ABOUT, payload: data }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch(onError(err, ABOUT_ERROR)))
+    .finally(() => dispatch({ type: ABOUT_READY, payload: true }))
 };
 
 const _getSkills = () => axios.get("/resume/skills");
@@ -20,6 +31,7 @@ const _getCategories = () => axios.get("/resume/skills-categories");
 
 export const getSkills = () => dispatch => {
   dispatch({type: SKILLS_READY, payload: false});
+
   Promise.all([_getSkills(), _getCategories()])
     .then(([skills, categories]) => {
       dispatch({ type: GET_SKILLS, payload: skills.data });
@@ -28,22 +40,26 @@ export const getSkills = () => dispatch => {
         payload: [{ id: 'all', name: "All" }, ...categories.data]
       });
     })
-    .catch(err => console.log(err))
+    .catch(err => dispatch(onError(err, SKILL_ERROR)))
     .finally(() => dispatch({type: SKILLS_READY, payload: true}));
 };
 
 export const getExperience = () => dispatch => {
+  dispatch({type: EXP_READY, payload: false});
+
   axios
     .get("/resume/experience")
     .then(({ data }) => dispatch({ type: GET_EXPERIENCE, payload: data }))
-    .catch(err => console.log(err))
-    .finally();
+    .catch(err => dispatch(onError(err, EXP_ERROR)))
+    .finally(() => dispatch({type: EXP_READY, payload: true}));
 };
 
 export const getEducation = () => dispatch => {
+  dispatch({type: EDU_READY, payload: false});
+
   axios
     .get("/resume/education")
     .then(({ data }) => dispatch({ type: GET_EDUCATION, payload: data }))
-    .catch(err => console.log(err))
-    .finally();
+    .catch(err => dispatch(onError(err, EDU_ERROR)))
+    .finally(() => dispatch({type: EDU_READY, payload: true}));
 };

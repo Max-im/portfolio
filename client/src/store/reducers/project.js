@@ -1,6 +1,7 @@
 import {
   GET_PROJECT,  
-  PROJECT_READY
+  PROJECT_READY,
+  PROJECT_ERROR
 } from "../constants";
 
 const initialState = {
@@ -16,6 +17,9 @@ export default (state = initialState, action) => {
 
     case GET_PROJECT:
       return { ...state, project: action.payload };
+    
+    case PROJECT_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

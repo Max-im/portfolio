@@ -69,8 +69,8 @@ export class Skills extends Component {
             </>
           )}
 
+          {!(isReady || error) && <Spinner />}
           {error && <p className="error skills__error">{error}</p>}
-          {!isReady && <Spinner />}
         </div>
       </section>
     );

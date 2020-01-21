@@ -30,8 +30,8 @@ export class index extends Component {
             {show && list.map(exp => <ExpItem key={exp.id} exp={exp} />)}
           </ul>
 
+          {!show && <Spinner />}
           {error && <p className="error">{error}</p>}
-          {!isReady && <Spinner />}
         </div>
       </section>
     );

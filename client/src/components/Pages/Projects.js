@@ -43,14 +43,14 @@ export class Projects extends Component {
     if (!projectsNum) subtext = "Projects not found";
     else if (projectsNum === 1) subtext = "Found - 1 project";
     else if (projectsNum > 1) subtext = `Found - ${projectsNum} projects`;
-
+    const show = isReady && !error;
     return (
       <div className="page portfolio">
         <div className="container portfolio__container">
           <PageTitle text="Portfolio" subtext={subtext} />
           <Breadcrumbs arr={breadcrumbs} />
 
-          {isReady && (
+          {show && (
             <>
               <div className="page__content">
                 <PageAside component={ProjectsAside} className="projects__aside" title="sort and filter"/>
@@ -59,7 +59,8 @@ export class Projects extends Component {
               <ProjectsPagination projectsNum={projectsNum} />
             </>
           )}
-          {!(isReady || error) && <Spinner />}
+          {!show && <Spinner />}
+          {error && <p className="error">{error}</p>}
         </div>
       </div>
     );

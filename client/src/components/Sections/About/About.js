@@ -15,11 +15,12 @@ export class About extends Component {
 
   render() {
     const { about } = this.props;
+    const show = about.isReady && !about.error;
     return (
       <section className="section section_colored about">
         <div className="container">
           <h3 className="section__title">About</h3>
-          {about.isReady && (
+          {show && (
             <div className="about__body">
               <div className="about__photoBlock">
                 <div className="about__imgWrap">
@@ -42,7 +43,7 @@ export class About extends Component {
             </div>
           )}
         </div>
-        {!about.isReady && <Spinner />}
+        {!show && <Spinner />}
       </section>
     );
   }
