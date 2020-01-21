@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style.scss";
+import "../../sass/pageTitle.scss";
 
 export default class index extends Component {
   state = { launch: false };

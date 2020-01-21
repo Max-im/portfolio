@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import MainMenu from "./MainMenu";
 import SubMenu from "./SubMenu";
 import AuthMenu from "./AuthMenu";
-import "./style.scss";
+import "../../sass/aside.scss";
 
 export default class Aside extends Component {
   state = { showSubMenu: false };
 
-  toggleSubMenu() {
+  toggleSubMenu = () => {
     this.setState({ showSubMenu: !this.state.showSubMenu });
   }
 
@@ -16,7 +16,7 @@ export default class Aside extends Component {
     return (
       <aside className="aside">
         <MainMenu
-          toggleSubMenu={this.toggleSubMenu.bind(this)}
+          toggleSubMenu={this.toggleSubMenu}
           showSubMenu={showSubMenu}
         />
         <AuthMenu />

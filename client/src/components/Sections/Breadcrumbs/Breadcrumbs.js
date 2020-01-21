@@ -1,6 +1,6 @@
 import React from "react";
 import Breadcrumb from "./Breadcrumb";
-import "./breadcrumbs.scss";
+import "../../../sass/breadcrumbs.scss";
 
 export default function Breadcrumbs({ arr }) {
   return (

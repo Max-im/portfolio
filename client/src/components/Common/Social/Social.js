@@ -1,6 +1,6 @@
 import React from 'react';
 import SocialItem from './SocialItem';
-import './style.scss';
+import '../../../sass/social.scss';
 
 export default function Social({ social }) {
   return (

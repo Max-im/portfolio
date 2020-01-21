@@ -1,6 +1,6 @@
 import React from "react";
-import pic from "../../../assets/loader.gif";
-import "./style.scss";
+import pic from "../../assets/loader.gif";
+import "../../sass/spinner.scss";
 
 export default function index() {
   return (
