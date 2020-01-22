@@ -119,12 +119,13 @@
 }
 
 .pageAside {
-  padding: 5px;
+  padding: 40px 5px 5px 5px;
   order: 1;
   justify-self: end;
   flex: 0 0 100%;
   box-sizing: border-box;
   border: 1px solid #aaa;
+  position: relative;
   &__mainTitle {
     background: #122738;
     position: absolute;
@@ -161,7 +162,7 @@
     }
   }
   .pageAside {
-    padding: 10px 15%;
+    padding: 40px 15% 10px 15%;
   }
 }
 
@@ -175,7 +176,7 @@
     }
   }
   .pageAside {
-    padding: 10px 25%;
+    padding: 40px 25% 10px 25%;
   }
 }
 
