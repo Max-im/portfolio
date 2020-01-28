@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import logger from "morgan";
 import routes from "./routes";
-import { errorHandler } from "./errorHandling/errorHandlers";
+import { errorHandler } from "./errorHandling";
 
 const app = express();
 

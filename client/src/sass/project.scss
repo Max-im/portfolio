@@ -36,25 +36,6 @@
     align-items: flex-start;
     margin: 10px 0 0 0;
   }
-  &__skill {
-    border: 1px solid #aaa;
-    border-right: none;
-    padding: 15px;
-    box-sizing: border-box;
-    position: relative;
-    &:last-child {
-      border-right: 1px solid #aaa;
-    }
-    &:hover {
-      .social__tooltip {
-        display: block;
-      }
-    }
-  }
-  &__skillImg {
-    width: 30px;
-    height: 30px;
-  }
   &__similarLink{
     width: 100%;
     overflow: hidden;
