@@ -1,48 +1,3 @@
--- ROLES
-CREATE TABLE roles
-(
-    id SERIAL PRIMARY KEY,
-    name CHARACTER varying(64)
-);
-
-INSERT INTO roles
-    (name)
-VALUES
-    ('admin'),
-    ('user');
-
--- PERMISSIONS
-CREATE TABLE permissions
-(
-    id SERIAL PRIMARY KEY,
-    name CHARACTER varying(64)
-);
-
-INSERT INTO permissions
-    (name)
-VALUES
-    ('user'),
-    ('admin');
-
-
--- AUTH
-CREATE TABLE users
-(
-    id SERIAL PRIMARY KEY,
-    name CHARACTER varying(64) NOT NULL,
-    email CHARACTER varying(64) NOT NULL,
-    gId CHARACTER varying(64),
-    avatar CHARACTER varying(256),
-    role INTEGER REFERENCES roles(id) DEFAULT 2
-);
-
-INSERT INTO users
-    (name, email, gid, avatar, role)
-VALUES
-    ('Maksym Pozhydaiev', 'pogidaevmo@gmail.com', '104819189707149372033', 'https://lh3.googleusercontent.com/a-/AAuE7mA8JqijgfrAcE2afv9ZrSZiZaB-uoxDSnSS35Wgyg=s96-c', 1),
-    ('User1', 'user1@gmail.com', '110822060876468110000', 'https://s3.amazonaws.com/uifaces/faces/twitter/eitarafa/128.jpg'),
-    ('User2', 'user1@gmail.com', '110822060876468110001', 'https://s3.amazonaws.com/uifaces/faces/twitter/divya/128.jpg');
-
 
 -- SOCIAL
 CREATE TABLE social
@@ -78,8 +33,6 @@ VALUES
     ('simple');
 
 
-
-
 -- PROJECTS
 CREATE TABLE projects
 (
@@ -88,12 +41,14 @@ CREATE TABLE projects
     description CHARACTER varying(256),
     picture CHARACTER varying(128),
     date date DEFAULT CURRENT_TIMESTAMP,
-    level INTEGER REFERENCES projectlevels(id)
+    level INTEGER REFERENCES projectlevels(id),
+    source CHARACTER varying(128),
+    show CHARACTER varying(128)
 );
 
 -- insert
 INSERT INTO projects
-    (title, description, level)
+    (title, description, level, source, show)
 VALUES
     ('Wheel-shop', 'Page displays a wheel shop example', 3, 'https://github.com/Max-im/tires-shop', 'https://max-im.github.io/pages/wheels/'),
     ('Senior-citizen', 'Senior sitizen landing page implemented on atomic platform', 3, 'https://github.com/Max-im/senior-citizen-landing', 'https://max-im.github.io/pages/senior-citizen/'),
@@ -145,93 +100,56 @@ CREATE TABLE comments
 (
     id SERIAL PRIMARY KEY,
     project_id INTEGER REFERENCES projects(id),
-    author_id INTEGER REFERENCES users(id),
     text CHARACTER varying(1024) NOT NULL,
     date date DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO comments
-    (project_id, author_id, text)
+    (project_id, text)
 VALUES
-    (1, 2, 'comment 111'),
-    (2, 2, 'comment 111'),
-    (3, 2, 'comment 111'),
-    (4, 2, 'comment 111'),
-    (5, 2, 'comment 111'),
-    (6, 2, 'comment 111'),
-    (7, 2, 'comment 111'),
-    (8, 2, 'comment 111'),
-    (9, 2, 'comment 111'),
-    (10, 2, 'comment 111'),
-    (11, 2, 'comment 111'),
-    (12, 2, 'comment 111'),
-    (13, 2, 'comment 111'),
-    (14, 2, 'comment 111'),
-    (15, 2, 'comment 111'),
-    (16, 2, 'comment 111'),
-    (17, 2, 'comment 111'),
-    (18, 2, 'comment 111'),
-    (19, 2, 'comment 111'),
-    (20, 2, 'comment 111'),
-    (21, 2, 'comment 111'),
-    (22, 2, 'comment 111'),
-    (23, 2, 'comment 111'),
-    (24, 2, 'comment 111'),
-    (25, 2, 'comment 111'),
-    (26, 2, 'comment 111'),
-    (27, 2, 'comment 111'),
-    (28, 2, 'comment 111'),
-    (29, 2, 'comment 111'),
-    (30, 2, 'comment 111'),
-    (31, 2, 'comment 111'),
-    (32, 2, 'comment 111'),
-    (33, 2, 'comment 111'),
-    (34, 2, 'comment 111'),
-    (35, 2, 'comment 111'),
-    (36, 2, 'comment 111'),
-    (37, 2, 'comment 111'),
-    (38, 2, 'comment 111'),
-    (39, 2, 'comment 111'),
-    (40, 2, 'comment 111'),
-    (41, 2, 'comment 111'),
-    (42, 2, 'comment 111');
+    (1, 'comment 111'),
+    (2, 'comment 111'),
+    (3, 'comment 111'),
+    (4, 'comment 111'),
+    (5, 'comment 111'),
+    (6, 'comment 111'),
+    (7, 'comment 111'),
+    (8, 'comment 111'),
+    (9, 'comment 111'),
+    (10,  'comment 111'),
+    (11,  'comment 111'),
+    (12,  'comment 111'),
+    (13,  'comment 111'),
+    (14,  'comment 111'),
+    (15,  'comment 111'),
+    (16,  'comment 111'),
+    (17,  'comment 111'),
+    (18,  'comment 111'),
+    (19,  'comment 111'),
+    (20,  'comment 111'),
+    (21,  'comment 111'),
+    (22,  'comment 111'),
+    (23,  'comment 111'),
+    (24,  'comment 111'),
+    (25,  'comment 111'),
+    (26,  'comment 111'),
+    (27,  'comment 111'),
+    (28,  'comment 111'),
+    (29,  'comment 111'),
+    (30,  'comment 111'),
+    (31,  'comment 111'),
+    (32,  'comment 111'),
+    (33,  'comment 111'),
+    (34,  'comment 111'),
+    (35,  'comment 111'),
+    (36,  'comment 111'),
+    (37,  'comment 111'),
+    (38,  'comment 111'),
+    (39,  'comment 111'),
+    (40,  'comment 111'),
+    (41,  'comment 111'),
+    (42,  'comment 111');
 
-
-
--- LIKES
-CREATE TABLE likes
-(
-    id SERIAL PRIMARY KEY,
-    project INTEGER REFERENCES projects(id),
-    user INTEGER REFERENCES users(id)
-);
-
-INSERT INTO likes
-    (project, user)
-VALUES
-    (1, 2),
-    (1, 1),
-    (2, 1),
-    (2, 2),
-    (3, 1),
-    (4, 1),
-    (4, 2),
-    (5, 1),
-    (5, 2);
-
--- DISLIKES
-CREATE TABLE dislikes
-(
-    id SERIAL PRIMARY KEY,
-    project INTEGER REFERENCES projects(id),
-    user INTEGER REFERENCES users(id)
-);
-
-INSERT INTO dislikes
-    (project, user)
-VALUES
-    (1, 2),
-    (5, 1);
 
 
 -- SKILLS CATEGORIES
@@ -239,11 +157,11 @@ CREATE TABLE skills_categories
 (
     id SERIAL PRIMARY KEY,
     range INTEGER UNIQUE,
-    category CHARACTER varying(64)
+    name CHARACTER varying(64)
 );
 
 INSERT INTO skills_categories
-    (category, range)
+    (name, range)
 VALUES
     ('Frontend', 1),
     ('Backend', 2),
@@ -453,47 +371,21 @@ CREATE TABLE experience
     id SERIAL PRIMARY KEY,
     title CHARACTER varying(64),
     company CHARACTER varying(64),
-    from DATE,
-    to DATE,
+    from_date DATE,
+    to_date DATE,
     is_current BOOLEAN DEFAULT false,
     icon CHARACTER varying(128),
     description CHARACTER varying(1024)
 );
 
 INSERT INTO experience
-    (title, company, from, to, is_current, icon, description)
+    (title, company, from_date, to_date, is_current, icon, description)
 VALUES
     ('Specialist', 'PrivateBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
     ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
     ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
     ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
     ('Web Develper', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
-
-
-
-
-
-
-
--- ABOUT
-CREATE TABLE about
-(
-    id SERIAL PRIMARY KEY,
-    name CHARACTER varying(64),
-    lastname CHARACTER varying(64),
-    title CHARACTER varying(64),
-    avatar CHARACTER varying(64),
-    summary CHARACTER varying(1024)б
-    social,
-    contacts
-);
-
-INSERT INTO summary
-    ()
-VALUES
-    ();
-
-
 
 
 -- EDUCATION
@@ -503,11 +395,11 @@ CREATE TABLE education
     icon CHARACTER varying(64),
     title CHARACTER varying(64),
     description CHARACTER varying(64),
-    from DATE,
-    to DATE
+    from_date DATE,
+    to_date DATE
 );
 
 INSERT INTO education
-    (icon, title, description, from, to)
+    (icon, title, description, from_date, to_date)
 VALUES
     ('donnu.png', 'DON NU', 'Human resources management and labor economics', '2003-09-01', '2008-06-01');

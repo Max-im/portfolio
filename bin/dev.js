@@ -3,7 +3,7 @@
 // eslint-disable-next-line
 require("@babel/register");
 // eslint-disable-next-line
-require("dotenv").config({ path: "./src/server/config/variables.env" });
+require("dotenv").config({ path: "./server/config/variables.env" });
 
 // eslint-disable-next-line
 const cors = require("cors");
