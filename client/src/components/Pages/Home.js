@@ -13,7 +13,7 @@ class Home extends Component {
   }
 
   render() {
-    const { isReady, social, title, name, lastName } = this.props.about;
+    const { isReady, social, title, name, lastname } = this.props.about;
     return (
       <div className="page home">
         <img alt="bg" src={homeBg} className="home__bg" />
@@ -22,7 +22,7 @@ class Home extends Component {
           {isReady && (
             <>
               <p className="home__name">{name}</p>
-              <p className="home__lastname">{lastName}</p>
+              <p className="home__lastname">{lastname}</p>
               <p className="home__title">{title}</p>
               <div className="home__social">
                 <Social social={social}/>

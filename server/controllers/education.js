@@ -1,92 +1,54 @@
-import client from "../db";
+import db from '../db';
 
-export const getEducation = (req, res) => {
-  res.json([
-    {
-      id: 1,
-      icon: "donnu.png",
-      title: "DON NU",
-      description: "Human resources management and labor economics",
-      from: "2003-09-01",
-      to: "2008-06-01"
-    }
-  ]);
-};
-
-export const createEdu = (req, res, next) => {
-  const { filename, edu_title, edu_description } = req.body;
-
-  client
-    .query(
-      `INSERT INTO education(edu_photo, edu_title, edu_description) 
-       VALUES($1, $2, $3)`,
-      [filename, edu_title, edu_description]
-    )
-    .then(() => res.end())
+export const getEducation = (req, res, next) => {
+  db.query(`SELECT * FROM education`)
+    .then(({rows}) => res.json(rows))
     .catch(err => next(err));
 };
 
-export const getCurrentEdu = (req, res, next) => {
-  const { id } = req.body;
+// export const createEdu = (req, res, next) => {
+//   const { filename, edu_title, edu_description } = req.body;
 
-  // get current db data
-  client
-    .query(
-      `SELECT edu_photo, range, edu_title, edu_description 
-        FROM education 
-        WHERE id=$1`,
-      [id]
-    )
-    .then(({ rows }) => {
-      req.body.currentEdu = rows[0];
-      return next();
-    })
-    .catch(err => next(err));
-};
-
-export const retrieveFieldsToUpdate = (req, res, next) => {
-  const { currentEdu } = req.body;
-  const toUpdate = {};
-
-  Object.keys(currentEdu).map(key => {
-    if (currentEdu[key] !== req.body[key]) toUpdate[key] = req.body[key];
-    return null;
-  });
-
-  req.body.toUpdate = toUpdate;
-  next();
-};
+//   client
+//     .query(
+//       `INSERT INTO education(edu_photo, edu_title, edu_description) 
+//        VALUES($1, $2, $3)`,
+//       [filename, edu_title, edu_description]
+//     )
+//     .then(() => res.end())
+//     .catch(err => next(err));
+// };
 
 /**
  * @type middleware
  * @description update appropriete fields
  * @path /UPDATE/:id
  */
-export const updateEdu = (req, res, next) => {
-  const { toUpdate, id } = req.body;
+// export const updateEdu = (req, res, next) => {
+//   const { toUpdate, id } = req.body;
 
-  Promise.all(
-    Object.keys(toUpdate).map(key => {
-      return client.query(
-        `UPDATE education 
-            SET ${key}=($1) 
-            WHERE id=$2`,
-        [toUpdate[key], id]
-      );
-    })
-  )
-    .then(() => res.end())
-    .catch(err => next(err));
-};
+//   Promise.all(
+//     Object.keys(toUpdate).map(key => {
+//       return client.query(
+//         `UPDATE education 
+//             SET ${key}=($1) 
+//             WHERE id=$2`,
+//         [toUpdate[key], id]
+//       );
+//     })
+//   )
+//     .then(() => res.end())
+//     .catch(err => next(err));
+// };
 
 /**
  * @type middleware
  * @description delete edu item by id
  * @path /DELETE/:id
  */
-export const deleteEdu = (req, res, next) => {
-  client
-    .query(`DELETE FROM education WHERE id=$1`, [req.params.id])
-    .then(() => res.end())
-    .catch(err => next(err));
-};
+// export const deleteEdu = (req, res, next) => {
+//   client
+//     .query(`DELETE FROM education WHERE id=$1`, [req.params.id])
+//     .then(() => res.end())
+//     .catch(err => next(err));
+// };

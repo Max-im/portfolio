@@ -31,7 +31,7 @@ export class About extends Component {
                   />
                 </div>
                 <h5 className="about__name">
-                  {about.name} {about.lastName}
+                  {about.name} {about.lastname}
                 </h5>
                 <Contacts contacts={about.contacts} />
                 <div className="about__social">
