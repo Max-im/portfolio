@@ -10,13 +10,12 @@ import {
 } from '../constants';
 import { onError } from './utils';
 
-const _getProjectsNum = type => axios.get(`/projects/number/${type}`);
+const _getProjectsNum = q => axios.get(`/projects/number${q}`);
 const _getProj = (page, q) => axios.get(`/projects/${page}${q}`);
 
-// TODO remove type
-export const getProjectsData = (query, page = 1, type) => dispatch => {
+export const getProjectsData = (query, page = 1) => dispatch => {
   dispatch({ type: PROJECTS_READY, payload: false });
-  Promise.all([_getProjectsNum(type), _getProj(page, type, query)])
+  Promise.all([_getProjectsNum(query), _getProj(page, query)])
     .then(([num, projects]) => {
       dispatch({ type: GET_PROJECTS, payload: projects.data });
       dispatch({ type: GET_PROJECTS_NUM, payload: num.data });

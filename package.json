@@ -74,7 +74,8 @@
       "camelcase": 0,
       "no-console": 0,
       "prefer-destructuring": 0,
-      "no-unneeded-ternary": 0
+      "no-unneeded-ternary": 0,
+      "no-plusplus": 0
     }
   },
   "pre-commit": "lint-staged",
