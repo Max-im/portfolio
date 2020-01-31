@@ -89,7 +89,7 @@ import { Link, withRouter } from "react-router-dom";
 
 function ProjectsPagination({ projectsNum, location, match, history }) {
   const parsed = queryString.parse(location.search);
-  const amountOnPage = parsed.amount || 6;
+  const amountOnPage = parsed.amount || 12;
   const pagesNum = Math.ceil(projectsNum / amountOnPage);
 
   const pagesArr = [];

@@ -24,6 +24,9 @@ export class SingleProject extends Component {
   render() {
     const { project, isReady, error } = this.props.project;
     const show = isReady && !error;
+    if (show && !project.id) {
+      window.location.replace("/not-found");
+    }
     return (
       <div className="page">
         <div className="container project">

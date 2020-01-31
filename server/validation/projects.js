@@ -61,3 +61,18 @@ export const validateGetProjects = (req, res, next) => {
 };
 
 
+export const validateGetSingleProject = async (req, res, next) => {
+  const id = !isEmpty(req.params.id) ? req.params.id : null;
+  if (!id) {
+    return res.status(400).json('The project request has invalid id param');
+  }
+
+  // id
+  if (!Validator.isInt(id, { min: 1 })) {
+    return res.status(400).json('The projects request has invalid id param');
+  }
+
+  return next();
+};
+
+

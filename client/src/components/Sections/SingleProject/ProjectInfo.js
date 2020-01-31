@@ -20,7 +20,7 @@ export default function ProjectInfo({ project }) {
           />
           <Shown component={ProjectSkills} skills={project.skills} />
           <Shown component={Similar} similar={project.similar} />
-          <Comments comments={project.comments} />
+          {/* <Comments comments={project.comments} /> */}
           {/* <ProjectRate /> */}
         </>
       )}

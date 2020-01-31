@@ -152,319 +152,348 @@ CREATE TABLE projects
     picture CHARACTER varying(128),
     date date DEFAULT CURRENT_TIMESTAMP,
     level INTEGER REFERENCES projectlevels(id),
-    source JSON
+    source JSON NOT NULL,
+    comments JSON NOT NULL,
+    rate JSON NOT NULL
 );
 
 -- insert
 INSERT INTO projects
-    (title, description, level, source)
+    (title, description, level, source, comments, rate)
 VALUES
     ('Wheel-shop', 'Page displays a wheel shop example', 3, 
         '[
-            {"url": "https://github.com/Max-im/tires-shop", "name": "GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/tires-shop/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/tires-shop", "name": "GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/tires-shop/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Senior-citizen', 'Senior sitizen landing page implemented on atomic platform', 3, 
         '[
-            {"url": "https://github.com/Max-im/senior-citizen-landing", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/senior-citizen/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/senior-citizen-landing", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/senior-citizen/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": false}]'
     ),
     ('Pingbuller', 'Landing page design example', 3, 
         '[
-            {"url": "https://github.com/Max-im/pingbuller", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/pingbuller/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/pingbuller", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/pingbuller/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Building', 'Company page design example', 3, 
         '[
-            {"url": "https://github.com/Max-im/building", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/building/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/building", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/building/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Holiday-dreams', 'Tourists servise page design example', 2, 
         '[
-            {"url": "https://github.com/Max-im/holiday-dreams", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/holiday-dreams/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/holiday-dreams", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/holiday-dreams/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Maxtogram-vue', 'SPA page similar to instagram implemented on Vue framework', 3, 
         '[
-            {"url": "https://github.com/Max-im/maxtagram-vue", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/maxtagram/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/maxtagram-vue", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/maxtagram/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Clothes-shop-page', 'Apparel shop SPA page implemented on Vue framework', 2, 
         '[
-            {"url": "https://github.com/Max-im/clothes-shop-page", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/clothes-page/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/clothes-shop-page", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/clothes-page/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Wheather-service', 'Wheather service SPA page implemented on Vue framework', 3, 
         '[
-            {"url": "https://github.com/Max-im/weather", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/wheather/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/weather", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/wheather/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Resursable', 'SPA Page full of useful links for development implemented on React framework', 3, 
         '[
-            {"url": "https://github.com/Max-im/resursable", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/resursable/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/resursable", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/resursable/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Angular-quick-start', 'SPA Page to display profile carts of people implemented on Angular framework', 3, 
         '[
-            {"url": "https://github.com/Max-im/angular-quick-start", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/angular-people", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/angular-quick-start", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/angular-people", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Tutorials-list', 'SPA Page with many courses, games and news for developers implemented on React framework', 3, 
         '[
-            {"url": "https://github.com/Max-im/tutorials-list", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/tutorials/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/tutorials-list", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/tutorials/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Concerts', 'Concerts Page example SPA page implemented on React framework', 2, 
         '[
-            {"url": "https://github.com/Max-im/concerts", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/concerts/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/concerts", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/concerts/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Restorant', 'Resorant page design', 3, 
         '[
-            {"url": "https://github.com/Max-im/restoran-page", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/restorant-page/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/restoran-page", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/restorant-page/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('React-calendar-calc', 'SPA servise to compute number of days between 2 market dates implemented on React framework', 2, 
         '[
-            {"url": "https://github.com/Max-im/react-calendar-calc", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/calendar/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/react-calendar-calc", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/calendar/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Repo-list', 'SPA servise to display my repo list and to mark/unmark them implemented on React framework', 2, 
         '[
-            {"url": "https://github.com/Max-im/repo-list", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/repo-list/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/repo-list", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/repo-list/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Social-basic', 'Example of basic social network implemented on MERN stack', 2, 
         '[
-            {"url": "https://github.com/Max-im/social-basic", "name":"GitHub", "classes": "fab fa-git"}
-        ]'),
+            {"id": 1, "url": "https://github.com/Max-im/social-basic", "name":"GitHub", "classes": "fab fa-git"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'),
     ('Furniture-shop', 'Furniture shop page', 1,
         '[
-            {"url": "https://github.com/Max-im/furniture", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/furniture/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/furniture", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/furniture/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Furniture-shop:Vue', 'Furniture shop page implemented on Vue framework', 1, 
         '[
-            {"url": "https://github.com/Max-im/furniture-shop", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/furniture-Shop-home/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/furniture-shop", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/furniture-Shop-home/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Quotes', 'Landing page design example', 3, 
         '[
-            {"url": "https://github.com/Max-im/quotes", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/quotes/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/quotes", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/quotes/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Webcoders', 'Example meeting website page', 2, 
         '[
-            {"url": "https://github.com/Max-im/testWebCoder", "name":"GitHub", "classes": "fab fa-git"},
-            {"url": "https://max-im.github.io/pages/WebCoders/", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://github.com/Max-im/testWebCoder", "name":"GitHub", "classes": "fab fa-git"},
+            {"id": 2, "url": "https://max-im.github.io/pages/WebCoders/", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Node-simple-page', 'Example of webpage, implemented on Node.js', 3, 
         '[
-            {"url": "https://github.com/Max-im/node-simple-page", "name":"GitHub", "classes": "fab fa-git"}
-        ]'),
+            {"id": 1"url": "https://github.com/Max-im/node-simple-page", "name":"GitHub", "classes": "fab fa-git"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
+    ),
     ('Game:Arkanoid', 'Implementation arkanoid game', 2, 
         '[
-            {"url": "https://codepen.io/max-im/pen/mddaNmZ", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/mddaNmZ", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/mddaNmZ", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/mddaNmZ", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Pattern:Factory', 'Factory Pattern Implementation', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/abbRYVY", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/abbRYVY", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/abbRYVY", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/abbRYVY", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('CSS:Filters', 'Visualisation of CSS Filters applying', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/abbXNab", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/abbXNab", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/abbXNab", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/abbXNab", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Algorithm:quickSort', 'Displaying algorithm of quick sort step by step', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/qBBgzeP", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/qBBgzeP", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/qBBgzeP", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/qBBgzeP", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Algorithm:benchmark', 'Sample to help estimate performance different loops approches in scopes', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/KKKJOpp", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/KKKJOpp", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/KKKJOpp", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/KKKJOpp", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Game:BinarySearch', 'Game to help realise binary search approach', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/MWWLNae", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/MWWLNae", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/MWWLNae", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/MWWLNae", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Algorithm:k-neighbours', 'Visualisation of k-neighbours algorithm', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/JjjxgGO", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/JjjxgGO", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/JjjxgGO", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/JjjxgGO", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('CSS:clock', 'Simple clock on css', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/Rpapyq", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/Rpapyq", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/Rpapyq", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/Rpapyq", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Stopwatch', 'Stopwatch implementation', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/vYYwxoz", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/vYYwxoz", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/vYYwxoz", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/vYYwxoz", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Menu:Accordion', 'Sample accordion menu implementation', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/WNNBjRr", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/WNNBjRr", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/WNNBjRr", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/WNNBjRr", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Dropdown:ajax', 'Beautiful dropdown list using ajax request', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/YzzbVVB", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/YzzbVVB", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/YzzbVVB", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/YzzbVVB", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('MVC:todo', 'Todo list with MVC approach', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/YzzmKYj", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/YzzmKYj", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/YzzmKYj", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/YzzmKYj", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('CSS:Variables', 'Sample to apply css variables', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/MWWNrYB", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/MWWNrYB", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/MWWNrYB", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/MWWNrYB", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('FunCanvas', 'Canvas to draw fun pictures', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/vYYopNG", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/vYYopNG", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/vYYopNG", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/vYYopNG", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Effect:Woah', 'Cool effect to for performance', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/jOOgYqx", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/jOOgYqx", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/jOOgYqx", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/jOOgYqx", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Effect:FollowLink', 'Awesome Menu and link hower effect', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/mddNpLw", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/mddNpLw", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/mddNpLw", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/mddNpLw", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Effect:DragAndDropSlides', 'Slides with drag and drop effect', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/xxxvpaw", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/xxxvpaw", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/xxxvpaw", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/xxxvpaw", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Effect:ToolTips', 'Sample of tooltips effect', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/wvvVpYX", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/wvvVpYX", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/wvvVpYX", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/wvvVpYX", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Game:Tennis', 'Game where you can play tennis aganist computer', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/JjjwgWB", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/JjjwgWB", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/JjjwgWB", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/JjjwgWB", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Effect:GamburgerMenu', 'Gamburger menu example', 3 , 
         '[
-            {"url": "https://codepen.io/max-im/pen/WoMZxw", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/WoMZxw", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/WoMZxw", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/WoMZxw", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     ),
     ('Game:WhackAMole', 'Game where you need to catch a grounddog', 3, 
         '[
-            {"url": "https://codepen.io/max-im/pen/NWWQXEL", "name":"CodePen", "classes": "fab fa-codepen"},
-            {"url": "https://codepen.io/max-im/full/NWWQXEL", "name":"Open", "classes": "fas fa-desktop"}
-        ]'
+            {"id": 1, "url": "https://codepen.io/max-im/pen/NWWQXEL", "name":"CodePen", "classes": "fab fa-codepen"},
+            {"id": 2, "url": "https://codepen.io/max-im/full/NWWQXEL", "name":"Open", "classes": "fas fa-desktop"}
+        ]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "user_id": 1, "vote": true}]'
     );
-
--- COMMENTS
-CREATE TABLE comments
-(
-    id SERIAL PRIMARY KEY,
-    project_id INTEGER REFERENCES projects(id),
-    text CHARACTER varying(1024) NOT NULL,
-    date date DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO comments
-    (project_id, text)
-VALUES
-    (1, 'comment 111'),
-    (2, 'comment 111'),
-    (3, 'comment 111'),
-    (4, 'comment 111'),
-    (5, 'comment 111'),
-    (6, 'comment 111'),
-    (7, 'comment 111'),
-    (8, 'comment 111'),
-    (9, 'comment 111'),
-    (10,  'comment 111'),
-    (11,  'comment 111'),
-    (12,  'comment 111'),
-    (13,  'comment 111'),
-    (14,  'comment 111'),
-    (15,  'comment 111'),
-    (16,  'comment 111'),
-    (17,  'comment 111'),
-    (18,  'comment 111'),
-    (19,  'comment 111'),
-    (20,  'comment 111'),
-    (21,  'comment 111'),
-    (22,  'comment 111'),
-    (23,  'comment 111'),
-    (24,  'comment 111'),
-    (25,  'comment 111'),
-    (26,  'comment 111'),
-    (27,  'comment 111'),
-    (28,  'comment 111'),
-    (29,  'comment 111'),
-    (30,  'comment 111'),
-    (31,  'comment 111'),
-    (32,  'comment 111'),
-    (33,  'comment 111'),
-    (34,  'comment 111'),
-    (35,  'comment 111'),
-    (36,  'comment 111'),
-    (37,  'comment 111'),
-    (38,  'comment 111'),
-    (39,  'comment 111'),
-    (40,  'comment 111'),
-    (41,  'comment 111'),
-    (42,  'comment 111');
-
-
-
 
 
 -- PROJECTS_SKILLS
@@ -604,3 +633,143 @@ VALUES
     (42, 1),
     (42, 2),
     (42, 3);
+
+
+-- SIMILAR
+CREATE TABLE similar_projects
+(
+    id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(id),
+    similar_id INTEGER REFERENCES projects(id)
+);
+
+INSERT INTO similar_projects
+    (project_id, similar_id)
+VALUES
+    (1, 33),
+    (1, 11),
+    (1, 22),
+    (2, 7),
+    (2, 5),
+    (2, 3),
+    (3, 32),
+    (3, 31),
+    (3, 30),
+    (4, 20),
+    (4, 12),
+    (4, 22),
+    (5, 11),
+    (5, 12),
+    (5, 13),
+    (6, 11),
+    (6, 12),
+    (6, 13),
+    (7, 11),
+    (7, 12),
+    (7, 13),
+    (8, 11),
+    (8, 12),
+    (8, 13),
+    (9, 11),
+    (9, 12),
+    (9, 13),
+    (10, 11),
+    (10, 12),
+    (10, 13),
+    (11, 7),
+    (11, 8),
+    (11, 9),
+    (12, 7),
+    (12, 8),
+    (12, 9),
+    (13, 7),
+    (13, 8),
+    (13, 9),
+    (14, 11),
+    (14, 12),
+    (14, 13),
+    (15, 11),
+    (15, 12),
+    (15, 13),
+    (16, 11),
+    (16, 12),
+    (16, 13),
+    (17, 11),
+    (17, 12),
+    (17, 13),
+    (18, 11),
+    (18, 12),
+    (18, 13),
+    (19, 11),
+    (19, 12),
+    (19, 13),
+    (20, 11),
+    (20, 12),
+    (20, 13),
+    (21, 11),
+    (21, 12),
+    (21, 13),
+    (22, 11),
+    (22, 12),
+    (22, 13),
+    (23, 11),
+    (23, 12),
+    (23, 13),
+    (24, 11),
+    (24, 12),
+    (24, 13),
+    (25, 11),
+    (25, 12),
+    (25, 13),
+    (26, 11),
+    (26, 12),
+    (26, 13),
+    (27, 11),
+    (27, 12),
+    (27, 13),
+    (28, 11),
+    (28, 12),
+    (28, 13),
+    (29, 11),
+    (29, 12),
+    (29, 13),
+    (30, 11),
+    (30, 12),
+    (30, 13),
+    (31, 11),
+    (31, 12),
+    (31, 13),
+    (32, 11),
+    (32, 12),
+    (32, 13),
+    (33, 11),
+    (33, 12),
+    (33, 13),
+    (34, 11),
+    (34, 12),
+    (34, 13),
+    (35, 11),
+    (35, 12),
+    (35, 13),
+    (36, 11),
+    (36, 12),
+    (36, 13),
+    (37, 11),
+    (37, 12),
+    (37, 13),
+    (38, 11),
+    (38, 12),
+    (38, 13),
+    (39, 11),
+    (39, 12),
+    (39, 13),
+    (40, 11),
+    (40, 12),
+    (40, 13),
+    (41, 11),
+    (41, 12),
+    (41, 13),
+    (42, 11),
+    (42, 12),
+    (42, 13)
+    
