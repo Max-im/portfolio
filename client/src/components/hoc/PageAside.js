@@ -6,7 +6,6 @@ export default function PageAside ({component:Component, title, className, ...re
     const limit = 200;
     const top = common.scroll > limit ? common.scroll - limit : 0
 
-    // style={{ marginTop: mt }}
     return (
       <aside className={"pageAside "+className} >
         <div className={"pageAside__wrapper"} style={{top}}>

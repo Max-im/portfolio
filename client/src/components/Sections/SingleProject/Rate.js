@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default function Rate({ likes, dislikes }) {
-  const theRate = Math.round(likes.length / dislikes.length * 100) / 100;
-  
-  return (
-    <div className="pageAside__block">
-      <h4 className="pageAside__title">Rate: <b className="project__rateValue">{theRate}</b></h4>
+export class Rate extends Component {
+  render() {
+    const likes = this.props.rate.filter(item => item.vote)
+    const dislikes = this.props.rate.filter(item => !item.vote)
+    return (
+      <div className="pageAside__block">
+      <h4 className="pageAside__title">Rate: <b className="project__rateValue">{}</b></h4>
       <ul className="project__rate">
         <li key="likes" className="social__item">
           <i className="fas fa-thumbs-up social__link social__link_active" />
@@ -19,5 +21,15 @@ export default function Rate({ likes, dislikes }) {
         </li>
       </ul>
     </div>
-  );
+    )
+  }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+
+
+export default connect(mapStateToProps, {})(Rate)
+

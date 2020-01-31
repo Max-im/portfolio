@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 import PropTypes from "prop-types";
 import PageTitle from "../Common/PageTitle";
 import Breadcrumbs from "../Sections/Breadcrumbs/Breadcrumbs";
@@ -14,6 +15,14 @@ export class SingleProject extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getProject(id);
+  }
+
+  componentDidUpdate(prev) {
+    const { id } = this.props.match.params;
+    const {id: prevId} = prev.match.params;
+    if (id !== prevId) {
+      this.props.getProject(id);
+    }
   }
 
   static propTypes = {
@@ -50,4 +59,4 @@ const mapStateToProps = state => ({
   project: state.project
 });
 
-export default connect(mapStateToProps, { getProject })(SingleProject);
+export default connect(mapStateToProps, { getProject })(withRouter(SingleProject));

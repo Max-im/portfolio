@@ -30,12 +30,12 @@ class Shown extends React.Component {
   render() {
     const { component: Component, className, ...rest } = this.props;
     const shown = {
-      transition: "ease-out 0.4s",
+      transition: "ease-out 0.7s",
       position: "relative",
       transform: "none"
     };
     const hidden = {
-      transition: "ease-out 0.4s",
+      transition: "ease-out 0.7s",
       position: "relative",
       transform: "translate(0px, 50px)",
       visibility: "collapse"
