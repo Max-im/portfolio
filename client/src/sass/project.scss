@@ -6,22 +6,23 @@
   }
   &__info{
     flex: 1 1 50%;
+    order: 2;
   }
   &__picture {
-    width: 500px;
-    min-height: 500px;
+    width: 100%;
+    min-height: 200px;
   }
   &__title {
-    font-size: 36px;
-    margin: 0 0 20px 0;
+    font-size: 22px;
+    margin: 0 0 10px 0;
   }
   &__description {
-    font-size: 18px;
-    margin: 0 0 15px;
+    margin: 0 0 10px;
+    line-height: 20px;
   }
   &__date {
     color: #aaa;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
   }
   &__level {
     color: #fff;
@@ -33,27 +34,9 @@
   &__skills {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     margin: 10px 0 0 0;
-  }
-  &__skill {
-    border: 1px solid #aaa;
-    border-right: none;
-    padding: 15px;
-    box-sizing: border-box;
-    position: relative;
-    &:last-child {
-      border-right: 1px solid #aaa;
-    }
-    &:hover {
-      .social__tooltip {
-        display: block;
-      }
-    }
-  }
-  &__skillImg {
-    width: 30px;
-    height: 30px;
   }
   &__similarLink{
     width: 100%;
@@ -64,8 +47,7 @@
     width: 100%;
   }
   &__similarTitle {
-    color: #122738;
-    font-size: 18px;
+    display: none;
   }
   &__sourceList{
     display: flex;
@@ -142,71 +124,80 @@
   }
 }
 
-.addComment {
-  display: flex;
-  width: 100%;
-  max-width: 600px;
-  flex-direction: column;
-  margin: 0 auto 50px auto;
-  position: relative;
-  &__textArea {
-    width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    outline: none;
-    border: 1px solid #ccc;
-    padding: 5px 35px 5px 5px;
-  }
-  &__btn {
-    background: #0088ff;
-    text-align: center;
-    border: none;
-    text-transform: uppercase;
-    font-family: arial;
-    font-size: 12px;
-    color: #fff;
-    padding: 10px 0;
-    cursor: pointer;
-  }
-  &__avatar {
-    position: absolute;
-    height: 30px;
-    top: 0;
-    right: 0;
-  }
-  &__icon {
-    margin: 0 10px 0 0;
-    font-weight: bold;
-  }
+
+//  WIDE 480 px
+@media screen and (min-width: 480px) {
+  .project {
+    &__picture {
+      width: 350px;
+      min-height: 350px;
+      margin: 0 auto;
+      display: block;
+    }
+    &__title {
+      font-size: 24px;
+      margin: 0 0 15px 0;
+    }
+    &__description {
+      margin: 0 0 15px;
+    }
+    &__date {
+      margin: 0 0 15px 0;
+    }
+    &__skill {
+      width: 50px;
+      height: 50px;
+    }
+    &__skillImg {
+      width: 20px;
+      height: 20px;
+    }
+  } 
 }
 
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
-  .aboutProject {
-    width: 100%;
-    &__item {
-      flex-direction: row;
+  .project {
+    &__picture {
+      width: 400px;
+      min-height: 400px;
+      margin: 0 auto;
     }
-    &__contentKey {
-      flex: 0 0 25%;
+    &__title {
+      font-size: 26px;
+      margin: 0 0 15px 0;
     }
-  }
-  .projectSkills {
-    width: 50%;
-  }
-  .projectRate {
-    width: 50%;
-  }
+    
+    &__skill {
+      width: 60px;
+      height: 60px;
+    }
+    &__skillImg {
+      width: 25px;
+      height: 25px;
+    }
+    &__similarTitle {
+      display: block;
+      color: #122738;
+      font-size: 14px;
+    }
+  } 
 }
 
 //  WIDE 980 px
 @media screen and (min-width: 980px) {
-  .projectImg {
-    width: 50%;
-    padding: 0 15px 0 0;
-    box-sizing: border-box;
-  }
-  .aboutProject {
-    width: 50%;
-  }
+  .project {
+    &__picture {
+      width: 450px;
+      min-height: 450px;
+      margin: 0;
+    }
+    &__title {
+      font-size: 32px;
+    }
+    &__similarTitle {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+  } 
 }
