@@ -43,7 +43,7 @@ export default function MainMenu({ toggleSubMenu, showSubMenu }) {
             <p className="mainMenu__tooltip">portfolio</p>
           </NavLink>
         </li>
-        <li className="mainMenu__item">
+        {/* <li className="mainMenu__item">
           <NavLink
             className="fas fa-shield-alt mainMenu__link"
             activeClassName="mainMenu__link_active"
@@ -51,7 +51,7 @@ export default function MainMenu({ toggleSubMenu, showSubMenu }) {
           >
             <p className="mainMenu__tooltip">admin</p>
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

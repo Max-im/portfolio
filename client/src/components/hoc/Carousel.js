@@ -24,7 +24,7 @@ export default class Carousel extends React.Component {
         <i className={firstItemIndex === 0 ? "fas fa-chevron-left carousel__control carousel__control_disabled" : "fas fa-chevron-left carousel__control"} data-value={-1} onClick={this.onShift} />
         <div className="carousel__wrapper">
           <ul className="carousel__list">
-            {arr.map((item, i) => (
+            {arr && arr.map((item, i) => (
               <li className="carousel__item" key={i} style={i >= firstItemIndex && i < lastItemIndex ? {flex:"0 0 "+ 100 / number + "%", padding: "0 10px" } : {} }>
                 <Component item={item} {...rest} />
               </li>

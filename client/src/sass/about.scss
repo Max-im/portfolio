@@ -9,6 +9,7 @@
   }
   &__img {
     width: 150px;
+    filter: grayscale(20%);
   }
   &__name {
     color: #122738;

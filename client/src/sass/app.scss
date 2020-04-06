@@ -58,9 +58,15 @@
   &__title {
     font-size: 26px;
     letter-spacing: 1.5px;
-    color: #777;
-    text-shadow: 1px 1px 1px #122738;
+    color: #122738;
     padding: 0 0 15px 0;
+    &:before {
+      content: '\f05a';
+      font-family: FontAwesome;
+      font-size: 30px;
+      color: #0088ff;
+      margin: 0 5px 0 0;
+    }
   }
 }
 
@@ -157,9 +163,6 @@
 @media screen and (min-width: 480px) {
   .section {
     padding: 15px 0px 30px 0;
-    &__title {
-      font-size: 28px;
-    }
   }
   .pageAside {
     padding: 40px 15% 10px 15%;
@@ -171,7 +174,6 @@
   .section {
     padding: 20px 0px 40px 0;
     &__title {
-      font-size: 32px;
       padding: 0 0 20px 0;
     }
   }
@@ -191,7 +193,6 @@
   .section {
     padding: 25px 0px 50px 0;
     &__title {
-      font-size: 36px;
       padding: 0 0 50px 0;
     }
   }

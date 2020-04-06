@@ -1,6 +1,6 @@
 export const computeExperiencePeriod = exp => {
   const dateFrom = new Date(exp.from);
-  const dateTo = exp.isCurrent ? new Date() : new Date(exp.to);
+  const dateTo = exp.iscurrent ? new Date() : new Date(exp.to);
   const expTime = Math.abs(dateTo - dateFrom);
   const expDays = Math.ceil(expTime / (1000 * 60 * 60 * 24));
   const expYears = Math.floor(expDays / 365);

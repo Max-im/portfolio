@@ -114,7 +114,7 @@ CREATE TABLE experience
 INSERT INTO experience
     (title, company, from_date, to_date, is_current, icon, description)
 VALUES
-    ('Specialist', 'PrivateBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
+    ('Specialist', 'PrivatBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
     ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
     ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
     ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
@@ -170,7 +170,7 @@ CREATE TABLE projects
 INSERT INTO projects
     (title, description, level, source, comments, rate, picture)
 VALUES
-    ('Wheel-shop', 'Page displays a wheel shop example', 2, 
+    ('Tires-shop', 'Page displays a wheel shop example', 2, 
         '[
             {"id": 1, "url": "https://github.com/Max-im/tires-shop", "name": "GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/tires-shop/", "name":"Open", "classes": "fas fa-desktop"}
@@ -269,7 +269,7 @@ VALUES
     ('Restorant', 'Resorant page design', 2, 
         '[
             {"id": 1, "url": "https://github.com/Max-im/restoran-page", "name":"GitHub", "classes": "fab fa-git"},
-            {"id": 2, "url": "https://max-im.github.io/pages/restorant-page/", "name":"Open", "classes": "fas fa-desktop"}
+            {"id": 2, "url": "https://max-im.github.io/pages/restoran-page/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'restaurant.jpg'
@@ -532,6 +532,11 @@ VALUES
             {"id": 2, "url": "https://codepen.io/max-im/full/JjdGaGB", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', 'pattern_module.jpg'
     ),
+    ('Pattern:Adapter', 'The Adapter pattern translates one interface (an object properties and methods) to another. Adapters allows programming components to work together that otherwise wouldnt because of mismatched interfaces. One scenario where Adapters are commonly used is when new components need to be integrated and work together with existing components in the application. Another scenario is refactoring in which parts of the program are rewritten with an improved interface, but the old code still expects the original interface.', 3 , 
+        '[
+            {"id": 1, "url": "https://codepen.io/max-im/pen/KKpaEMv", "name":"CodePen", "classes": "fab fa-codepen"}
+        ]', '[]', '[]', null
+    ),
     ('Game:WhackAMole', 'Game where you need to catch a grounddog', 3, 
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/NWWQXEL", "name":"CodePen", "classes": "fab fa-codepen"},
@@ -694,9 +699,10 @@ VALUES
     (47, 1),
     (47, 2),
     (47, 3),
-    (48, 1),
-    (48, 2),
-    (48, 3);
+    (48, 3),
+    (49, 1),
+    (49, 2),
+    (49, 3);
 
 
 -- SIMILAR
@@ -835,5 +841,25 @@ VALUES
     (41, 13),
     (42, 11),
     (42, 12),
-    (42, 13)
-    
+    (42, 13),
+    (43, 11),
+    (43, 12),
+    (43, 13),
+    (44, 11),
+    (44, 12),
+    (44, 13),
+    (45, 11),
+    (45, 12),
+    (45, 13),
+    (46, 11),
+    (46, 12),
+    (46, 13),
+    (47, 11),
+    (47, 12),
+    (47, 13),
+    (48, 11),
+    (48, 12),
+    (48, 13),
+    (49, 11),
+    (49, 12),
+    (49, 13);

@@ -12,6 +12,7 @@ export default function ProjectInfo({ project }) {
     <div className="project__info">
       {project && (
         <>
+          <h2 className="project__title"> {project.title}</h2>
           <ProjectImg project={project} />
           <Shown
             component={ProjectAbout}
