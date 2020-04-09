@@ -2,8 +2,8 @@
 
 require("@babel/polyfill");
 const express = require("express");
-const app = require("../dist/server");
 const path = require("path");
+const app = require("../dist/server");
 
 // Frontend build include
 app.use(express.static(path.join(__dirname, "..", "dist")));
