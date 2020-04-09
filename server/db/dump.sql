@@ -25,19 +25,19 @@ INSERT INTO about
 VALUES
     (
         'Maksym', 'Pozhydaiev', 'Web Developer', 
-        'I am a deep motivated Web developer, with strong knowledge in Node.js, React, Redux, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set times. It is important to me to see results of my work and to impact on the result.', 
+        'I am a deeply motivated Web developer, with strong knowledge in Node.js, React, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set periods. It is important to me to see results of my work and to have an influence on the result.', 
         'avatar.jpg',
         '[
-            {"id": 1, "url": "https://www.facebook.com/max.pozhidaev.7", "name":"Facebook", "classes": "fab fa-facebook-square"},
-            {"id": 2, "url": "https://www.linkedin.com/in/max-im", "name":"LinkedIn", "classes": "fab fa-linkedin"},
+            {"id": 1, "url": "https://facebook.com/max.pozhidaev.7", "name":"Facebook", "classes": "fab fa-facebook-square"},
+            {"id": 2, "url": "https://linkedin.com/in/max-im", "name":"LinkedIn", "classes": "fab fa-linkedin"},
             {"id": 3, "url": "https://twitter.com/MPozhidayev", "name":"Twitter", "classes": "fab fa-twitter-square"},
             {"id": 4, "url": "https://github.com/max-im", "name":"GitHub", "classes": "fab fa-github-square"},
             {"id": 5, "url": "https://codepen.io/max-im", "name":"CodPen", "classes": "fab fa-codepen"}
         ]', 
         '[
-            {"id": 1, "value": "+38-050-77-23-169", "type":"text", "classes": "fas fa-phone"},
-            {"id": 2, "value": "pogidaevmo@gmail.com", "type":"link", "classes": "fas fa-envelope"},
-            {"id": 3, "value": "pogidaev_mo", "type":"text", "classes": "fab fa-skype"}
+            {"id": 1, "value": "+38(050)77-23-169", "type":"text", "classes": "fas fa-phone", "meta": "phone"},
+            {"id": 2, "value": "pogidaevmo@gmail.com", "type":"link", "classes": "fas fa-envelope", "meta": "email"},
+            {"id": 3, "value": "pogidaev_mo", "type":"text", "classes": "fab fa-skype", "meta": "skype"}
         ]'
     );
 
@@ -115,10 +115,10 @@ INSERT INTO experience
     (title, company, from_date, to_date, is_current, icon, description)
 VALUES
     ('Specialist', 'PrivatBank', '2006-03-01', '2007-06-01', false, 'privatbank.png', 'Conclusion of loan agreements; Attraction of consumers'),
-    ('Economist - Head of Labor and Wages Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control of the work of the department; Development of a part of the budget in terms of FOT and the number of staff; Calculated cost; Conducting competitive bidding procedures; Conducting time and photos of working hours; Check the time sheets; Preparation of periodic reports'),
-    ('Engineer on the organization and standardization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Carrying out works aimed at maintaining the level of labor standardization at the enterprise; Check of official and working instructions'),
-    ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain applications, chrome extensions and google add-ons; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs'),
-    ('Web Develper', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop complicated E-Commerce Solutions on Demandware platphorm');
+    ('from Economist to Head of Department', 'Regional gas company', '2007-06-01', '2014-09-01', false, 'gorgaz.png', 'Control working processes of the department; Development a budget in terms and the number of staff; Conducting competitive bidding procedures.'),
+    ('Engineer on the organization of work', 'Chernobyl nuclear power plant', '2014-09-15', '2018-01-08', false, 'chnpp.png', 'Participation in performance appraisal of workplaces; Performance of works on tariffing; Check of official and working instructions.'),
+    ('JS Developer', 'iDeals solutions', '2018-01-09', '2019-09-06', false, 'ideals.png', 'Develop and maintain full stack applications, chrome extensions and google add-ons for automation of business processes; Use in my work: React, Redux, Vue, MongoDB, PostgreSQL, Nodejs.'),
+    ('Web Develper', 'Astound Commerce', '2019-09-09', null, true, 'astound.png', 'Develop comprehensive E-Commerce Solutions on SalesForce platform with SFRA and SFCC approches; Implement inner applications for business automation, using Vue and Firebase.');
 
 
 -- EDUCATION

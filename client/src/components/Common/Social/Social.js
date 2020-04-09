@@ -5,7 +5,7 @@ import '../../../sass/social.scss';
 export default function Social({ social }) {
   return (
     <ul className="social">
-      {social.map(item => (
+      {social && social.map(item => (
         <SocialItem
           key={item.name}
           classes={item.classes}

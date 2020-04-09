@@ -14,10 +14,12 @@ export default class index extends Component {
     const { text, subtext } = this.props;
     return (
       <div className="pageTitle">
-        <div className="pageTitle__body">
-          <h1 className="pageTitle__text">{text}</h1>
-          {subtext && <p className="pageTitle__subtext">{subtext}</p>}
-        </div>
+        <div className="container">
+          <div className="pageTitle__body">
+            <h1 className="pageTitle__text">{text}</h1>
+            {subtext && <p className="pageTitle__subtext">{subtext}</p>}
+          </div>
+        </div>  
       </div>
     );
   }
