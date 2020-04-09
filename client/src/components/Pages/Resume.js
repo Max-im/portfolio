@@ -10,13 +10,15 @@ import "../../sass/resume.scss";
 
 export default function Resume() {
   return (
-    <div className="container page resume">
+      <div className="page resume">
       <PageTitle text="resume" subtext="Information about me" />
       <Breadcrumbs arr={["home", "resume"]} />
-      <About />
-      <Shown component={Skills} className="section section_rcolored" />
-      <Shown component={Experience} className="section section_colored" />
-      <Shown component={Education} className="section section_rcolored" />
-    </div>
+      <>
+          <About />
+          <Shown component={Skills} className="section section_rcolored" />
+          <Shown component={Experience} className="section section_colored" />
+          <Shown component={Education} className="section section_rcolored" />
+      </>
+      </div>
   );
 }

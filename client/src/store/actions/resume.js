@@ -63,3 +63,23 @@ export const getEducation = () => dispatch => {
     .catch(err => dispatch(onError(err, EDU_ERROR)))
     .finally(() => dispatch({type: EDU_READY, payload: true}));
 };
+
+
+export const downloadCV = () => {
+  axios.get("/resume/cv", {responseType: 'blob'})
+  .then(({data}) => {
+    const link = document.createElement("a");
+    document.body.appendChild(link);
+    link.style = "display: none";
+    const file = new Blob(
+      [data], 
+      {type: 'application/pdf'});
+      const fileURL = URL.createObjectURL(file);
+      link.href = fileURL;
+      link.download = 'm.pozhydaiev_CV.pdf';
+      link.click();
+      window.URL.revokeObjectURL(fileURL);
+      link.remove();
+  })
+  .catch(err => console.error(err))
+}

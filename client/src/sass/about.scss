@@ -38,6 +38,16 @@
   &__contact {
     display: flex;
     margin: 0 0px 5px 0;
+    &_cv {
+      cursor: pointer;
+      align-self: flex-start;
+      &:hover{
+        color: #0088ff;
+      }
+      .about__icon{
+        color: #ff5722;
+      }
+    }
   }
   &__icon {
     width: 25px;

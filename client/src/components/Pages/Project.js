@@ -38,9 +38,9 @@ export class SingleProject extends Component {
     }
     return (
       <div className="page">
+        <PageTitle text="Project" subtext="Single project information" />
+        <Breadcrumbs arr={["home", "portfolio", "project"]} />
         <div className="container project">
-          <PageTitle text="Project" subtext="Single project information" />
-          <Breadcrumbs arr={["home", "portfolio", "project"]} />
           {show && (
             <div className="page__content">
               <PageAside component={ProjectAside} project={project} title="Related" />
