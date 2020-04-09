@@ -3,3 +3,4 @@ dist
 src/server/config/variables.env
 src/client/.env
 package-lock.json
+nodemon.json
