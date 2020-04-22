@@ -4,7 +4,7 @@ import db from '../db';
 
 const computeCV = async (req, res, next) => {
   const doc = new PDFDocument();
-  const filePath = 'assets/cv.pdf';
+  const filePath = '/assets/cv.pdf';
   doc.pipe(fs.createWriteStream(filePath));
   console.log('create file');
   const [
