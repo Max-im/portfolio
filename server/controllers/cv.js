@@ -4,9 +4,9 @@ import db from '../db';
 
 const computeCV = async (req, res, next) => {
   const doc = new PDFDocument();
-  const filePath = 'server/assets/cv.pdf';
+  const filePath = 'assets/cv.pdf';
   doc.pipe(fs.createWriteStream(filePath));
-  
+
   const [
     { rows: skills },
     { rows: categories },
@@ -59,7 +59,6 @@ const computeCV = async (req, res, next) => {
   doc.fillColor(c.black).text('Intermediate');
   doc.fontSize(1).text(' ', { paragraphGap: 20 });
 
-  
   // contacts
   doc.fontSize(16).fillColor(c.black).text('Contacts', { paragraphGap: 5 });
 
@@ -79,7 +78,6 @@ const computeCV = async (req, res, next) => {
     .text('Portfolio', { link: 'https://max-im.github.io', paragraphGap: 2 });
   doc.fontSize(10).fillColor(c.black).text('https://max-im.github.io');
 
-
   // header
   doc
     .fontSize(18)
@@ -89,15 +87,12 @@ const computeCV = async (req, res, next) => {
 
   // summary
   doc.fontSize(16).fillColor(c.black).text(`Summary`, { paragraphGap: 5 });
-  doc
-    .fontSize(12)
-    .fillColor(c.gray)
-    .text(`${about[0].summary}`, {
-      paragraphGap: 15,
-      indent: 15,
-      width: c.width,
-      align: 'justify',
-    });
+  doc.fontSize(12).fillColor(c.gray).text(`${about[0].summary}`, {
+    paragraphGap: 15,
+    indent: 15,
+    width: c.width,
+    align: 'justify',
+  });
 
   // experience
   const mapMon = [
@@ -168,7 +163,6 @@ const computeCV = async (req, res, next) => {
       .text(description, { paragraphGap: 5, indent: 25, width: c.width - 25 });
   });
 
-  
   // return file
   doc.end();
   const file = fs.createReadStream(filePath);
