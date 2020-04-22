@@ -4,9 +4,11 @@ import db from '../db';
 
 const computeCV = async (req, res, next) => {
   const doc = new PDFDocument();
-  const filePath = '/assets/cv.pdf';
-  doc.pipe(fs.createWriteStream(filePath));
-  console.log('create file');
+  const filePath = 'assets/cv.pdf';
+  const stream = fs.createWriteStream(filePath);
+  console.log('stream', stream);
+  doc.pipe(stream);
+  console.log('create file', doc);
   const [
     { rows: skills },
     { rows: categories },
