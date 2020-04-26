@@ -9,7 +9,7 @@ export const updateProjectSkills = async (req, res, next) => {
       .query(
         `DELETE FROM projects_skills
         WHERE project_id=${id} 
-        AND skill_id NOT IN(${skills.deletedSkills.join(', ')})`
+        AND skill_id IN(${skills.deletedSkills.join(', ')})`
       )
       .catch(next);
   }

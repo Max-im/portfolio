@@ -1,14 +1,14 @@
-import db from "../db";
+import db from '../db';
 
 export const getProjectsNumber = (req, res, next) => {
-  const qualityCondition = req.query.quality 
+  const qualityCondition = req.query.quality
     ? `JOIN projectlevels AS l ON l.id = p.level 
-      WHERE l.level = '${req.query.quality.replace(/,/g,"' OR l.level = '")}'` 
-    : "";
+      WHERE l.level = '${req.query.quality.replace(/,/g, "' OR l.level = '")}'`
+    : '';
 
   db.query(`SELECT COUNT(*) FROM projects AS p ${qualityCondition}`)
-    .then(({rows}) => res.json(rows[0].count))
-    .catch(err => next(err))
+    .then(({ rows }) => res.json(rows[0].count))
+    .catch((err) => next(err));
 };
 
 export const getPageProjects = (req, res, next) => {
@@ -16,12 +16,15 @@ export const getPageProjects = (req, res, next) => {
   const amount = req.query.amount || 12;
   let sort = 'level, title';
   if (req.query.sort) {
-    if(req.query.sort === 'title') sort = 'title';
-    if(req.query.sort === 'date') sort = 'date, title';
+    if (req.query.sort === 'title') sort = 'title';
+    if (req.query.sort === 'date') sort = 'date, title';
   }
-  const qualityCondition = req.query.quality ? `WHERE l.level = '${req.query.quality.replace(/,/g,"' OR l.level = '")}'` : "";
-  
-  db.query(`
+  const qualityCondition = req.query.quality
+    ? `WHERE l.level = '${req.query.quality.replace(/,/g, "' OR l.level = '")}'`
+    : '';
+
+  db.query(
+    `
     SELECT p.id, p.title, p.picture, p.description, p.date, l.level, json_agg(s.*) as "skills"
     FROM projects AS p 
     JOIN projectlevels AS l 
@@ -35,14 +38,17 @@ export const getPageProjects = (req, res, next) => {
     ORDER BY ${sort}
     LIMIT $1
     OFFSET $2
-  `, [amount, (page - 1) * amount])
-  .then(({rows}) => res.json(rows))
-  .catch(err => next(err))
+  `,
+    [amount, (page - 1) * amount]
+  )
+    .then(({ rows }) => res.json(rows))
+    .catch((err) => next(err));
 };
 
 export const getSingleProject = (req, res, next) => {
   const { id } = req.params;
-  db.query(`
+  db.query(
+    `
     SELECT p.id, title, p.picture, description, date, source, comments, rate, l.level, json_agg(s.*) AS "skills",
     ( SELECT json_agg(proj.*)
       FROM (
@@ -62,8 +68,8 @@ export const getSingleProject = (req, res, next) => {
     ON s.id = ps.skill_id
     WHERE p.id = ${id}
     GROUP BY p.id, l.level
-  `)
-    .then(({rows}) => res.json(rows[0]))
-    .catch(err => next(err))
+  `
+  )
+    .then(({ rows }) => res.json(rows[0]))
+    .catch((err) => next(err));
 };
-

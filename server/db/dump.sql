@@ -23,6 +23,11 @@ create TABLE users
     isadmin BOOLEAN DEFAULT false
 );
 
+INSERT INTO users
+    (id, gid, name, email, avatar, isadmin)
+VALUES
+    ( 1, '104819189707149372033', 'Maksim Pozhydaiev', 'pogidaevmo@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14GhqQRRNIk2JNmYJIhLYmSNnijzAsTaEBWvfATBv8Q=s96-c', true);
+
 -- ABOUT
 CREATE TABLE about
 (
@@ -92,25 +97,25 @@ INSERT INTO skills
     (name, category, icon, range, url)
 VALUES
     ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
-    ('css', 1, 'css.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
+    ('css', 1, 'css.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
     ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'),
     ('sass', 1, 'sass.png', 2, 'https://sass-lang.com/'),
-    ('jquery', 1, 'jquery.png', 3, 'https://jquery.com/'),
+    ('jquery', 1, 'jquery.png', 2, 'https://jquery.com/'),
     ('angular', 1, 'angular.png', 1, 'https://angular.io/'),
     ('react', 1, 'react.png', 1, 'https://reactjs.org/'),
     ('redux', 1, 'redux.png', 1, 'https://redux.js.org/'),
     ('vue', 1, 'vue.png', 1, 'https://vuejs.org/'),
-    ('ts', 1, 'ts.png', 2, 'https://www.typescriptlang.org/'),
+    ('ts', 1, 'ts.png', 1, 'https://www.typescriptlang.org/'),
     ('node', 2, 'node.png', 1, 'https://nodejs.org/en/'),
-    ('rest', 3, 'rest.png', 1, 'https://developer.mozilla.org/en-US/docs/Glossary/REST'),
+    ('rest', 3, 'rest.png', 2, 'https://developer.mozilla.org/en-US/docs/Glossary/REST'),
     ('mongodb', 3, 'mongodb.png', 1, 'https://www.mongodb.com/'),
     ('postgres', 3, 'psql.png', 1, 'https://www.postgresql.org/'),
     ('sequelize', 3, 'sequelize.png', 2, 'https://sequelize.org/'),
-    ('mocha', 4, 'mocha.png', 1, 'https://mochajs.org/'),
-    ('jest', 4, 'jest.png', 1, 'https://jestjs.io/'),
-    ('babel', 5, 'babel.png', 2, 'https://babeljs.io/'),
-    ('eslint', 5, 'eslint.png', 2, 'https://eslint.org/'),
-    ('webpack', 5, 'webpack.png', 2, 'https://webpack.js.org/');
+    ('mocha', 4, 'mocha.png', 2, 'https://mochajs.org/'),
+    ('jest', 4, 'jest.png', 2, 'https://jestjs.io/'),
+    ('babel', 5, 'babel.png', 3, 'https://babeljs.io/'),
+    ('eslint', 5, 'eslint.png', 3, 'https://eslint.org/'),
+    ('webpack', 5, 'webpack.png', 3, 'https://webpack.js.org/');
 
 
 
