@@ -9,7 +9,7 @@
     "node": "12.16.2"
   },
   "scripts": {
-    "i": "npm i --prefix=client",
+    "postinstall": "npm i --prefix=client",
     "run-server": "NODE_ENV=development nodemon --exec babel-node server",
     "run-client": "npm run start --prefix client",
     "dev": "concurrently \"npm run run-client\" \"npm run run-server\"",
@@ -17,8 +17,7 @@
     "initDb": "bash ./bin/dbSeed",
     "build-server": "rimraf ./dist && babel -d ./dist/server ./server -s",
     "build-client": "npm run build --prefix client && mv client/build dist/client/",
-    "heroku-prebuild": "npm run build-server && npm run build-client",
-    "heroku-postbuild": "rimraf ./server && rimraf ./client",
+    "heroku-postbuild": "npm run build-server && npm run build-client rimraf ./server && rimraf ./client",
     "start": "NODE_ENV=production node dist/server/index.js"
   },
   "keywords": [],
