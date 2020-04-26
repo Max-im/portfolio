@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { GoogleLogin } from "react-google-login";
-import { onLogin, onLoginError } from "../../store/actions/auth";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
+import { onLogin, onLoginError } from '../../store/actions/auth';
 
 export class AuthMenu extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
     onLogin: PropTypes.func.isRequired,
-    onLoginError: PropTypes.func.isRequired
+    onLoginError: PropTypes.func.isRequired,
   };
 
   render() {
@@ -23,7 +23,7 @@ export class AuthMenu extends Component {
               className="authMenu__loginBtn"
               onSuccess={this.props.onLogin}
               onFailure={this.props.onLoginError}
-              cookiePolicy={"single_host_origin"}
+              cookiePolicy={'single_host_origin'}
             />
             {error && <p className="error authMenu__error">{error}</p>}
           </div>
@@ -33,11 +33,8 @@ export class AuthMenu extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { onLogin, onLoginError }
-)(AuthMenu);
+export default connect(mapStateToProps, { onLogin, onLoginError })(AuthMenu);

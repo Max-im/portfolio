@@ -1,0 +1,40 @@
+.admin {
+  &__levelList {
+    display: flex;
+    margin: 10px 0 0 0;
+  }
+  &__projectLevel {
+    margin: 0 10px 0 0;
+    padding: 3px 10px;
+    border: 1px solid #777;
+    border-radius: 15px;
+    &_active {
+      background: #0088ff;
+    }
+  }
+  &__skillList {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0 10px 0;
+  }
+  &__skillIcon {
+    width: 25px;
+  }
+  &__skillItem {
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    &_active {
+      background: #0088ff;
+      border: 1px solid #777;
+      box-sizing: border-box;
+    }
+  }
+  &__projectPic {
+    width: 200px;
+  }
+  &__submitBtn {
+    margin: 20px 0 0 0;
+  }
+}

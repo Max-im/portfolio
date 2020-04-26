@@ -1,35 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import jwt_decode from "jwt-decode";
-import { read_cookie } from "sfcookies";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import App from "./components/App";
-import * as serviceWorker from "./assets/serviceWorker";
-import store from "./store/store";
-import { SET_USER } from "./store/constants";
-import { setAuthToken } from "./store/actions/utils";
-import { onLogout } from "./store/actions/auth";
-
-try {
-  const access_token = read_cookie("max-im");
-  const decoded = jwt_decode(access_token);
-  if (decoded && decoded.exp) {
-    if (decoded.exp * 1000 < Date.now()) store.dispatch(onLogout());
-    else {
-      store.dispatch({ type: SET_USER, payload: decoded.payload });
-      setAuthToken(access_token);
-    }
-  }
-} catch (err) {
-  store.dispatch(onLogout());
-}
+import App from './components/App';
+import * as serviceWorker from './assets/serviceWorker';
+import store from './store/store';
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

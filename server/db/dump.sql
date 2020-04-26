@@ -1,11 +1,27 @@
-DO $$ DECLARE
-    r RECORD;
+DO $
+$DECLARE r record;
 BEGIN
-    FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = current_schema()) LOOP
-        EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
-    END LOOP;
+    FOR r IN
+    (SELECT tablename
+    FROM pg_tables
+    WHERE schemaname = current_schema())
+    LOOP
+    EXECUTE 'DROP TABLE IF EXISTS '
+    || quote_ident
+    (r.tablename) || ' CASCADE';
+END LOOP;
 END $$;
 
+
+create TABLE users
+(
+    id SERIAL PRIMARY KEY,
+    gid CHARACTER varying(64),
+    name CHARACTER varying(128),
+    email CHARACTER varying(128),
+    avatar CHARACTER varying(128),
+    isadmin BOOLEAN DEFAULT false
+);
 
 -- ABOUT
 CREATE TABLE about
@@ -24,8 +40,8 @@ INSERT INTO about
     (name, last_name, title, summary, avatar, social, contacts)
 VALUES
     (
-        'Maksym', 'Pozhydaiev', 'Web Developer', 
-        'I am a deeply motivated Web developer, with strong knowledge in Node.js, React, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set periods. It is important to me to see results of my work and to have an influence on the result.', 
+        'Maksym', 'Pozhydaiev', 'Web Developer',
+        'I am a deeply motivated Web developer, with strong knowledge in Node.js, React, Vue, MongoDb. I like studying new and awesome technologies and accomplish approaches with them in projects. Reliable and able to achieve established targets in set periods. It is important to me to see results of my work and to have an influence on the result.',
         'avatar.jpg',
         '[
             {"id": 1, "url": "https://facebook.com/max.pozhidaev.7", "name":"Facebook", "classes": "fab fa-facebook-square"},
@@ -33,7 +49,7 @@ VALUES
             {"id": 3, "url": "https://twitter.com/MPozhidayev", "name":"Twitter", "classes": "fab fa-twitter-square"},
             {"id": 4, "url": "https://github.com/max-im", "name":"GitHub", "classes": "fab fa-github-square"},
             {"id": 5, "url": "https://codepen.io/max-im", "name":"CodPen", "classes": "fab fa-codepen"}
-        ]', 
+        ]',
         '[
             {"id": 1, "value": "+38(050)77-23-169", "type":"text", "classes": "fas fa-phone", "meta": "phone"},
             {"id": 2, "value": "pogidaevmo@gmail.com", "type":"link", "classes": "fas fa-envelope", "meta": "email"},
@@ -41,7 +57,7 @@ VALUES
         ]'
     );
 
-    
+
 -- SKILLS CATEGORIES
 CREATE TABLE skills_categories
 (
@@ -170,7 +186,7 @@ CREATE TABLE projects
 INSERT INTO projects
     (title, description, level, source, comments, rate, picture)
 VALUES
-    ('Tires-shop', 'Page displays a wheel shop example', 2, 
+    ('Tires-shop', 'Page displays a wheel shop example', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/tires-shop", "name": "GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/tires-shop/", "name":"Open", "classes": "fas fa-desktop"}
@@ -178,123 +194,123 @@ VALUES
         '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'wheels_shop.jpg'
     ),
-    ('Senior-citizen', 'Senior citizen landing page implemented on atomic platform', 3, 
+    ('Senior-citizen', 'Senior citizen landing page implemented on atomic platform', 3,
         '[
             {"id": 1, "url": "https://github.com/Max-im/senior-citizen-landing", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/senior-citizen/?p=pages-senior-citizen", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": false}]', 'senior_sitizen.jpg'
     ),
-    ('Pingbuller', 'Landing page design example', 2, 
+    ('Pingbuller', 'Landing page design example', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/pingbuller", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/pingbuller/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'pinbuller.jpg'
     ),
-    ('Building', 'Company page design example', 2, 
+    ('Building', 'Company page design example', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/building", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/building/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'building.jpg'
     ),
-    ('Holiday-dreams', 'Tourists servise page design example', 1, 
+    ('Holiday-dreams', 'Tourists servise page design example', 1,
         '[
             {"id": 1, "url": "https://github.com/Max-im/holiday-dreams", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/holiday-dreams/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'hollyday_dreams.jpg'
     ),
-    ('Maxtogram-vue', 'SPA page similar to instagram implemented on Vue framework', 2, 
+    ('Maxtogram-vue', 'SPA page similar to instagram implemented on Vue framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/maxtagram-vue", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/maxtagram/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'maxtagram.jpg'
     ),
-    ('Clothes-shop-page', 'Apparel shop SPA page implemented on Vue framework', 1, 
+    ('Clothes-shop-page', 'Apparel shop SPA page implemented on Vue framework', 1,
         '[
             {"id": 1, "url": "https://github.com/Max-im/clothes-shop-page", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/clothes-page/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'clothes_shop.jpg'
     ),
-    ('Weather-service', 'Weather service SPA page implemented on Vue framework', 2, 
+    ('Weather-service', 'Weather service SPA page implemented on Vue framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/weather", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/weather/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'weather_page.jpg'
     ),
-    ('Resursable', 'SPA Page full of useful links for development implemented on React framework', 2, 
+    ('Resursable', 'SPA Page full of useful links for development implemented on React framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/resursable", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/resursable/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'resursable.jpg'
     ),
-    ('Angular-quick-start', 'SPA Page to display profile carts of people implemented on Angular framework', 2, 
+    ('Angular-quick-start', 'SPA Page to display profile carts of people implemented on Angular framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/angular-quick-start", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/angular-people", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', null
     ),
-    ('Tutorials-list', 'SPA Page with many courses, games and news for developers implemented on React framework', 2, 
+    ('Tutorials-list', 'SPA Page with many courses, games and news for developers implemented on React framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/tutorials-list", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/tutorials/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'tutorials.jpg'
     ),
-    ('Concerts', 'Concerts Page example SPA page implemented on React framework', 2, 
+    ('Concerts', 'Concerts Page example SPA page implemented on React framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/concerts", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/concerts/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'concerts.jpg'
     ),
-    ('Restorant', 'Resorant page design', 2, 
+    ('Restorant', 'Resorant page design', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/restoran-page", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/restoran-page/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'restaurant.jpg'
     ),
-    ('React-calendar-calc', 'SPA servise to compute number of days between 2 market dates implemented on React framework', 2, 
+    ('React-calendar-calc', 'SPA servise to compute number of days between 2 market dates implemented on React framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/react-calendar-calc", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/calendar/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'calendar.jpg'
     ),
-    ('Repo-list', 'SPA servise to display my repo list and to mark/unmark them implemented on React framework', 2, 
+    ('Repo-list', 'SPA servise to display my repo list and to mark/unmark them implemented on React framework', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/repo-list", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/repo-list/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'repo_list.jpg'
     ),
-    ('Social-basic', 'Example of basic social network implemented on MERN stack', 2, 
+    ('Social-basic', 'Example of basic social network implemented on MERN stack', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/social-basic", "name":"GitHub", "classes": "fab fa-git"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', null
     ),
     ('Furniture-shop', 'Furniture shop page', 1,
@@ -302,242 +318,242 @@ VALUES
             {"id": 1, "url": "https://github.com/Max-im/furniture", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/furniture/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'furniture.jpg'
     ),
-    ('Furniture-shop:Vue', 'Furniture shop page implemented on Vue framework', 1, 
+    ('Furniture-shop:Vue', 'Furniture shop page implemented on Vue framework', 1,
         '[
             {"id": 1, "url": "https://github.com/Max-im/furniture-shop", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/furniture-Shop-home/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'furniture.jpg'
     ),
-    ('Quotes', 'Landing page design example', 2, 
+    ('Quotes', 'Landing page design example', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/quotes", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/quotes/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'quotes.jpg'
     ),
-    ('Webcoders', 'Example meeting website page', 2, 
+    ('Webcoders', 'Example meeting website page', 2,
         '[
             {"id": 1, "url": "https://github.com/Max-im/testWebCoder", "name":"GitHub", "classes": "fab fa-git"},
             {"id": 2, "url": "https://max-im.github.io/pages/WebCoders/", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'web_coders.jpg'
     ),
-    ('Node-simple-page', 'Example of webpage, implemented on Node.js', 3, 
+    ('Node-simple-page', 'Example of webpage, implemented on Node.js', 3,
         '[
             {"id": 1, "url": "https://github.com/Max-im/node-simple-page", "name":"GitHub", "classes": "fab fa-git"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', null
     ),
-    ('Game:Arkanoid', 'Implementation arkanoid game', 2, 
+    ('Game:Arkanoid', 'Implementation arkanoid game', 2,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/mddaNmZ", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/mddaNmZ", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'arcanoid.jpg'
     ),
-    ('Pattern:Factory', 'A Factory Method creates new objects as instructed by the client. One way to create objects in JavaScript is by invoking a constructor function with the new operator. There are situations however, where the client does not, or should not, know which one of several candidate objects to instantiate. The Factory Method allows the client to delegate object creation while still retaining control over which type to instantiate. The key objective of the Factory Method is extensibility. Factory Methods are frequently used in applications that manage, maintain, or manipulate collections of objects that are different but at the same time have many characteristics (i.e. methods and properties) in common. An example would be a collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.', 3, 
+    ('Pattern:Factory', 'A Factory Method creates new objects as instructed by the client. One way to create objects in JavaScript is by invoking a constructor function with the new operator. There are situations however, where the client does not, or should not, know which one of several candidate objects to instantiate. The Factory Method allows the client to delegate object creation while still retaining control over which type to instantiate. The key objective of the Factory Method is extensibility. Factory Methods are frequently used in applications that manage, maintain, or manipulate collections of objects that are different but at the same time have many characteristics (i.e. methods and properties) in common. An example would be a collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/abbRYVY", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/abbRYVY", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'pattern_factory.jpg'
     ),
-    ('CSS:Filters', 'Visualisation of CSS Filters applying', 3, 
+    ('CSS:Filters', 'Visualisation of CSS Filters applying', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/abbXNab", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/abbXNab", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'css_filters.jpg'
     ),
-    ('Algorithm:quickSort', 'Displaying algorithm of quick sort step by step', 3, 
+    ('Algorithm:quickSort', 'Displaying algorithm of quick sort step by step', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/qBBgzeP", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/qBBgzeP", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'quick_sort.jpg'
     ),
-    ('Algorithm:benchmark', 'Sample to help estimate performance different loops approches in scopes', 3, 
+    ('Algorithm:benchmark', 'Sample to help estimate performance different loops approches in scopes', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/KKKJOpp", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/KKKJOpp", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'benchmark.jpg'
     ),
-    ('Game:BinarySearch', 'Game to help realise binary search approach', 3, 
+    ('Game:BinarySearch', 'Game to help realise binary search approach', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/MWWLNae", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/MWWLNae", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'game_binary.jpg'
     ),
-    ('Algorithm:k-neighbours', 'Visualisation of k-neighbours algorithm', 3, 
+    ('Algorithm:k-neighbours', 'Visualisation of k-neighbours algorithm', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/JjjxgGO", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/JjjxgGO", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'k_neighbours_algo.jpg'
     ),
-    ('CSS:clock', 'Simple clock on css', 3, 
+    ('CSS:clock', 'Simple clock on css', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/Rpapyq", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/Rpapyq", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'css_clock.jpg'
     ),
-    ('Stopwatch', 'Stopwatch implementation', 3, 
+    ('Stopwatch', 'Stopwatch implementation', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/vYYwxoz", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/vYYwxoz", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'stopwatch.jpg'
     ),
-    ('Menu:Accordion', 'Sample accordion menu implementation', 3, 
+    ('Menu:Accordion', 'Sample accordion menu implementation', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/WNNBjRr", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/WNNBjRr", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'accordion_menu.jpg'
     ),
-    ('Dropdown:ajax', 'Beautiful dropdown list using ajax request', 3, 
+    ('Dropdown:ajax', 'Beautiful dropdown list using ajax request', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/YzzbVVB", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/YzzbVVB", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'ajax_dropdown.jpg'
     ),
-    ('MVC:todo', 'Todo list with MVC approach', 3, 
+    ('MVC:todo', 'Todo list with MVC approach', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/YzzmKYj", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/YzzmKYj", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'mvc_todo.jpg'
     ),
-    ('CSS:Variables', 'Sample to apply css variables', 3, 
+    ('CSS:Variables', 'Sample to apply css variables', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/MWWNrYB", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/MWWNrYB", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'css_variables.jpg'
     ),
-    ('FunCanvas', 'Canvas to draw fun pictures', 3, 
+    ('FunCanvas', 'Canvas to draw fun pictures', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/vYYopNG", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/vYYopNG", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'fun_canvas.jpg'
     ),
-    ('Effect:Woah', 'Cool effect to for performance', 3, 
+    ('Effect:Woah', 'Cool effect to for performance', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/jOOgYqx", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/jOOgYqx", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'effect_woah.jpg'
     ),
-    ('Effect:FollowLink', 'Awesome Menu and link hower effect', 3, 
+    ('Effect:FollowLink', 'Awesome Menu and link hower effect', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/mddNpLw", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/mddNpLw", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'effect_follow_link.jpg'
     ),
-    ('Effect:DragAndDropSlides', 'Slides with drag and drop effect', 3, 
+    ('Effect:DragAndDropSlides', 'Slides with drag and drop effect', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/xxxvpaw", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/xxxvpaw", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'effect_scroll_menu.jpg'
     ),
-    ('Effect:ToolTips', 'Sample of tooltips effect', 3, 
+    ('Effect:ToolTips', 'Sample of tooltips effect', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/wvvVpYX", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/wvvVpYX", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'effect_tooltip.jpg'
     ),
-    ('Game:Tennis', 'Game where you can play tennis aganist computer', 2, 
+    ('Game:Tennis', 'Game where you can play tennis aganist computer', 2,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/JjjwgWB", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/JjjwgWB", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'game_tennis.jpg'
     ),
-    ('Effect:GamburgerMenu', 'Gamburger menu example', 3 , 
+    ('Effect:GamburgerMenu', 'Gamburger menu example', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/WoMZxw", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/WoMZxw", "name":"Open", "classes": "fas fa-desktop"}
         ]',
-       '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
+        '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
         '[{"id": 1, "user_id": 1, "vote": true}]', 'gamburger_menu.jpg'
     ),
-    ('Pattern:Prototype', 'The Prototype Pattern creates new objects, but rather than creating non-initialized objects it returns objects that are initialized with values it copied from a prototype - or sample - object. The Prototype pattern is also referred to as the Properties pattern. An example of where the Prototype pattern is useful is the initialization of business objects with values that match the default values in the database. The prototype object holds the default values that are copied over into a newly created business object. Classical languages rarely use the Prototype pattern, but JavaScript being a prototypal language uses this pattern in the construction of new objects and their prototypes.', 3 , 
+    ('Pattern:Prototype', 'The Prototype Pattern creates new objects, but rather than creating non-initialized objects it returns objects that are initialized with values it copied from a prototype - or sample - object. The Prototype pattern is also referred to as the Properties pattern. An example of where the Prototype pattern is useful is the initialization of business objects with values that match the default values in the database. The prototype object holds the default values that are copied over into a newly created business object. Classical languages rarely use the Prototype pattern, but JavaScript being a prototypal language uses this pattern in the construction of new objects and their prototypes.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/dyoOYwN", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/dyoOYwN", "name":"Open", "classes": "fas fa-desktop"}
-        ]', '[]','[]', 'pattern_prototype.jpg'
+        ]', '[]', '[]', 'pattern_prototype.jpg'
     ),
-     ('Pattern:Builder', 'The Builder pattern allows a client to construct a complex object by specifying the type and content only. Construction details are hidden from the client entirely. The most common motivation for using Builder is to simplify client code that creates complex objects. The client can still direct the steps taken by the Builder without knowing how the actual work is accomplished. Builders frequently encapsulate construction of Composite objects (another GoF design pattern) because the procedures involved are often repetitive and complex. Usually it is the last step that returns the newly created object which makes it easy for a Builder to participate in fluent interfaces in which multiple method calls, separated by dot operators, are chained together', 3 ,
+    ('Pattern:Builder', 'The Builder pattern allows a client to construct a complex object by specifying the type and content only. Construction details are hidden from the client entirely. The most common motivation for using Builder is to simplify client code that creates complex objects. The client can still direct the steps taken by the Builder without knowing how the actual work is accomplished. Builders frequently encapsulate construction of Composite objects (another GoF design pattern) because the procedures involved are often repetitive and complex. Usually it is the last step that returns the newly created object which makes it easy for a Builder to participate in fluent interfaces in which multiple method calls, separated by dot operators, are chained together', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/oNXYXba", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/oNXYXba", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', 'pattern_builder.jpg'
     ),
-     ('Pattern:Strategy', 'The Strategy pattern encapsulates alternative algorithms (or strategies) for a particular task. It allows a method to be swapped out at runtime by any other method (strategy) without the client realizing it. Essentially, Strategy is a group of algorithms that are interchangeable. Say we like to test the performance of different sorting algorithms to an array of numbers: shell sort, heap sort, bubble sort, quicksort, etc. Applying the Strategy pattern to these algorithms allows the test program to loop through all algorithms, simply by changing them at runtime and test each of these against the array. For Strategy to work all method signatures must be the same so that they can vary without the client program knowing about it. In JavaScript the Strategy pattern is widely used as a plug-in mechanism when building extensible frameworks. This can be a very effective approach. To learn more check our JavaScript + jQuery Design Pattern Framework.', 3 , 
+    ('Pattern:Strategy', 'The Strategy pattern encapsulates alternative algorithms (or strategies) for a particular task. It allows a method to be swapped out at runtime by any other method (strategy) without the client realizing it. Essentially, Strategy is a group of algorithms that are interchangeable. Say we like to test the performance of different sorting algorithms to an array of numbers: shell sort, heap sort, bubble sort, quicksort, etc. Applying the Strategy pattern to these algorithms allows the test program to loop through all algorithms, simply by changing them at runtime and test each of these against the array. For Strategy to work all method signatures must be the same so that they can vary without the client program knowing about it. In JavaScript the Strategy pattern is widely used as a plug-in mechanism when building extensible frameworks. This can be a very effective approach. To learn more check our JavaScript + jQuery Design Pattern Framework.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/gOpMNEj", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/gOpMNEj", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', 'pattern_strategy.jpg'
     ),
-     ('Pattern:Observer', 'The Observer pattern offers a subscription model in which objects subscribe to an event and get notified when the event occurs. This pattern is the cornerstone of event driven programming, including JavaScript. The Observer pattern facilitates good object-oriented design and promotes loose coupling. When building web apps you end up writing many event handlers. Event handlers are functions that will be notified when a certain event fires. These notifications optionally receive an event argument with details about the event (for example the x and y position of the mouse at a click event). The event and event-handler paradigm in JavaScript is the manifestation of the Observer design pattern. Another name for the Observer pattern is Pub/Sub, short for Publication/Subscription.', 3 , 
+    ('Pattern:Observer', 'The Observer pattern offers a subscription model in which objects subscribe to an event and get notified when the event occurs. This pattern is the cornerstone of event driven programming, including JavaScript. The Observer pattern facilitates good object-oriented design and promotes loose coupling. When building web apps you end up writing many event handlers. Event handlers are functions that will be notified when a certain event fires. These notifications optionally receive an event argument with details about the event (for example the x and y position of the mouse at a click event). The event and event-handler paradigm in JavaScript is the manifestation of the Observer design pattern. Another name for the Observer pattern is Pub/Sub, short for Publication/Subscription.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/rNVeRwO", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/rNVeRwO", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', 'pattern_observer.jpg'
     ),
-     ('Pattern:Singleton', 'The Singleton Pattern limits the number of instances of a particular object to just one. This single instance is called the singleton. Singletons are useful in situations where system-wide actions need to be coordinated from a single central place. An example is a database connection pool. The pool manages the creation, destruction, and lifetime of all database connections for the entire application ensuring that no connections are "lost".Singletons reduce the need for global variables which is particularly important in JavaScript because it limits namespace pollution and associated risk of name collisions. The Module pattern (see our JavaScript + jQuery Design Pattern Framework) is JavaScript manifestation of the Singleton pattern. Several other patterns, such as, Factory, Prototype, and Façade are frequently implemented as Singletons when only one instance is needed.', 3 , 
+    ('Pattern:Singleton', 'The Singleton Pattern limits the number of instances of a particular object to just one. This single instance is called the singleton. Singletons are useful in situations where system-wide actions need to be coordinated from a single central place. An example is a database connection pool. The pool manages the creation, destruction, and lifetime of all database connections for the entire application ensuring that no connections are "lost".Singletons reduce the need for global variables which is particularly important in JavaScript because it limits namespace pollution and associated risk of name collisions. The Module pattern (see our JavaScript + jQuery Design Pattern Framework) is JavaScript manifestation of the Singleton pattern. Several other patterns, such as, Factory, Prototype, and Façade are frequently implemented as Singletons when only one instance is needed.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/ExjKeZo", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/ExjKeZo", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', null
     ),
-    ('Pattern:Module', 'The Module Pattern allows implementing behavior and to hide details of the implementation, ensures encapsulation and private values in the closure in JavaScript.', 3 , 
+    ('Pattern:Module', 'The Module Pattern allows implementing behavior and to hide details of the implementation, ensures encapsulation and private values in the closure in JavaScript.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/JjdGaGB", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/JjdGaGB", "name":"Open", "classes": "fas fa-desktop"}
         ]', '[]', '[]', 'pattern_module.jpg'
     ),
-    ('Pattern:Adapter', 'The Adapter pattern translates one interface (an object properties and methods) to another. Adapters allows programming components to work together that otherwise wouldnt because of mismatched interfaces. One scenario where Adapters are commonly used is when new components need to be integrated and work together with existing components in the application. Another scenario is refactoring in which parts of the program are rewritten with an improved interface, but the old code still expects the original interface.', 3 , 
+    ('Pattern:Adapter', 'The Adapter pattern translates one interface (an object properties and methods) to another. Adapters allows programming components to work together that otherwise wouldnt because of mismatched interfaces. One scenario where Adapters are commonly used is when new components need to be integrated and work together with existing components in the application. Another scenario is refactoring in which parts of the program are rewritten with an improved interface, but the old code still expects the original interface.', 3 ,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/KKpaEMv", "name":"CodePen", "classes": "fab fa-codepen"}
         ]', '[]', '[]', null
     ),
-    ('Game:WhackAMole', 'Game where you need to catch a grounddog', 3, 
+    ('Game:WhackAMole', 'Game where you need to catch a grounddog', 3,
         '[
             {"id": 1, "url": "https://codepen.io/max-im/pen/NWWQXEL", "name":"CodePen", "classes": "fab fa-codepen"},
             {"id": 2, "url": "https://codepen.io/max-im/full/NWWQXEL", "name":"Open", "classes": "fas fa-desktop"}

@@ -1,13 +1,13 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const AdminRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      auth.user.isadmin === true ? (
+    render={(props) =>
+      auth.user && auth.user.isadmin === true ? (
         <Component {...props} />
       ) : (
         <Redirect to="/not-found" />
@@ -17,11 +17,11 @@ const AdminRoute = ({ component: Component, auth, ...rest }) => (
 );
 
 AdminRoute.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(AdminRoute);

@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import client from "../db";
+import jwt from 'jsonwebtoken';
+import client from '../db';
 
 /**
  * @description find
@@ -13,7 +13,7 @@ export const getExistingUser = (req, res, next) => {
       if (rows[0]) req.body.theUser = rows[0];
       return next();
     })
-    .catch(err => next(err));
+    .catch(next);
 };
 
 export const createNewUser = (req, res, next) => {
@@ -22,25 +22,27 @@ export const createNewUser = (req, res, next) => {
 
   return client
     .query(
-      `INSERT INTO users(name, email, gId, avatar) 
+      `INSERT INTO users(name, email, gid, avatar) 
         VALUES ($1, $2, $3, $4) 
-        RETURNING isadmin, name, email, gId, avatar`,
+        RETURNING isadmin, name, email, gid, avatar`,
       [name, email, gId, avatar]
     )
     .then(({ rows }) => {
       req.body.theUser = rows[0];
       next();
     })
-    .catch(err => next(err));
+    .catch(next);
 };
 
 export const returnToken = (req, res) => {
   const { theUser } = req.body;
-  const { id, name, avatar, isadmin, email, gId } = theUser;
+  const options = { expiresIn: 3600 };
+
   const access_token = jwt.sign(
-    { sub: id, payload: { name, email, avatar, isadmin, gId, id } },
+    { sub: theUser.id, payload: theUser },
     process.env.SECRET_OR_KEY,
-    { expiresIn: 3600 }
+    options
   );
+
   return res.json({ access_token });
 };

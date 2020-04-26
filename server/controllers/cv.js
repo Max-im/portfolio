@@ -6,9 +6,7 @@ const computeCV = async (req, res, next) => {
   const doc = new PDFDocument();
   const filePath = 'assets/cv.pdf';
   const stream = fs.createWriteStream(filePath);
-  console.log('stream', stream);
   doc.pipe(stream);
-  console.log('create file', doc);
   const [
     { rows: skills },
     { rows: categories },
@@ -25,7 +23,6 @@ const computeCV = async (req, res, next) => {
     db.query('SELECT title, icon, description FROM education'),
   ]).catch(next);
 
-  console.log('get db data');
   const c = {
     indent: 220,
     width: 360,
@@ -166,16 +163,12 @@ const computeCV = async (req, res, next) => {
       .text(description, { paragraphGap: 5, indent: 25, width: c.width - 25 });
   });
 
-  console.log('add text to pdf');
   // return file
   doc.end();
-  console.log('end');
   const file = fs.createReadStream(filePath);
-  console.log('read file');
   file.pipe(res);
-  console.log('return file');
 
   // remove pdf file
-  fs.unlink(filePath, () => console.log('remove file'));
+  fs.unlink(filePath, () => {});
 };
 module.exports = computeCV;

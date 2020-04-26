@@ -59,14 +59,29 @@
     font-size: 26px;
     letter-spacing: 1.5px;
     color: #122738;
+    display: flex;
+    align-items: center;
     padding: 0 0 15px 0;
     &:before {
-      content: '\f05a';
+      content: '\f121';
       font-family: FontAwesome;
-      font-size: 30px;
-      color: #0088ff;
-      margin: 0 5px 0 0;
+      font-size: 22px;
+      color: #777;
+      opacity: 0.7;
+      margin: 0 7px 0 0;
     }
+  }
+  &__editBtn {
+    font-size: 14px;
+    margin: 0 0 0 20px;
+    cursor: pointer;
+    color: #777;
+  }
+  &__deleteBtn {
+    color: red;
+    cursor: pointer;
+    margin: 0 0 0 20px;
+    font-size: 14px;
   }
 }
 

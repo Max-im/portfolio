@@ -1,0 +1,38 @@
+import db from '../../db';
+
+export const updateProjectSkills = async (req, res, next) => {
+  const { id } = req.params;
+  const { skills } = req.body;
+
+  if (skills.deletedSkills.length) {
+    await db
+      .query(
+        `DELETE FROM projects_skills
+        WHERE project_id=${id} 
+        AND skill_id NOT IN(${skills.deletedSkills.join(', ')})`
+      )
+      .catch(next);
+  }
+  if (skills.newSkills.length) {
+    const newSkillsQuery = skills.newSkills.map((skill) => `(${id}, ${skill})`);
+    await db
+      .query(
+        `INSERT INTO projects_skills(project_id, skill_id)
+        VALUES ${newSkillsQuery}`
+      )
+      .catch(next);
+  }
+  next();
+};
+
+export const updateProjectText = async (req, res, next) => {
+  const { id } = req.params;
+  const { params } = req.body;
+  if (Object.keys(params).length) {
+    const queryString = Object.keys(params)
+      .map((key) => `${key}='${params[key]}'`)
+      .join(', ');
+    await db.query(`UPDATE projects SET ${queryString} WHERE id = ${id}`).catch(next);
+  }
+  res.end();
+};
