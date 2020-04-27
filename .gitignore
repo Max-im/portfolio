@@ -4,3 +4,4 @@ server/config/variables.env
 client/.env
 package-lock.json
 nodemon.json
+scripts
