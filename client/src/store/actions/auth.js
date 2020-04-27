@@ -10,6 +10,7 @@ import { onError, setAuthToken } from './utils';
  * @description Login or register user by google account
  */
 export const onLogin = (resp) => (dispatch) => {
+  console.log('click auth');
   const { email, googleId: gId, name, imageUrl: avatar } = resp.profileObj;
   axios
     .post('/auth', { email, gId, name, avatar })
