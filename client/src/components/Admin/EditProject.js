@@ -88,7 +88,7 @@ export class EditProject extends Component {
       skills.newSkills = state.skills.filter((skill) => currentSkillIds.indexOf(skill) === -1);
       skills.deletedSkills = currentSkillIds.filter((skill) => state.skills.indexOf(skill) === -1);
     }
-    console.log(skills.deletedSkills, 'skills.deletedSkills');
+
     if (!Object.keys(params).length && !Object.keys(skills).length) return;
     this.props.updateProjectData(this.props.match.params.id, params, skills);
   };

@@ -4,7 +4,7 @@ export const updateProjectSkills = async (req, res, next) => {
   const { id } = req.params;
   const { skills } = req.body;
 
-  if (skills.deletedSkills.length) {
+  if (skills.deletedSkills && skills.deletedSkills.length) {
     await db
       .query(
         `DELETE FROM projects_skills
@@ -13,7 +13,7 @@ export const updateProjectSkills = async (req, res, next) => {
       )
       .catch(next);
   }
-  if (skills.newSkills.length) {
+  if (skills.newSkills && skills.newSkills.length) {
     const newSkillsQuery = skills.newSkills.map((skill) => `(${id}, ${skill})`);
     await db
       .query(

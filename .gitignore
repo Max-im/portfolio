@@ -1,6 +1,6 @@
 node_modules
 dist
-src/server/config/variables.env
-src/client/.env
+server/config/variables.env
+client/.env
 package-lock.json
 nodemon.json
