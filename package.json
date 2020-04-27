@@ -9,7 +9,7 @@
     "node": "12.16.2"
   },
   "scripts": {
-    "postinstall": "npm i --prefix=client",
+    "postinstall": "cd client && npm i",
     "run-server": "NODE_ENV=development nodemon --exec babel-node server",
     "run-client": "npm run start --prefix client",
     "dev": "concurrently \"npm run run-client\" \"npm run run-server\"",
