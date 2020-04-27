@@ -10,7 +10,6 @@ import { onError, setAuthToken } from './utils';
  * @description Login or register user by google account
  */
 export const onLogin = (resp) => (dispatch) => {
-  console.log('click auth');
   const { email, googleId: gId, name, imageUrl: avatar } = resp.profileObj;
   axios
     .post('/auth', { email, gId, name, avatar })
@@ -30,7 +29,7 @@ export const onLogin = (resp) => (dispatch) => {
  * @description show auth error
  */
 export const onLoginError = (err) => (dispatch) => {
-  console.log(err, 'error');
+  console.log(err, 'Auth error');
   dispatch({ type: AUTH_ERROR, payload: 'Auth error' });
 };
 
