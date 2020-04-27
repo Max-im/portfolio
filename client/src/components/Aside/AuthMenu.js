@@ -13,7 +13,7 @@ export class AuthMenu extends Component {
 
   render() {
     const { isAuth, error } = this.props.auth;
-    console.log(process.env.REACT_APP_CLIENT_ID);
+
     return (
       <div className="authMenu">
         {!isAuth && (
