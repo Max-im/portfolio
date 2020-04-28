@@ -26,12 +26,15 @@ export class Projects extends Component {
   componentDidUpdate = (prev) => {
     const { search } = this.props.location;
     const { page } = this.props.match.params;
+    console.log(page);
+    console.log(page !== prev.match.params.page);
     if (search !== prev.location.search || page !== prev.match.params.page) {
       this.onRequest();
     }
   };
 
   onRequest = () => {
+    console.log('request');
     const { search } = this.props.location;
     const page = this.props.match.params.page - 0 || 1;
     this.props.getProjectsData(search, page);
