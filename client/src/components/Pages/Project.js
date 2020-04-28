@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PageTitle from '../Common/PageTitle';
 import Breadcrumbs from '../Sections/Breadcrumbs/Breadcrumbs';
-import PageAside from '../hoc/PageAside';
-import ProjectAside from '../Sections/SingleProject/ProjectAside';
-import ProjectInfo from '../Sections/SingleProject/ProjectInfo';
+// import PageAside from '../hoc/PageAside';
+// import ProjectAside from '../Sections/SingleProject/ProjectAside';
+// import ProjectInfo from '../Sections/SingleProject/ProjectInfo';
 import Spinner from '../Common/Spinner';
 import { getProject } from '../../store/actions/projects';
 import '../../sass/project.scss';
@@ -41,12 +41,12 @@ export class SingleProject extends Component {
         <PageTitle text="Project" subtext="Single project information" />
         <Breadcrumbs arr={['home', 'portfolio', 'project']} />
         <div className="container project">
-          {show && (
+          {/* {show && (
             <div className="page__content">
               <PageAside component={ProjectAside} project={project} title="Related" />
               <ProjectInfo project={project} />
             </div>
-          )}
+          )} */}
           {!show && <Spinner />}
           {error && <p className="error">{error}</p>}
         </div>
