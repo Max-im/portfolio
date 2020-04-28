@@ -6,8 +6,7 @@ import Aside from './Aside/Aside';
 import Home from './Pages/Home';
 import Resume from './Pages/Resume';
 import Projects from './Pages/Projects';
-// import Project from './Pages/Project';
-import TProject from './Pages/TProject';
+import Project from './Pages/Project';
 import Logout from './Common/Logout';
 import NotFoundGenerate from './Common/NotFoundGenerate';
 
@@ -43,7 +42,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/resume" component={Resume} />
-              <Route path="/portfolio/project/:id" component={TProject} />
+              <Route path="/portfolio/project/:id" component={Project} />
               <Route path={['/portfolio', '/portfolio/:page']} component={Projects} />
 
               <Route path="/logout" component={Logout} />
