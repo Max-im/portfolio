@@ -9,7 +9,7 @@ import ProjectAside from '../Sections/SingleProject/ProjectAside';
 import ProjectInfo from '../Sections/SingleProject/ProjectInfo';
 import Spinner from '../Common/Spinner';
 import { getProject } from '../../store/actions/projects';
-// import '../../sass/project.scss';
+import '../../sass/project.scss';
 
 export class SingleProject extends Component {
   componentDidMount() {
