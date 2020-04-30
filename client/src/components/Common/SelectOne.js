@@ -10,7 +10,12 @@ export default class SelectOne extends Component {
         <label>
           <h5 className="input__title">{name}</h5>
           <select value={value} onChange={onChange} name={name} className="input__item">
-            {optionsArr && optionsArr.map((item) => <option key={item}>{item}</option>)}
+            {optionsArr &&
+              optionsArr.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.show}
+                </option>
+              ))}
           </select>
         </label>
       </div>

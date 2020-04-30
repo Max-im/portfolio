@@ -37,9 +37,15 @@ export const PROJECTS_ERROR_MSG = 'Error getting projects.';
 export const PROJECT_READY = 'PROJECT_READY';
 export const GET_PROJECT = 'GET_PROJECT';
 export const PROJECT_ERROR = 'PROJECT_ERROR';
+export const SET_RATE = 'SET_RATE';
+export const EMIT_RATE_ERROR = 'EMIT_RATE_ERROR';
+export const EMIT_RATE_ERROR_MSG = 'You must login first';
 export const PROJECT_ERROR_MSG = 'Error getting the project.';
 
 // auth not ready!
 export const SET_USER = 'SET_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_ERROR_MSG = 'Authentication error';
+
+// admin
+export const GET_LEVELS = 'GET_LEVELS';

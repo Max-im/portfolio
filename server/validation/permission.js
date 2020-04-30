@@ -1,27 +1,24 @@
 const jwt = require('jsonwebtoken');
 const db = require('../db');
 
-function onError(statusCode = 500) {
-  const errMap = {
-    403: 'Access forbidden',
-  };
-  const message = errMap[statusCode] || 'Error Accoured';
-  const err = new Error(message);
-  err.statusCode = statusCode;
-  return err;
-}
-
-export const isAdmin = (req, res, next) => {
+export const isLoggedIn = (req, res, next) => {
   const tokenStr = req.get('Authorization');
-  if (!tokenStr) return next(onError(403));
-
+  if (!tokenStr) return next(401);
   let decoded;
+
   try {
     const token = JSON.parse(tokenStr);
     decoded = jwt.verify(token, process.env.SECRET_OR_KEY);
   } catch (err) {
-    return next(onError(403));
+    return next(401);
   }
+  req.userToken = decoded;
+  return next();
+};
+
+export const isAdmin = (req, res, next) => {
+  isLoggedIn(req, res, next);
+  const { decoded } = req.userToken;
 
   const { gid } = decoded.payload;
   return db

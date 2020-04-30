@@ -31,7 +31,7 @@ export class ProjectInfo extends Component {
             <ProjectImg project={project} />
             <Shown component={ProjectAbout} project={project} className="section project__about" />
             <Shown component={ProjectSkills} skills={project.skills} />
-            <Shown component={Similar} similar={project.similar} />
+            {/* <Shown component={Similar} similar={project.similar} /> */}
             {/* <Comments comments={project.comments} /> */}
             {/* <ProjectRate /> */}
           </>

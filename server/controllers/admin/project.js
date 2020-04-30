@@ -36,3 +36,9 @@ export const updateProjectText = async (req, res, next) => {
   }
   res.end();
 };
+
+export const getProjectLevels = (req, res, next) => {
+  db.query(`SELECT * FROM projectlevels`)
+    .then(({ rows }) => res.json(rows))
+    .catch(next);
+};
