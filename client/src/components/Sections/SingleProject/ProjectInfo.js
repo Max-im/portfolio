@@ -5,7 +5,7 @@ import Shown from '../../hoc/Shown';
 import ProjectImg from './ProjectImg';
 import ProjectAbout from './ProjectAbout';
 import ProjectSkills from './ProjectSkills';
-import Similar from './Similar';
+import Recommendations from './Recommendations';
 // import Comments from './Comments';
 // import ProjectRate from "./ProjectRate";
 
@@ -31,7 +31,7 @@ export class ProjectInfo extends Component {
             <ProjectImg project={project} />
             <Shown component={ProjectAbout} project={project} className="section project__about" />
             <Shown component={ProjectSkills} skills={project.skills} />
-            {/* <Shown component={Similar} similar={project.similar} /> */}
+            <Shown component={Recommendations} />
             {/* <Comments comments={project.comments} /> */}
             {/* <ProjectRate /> */}
           </>

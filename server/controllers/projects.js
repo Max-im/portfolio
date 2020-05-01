@@ -136,3 +136,53 @@ export const changeProjectRate = async (req, res, next) => {
 
   getProjectRate(req, res, next);
 };
+
+export const getProjectRecommendations = async (req, res, next) => {
+  const project = await db
+    .query(`SELECT title, level FROM projects WHERE id = $1`, [req.params.id])
+    .then(({ rows }) => rows[0])
+    .catch(next);
+
+  const projectSkills = await db
+    .query(
+      `SELECT ps.skill_id, s.range 
+      FROM projects_skills AS ps
+      JOIN skills AS s 
+      ON s.id = ps.skill_id
+      WHERE project_id = $1`,
+      [req.params.id]
+    )
+    .then(({ rows }) => rows)
+    .catch(next);
+
+  const mainSkills = projectSkills.filter((item) => item.range === 1);
+  const secondarySkills = projectSkills.filter((item) => item.range === 2);
+  const targetSkills = mainSkills.length ? mainSkills : secondarySkills;
+  const skillIds = targetSkills.map((item) => item.skill_id).join(', ');
+
+  const skillsProjectIds = await db
+    .query(
+      `SELECT project_id 
+      FROM projects_skills AS ps
+      WHERE skill_id IN (${skillIds})`
+    )
+    .then(({ rows }) =>
+      rows
+        .filter((it, i) => i < 5)
+        .map((item) => item.project_id)
+        .join(', ')
+    )
+    .catch(next);
+
+  const recommendations = await db
+    .query(
+      `SELECT id, title, picture
+      FROM projects
+      WHERE id !=$1 AND (level = $2 OR id IN (${skillsProjectIds}))`,
+      [req.params.id, project.level]
+    )
+    .then(({ rows }) => rows)
+    .catch(next);
+
+  res.json(recommendations);
+};

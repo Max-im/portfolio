@@ -7,6 +7,7 @@ import {
   PROJECT_READY,
   GET_PROJECT,
   SET_RATE,
+  SET_RECOMMENDATIONS,
   EMIT_RATE_ERROR,
   PROJECT_ERROR,
 } from '../constants';
@@ -46,4 +47,9 @@ export const updateRate = (vote, id) => (dispatch) => {
     .catch((err) => dispatch(onError(err, EMIT_RATE_ERROR)));
 };
 
-export const getProjectComments = () => {};
+export const getProjectRecommendations = (id) => (dispatch) => {
+  axios
+    .get(`/projects/recommendations/${id}`)
+    .then(({ data }) => dispatch({ type: SET_RECOMMENDATIONS, payload: data }))
+    .catch((err) => console.log(err));
+};

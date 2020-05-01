@@ -268,7 +268,7 @@ VALUES
             {"id": 2, "url": "https://max-im.github.io/pages/angular-people", "name":"Open", "classes": "fas fa-desktop"}
         ]',
         '[{"id": 1, "text":"lorem ipsume", "author": "user", "date": "2020/01/31"}]',
-        null
+        'angular_people.jpg'
     ),
     ('Tutorials-list', 'SPA Page with many courses, games and news for developers implemented on React framework', 2,
         '[
