@@ -13,6 +13,7 @@ export class AuthMenu extends Component {
 
   render() {
     const { isAuth, error } = this.props.auth;
+
     return (
       <div className="authMenu">
         {!isAuth && (

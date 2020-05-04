@@ -28,7 +28,10 @@ export const onLogin = (resp) => (dispatch) => {
 /**
  * @description show auth error
  */
-export const onLoginError = () => ({ type: AUTH_ERROR, payload: 'Auth error' });
+export const onLoginError = (err) => (dispatch) => {
+  console.log(err, 'Auth error');
+  dispatch({ type: AUTH_ERROR, payload: 'Auth error' });
+};
 
 /**
  * @description logout

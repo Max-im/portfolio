@@ -39,9 +39,15 @@ else if (process.env.NODE_ENV === 'testing') {
 app.use('/', require('./routes'));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client')));
+  // app.use(express.static(path.join(__dirname, '../client')));
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(__dirname, '../client', 'index.html'));
+  // });
+
+  app.use(express.static('dist/client'));
+
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
   });
 }
 

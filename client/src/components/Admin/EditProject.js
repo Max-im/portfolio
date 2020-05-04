@@ -7,7 +7,7 @@ import DatePicker from '../Common/DatePicker';
 import SelectOne from '../Common/SelectOne';
 import { getProject } from '../../store/actions/projects';
 import { getSkills } from '../../store/actions/resume';
-import { updateProjectData } from '../../store/actions/admin';
+import { updateProjectData, getLevels } from '../../store/actions/admin';
 import '../../sass/admin.scss';
 
 export class EditProject extends Component {
@@ -18,11 +18,12 @@ export class EditProject extends Component {
     level: '',
     skills: [],
     picture: '',
-    levels: ['best', 'medium', 'simple'],
+    levels: null,
     skillsList: [],
   };
 
   componentDidMount() {
+    this.props.getLevels();
     const { id } = this.props.match.params;
     if (!this.props.project.project || this.props.project.project.id.toString() !== id.toString()) {
       this.props.getProject(id);
@@ -43,6 +44,9 @@ export class EditProject extends Component {
     }
     if (!prev.skills.isReady && this.props.skills.isReady) {
       this.setState({ skillsList: this.props.skills.skills });
+    }
+    if (!prev.admin.levels && this.props.admin.levels) {
+      this.setState({ levels: this.props.admin.levels });
     }
   }
 
@@ -88,7 +92,7 @@ export class EditProject extends Component {
       skills.newSkills = state.skills.filter((skill) => currentSkillIds.indexOf(skill) === -1);
       skills.deletedSkills = currentSkillIds.filter((skill) => state.skills.indexOf(skill) === -1);
     }
-    console.log(skills.deletedSkills, 'skills.deletedSkills');
+
     if (!Object.keys(params).length && !Object.keys(skills).length) return;
     this.props.updateProjectData(this.props.match.params.id, params, skills);
   };
@@ -107,12 +111,15 @@ export class EditProject extends Component {
             name="description"
             type="textarea"
           />
-          <SelectOne
-            name="level"
-            arr={this.state.levels}
-            onChange={this.onChange}
-            value={this.state.level}
-          />
+
+          {this.state.levels && (
+            <SelectOne
+              name="level"
+              arr={this.state.levels.map((l) => ({ value: l.id, show: l.level }))}
+              onChange={this.onChange}
+              value={this.state.level}
+            />
+          )}
 
           <div className="admin__row">
             <label>
@@ -149,8 +156,9 @@ export class EditProject extends Component {
 const mapStateToProps = (state) => ({
   project: state.project,
   skills: state.skills,
+  admin: state.admin,
 });
 
-export default connect(mapStateToProps, { getProject, getSkills, updateProjectData })(
+export default connect(mapStateToProps, { getProject, getSkills, updateProjectData, getLevels })(
   withRouter(EditProject)
 );

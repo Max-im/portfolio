@@ -16,4 +16,5 @@ export const onError = (err, type) => (dispatch) => {
     payload = CONSTANTS[type + '_MSG'];
   }
   dispatch({ type, payload });
+  setTimeout(() => dispatch({ type, payload: null }), 5000);
 };
