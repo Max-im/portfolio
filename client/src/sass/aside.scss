@@ -61,7 +61,7 @@
   }
   &__tooltip {
     position: absolute;
-    font-family: "Roboto", sans-serif, Arial, Helvetica;
+    font-family: 'Roboto', sans-serif, Arial, Helvetica;
     background: #122738;
     left: calc(100% + 21px);
     top: 5px;
@@ -76,7 +76,7 @@
     animation: shake 0.3s linear;
     z-index: 1;
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       width: 100%;
       height: 100%;
@@ -86,7 +86,7 @@
       top: 0;
     }
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       box-shadow: 0 0 2px rgba(170, 170, 170, 0.5);
       width: 10px;
@@ -164,10 +164,9 @@
     font-size: 14px;
     cursor: pointer;
     opacity: 0.5;
-    margin: 20px 30px 0 0px;
     position: relative;
     display: block;
-    text-align: right;
+    text-align: center;
     &:hover {
       opacity: 1;
       .userMenu__logoutTooltip {
@@ -178,7 +177,7 @@
   &__logoutTooltip {
     position: absolute;
     display: none;
-    font-family: "Roboto", sans-serif, Arial, Helvetica;
+    font-family: 'Roboto', sans-serif, Arial, Helvetica;
     text-shadow: 1px 1px 1px #122738;
     top: -4px;
     right: 25px;
@@ -190,7 +189,7 @@
     font-size: 16px;
     z-index: 0;
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       width: 100%;
       height: 100%;
@@ -201,7 +200,7 @@
       top: 0;
     }
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       width: 10px;
       height: 10px;

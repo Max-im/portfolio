@@ -11,8 +11,8 @@ export class AddProject extends Component {
     return (
       <>
         {user && user.isadmin && (
-          <div className="container">
-            <div>add</div>
+          <div className='container'>
+            <div>add project button</div>
           </div>
         )}
       </>

@@ -7,10 +7,9 @@
   overflow: hidden;
   &__bg {
     animation: homebg ease-in-out 30s infinite;
+    background-size: cover;
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
     position: absolute;
   }
   &__top {

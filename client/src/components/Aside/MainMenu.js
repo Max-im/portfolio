@@ -6,9 +6,9 @@ export class MainMenu extends Component {
   render() {
     const { user } = this.props.auth;
     return (
-      <nav className="nav mainMenu">
-        <ul className="mainMenu__list">
-          <li className="mainMenu__item">
+      <nav className='nav mainMenu'>
+        <ul className='mainMenu__list'>
+          {/* <li className="mainMenu__item">
             <i
               className={
                 this.props.showSubMenu
@@ -17,43 +17,43 @@ export class MainMenu extends Component {
               }
               onClick={this.props.toggleSubMenu}
             />
-          </li>
-          <li className="mainMenu__item">
+          </li> */}
+          <li className='mainMenu__item'>
             <NavLink
               exact
-              className="fas fa-home mainMenu__link"
-              activeClassName="mainMenu__link_active"
-              to="/"
+              className='fas fa-home mainMenu__link'
+              activeClassName='mainMenu__link_active'
+              to='/'
             >
-              <p className="mainMenu__tooltip">home</p>
+              <p className='mainMenu__tooltip'>home</p>
             </NavLink>
           </li>
-          <li className="mainMenu__item">
+          <li className='mainMenu__item'>
             <NavLink
-              className="fas fa-user-alt mainMenu__link"
-              activeClassName="mainMenu__link_active"
-              to="/resume"
+              className='fas fa-user-alt mainMenu__link'
+              activeClassName='mainMenu__link_active'
+              to='/resume'
             >
-              <p className="mainMenu__tooltip">resume</p>
+              <p className='mainMenu__tooltip'>resume</p>
             </NavLink>
           </li>
-          <li className="mainMenu__item">
+          <li className='mainMenu__item'>
             <NavLink
-              className="fas fa-palette mainMenu__link"
-              activeClassName="mainMenu__link_active"
-              to="/portfolio"
+              className='fas fa-palette mainMenu__link'
+              activeClassName='mainMenu__link_active'
+              to='/portfolio'
             >
-              <p className="mainMenu__tooltip">portfolio</p>
+              <p className='mainMenu__tooltip'>portfolio</p>
             </NavLink>
           </li>
           {user && user.isadmin && (
-            <li className="mainMenu__item">
+            <li className='mainMenu__item'>
               <NavLink
-                className="fas fa-shield-alt mainMenu__link"
-                activeClassName="mainMenu__link_active"
-                to="/admin"
+                className='fas fa-shield-alt mainMenu__link'
+                activeClassName='mainMenu__link_active'
+                to='/admin'
               >
-                <p className="mainMenu__tooltip">admin</p>
+                <p className='mainMenu__tooltip'>admin</p>
               </NavLink>
             </li>
           )}
