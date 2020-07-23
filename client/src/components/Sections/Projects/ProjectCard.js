@@ -1,21 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SkillsList from './SkillsList';
 
 export default function ProjectCard({ project, ...rest }) {
   return (
-    <>
-      <Link to={'/portfolio/project/' + project.id} className="projectItem__link">
+    <div className="projectItem__card">
+      <Link to={'/portfolio/project/' + project.id}>
         <img src={`/photo/${project.picture}`} alt={project.title} className="projectItem__img" />
-        <div className="projectItem__body">
-          <p className="projectItem__title">{project.title}</p>
-          <div className="projectItem__meta">
-            <p className="projectItem__level">{project.level}</p>
-            <SkillsList skills={project.skills} />
-          </div>
-          <p className="projectItem__date">{new Date(project.date).toDateString()}</p>
-        </div>
       </Link>
-    </>
+      <div className="projectItem__description">
+        <p className="projectItem__title">{project.title}</p>
+        <div className="projectItem__btns">
+          {project.source.map((linkObj) => (
+            <a className="projectItem__btn" href={linkObj.url} key={linkObj.id} target="_blank" rel="nofollow, noindex">
+              <i className={linkObj.classes + ' projectItem__icon'} />
+              {linkObj.name}
+            </a>
+          ))}
+        </div>
+        <p className="projectItem__date">{new Date(project.date).toDateString()}</p>
+      </div>
+    </div>
   );
 }

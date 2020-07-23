@@ -1,13 +1,9 @@
 .project {
   color: #122738;
-  &__content {
+  &__main {
     display: flex;
-    justify-content: space-between;
   }
-  &__info {
-    flex: 1 1 50%;
-    order: 2;
-  }
+  &_about {}
   &__picture {
     border: 1px solid #777;
     width: 100%;
