@@ -24,8 +24,7 @@ export const getPageProjects = (req, res, next) => {
     : '';
 
   db.query(
-    `
-    SELECT p.id, p.title, p.picture, p.description, p.date, l.level, json_agg(s.*) as "skills"
+    `SELECT p.id, p.title, p.picture, p.description, p.date, p.source, l.level, json_agg(s.*) as "skills"
     FROM projects AS p 
     JOIN projectlevels AS l 
     ON l.id = p.level

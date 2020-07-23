@@ -16,7 +16,7 @@ export class ProjectInfo extends Component {
       <div className="project__info">
         {project && (
           <>
-            <h2 className="project__title">
+            <h2 className="section__title">
               {project.title}
               {auth.user && auth.user.isadmin && (
                 <>
@@ -28,12 +28,15 @@ export class ProjectInfo extends Component {
                 </>
               )}
             </h2>
-            <ProjectImg project={project} />
-            <Shown component={ProjectAbout} project={project} className="section project__about" />
+            <div className="project__main">
+              <ProjectImg project={project} />
+              <ProjectAbout project={project} />
+            </div>
             <Shown component={ProjectSkills} skills={project.skills} />
             <Shown component={Recommendations} />
             {/* <Comments comments={project.comments} /> */}
             {/* <ProjectRate /> */}
+            <div style={{height: '50px'}}></div>
           </>
         )}
       </div>

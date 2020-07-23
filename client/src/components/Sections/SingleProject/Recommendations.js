@@ -16,7 +16,7 @@ export class Recommendations extends Component {
       <section className="section">
         {recommendations && (
           <>
-            <h3 className="section__title">Recommended Projects</h3>
+            <h3>Similar Projects</h3>
             <Carousel arr={recommendations} item={SimilarProject} number="3" />
           </>
         )}

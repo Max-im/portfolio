@@ -40,51 +40,56 @@
   text-align: center;
   background: #fff;
   display: block;
-  &__link {
+  overflow: hidden;
+  &__card {
     position: relative;
-    width: 100%;
     border: 1px solid #aaa;
     box-sizing: border-box;
-    display: block;
+    width: 100%;
     &:hover {
-      .projectItem__meta {
-        height: 50px;
+      .projectItem__description {
+        bottom: 0px;
       }
     }
   }
-  &__body {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 0px;
-    background: #fff;
-    padding: 0 0 15px 0;
-    border-top: 1px solid #ccc;
-  }
-  &__meta {
-    overflow: hidden;
-    height: 0;
-    transition: 0.4s;
-  }
   &__img {
     width: 100%;
+  }
+  &__description {
+    box-shadow: 0px -1px 3px #aaa;
+    position: absolute;
+    transition: .4s ease-out;
+    left: 0;
+    bottom: 0%;
+    background-color: #fff;
+    width: 100%;
+    padding: 5px 0 10px;
   }
   &__title {
     font-size: 18px;
     font-variant: small-caps;
     color: #122738;
-    padding: 15px 0 5px 0;
+    padding: 10px 0;
   }
-  &__level {
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    font-weight: bold;
-    background: #122738;
+  &__btns{
+    display: flex;
+    justify-content: space-around;
+  }
+  &__btn{
+    display: block;
     color: #fff;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 3px 15px;
-    margin: 0 0 5px 0;
+    background-color: #0088ff;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 3px #aaa;
+    opacity: .85;
+    &:hover{
+      opacity: 1;
+      transition: .3s;
+    }
+  }
+  &__icon {
+    margin: 0 5px 0 0;
+    color: #122738;
   }
   &__date {
     font-size: 12px;
@@ -160,6 +165,9 @@
     flex: 0 0 33%;
     padding: 0 10px;
     min-height: 170px;
+    &__description {
+      bottom: -100%;
+    }
   }
 }
 
