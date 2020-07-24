@@ -97,15 +97,15 @@ INSERT INTO skills
 VALUES
     ('html', 1, 'html.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/HTML'),
     ('css', 1, 'css.png', 3, 'https://developer.mozilla.org/en-US/docs/Web/CSS'),
-    ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'), --3
+    ('js', 1, 'js.png', 2, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'), 
     ('sass', 1, 'sass.png', 2, 'https://sass-lang.com/'),
     ('jquery', 1, 'jquery.png', 2, 'https://jquery.com/'),
-    ('angular', 1, 'angular.png', 1, 'https://angular.io/'), --6
-    ('react', 1, 'react.png', 1, 'https://reactjs.org/'), --7
+    ('angular', 1, 'angular.png', 1, 'https://angular.io/'), 
+    ('react', 1, 'react.png', 1, 'https://reactjs.org/'), 
     ('redux', 1, 'redux.png', 1, 'https://redux.js.org/'),
-    ('vue', 1, 'vue.png', 1, 'https://vuejs.org/'), --9
+    ('vue', 1, 'vue.png', 1, 'https://vuejs.org/'), 
     ('ts', 1, 'ts.png', 1, 'https://www.typescriptlang.org/'),
-    ('node', 2, 'node.png', 1, 'https://nodejs.org/en/'), --11
+    ('node', 2, 'node.png', 1, 'https://nodejs.org/en/'), 
     ('rest', 3, 'rest.png', 2, 'https://developer.mozilla.org/en-US/docs/Glossary/REST'),
     ('mongodb', 3, 'mongodb.png', 1, 'https://www.mongodb.com/'),
     ('postgres', 3, 'psql.png', 1, 'https://www.postgresql.org/'),

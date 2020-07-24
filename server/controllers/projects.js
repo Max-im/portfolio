@@ -140,46 +140,15 @@ export const getProjectRecommendations = async (req, res, next) => {
     .then(({ rows }) => rows[0])
     .catch(next);
 
-  const ids = [];
-  const recommendations = [];
-
-  function addRecommendations({ rows }) {
-    const newRec = rows.filter((rec) => !ids.includes(rec.id));
-    ids.push(...newRec.map((i) => i.id));
-    recommendations.push(...newRec);
-  }
-
-  await db
+  const recommendations = await db
     .query(
       `SELECT id, title, picture
       FROM projects
-      WHERE keyword = $1 AND id != $2
-      LIMIT 5`,
-      [project.keyword, req.params.id]
+      WHERE id != $1 AND keyword = $2 OR level = $3 OR mainSkill = $4
+      LIMIT 10`,
+      [req.params.id, project.keyword, project.level, project.mainSkill]
     )
-    .then(addRecommendations)
-    .catch(next);
-
-  await db
-    .query(
-      `SELECT id, title, picture
-      FROM projects
-      WHERE level = $1 AND id != $2 
-      LIMIT 5`,
-      [project.level, req.params.id]
-    )
-    .then(addRecommendations)
-    .catch(next);
-
-  await db
-    .query(
-      `SELECT id, title, picture
-      FROM projects
-      WHERE mainSkill = $1 AND id != $2 
-      LIMIT 5`,
-      [project.mainSkill, req.params.id]
-    )
-    .then(addRecommendations)
+    .then(({ rows }) => rows)
     .catch(next);
 
   res.json(recommendations);
