@@ -24,11 +24,12 @@ export class Recommendations extends Component {
       dotsClass: 'slick-dots project__sliderDots',
     };
 
+    const recLen = recommendations ? recommendations.length : 1;
     if (device === 'tablet') {
-      settings.slidesToShow = 3;
+      settings.slidesToShow = recLen > 3 ? 3 : recLen;
       settings.dots = true;
     } else if (device === 'desctop') {
-      settings.slidesToShow = 5;
+      settings.slidesToShow = recLen > 5 ? 5 : recLen;
       settings.dots = true;
     }
 
