@@ -14,7 +14,7 @@ import NotFoundGenerate from './Common/NotFoundGenerate';
 import AdminRoute from './hoc/AdminRoute';
 import EditProject from './Admin/EditProject';
 
-import { scrollPage } from '../store/actions/common';
+import { scrollPage, changeSize } from '../store/actions/common';
 
 import '../sass/reset.scss';
 import '../sass/app.scss';
@@ -23,10 +23,16 @@ import '../sass/animation.scss';
 class App extends Component {
   componentDidMount = () => {
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.changeSize);
+    this.changeSize();
   };
 
   componentWillUnmount = () => {
     window.removeEventListener('scroll', this.handleScroll);
+  };
+
+  changeSize = () => {
+    this.props.changeSize(window.innerWidth);
   };
 
   handleScroll = (e) => {
@@ -36,17 +42,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="app">
+        <div className='app'>
           <Aside />
-          <main className="main">
+          <main className='main'>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/resume" component={Resume} />
-              <Route path="/portfolio/project/:id" component={Project} />
+              <Route exact path='/' component={Home} />
+              <Route path='/resume' component={Resume} />
+              <Route path='/portfolio/project/:id' component={Project} />
               <Route exact path={['/portfolio', '/portfolio/:page']} component={Projects} />
 
-              <Route path="/logout" component={Logout} />
-              <Route path="/admin/logout" component={Logout} />
+              <Route path='/logout' component={Logout} />
+              <Route path='/admin/logout' component={Logout} />
 
               {/* <AdminRoute path="/portfolio/update-project/:id" component={UpdateProject} /> */}
               {/* <AdminRoute exact path="/admin" component={Admin} /> */}
@@ -54,9 +60,9 @@ class App extends Component {
               {/* <AdminRoute path="/admin/update-edu/:id" component={UpdateEdu} /> */}
               {/* <AdminRoute path="/admin/update-exp/:id" component={UpdateExp} /> */}
 
-              <AdminRoute path="/admin/edit-project/:id" component={EditProject} />
+              <AdminRoute path='/admin/edit-project/:id' component={EditProject} />
 
-              <NotFoundGenerate path="*" />
+              <NotFoundGenerate path='*' />
             </Switch>
           </main>
         </div>
@@ -69,4 +75,4 @@ const mapStateToProps = (state) => ({
   common: state.common,
 });
 
-export default connect(mapStateToProps, { scrollPage })(App);
+export default connect(mapStateToProps, { scrollPage, changeSize })(App);

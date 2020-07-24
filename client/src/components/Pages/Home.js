@@ -16,7 +16,7 @@ class Home extends Component {
     const { isReady, social, title, name, lastname } = this.props.about;
     return (
       <div className='page home'>
-        <div className='home__bg' style={{ 'background-image': `url(${homeBg})` }}></div>
+        <div className='home__bg' style={{ backgroundImage: `url(${homeBg})` }}></div>
         <div className='home__left'>
           <div className='home__bottom' />
           {isReady && (

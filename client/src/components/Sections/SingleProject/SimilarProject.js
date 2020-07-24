@@ -1,15 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function SimilarList({ item }) {
+export default function SimilarList({ project }) {
   return (
-    < >
-      <Link
-        className="project__similarLink"
-        to={"/portfolio/project/" + item.id}
-      >
-        <img src={"/photo/" + item.picture} className="project__similarImg"/>
-        <h4 className="project__similarTitle">{item.title}</h4>
+    <>
+      <Link className='project__similarLink' to={'/portfolio/project/' + project.id}>
+        <img src={'/photo/' + project.picture} className='project__similarImg' />
+        <h4 className='project__similarTitle'>{project.title}</h4>
       </Link>
     </>
   );

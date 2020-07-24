@@ -3,31 +3,30 @@
   &__main {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
   }
   &__aboutSection {
-    flex: 0 0 60%;
-    padding: 0 0 0 20px;
-    box-sizing: border-box;
+    flex: 0 0 100%;
+    margin: 30px 0 0 0;
   }
   &__pictureSection {
-    flex: 0 0 40%;
+    flex: 0 0 100%;
   }
   &__picture {
     border: 1px solid #777;
     width: 100%;
-    min-height: 200px;
   }
   &__title {
     padding: 0 0 15px 0;
-    font-size: 30px;
+    font-size: 26px;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
   }
   &__subtitle {
     font-weight: bold;
     padding: 0 0 15px 0;
-    font-size: 24px;
-    font-family: Helvetica, sans-serif; 
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
   }
   &__description {
     margin: 0 0 10px;
@@ -56,15 +55,15 @@
     display: block;
     color: #fff;
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 350px;
     padding: 10px 0;
     border-radius: 5px;
-    &:hover{
-      box-shadow: 0 0 5px rgba(0,0,0,.5);
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
-    
   }
-  &__btnIcon{
+  &__btnIcon {
     color: #122738;
     margin: 0 5px 0 0;
     padding: 0;
@@ -86,10 +85,6 @@
   }
   &__similarTitle {
     display: none;
-  }
-  &__sourceList {
-    display: flex;
-    justify-content: center;
   }
   &__rateBlock {
     margin: 50px 0 0 0;
@@ -132,6 +127,9 @@
   &__rateValue {
     font-weight: bold;
     color: #122738;
+  }
+  &__sliderDots {
+    top: 100%;
   }
 }
 
@@ -183,7 +181,6 @@
   .project {
     &__picture {
       width: 350px;
-      min-height: 350px;
       margin: 0 auto;
       display: block;
     }
@@ -207,9 +204,21 @@
 //  WIDE 600 px
 @media screen and (min-width: 600px) {
   .project {
+    &__main {
+      flex-wrap: nowrap;
+    }
+    &__aboutSection {
+      flex: 0 0 60%;
+      margin: 0;
+      padding: 0 0 0 30px;
+      box-sizing: border-box;
+    }
+    &__pictureSection {
+      flex: 0 0 40%;
+    }
     &__picture {
-      width: 400px;
-      min-height: 400px;
+      max-width: 400px;
+      width: 100%;
       margin: 0 auto;
     }
     &__skill {

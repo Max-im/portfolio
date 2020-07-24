@@ -30,18 +30,18 @@ export class SingleProject extends Component {
 
   render() {
     const { project, isReady, error } = this.props.project;
-    const show = isReady && !error;
+    const show = project && isReady && !error;
     if (show && !project.id) {
       window.location.replace('/not-found');
     }
     return (
-      <div className="page">
-        <PageTitle text="Project" subtext="Single project information" />
+      <div className='page'>
+        <PageTitle text='Project' subtext='Single project information' />
         <Breadcrumbs arr={['home', 'portfolio', 'project']} />
-        <div className="container project">
+        <div className='container project'>
           {show && <ProjectInfo project={project} />}
           {!show && <Spinner />}
-          {error && <p className="error">{error}</p>}
+          {error && <p className='error'>{error}</p>}
         </div>
       </div>
     );

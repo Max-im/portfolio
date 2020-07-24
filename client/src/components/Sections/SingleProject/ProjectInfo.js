@@ -13,19 +13,19 @@ export class ProjectInfo extends Component {
   render() {
     const { project, auth } = this.props;
     return (
-      <div className="project__info">
+      <div className='project__info'>
         {project && (
           <>
             {auth.user && auth.user.isadmin && (
               <>
                 <Link
                   to={'/admin/edit-project/' + project.id}
-                  className="section__editBtn fas fa-edit"
+                  className='section__editBtn fas fa-edit'
                 />
-                <i className="section__deleteBtn fas fa-trash-alt" />
+                <i className='section__deleteBtn fas fa-trash-alt' />
               </>
             )}
-            <section className="project__main section">
+            <section className='project__main section'>
               <ProjectImg project={project} />
               <ProjectAbout project={project} />
             </section>
@@ -33,7 +33,7 @@ export class ProjectInfo extends Component {
             <Shown component={Recommendations} />
             {/* <Comments comments={project.comments} /> */}
             {/* <ProjectRate /> */}
-            
+            <div className='section__footer'></div>
           </>
         )}
       </div>

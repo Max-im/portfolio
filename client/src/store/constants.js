@@ -1,6 +1,7 @@
 // common
 export const APP_NAME = 'max-im';
 export const SCROLL_PAGE = 'SCROLL_PAGE';
+export const RESIZE_PAGE = 'RESIZE_PAGE';
 
 // about
 export const GET_ABOUT = 'GET_ABOUT';
