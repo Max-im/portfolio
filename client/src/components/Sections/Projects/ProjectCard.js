@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProjectLinks from './ProjectLinks';
 
 export default function ProjectCard({ project, ...rest }) {
   return (
@@ -9,14 +10,7 @@ export default function ProjectCard({ project, ...rest }) {
       </Link>
       <div className="projectItem__description">
         <p className="projectItem__title">{project.title}</p>
-        <div className="projectItem__btns">
-          {project.source.map((linkObj) => (
-            <a className="projectItem__btn" href={linkObj.url} key={linkObj.id} target="_blank" rel="nofollow, noindex">
-              <i className={linkObj.classes + ' projectItem__icon'} />
-              {linkObj.name}
-            </a>
-          ))}
-        </div>
+        <ProjectLinks source={project.source} rootClass="projectItem" />
         <p className="projectItem__date">{new Date(project.date).toDateString()}</p>
       </div>
     </div>

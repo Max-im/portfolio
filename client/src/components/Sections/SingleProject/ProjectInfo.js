@@ -16,27 +16,24 @@ export class ProjectInfo extends Component {
       <div className="project__info">
         {project && (
           <>
-            <h2 className="section__title">
-              {project.title}
-              {auth.user && auth.user.isadmin && (
-                <>
-                  <Link
-                    to={'/admin/edit-project/' + project.id}
-                    className="section__editBtn fas fa-edit"
-                  />
-                  <i className="section__deleteBtn fas fa-trash-alt" />
-                </>
-              )}
-            </h2>
-            <div className="project__main">
+            {auth.user && auth.user.isadmin && (
+              <>
+                <Link
+                  to={'/admin/edit-project/' + project.id}
+                  className="section__editBtn fas fa-edit"
+                />
+                <i className="section__deleteBtn fas fa-trash-alt" />
+              </>
+            )}
+            <section className="project__main section">
               <ProjectImg project={project} />
               <ProjectAbout project={project} />
-            </div>
+            </section>
             <Shown component={ProjectSkills} skills={project.skills} />
             <Shown component={Recommendations} />
             {/* <Comments comments={project.comments} /> */}
             {/* <ProjectRate /> */}
-            <div style={{height: '50px'}}></div>
+            
           </>
         )}
       </div>

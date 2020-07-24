@@ -2,16 +2,32 @@
   color: #122738;
   &__main {
     display: flex;
+    width: 100%;
   }
-  &_about {}
+  &__aboutSection {
+    flex: 0 0 60%;
+    padding: 0 0 0 20px;
+    box-sizing: border-box;
+  }
+  &__pictureSection {
+    flex: 0 0 40%;
+  }
   &__picture {
     border: 1px solid #777;
     width: 100%;
     min-height: 200px;
   }
   &__title {
-    font-size: 22px;
-    margin: 0 0 10px 0;
+    padding: 0 0 15px 0;
+    font-size: 30px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  &__subtitle {
+    font-weight: bold;
+    padding: 0 0 15px 0;
+    font-size: 24px;
+    font-family: Helvetica, sans-serif; 
   }
   &__description {
     margin: 0 0 10px;
@@ -27,6 +43,31 @@
     display: inline-block;
     text-transform: uppercase;
     padding: 5px 25px;
+    margin: 0 0 20px 0;
+  }
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 0 0;
+  }
+  &__btn {
+    background-color: #0088ff;
+    margin: 0 0 10px 0;
+    display: block;
+    color: #fff;
+    text-align: center;
+    width: 300px;
+    padding: 10px 0;
+    border-radius: 5px;
+    &:hover{
+      box-shadow: 0 0 5px rgba(0,0,0,.5);
+    }
+    
+  }
+  &__btnIcon{
+    color: #122738;
+    margin: 0 5px 0 0;
+    padding: 0;
   }
   &__skills {
     width: 100%;
@@ -50,9 +91,11 @@
     display: flex;
     justify-content: center;
   }
+  &__rateBlock {
+    margin: 50px 0 0 0;
+  }
   &__rate {
     display: flex;
-    justify-content: center;
   }
   &__rateItem {
     &:hover {
@@ -144,10 +187,6 @@
       margin: 0 auto;
       display: block;
     }
-    &__title {
-      font-size: 24px;
-      margin: 0 0 15px 0;
-    }
     &__description {
       margin: 0 0 15px;
     }
@@ -173,11 +212,6 @@
       min-height: 400px;
       margin: 0 auto;
     }
-    &__title {
-      font-size: 26px;
-      margin: 0 0 15px 0;
-    }
-
     &__skill {
       width: 60px;
       height: 60px;
@@ -198,15 +232,12 @@
 @media screen and (min-width: 980px) {
   .project {
     &__info {
-      max-width: calc(100% - 280px);
+      width: 100%;
     }
     &__picture {
       width: 450px;
       min-height: 450px;
       margin: 0;
-    }
-    &__title {
-      font-size: 32px;
     }
     &__similarTitle {
       font-size: 16px;

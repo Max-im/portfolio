@@ -18,10 +18,7 @@ export class Rate extends Component {
       isNegativeActive = negative.find((item) => item.userid.toString() === id.toString());
     }
     return (
-      <div className="pageAside__block">
-        <h4 className="pageAside__title">
-          Rate: <b className="project__rateValue">{}</b>
-        </h4>
+      <div className="project__rateBlock">
         <ul className="project__rate">
           <li key="positive" className="social__item project__rateItem">
             <i
