@@ -13,7 +13,7 @@
   &__title {
     font-size: 22px;
     margin: 10px 0 5px 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
   &__content {
     display: flex;
@@ -58,7 +58,7 @@
   &__description {
     box-shadow: 0px -1px 3px #aaa;
     position: absolute;
-    transition: .4s ease-out;
+    transition: 0.4s ease-out;
     left: 0;
     bottom: 0%;
     background-color: #fff;
@@ -71,23 +71,22 @@
     color: #122738;
     padding: 10px 0;
   }
-  &__btns{
+  &__btns {
     display: flex;
     justify-content: space-around;
   }
-  &__btn{
+  &__btn {
     display: block;
     color: #fff;
     background-color: #0088ff;
     padding: 5px 10px;
-    box-shadow: 0px 0px 3px #aaa;
-    opacity: .85;
-    &:hover{
-      opacity: 1;
-      transition: .3s;
+    border-radius: 3px;
+    &:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
     }
   }
-  &__icon {
+  &__btnIcon {
     margin: 0 5px 0 0;
     color: #122738;
   }
@@ -143,7 +142,6 @@
   }
 }
 
-
 //  WIDE 480 px
 @media screen and (min-width: 480px) {
   .projectItem {
@@ -178,11 +176,9 @@
   }
 }
 
-
 //  WIDE 1170 px
 @media screen and (min-width: 1170px) {
   .projectItem {
     min-height: 245px;
   }
-  
 }
