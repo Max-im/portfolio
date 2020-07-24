@@ -144,7 +144,7 @@ export const getProjectRecommendations = async (req, res, next) => {
     .query(
       `SELECT id, title, picture
       FROM projects
-      WHERE id != $1 AND keyword = $2 OR level = $3 OR mainSkill = $4
+      WHERE id != $1 AND (keyword = $2 OR level = $3 OR mainSkill = $4)
       LIMIT 10`,
       [req.params.id, project.keyword, project.level, project.mainSkill]
     )
