@@ -4,6 +4,7 @@
   position: relative;
   display: flex;
   z-index: 1;
+  height: 100vh;
   overflow: hidden;
   &__bg {
     animation: homebg ease-in-out 30s infinite;
