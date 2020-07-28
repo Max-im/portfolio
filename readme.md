@@ -43,43 +43,6 @@
 
 ![babel][babelimg] ![eslint][eslintimg]
 
-## **Schedule:**
-
-| Num | Action                                                                        | Hours |
-| --: | ----------------------------------------------------------------------------- | ----: |
-|  1. | Consider the project, create repo, license, readme.md                         |     2 |
-|  1. | Environment init, structure the project                                       |     2 |
-|  1. | Prepare assets for the projects                                               |     3 |
-|  1. | Routing implementation                                                        |     1 |
-|  1. | Create Header component                                                       |     4 |
-|  1. | Create NotFound-page (404) component                                          |     2 |
-|  1. | Create Single-page component                                                  |     4 |
-|  1. | Create Aside component                                                        |     4 |
-|  1. | Create SOME-PAGE component                                                    |     5 |
-|  1. | Create Authorisation component                                                |     5 |
-|  1. | Create Comments component                                                     |     5 |
-|  1. | Create Like component                                                         |     5 |
-|  1. | Create Footer component                                                       |     2 |
-|  1. | Code review, refactoring                                                      |     4 |
-|  1. | Add microdata, correct readme                                                 |     2 |
-|  1. | Backend deploy, env init                                                      |    10 |
-|  1. | DataBase plug                                                                 |     2 |
-|  1. | CRUD implementation                                                           |    10 |
-|  1. | Backend code review, refactoring                                              |     3 |
-|  1. | Deploy                                                                        |     1 |
-|  1. | Verify availability on https://developers.google.com/speed/pagespeed/insights |     1 |
-|     | TOTAL                                                                         |  1000 |
-
-## **About Author**
-
-Maxim Pozhidayev <pogidaevmo@gmail.com>
-
-[AuthorPage]
-
-[![facebook][fbimg]][myfb] [![linkedIn][inimg]][myin]
-
-[herro]: https://example
-[page]: https://example
 
 <!-- author -->
 

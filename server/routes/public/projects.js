@@ -11,6 +11,7 @@ import {
   getProjectRate,
   changeProjectRate,
   getProjectRecommendations,
+  getProjectComments
 } from '../../controllers/projects';
 import { isLoggedIn } from '../../validation/permission';
 
@@ -19,6 +20,7 @@ const router = Router();
 router.get('/number', validateGetProjectsNumber, getProjectsNumber);
 router.get('/single/:id', validateGetSingleProject, getSingleProject);
 router.get('/recommendations/:id', validateGetSingleProject, getProjectRecommendations);
+router.get('/comments/:id', validateGetSingleProject, getProjectComments);
 router.get('/rate/:id', validateGetSingleProject, getProjectRate);
 router.get('/:page', validateGetProjects, getPageProjects);
 router.post('/rate/:id', isLoggedIn, changeProjectRate);

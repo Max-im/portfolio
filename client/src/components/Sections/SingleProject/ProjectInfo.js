@@ -6,8 +6,7 @@ import ProjectImg from './ProjectImg';
 import ProjectAbout from './ProjectAbout';
 import ProjectSkills from './ProjectSkills';
 import Recommendations from './Recommendations';
-// import Comments from './Comments';
-// import ProjectRate from "./ProjectRate";
+import Comments from './Comments';
 
 export class ProjectInfo extends Component {
   render() {
@@ -31,8 +30,7 @@ export class ProjectInfo extends Component {
             </section>
             <Shown component={ProjectSkills} skills={project.skills} />
             <Shown component={Recommendations} />
-            {/* <Comments comments={project.comments} /> */}
-            {/* <ProjectRate /> */}
+            <Shown component={Comments} />
             <div className='section__footer'></div>
           </>
         )}

@@ -21,6 +21,7 @@ export class Recommendations extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
+      centerPadding: '30px',
       dotsClass: 'slick-dots project__sliderDots',
     };
 

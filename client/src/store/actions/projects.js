@@ -8,6 +8,7 @@ import {
   GET_PROJECT,
   SET_RATE,
   SET_RECOMMENDATIONS,
+  SET_COMMENTS,
   EMIT_RATE_ERROR,
   PROJECT_ERROR,
 } from '../constants';
@@ -51,5 +52,12 @@ export const getProjectRecommendations = (id) => (dispatch) => {
   axios
     .get(`/projects/recommendations/${id}`)
     .then(({ data }) => dispatch({ type: SET_RECOMMENDATIONS, payload: data }))
+    .catch((err) => console.log(err));
+};
+
+export const getComments = (id) => (dispatch) => {
+  axios
+    .get(`/projects/comments/${id}`)
+    .then(({ data }) => dispatch({ type: SET_COMMENTS, payload: data }))
     .catch((err) => console.log(err));
 };

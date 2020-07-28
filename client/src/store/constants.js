@@ -41,6 +41,7 @@ export const PROJECT_ERROR = 'PROJECT_ERROR';
 export const SET_RATE = 'SET_RATE';
 export const EMIT_RATE_ERROR = 'EMIT_RATE_ERROR';
 export const SET_RECOMMENDATIONS = 'SET_RECOMMENDATIONS';
+export const SET_COMMENTS = 'SET_COMMENTS';
 export const EMIT_RATE_ERROR_MSG = 'You must login first';
 export const PROJECT_ERROR_MSG = 'Error getting the project.';
 

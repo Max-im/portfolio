@@ -1,0 +1,46 @@
+.comments {
+  padding: 40px 0;
+}
+
+.comment {
+  margin: 3px auto 35px auto;
+  width: 100%;
+  max-width: 800px;
+  &:hover {
+    .comment__delete {
+      right: -10px;
+      opacity: 1;
+    }
+  }
+  &__meta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+  }
+  &__date {
+    color: #aaa;
+    line-height: 27px;
+  }
+  &__body {
+    display: flex;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 15px 0 0;
+  }
+  &__text {
+    font-size: 16px;
+    padding: 0 30px 0 0;
+  }
+  &__delete {
+    transition: 0.4s;
+    position: relative;
+    opacity: 0;
+    right: -20px;
+  }
+}
