@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
+import CreateComment from './CreateComment';
 import { getComments } from '../../../store/actions/projects';
 import '../../../sass/comments.scss';
 
@@ -17,11 +18,14 @@ export class Comments extends Component {
         <h3 className="project__subtitle">Comments</h3>
         {comments && comments.length === 0 && <p>There is no comments yet</p>}
         {comments && comments.length > 0 && (
-          <ul>
-            {comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
-            ))}
-          </ul>
+          <>
+            <CreateComment projectId={this.props.project.project.id}/>
+            <ul>
+              {comments.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
+              ))}
+            </ul>
+          </>
         )}
       </div>
     );

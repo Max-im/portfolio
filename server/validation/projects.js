@@ -76,3 +76,27 @@ export const validateGetSingleProject = async (req, res, next) => {
 };
 
 
+export const validateAddComment = async (req, res, next) => {
+  const projectId = !isEmpty(req.body.projectId) ? req.body.projectId : null;
+  const userId = !isEmpty(req.body.userId) ? req.body.userId : null;
+  const text = !isEmpty(req.body.text) ? req.body.text : null;
+
+  if (!(userId && projectId && text)) return res.status(420).json("error, try again later");
+
+  if (!Validator.isLength(text, { min: 1, max: 1000 })) {
+    return res.status(420).json("filename field must be from 1 to 1000 characters");
+  }
+
+  if (!Validator.isNumeric(projectId)) {
+    return res.status(420).json("error, try again later");
+  }
+
+  if (!Validator.isNumeric(userId)) {
+    return res.status(420).json("error, try again later");
+  }
+
+  req.body.text = Validator.escape(text);
+  return next();
+};
+
+

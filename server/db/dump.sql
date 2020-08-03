@@ -23,9 +23,9 @@ create TABLE users
 );
 
 INSERT INTO users
-    (id, gid, name, email, avatar, isadmin)
+    (gid, name, email, avatar, isadmin)
 VALUES
-    ( 1, '104819189707149372033', 'Maksim Pozhydaiev', 'pogidaevmo@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14GhqQRRNIk2JNmYJIhLYmSNnijzAsTaEBWvfATBv8Q=s96-c', true);
+    ('104819189707149372033', 'Maksim Pozhydaiev', 'pogidaevmo@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14GhqQRRNIk2JNmYJIhLYmSNnijzAsTaEBWvfATBv8Q=s96-c', true);
 
 -- ABOUT
 CREATE TABLE about

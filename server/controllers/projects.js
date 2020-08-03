@@ -154,15 +154,3 @@ export const getProjectRecommendations = async (req, res, next) => {
   res.json(recommendations);
 };
 
-export const getProjectComments = (req, res, next) => {
-  db.query(
-    `SELECT c.id, c.text, c.date, u.name, u.avatar 
-    FROM comments AS c 
-    JOIN users AS u
-    ON u.id = c.user_id
-    WHERE project_id = $1`,
-    [req.params.id]
-  )
-    .then(({ rows }) => res.json(rows))
-    .catch(next);
-};

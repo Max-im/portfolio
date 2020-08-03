@@ -8,7 +8,7 @@ export const getExistingUser = (req, res, next) => {
   const { gId } = req.body;
 
   client
-    .query(`SELECT * FROM users WHERE gId=$1`, [gId])
+    .query(`SELECT * FROM users WHERE gid=$1`, [gId])
     .then(({ rows }) => {
       if (rows[0]) req.body.theUser = rows[0];
       return next();
@@ -24,7 +24,7 @@ export const createNewUser = (req, res, next) => {
     .query(
       `INSERT INTO users(name, email, gid, avatar) 
         VALUES ($1, $2, $3, $4) 
-        RETURNING isadmin, name, email, gid, avatar`,
+        RETURNING id, isadmin, name, email, gid, avatar`,
       [name, email, gId, avatar]
     )
     .then(({ rows }) => {
