@@ -556,11 +556,6 @@ CREATE TABLE comments
     text CHARACTER varying(1024)
 );
 
-INSERT INTO comments
-    (project_id, user_id, text)
-VALUES
-    (7, 1, 'lorem ipsum');
-
 
 
 -- PROJECTS_SKILLS

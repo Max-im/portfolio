@@ -77,8 +77,8 @@ export const validateGetSingleProject = async (req, res, next) => {
 
 
 export const validateAddComment = async (req, res, next) => {
-  const projectId = !isEmpty(req.body.projectId) ? req.body.projectId : null;
-  const userId = !isEmpty(req.body.userId) ? req.body.userId : null;
+  const projectId = !isEmpty(req.body.projectId) ? req.body.projectId.toString() : null;
+  const userId = !isEmpty(req.body.userId) ? req.body.userId.toString() : null;
   const text = !isEmpty(req.body.text) ? req.body.text : null;
 
   if (!(userId && projectId && text)) return res.status(420).json("error, try again later");

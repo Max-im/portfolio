@@ -12,6 +12,7 @@ import {
   EMIT_RATE_ERROR,
   PROJECT_ERROR,
   ADD_COMMENT,
+  EMIT_CREATE_COMMENT_ERROR
 } from '../constants';
 import { onError } from './utils';
 
@@ -64,8 +65,9 @@ export const getComments = (id) => (dispatch) => {
 };
 
 export const onCreateComment = (commentObj) => (dispatch) => {
+  dispatch({type: EMIT_CREATE_COMMENT_ERROR, payload: null});
   axios
     .post('/projects/comments', commentObj)
     .then(({ data }) => dispatch({ type: ADD_COMMENT, payload: data }))
-    .catch((err) => console.log(err));
+    .catch((err) => dispatch({type: EMIT_CREATE_COMMENT_ERROR, payload: err.response.data}))
 };

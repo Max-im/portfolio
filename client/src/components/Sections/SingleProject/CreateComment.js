@@ -23,6 +23,7 @@ export class CreateComment extends Component {
 
   render() {
     const { user } = this.props.auth;
+    const {createCommentError} = this.props.project;
     return (
       <>
         {user && (
@@ -40,6 +41,7 @@ export class CreateComment extends Component {
                 Add Comment
               </button>
             </div>
+            {createCommentError && <p className="error">{createCommentError}</p>}
           </form>
         )}
       </>
@@ -49,6 +51,7 @@ export class CreateComment extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  project: state.project
 });
 
 export default connect(mapStateToProps, { onCreateComment })(CreateComment);

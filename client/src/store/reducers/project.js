@@ -6,7 +6,8 @@ import {
   EMIT_RATE_ERROR,
   SET_RECOMMENDATIONS,
   SET_COMMENTS,
-  ADD_COMMENT
+  ADD_COMMENT,
+  EMIT_CREATE_COMMENT_ERROR
 } from '../constants';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   comments: null,
   rateError: null,
   error: null,
+  createCommentError: null
 };
 
 export default (state = initialState, action) => {
@@ -41,6 +43,9 @@ export default (state = initialState, action) => {
     
     case ADD_COMMENT:
       return { ...state, comments: [action.payload, ...state.comments] };
+    
+    case EMIT_CREATE_COMMENT_ERROR:
+      return { ...state, createCommentError: action.payload };
 
     case EMIT_RATE_ERROR:
       return { ...state, rateError: action.payload };

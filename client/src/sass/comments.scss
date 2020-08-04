@@ -1,11 +1,15 @@
 .comments {
   padding: 40px 0;
+  &__block{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
 
 .comment {
   margin: 3px auto 35px auto;
   width: 100%;
-  max-width: 800px;
   &:hover {
     .comment__delete {
       right: -10px;
@@ -45,7 +49,6 @@
   }
   &__addBlock {
     max-width: 800px;
-    margin: 0 auto 20px auto;
   }
   &__createInput{
     width: 100%;

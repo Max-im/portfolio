@@ -21,25 +21,31 @@ export class AuthMenu extends Component {
     const { isAuth, error } = this.props.auth;
 
     return (
-      <div className='authMenu'>
-        {!isAuth && (
-          <div className='authMenu__login'>
-            <GoogleLogin
-              clientId={process.env.REACT_APP_CLIENT_ID}
-              buttonText=''
-              className='authMenu__loginBtn'
-              onSuccess={this.props.onLogin}
-              onFailure={this.props.onLoginError}
-              cookiePolicy={'single_host_origin'}
-            />
-            {error && <p className='error authMenu__error'>{error}</p>}
-          </div>
-        )}
-        {isAuth && (
-          <i className='fas fa-sign-out-alt userMenu__logout ' onClick={this.onLogout.bind(this)}>
-            <p className='userMenu__logoutTooltip'>Logout</p>
-          </i>
-        )}
+      <div className="authMenu">
+        <div className="mainMenu__link">
+          {!isAuth && (
+            <>
+              <GoogleLogin
+                clientId={process.env.REACT_APP_CLIENT_ID}
+                buttonText=""
+                className="authMenu__loginBtn"
+                onSuccess={this.props.onLogin}
+                onFailure={this.props.onLoginError}
+                cookiePolicy={'single_host_origin'}
+              />
+              <p className="mainMenu__tooltip authMenu__tooltip">Login</p>
+            </>
+          )}
+          {isAuth && (
+            <>
+              <i
+                className="fas fa-sign-out-alt authMenu__loginBtn"
+                onClick={this.onLogout.bind(this)}
+              />
+              <p className="mainMenu__tooltip authMenu__tooltip">Logout</p>
+            </>
+          )}
+        </div>
       </div>
     );
   }

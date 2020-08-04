@@ -8,16 +8,6 @@ export class MainMenu extends Component {
     return (
       <nav className='nav mainMenu'>
         <ul className='mainMenu__list'>
-          {/* <li className="mainMenu__item">
-            <i
-              className={
-                this.props.showSubMenu
-                  ? 'fas fa-bars mainMenu__link mainMenu__toggleSubmenu mainMenu__toggleSubmenu_active'
-                  : 'fas fa-bars mainMenu__link mainMenu__toggleSubmenu'
-              }
-              onClick={this.props.toggleSubMenu}
-            />
-          </li> */}
           <li className='mainMenu__item'>
             <NavLink
               exact

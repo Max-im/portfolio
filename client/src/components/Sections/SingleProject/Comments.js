@@ -16,17 +16,19 @@ export class Comments extends Component {
     return (
       <div className="comments">
         <h3 className="project__subtitle">Comments</h3>
-        {comments && comments.length === 0 && <p>There is no comments yet</p>}
-        {comments && comments.length > 0 && (
-          <>
-            <CreateComment projectId={this.props.project.project.id}/>
-            <ul>
-              {comments.map((comment) => (
-                <Comment key={comment.id} comment={comment} />
-              ))}
-            </ul>
-          </>
-        )}
+        <div className="comments__block">
+          <CreateComment projectId={this.props.project.project.id} />
+          {comments && comments.length === 0 && <p>There is no comments yet</p>}
+          {comments && comments.length > 0 && (
+            <>
+              <ul>
+                {comments.map((comment) => (
+                  <Comment key={comment.id} comment={comment} />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
       </div>
     );
   }
