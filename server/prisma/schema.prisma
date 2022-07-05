@@ -1,0 +1,71 @@
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    email     String   @unique
+    role      Role     @default(USER)
+}
+
+model Project {
+    id        String            @id
+    createdAt DateTime          @default(now())
+    updatedAt DateTime          @updatedAt
+    published Boolean           @default(false)
+    title     String            @db.VarChar(255)
+    skills    SkillsOnProject[]
+}
+
+model Skill {
+    id       Int               @id @default(autoincrement())
+    isAcrive Boolean           @default(true)
+    value    String            @db.VarChar(255)
+    projects SkillsOnProject[]
+    group    SkillGroup        @default(OTHER)
+}
+
+model SkillsOnProject {
+    prject    Project @relation(fields: [projectId], references: [id])
+    projectId String
+    skill     Skill   @relation(fields: [skillId], references: [id])
+    skillId   Int
+
+    @@id([projectId, skillId])
+}
+
+model Experience {
+    id           Int      @id @default(autoincrement())
+    startedAt    DateTime
+    finishedAt   DateTime
+    organisation String   @db.VarChar(255)
+    description  String   @db.VarChar(255)
+}
+
+model Education {
+    id           Int      @id @default(autoincrement())
+    startedAt    DateTime
+    finishedAt   DateTime
+    organisation String   @db.VarChar(255)
+    description  String   @db.VarChar(255)
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+enum SkillGroup {
+    FRONTEND
+    BACKEND
+    DATABASE
+    CICD
+    OTHER
+}
+    
