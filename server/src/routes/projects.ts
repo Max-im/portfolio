@@ -3,6 +3,6 @@ import { SkillsController } from '../core/skills/skills-controller';
 
 const router = Router();
 
-router.get('/api/skills', SkillsController.getSkills);
+router.get('/api/projects', );
 
-export { router as skillsRouter };
+export { router as projectsRouter };
