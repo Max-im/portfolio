@@ -1,7 +1,7 @@
 import express from 'express';
 import { skillsRouter } from './routes/skills';
 import { projectsRouter } from './routes/projects';
-import { getGithubData } from './jobs/github'
+import { getGithubData } from './jobs/github-jobrunner';
 
 const app = express();
 app.use(express.json());

@@ -8,6 +8,12 @@ class SkillsService {
     });
     return skills;
   }
+
+  async seedSkills(skills) {
+    // compute and remove deleted
+    // compute and add new
+    // update if needed
+  }
 }
 
 export const skillsService = new SkillsService();

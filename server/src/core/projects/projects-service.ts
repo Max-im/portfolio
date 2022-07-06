@@ -8,6 +8,12 @@ class ProjectsService {
     });
     return projects;
   }
+
+  async seedProjects(projects) {
+    // compute and remove deleted
+    // compute and add new
+    // update if needed
+  }
 }
 
 export const projectsService = new ProjectsService();
