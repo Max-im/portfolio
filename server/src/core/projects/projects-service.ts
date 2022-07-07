@@ -1,4 +1,5 @@
-import { prisma } from '../../prisma';
+import prisma from '../../prisma';
+import { IProject } from '../github/github-service';
 
 class ProjectsService {
   async getProjects() {
@@ -9,7 +10,7 @@ class ProjectsService {
     return projects;
   }
 
-  async seedProjects(projects) {
+  async seedProjects(projects: IProject[]) {
     // compute and remove deleted
     // compute and add new
     // update if needed
