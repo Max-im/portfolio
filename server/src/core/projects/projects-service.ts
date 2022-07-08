@@ -7,7 +7,7 @@ class ProjectsService {
       where: { published: true },
       include: { skills: true },
     });
-    return projects;
+    return projects.map(project => ({...project, createdAt: project.createdAt.toISOString(), updatedAt: project.updatedAt.toISOString(), }));
   }
 
   async seedProjects(projects: IProject[]) {

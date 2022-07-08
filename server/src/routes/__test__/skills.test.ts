@@ -1,10 +1,11 @@
+import { SkillGroup } from "@prisma/client";
 import request from 'supertest';
 import { app } from '../../app';
-import { prismaMock } from '../../test/setup'; 
+import { prismaMock } from '../../test/setup';
 
 const url = '/api/skills';
 
-it('NOT return 404 for /api/skills', async () => {
+it(`NOT return 404 for ${url}`, async () => {
     const response = await request(app)
         .get(url)
         .send({});
@@ -12,78 +13,16 @@ it('NOT return 404 for /api/skills', async () => {
     expect(response.status).not.toEqual(404);
 });
 
-// it ('accessable for authed users only', async () => {
-//     await request(app)
-//         .post(url)
-//         .send({})
-//         .expect(401);
-// });
+it('returns skills array', async () => {
+    const skills = [
+        { id: 1, value: 'jest', isActive: true, group: SkillGroup.OTHER },
+        { id: 2, value: 'javascript', isActive: true, group: SkillGroup.FRONTEND },
+        { id: 3, value: 'node', isActive: true, group: SkillGroup.BACKEND }
+    ]
 
-// it ('return NOT 401 status if user signed in', async () => {
-//     const response = await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({});
+    prismaMock.skill.findMany.mockResolvedValue(skills);
 
-//     expect(response.status).not.toEqual(401);
-// });
+    const response = await request(app).get(url).send({});
 
-// it ('return error if invalid title supplied', async () => {
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({title: '', price: '10'})
-//         .expect(422);
-
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({ price: 10})
-//         .expect(422)
-// });
-
-// it ('return error if invalid price supplied', async () => {
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({title: 'title'})
-//         .expect(422);
-
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({ title: 'title', price: -10})
-//         .expect(422)
-// });
-
-// it ('create ticket with valid input data', async () => {
-//     let tickets = await Ticket.find({});
-//     expect(tickets.length).toEqual(0);
-
-//     const title = 'testTitle'
-//     const price = 20;
-
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({ title, price })
-//         .expect(201);
-
-//     tickets = await Ticket.find({});
-//     expect(tickets.length).toEqual(1);
-//     expect(tickets[0].price).toEqual(price);
-//     expect(tickets[0].title).toEqual(title);
-// });
-
-// it('publishes event', async () => {
-//     const title = 'testTitle'
-//     const price = 20;
-
-//     await request(app)
-//         .post(url)
-//         .set('Cookie', global.signin())
-//         .send({ title, price })
-//         .expect(201);
-
-//     expect(natsWrapper.client.publish).toHaveBeenCalled();
-// });
+    expect(response.body).toEqual({skills});
+});

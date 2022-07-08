@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { SkillsController } from '../core/skills/skills-controller';
+import { ProjectsController } from '../core/projects/projects-controller';
 
 const router = Router();
 
-router.get('/api/projects', );
+router.get('/api/projects', ProjectsController.getProjects);
 
 export { router as projectsRouter };
