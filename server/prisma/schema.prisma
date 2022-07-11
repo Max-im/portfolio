@@ -15,12 +15,17 @@ model User {
 }
 
 model Project {
-    id        String            @id
-    createdAt DateTime          @default(now())
-    updatedAt DateTime          @updatedAt
-    published Boolean           @default(false)
-    title     String            @db.VarChar(255)
-    skills    SkillsOnProject[]
+    id          String            @id
+    gitId       String            @db.VarChar(255)
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @updatedAt
+    published   Boolean           @default(true)
+    title       String            @db.VarChar(255)
+    description String            @db.VarChar(1023)
+    gitUrl      String            @db.VarChar(255)
+    storefront  String            @db.VarChar(255)
+    topics      String[]
+    skills      SkillsOnProject[]
 }
 
 model Skill {
@@ -68,4 +73,3 @@ enum SkillGroup {
     CICD
     OTHER
 }
-    

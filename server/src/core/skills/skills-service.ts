@@ -1,6 +1,6 @@
 import prisma from '../../prisma';
 
-interface ISkill {
+export interface ISkill {
   value: string,
 }
 class SkillsService {

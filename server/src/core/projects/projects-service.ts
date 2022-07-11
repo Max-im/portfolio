@@ -1,19 +1,48 @@
 import prisma from '../../prisma';
-import { IProject } from '../github/github-service';
+import { IGitProject } from '../github/github-interfaces';
 
+export interface IProject {
+  id: string;
+  gitId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  published: boolean;
+  title: string;
+  description: string;
+  gitUrl: string;
+  storefront: string;
+  topics: string[]
+}
 class ProjectsService {
   async getProjects() {
     const projects = await prisma.project.findMany({
       where: { published: true },
       include: { skills: true },
     });
-    return projects.map(project => ({...project, createdAt: project.createdAt.toISOString(), updatedAt: project.updatedAt.toISOString(), }));
+
+    return projects as IProject[];
   }
 
-  async seedProjects(projects: IProject[]) {
-    // compute and remove deleted
-    // compute and add new
-    // update if needed
+  // async deleteProjectsByGitIds(ids: string[]) {
+  //   if (!ids.length) return;
+
+  //   await prisma.project.deleteMany({
+  //     where: {
+  //       gitId: {
+  //         in: ids
+  //       }
+  //     }
+  //   }); 
+  // }
+
+  async createPrjects(projects: IProject[]) {
+    await prisma.project.createMany({
+      data: projects
+    })
+  }
+
+  async seedProjects(projects: IGitProject[]) {
+   
   }
 }
 

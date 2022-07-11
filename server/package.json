@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --watchAll --no-cache",
     "test:ci": "jest",
-    "dev": "ts-node-dev src/server.ts"
+    "db:init": "env-cmd -e development prisma db push",
+    "dev": "env-cmd -e development ts-node-dev src/server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "@types/node-cron": "^3.0.2",
     "@types/supertest": "^2.0.12",
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "jest": "^28.1.2",
     "jest-mock-extended": "^2.0.4",
     "nodemon": "^2.0.18",
