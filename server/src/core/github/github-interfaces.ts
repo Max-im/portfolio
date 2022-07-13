@@ -97,16 +97,3 @@ export interface IgitRepo {
     watchers: number;
     default_branch: string;
 }
-
-export interface IGitProject {
-    id: string;
-    node_id: string;
-    name: string;
-    description: string | null;
-    created_at: string;
-    updated_at: string;
-    html_url: string;
-    homepage: string | null;
-    topics: string[];
-    languages_url: string;
-}

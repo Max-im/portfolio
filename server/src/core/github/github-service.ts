@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { ISkill, skillsService } from '../skills/skills-service';
+import { skillsService } from '../skills/skills-service';
 import { projectsService, IProject } from '../projects/projects-service';
-import { IGitProject, IgitRepo } from './github-interfaces';
+import { IgitRepo } from './github-interfaces';
 import { Project } from '../projects/project-model';
 
 
 class GithubService {
   private async getRepos() {
     return new Promise((res) => {
-      const {item} = require('./test_2');
+      const {item} = require('./test_1');
       res(item as IgitRepo[])
     })
     // try {
@@ -42,19 +42,13 @@ class GithubService {
     return gitRepos.map(repo => Project.transformFromGit(repo));
   }
 
-  private handleGithubData(data: IgitRepo[]) {
-    return data
-      .filter((project) => !project.private && !project.fork)
-      .map((project) => Project.transformFromGit(project));
-  }
-
-  computeUpdatedProjects(dbProjects: IProject[], gitProjects: IProject[]) {
+  private computeUpdatedProjects(dbProjects: IProject[], gitProjects: IProject[]) {
     const toCreate = [] as IProject[];
     const toUpdate = [] as IProject[];
     const toDelete = [] as IProject[];
     
     gitProjects.forEach(project => {
-      const dbProject = dbProjects.find(dbProject => dbProject.gitId === project.gitId);
+      const dbProject = dbProjects.find(dbProject => dbProject.id === project.id);
 
       // add new project
       if (!dbProject) toCreate.push(project);
@@ -66,7 +60,7 @@ class GithubService {
     });
 
     dbProjects.forEach(dbProject => {
-      const project = gitProjects.find(project => project.gitId === dbProject.gitId);
+      const project = gitProjects.find(project => project.id === dbProject.id);
 
       if (!project) toDelete.push(dbProject);
     });
@@ -84,13 +78,25 @@ class GithubService {
     const dbProjects = await projectsService.getProjects();
 
     const {toCreate, toUpdate, toDelete} = this.computeUpdatedProjects(dbProjects, gitProjects);
+    const deletedProjectsIds = toDelete.map(p => p.id);
+    const updatedProjectsIds = toUpdate.map(p => p.id);
+    const createdProjectsIds = toCreate.map(p => p.id);
 
     await projectsService.createPrjects(toCreate);
-    // await projectsService.deleteProjectsByGitIds(toDelete);
-    // await projectsService
+    await projectsService.deleteProjectsByIds(deletedProjectsIds);
+    await projectsService.updatePrjects(toUpdate);
 
-    // skillsService.seedSkills();
-    // projectsService.seedProjects();
+    // Skills
+    const toCreateSkills = filtredRepos.filter(repo => createdProjectsIds.includes(repo.id));
+    const toDeleteSkills = filtredRepos.filter(repo => deletedProjectsIds.includes(repo.id));
+    const toUpdateSkills = filtredRepos.filter(repo => updatedProjectsIds.includes(repo.id));
+
+    for (const repo of toCreateSkills) {
+      const skills = await this.getSkills(repo.languages_url);
+      const skillsVal = Object.keys(skills).map(skill => skill.toLowerCase());
+      await skillsService.addSkills(skillsVal, repo.id);
+    }
+
   }
 }
 

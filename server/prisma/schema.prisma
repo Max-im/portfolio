@@ -15,8 +15,7 @@ model User {
 }
 
 model Project {
-    id          String            @id
-    gitId       String            @db.VarChar(255)
+    id          Int               @id
     createdAt   DateTime          @default(now())
     updatedAt   DateTime          @updatedAt
     published   Boolean           @default(true)
@@ -24,22 +23,23 @@ model Project {
     description String            @db.VarChar(1023)
     gitUrl      String            @db.VarChar(255)
     storefront  String            @db.VarChar(255)
-    topics      String[]
     skills      SkillsOnProject[]
 }
 
 model Skill {
-    id       Int               @id @default(autoincrement())
-    isActive Boolean           @default(true)
-    value    String            @db.VarChar(255)
-    projects SkillsOnProject[]
-    group    SkillGroup        @default(OTHER)
+    id          Int               @id @default(autoincrement())
+    isActive    Boolean           @default(true)
+    value       String            @unique @db.VarChar(255)
+    url         String            @db.VarChar(255)
+    displayName String            @unique @db.VarChar(255)
+    projects    SkillsOnProject[]
+    group       SkillGroup        @default(OTHER)
 }
 
 model SkillsOnProject {
-    prject    Project @relation(fields: [projectId], references: [id])
-    projectId String
-    skill     Skill   @relation(fields: [skillId], references: [id])
+    prject    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+    projectId Int
+    skill     Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
     skillId   Int
 
     @@id([projectId, skillId])

@@ -7,10 +7,14 @@
     "test": "jest --watchAll --no-cache",
     "test:ci": "jest",
     "db:init": "env-cmd -e development prisma db push",
+    "db:seed:dev": "env-cmd -e development prisma db seed",
     "dev": "env-cmd -e development ts-node-dev src/server.ts"
   },
   "author": "",
   "license": "ISC",
+  "prisma": {
+    "seed": "ts-node prisma/seed/seed.ts"
+  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",

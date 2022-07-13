@@ -6,20 +6,19 @@ export interface ISkill {
 class SkillsService {
   async getSkills() {
     // order by group
-    const skills = await prisma.skill.findMany({
-      where: { isActive: true },
+    return await prisma.skill.findMany({ where: { isActive: true }});
+  }
+
+  async addSkills(skills: string[], projectId: number) {
+    const skillsPromises = skills.map(skill => {
+      return prisma.skill.upsert({
+        where: { value: skill },
+        update: { projects: {create: [{ projectId: projectId }]}},
+        create: { value: skill, url: '', displayName: '', projects: {create: [{ projectId: projectId }]}}
+      });
     });
-    return skills;
-  }
 
-  async seedSkills(skills: ISkill[]) {
-    // compute and remove deleted
-    // compute and add new
-    // update if needed
-  }
-
-  async addSkills(skills: ISkill[]) {
-    prisma.skill.createMany({ data: skills });
+    await Promise.all(skillsPromises);
   }
 
   async removeSkills() { }
