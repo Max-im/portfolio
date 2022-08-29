@@ -1,13 +1,15 @@
 import express from 'express';
-import { skillsRouter } from './routes/skills';
-import { projectsRouter } from './routes/projects';
-import { getGithubData } from './jobs/github-jobrunner';
+import cors from 'cors';
+import { router } from './routes';
+import { githubJob } from './core/github/github.job';
 
 const app = express();
-app.use(express.json());
 
-app.use(skillsRouter);
-app.use(projectsRouter);
-getGithubData()
+app.use(cors());
+app.use(express.json());
+app.use(express.static('public'));
+app.use(router);
+
+// githubJob.execute();
 
 export { app };

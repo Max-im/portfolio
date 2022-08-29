@@ -1,17 +1,11 @@
-import { PrismaClient } from '@prisma/client'
-import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended'
+import { sequelize } from '../data';
 
-import prisma from '../prisma'
+let mongo: any;
 
-jest.setTimeout(1000 * 100);
-jest.mock('../prisma', () => ({
-  __esModule: true,
-  default: mockDeep<PrismaClient>(),
-}))
+beforeAll(async () => {});
 
-beforeEach(() => {
-  mockReset(prismaMock)
-})
+beforeEach(async () => {
+  jest.clearAllMocks();
+});
 
-export const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>
-
+afterAll(async () => {});
