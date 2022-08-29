@@ -1,98 +1,97 @@
-# **Portfolio**
+# Portfolio
 
-## **App info:**
+Personal portfolio application
+for perform own skills and represent made projects.
 
-| Name        | Portfolio                                                      |
-| ----------- | -------------------------------------------------------------- |
-| Description | portfolio page created using react + redux + node + postgresql |
-| Start date  | 06.2019                                                        |
+## Features
 
-## **Setup the App**
+```sh
+Fullstack application
+Authentication system
+Logging system
+PDF CV downloading
+SQL migrations
+SQL seeds
+SQL one-to-many and many-to-many relations
+Automatic information creating / updating
+Testing
+CI/CD deploying
+```
 
-- Download this repo:
-  `git clone https://github.com/Max-im/portfolio`
-- Go to the project directory:
-  `cd PATH`
-- Install all App dependencies:
-  `npm run in`
+## Tech
 
-## **Run the App**
+```sh
+Typescript
+Express
+Node
+PostgreSQL
+Sequelize
+React
+Redux
+GitHub API
+```
 
-- for start the project in develop mode:  
-  `npm run dev`
+## Installation
 
-## **Stack:**
+Portfolio requires [Node.js](https://nodejs.org/) to run.
 
-#### **Frontend:**
+### Run in development mode
 
-![react][reactimg] ![redux][reduximg] ![ES6][es6img] ![HTML][htmlimg] ![sass][sassimg] ![CSS3][cssimg] ![mobile][mobileimg] ![bem][bemimg]
+```sh
+cd portfolio/server
+prepare file .env-cmdrc from .env-cmdrc-example
+npm i
+npm run dev
+```
 
-#### **Backend:**
+### Run in test mode
 
-![node][nodeimg]
+```sh
+cd portfolio/server
+prepare file .env-cmdrc from .env-cmdrc-example
+npm i
+npm run test
+```
 
-#### **Db:**
+### Build production version
 
-![postgres][postgresimg]
+```sh
+npm run start
+```
 
-<!-- #### **Tests:** -->
+## API
 
-<!-- ![mocha][mochaimg] ![chai][chaiimg] ![sinon][sinonimg] ![jest][jestimg] -->
+### Skill
 
-#### **Other:**
+| method | url    | body | description     |
+| ------ | ------ | ---- | --------------- |
+| GET    | /skill | -    | get skills list |
 
-![babel][babelimg] ![eslint][eslintimg]
+### Resume
 
+| method | url     | body | description     |
+| ------ | ------- | ---- | --------------- |
+| GET    | /resume | -    | get resume data |
 
-<!-- author -->
+### Project
 
-[authorpage]: https://max-im.github.io/
-[portfolio]: https://max-im.github.io/portfolio/
-[myfb]: https://facebook.com/max.pozhidaev.7
-[myin]: https://www.linkedin.com/in/maxim-pozhidaev-16726811a
-[fbimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/facebook.png?raw=true
-[inimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/linkedin.png?raw=true
+| method | url      | body | description       |
+| ------ | -------- | ---- | ----------------- |
+| GET    | /project | -    | get projects data |
 
-<!-- frontend -->
+### Education
 
-[angularimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/angular.png?raw=true
-[reactimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/react.png?raw=true
-[reduximg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/redux.png?raw=true
-[vueimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/vue.png?raw=true
-[es6img]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/js.png?raw=true
-[jqueryimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/jquery.png?raw=true
-[htmlimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/html.png?raw=true
-[bemimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/bem.png?raw=true
-[bootstrapimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/bootstrap.png?raw=true
-[materialiseimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/materialize.png?raw=true
-[sassimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/sass.png?raw=true
-[cssimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/css.png?raw=true
-[mobileimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/mobile.png?raw=true
-[canvasimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/canvas.png?raw=true
-[d3img]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/d3.png?raw=true
+| method | url        | body | description         |
+| ------ | ---------- | ---- | ------------------- |
+| GET    | /education | -    | get educations list |
 
-<!-- backend -->
+### Experience
 
-[nodeimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/node.png?raw=true
+| method | url         | body | description         |
+| ------ | ----------- | ---- | ------------------- |
+| GET    | /experience | -    | get experience list |
 
-<!-- oter -->
-
-[webpackimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/webpack.png?raw=true
-[opengraphimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/openGraph.png?raw=true
-[schemaimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/schema.png?raw=true
-[babelimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/babel.png?raw=true
-[eslintimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/eslint.png?raw=true
-
-<!-- db -->
-
-[mongodbimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/mongoDB.png?raw=true
-[sqlimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/sql.png?raw=true
-[sequelizeimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/sequelize.png?raw=true
-[postgresimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/postgres.png?raw=true
-
-<!-- tests -->
-
-[mochaimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/mocha.png?raw=true
-[chaiimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/chai.png?raw=true
-[sinonimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/sinon.png?raw=true
-[jestimg]: https://github.com/Max-im/webpack-start-tmpl/blob/master/icons/jest.png?raw=true
+### Comment
+### CV
+### User
+### Like

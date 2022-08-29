@@ -2,6 +2,9 @@ node_modules
 dist
 server/config/variables.env
 client/.env
+.env-cmdrc
 package-lock.json
 nodemon.json
 scripts
+server_
+server/logs/*
