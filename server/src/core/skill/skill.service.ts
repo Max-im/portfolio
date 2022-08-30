@@ -2,6 +2,7 @@ import { Skill } from '../../data/models';
 import { ApiError } from '../../exceptions/errors';
 import { Logger } from '../../logger';
 import { CreateSkillDto } from './dto/create-skill.dto';
+import { fileLoaderService } from '../fileLoader/file-loader.service';
 
 const logger = new Logger('skill');
 
@@ -38,7 +39,11 @@ class SkillService {
   }
 
   create(dto: CreateSkillDto) {
-    return Skill.create(dto.data).catch(err => {
+    const data = dto.data;
+    return Skill.create(data).catch(err => {
+      if (data.icon) {
+        fileLoaderService.deleteIcon(data.icon);
+      }
       logger.error(err.message);
       throw ApiError.internal();
     });

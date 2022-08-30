@@ -1,6 +1,7 @@
 import multer from 'multer';
 import { v4 as uuid } from 'uuid';
-
+import * as path from 'path';
+import * as fs from 'fs';
 class FileLoaderService {
   private getUploader(folder: string) {
     const storage = multer.diskStorage({
@@ -22,7 +23,11 @@ class FileLoaderService {
 
   getImageUploader() {}
 
-  deleteIcon() {}
+  deleteIcon(iconPath: string) {
+    const iconName = iconPath.replace(/^\/icons\//, ''); 
+    fs.unlink(path.resolve(__dirname, '../../../public/icons/', iconName), () => {});
+  }
+
   deleteImage() {}
 }
 
