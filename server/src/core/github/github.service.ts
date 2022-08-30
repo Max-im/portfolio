@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { projectSkillsService } from '../project-skills/project-skills.service';
 import { projectService } from '../project/project.service';
+import { skillService } from '../skill/skill.service';
 import { Github } from './github.model'; 
 
 class GithubService {
@@ -74,6 +75,11 @@ class GithubService {
     }
 
     return newSkills;
+  }
+
+  async createSkills(skillsArr: any[]) {
+    const toCreateArr = skillsArr.map((id) => ({ id, displayName: id }));
+    await skillService.createBulk(toCreateArr);
   }
 
   async bindProjectSkills(projects: any[]) {

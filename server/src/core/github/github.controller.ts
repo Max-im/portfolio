@@ -22,7 +22,7 @@ class GithubController {
 
     // retrieve updated projects
     const toUpdateProjects = await githubService.getUpdatedProjects(dbProjects, repos);
-    console.log({toUpdateProjects})
+
     // get all skills
     const dbSkills = await skillService.getData();
 
@@ -30,7 +30,7 @@ class GithubController {
     const newSkills: string[] = await githubService.getNewSkills(newProjects, dbSkills);
 
     // create new skills
-    if (newSkills.length) await skillService.create(newSkills);
+    if (newSkills.length) await githubService.createSkills(newSkills);
 
     // create new projects
     if (newProjects.length) await projectService.create(newProjects);
