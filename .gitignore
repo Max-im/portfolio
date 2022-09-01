@@ -7,4 +7,5 @@ package-lock.json
 nodemon.json
 scripts
 server_
+client_
 server/logs/*
