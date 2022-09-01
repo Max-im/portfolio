@@ -27,12 +27,12 @@ it('returns 422 code for /skill POST route if get empty body', async () => {
 
 it('returns error message for /skill POST route if has no id', async () => {
   const response = await request(app).post(url).send({});
-  expect(response.body.message).toEqual("ID field is required");
+  expect(response.body.message).toEqual('ID field is required');
 });
 
 it('returns error message code for /skill POST route if has no displayName', async () => {
-  const response = await request(app).post(url).send({id: 'test'});
-  expect(response.body.message).toEqual("DisplayName field is required");
+  const response = await request(app).post(url).send({ id: 'test' });
+  expect(response.body.message).toEqual('DisplayName field is required');
 });
 
 it('gets error when tryes to create skill with invalid category', async () => {
@@ -43,14 +43,14 @@ it('gets error when tryes to create skill with invalid category', async () => {
 
 it('creates new skill without icon', async () => {
   await clearSkillDb();
-  const options = {id: 'test', displayName: 'Test', category: 'backend'}
+  const options = { id: 'test', displayName: 'Test', category: 'backend' };
   const response = await request(app).post(url).send(options);
   expect(response.status).toEqual(200);
 });
 
 it('gets error when tryes to create duplicated skill', async () => {
   await clearSkillDb();
-  const options = {id: 'test', displayName: 'Test', category: 'backend'}
+  const options = { id: 'test', displayName: 'Test', category: 'backend' };
   const response1 = await request(app).post(url).send(options);
   expect(response1.status).toEqual(200);
 
@@ -62,18 +62,25 @@ it('gets error when tryes to create duplicated skill', async () => {
 });
 
 it('creates new skill with icon', async () => {
-    await clearSkillDb();
-    const icon = path.resolve(__dirname, '../../../test/assets/icon.jpg');
-    const response = await request(app)
-      .post(url)
-      .set('content-type', 'application/octet-stream')
-      .field('id', 'test')
-      .field('displayName', 'Test')
-      .field('category', 'backend')
-      .attach('icon', icon);
+  const files = fs.readdirSync(path.resolve(__dirname, '../../../../public/icons'));
+  await clearSkillDb();
+  const icon = path.resolve(__dirname, '../../../test/assets/icon.jpg');
+  const response = await request(app)
+    .post(url)
+    .set('content-type', 'application/octet-stream')
+    .field('id', 'test')
+    .field('displayName', 'Test')
+    .field('category', 'backend')
+    .attach('icon', icon);
+
+  const afterFiles = fs.readdirSync(path.resolve(__dirname, '../../../../public/icons'));
 
   expect(response.status).toEqual(200);
-  deleteIcon(response.body.icon.replace(/^\/icons\//,''));
+  expect(afterFiles.length).toEqual(files.length + 1);
+
+  deleteIcon(response.body.icon.replace(/^\/icons\//, ''));
+  const afterDeleteFiles = fs.readdirSync(path.resolve(__dirname, '../../../../public/icons'));
+  expect(afterDeleteFiles.length).toEqual(files.length);
 });
 
 it('not save icon file if gets creating skill error', async () => {
@@ -81,6 +88,8 @@ it('not save icon file if gets creating skill error', async () => {
   const options = { id: 'test', displayName: 'Test', category: 'backend' };
   const response0 = await request(app).post(url).send(options);
   expect(response0.status).toEqual(200);
+
+  const files = fs.readdirSync(path.resolve(__dirname, '../../../../public/icons'));
 
   await wait();
 
@@ -92,5 +101,7 @@ it('not save icon file if gets creating skill error', async () => {
     .field('displayName', 'Test')
     .attach('icon', icon);
 
+  const filesAfterCall = fs.readdirSync(path.resolve(__dirname, '../../../../public/icons'));
   expect(response.status).toEqual(500);
+  expect(filesAfterCall.length).toEqual(files.length);
 });
