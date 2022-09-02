@@ -1,7 +1,12 @@
 import React from 'react'
+import ProjectsFilter from '../components/ProjectsFilter'
+import ProjectsList from '../components/ProjectsList'
 
 export default function Portfolio() {
   return (
-    <div>Portfolio</div>
+    <div>
+      <ProjectsFilter />
+      <ProjectsList />
+    </div>
   )
 }

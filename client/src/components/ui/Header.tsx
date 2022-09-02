@@ -13,9 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import { Link } from "react-router-dom";
-import { rotes } from '../../rotes';
+import { routes } from '../../routes';
 
-const pages = rotes.filter(rote => rote.isMenu);
+const pages = routes.filter(route => route.isMenu);
 const settings = ['Logout'];
 
 const Header = () => {
