@@ -8,7 +8,9 @@ for perform own skills and represent made projects.
 ```sh
 Fullstack application
 Authentication system
+File Uploading
 Logging system
+Cron Jobs
 PDF CV downloading
 SQL migrations
 SQL seeds

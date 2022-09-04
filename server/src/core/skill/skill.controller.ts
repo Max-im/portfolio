@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { ApiError } from '../../exceptions/errors';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { skillService } from './skill.service';
 
