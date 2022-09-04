@@ -6,7 +6,7 @@ const logger = new Logger('resume');
 
 class ResumeService {
   getData() {
-    return Resume.findOne().catch((err) => {
+    return Resume.findOne({attributes: ['name', 'bio', 'photo']}).catch((err) => {
       logger.error(err.message);
       throw ApiError.internal();
     });

@@ -1,7 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-export default function Experience() {
+export interface IExperience {
+  id: number;
+  description: string;
+  organisation: string;
+  from: string;
+  to: string;
+  icon: string;
+}
+
+export default function Experience(options: {experience: IExperience}) {
+  const experience: IExperience = options.experience;
+
   return (
-    <div>Experience</div>
-  )
+    (
+      <li>
+        <p>{experience.description}</p>
+        <p>{new Date(experience.from).toISOString()}</p>
+        <p>{new Date(experience.to).toISOString()}</p>
+        <p>{experience.organisation}</p>
+        <img src={experience.icon} alt={experience.organisation} />
+      </li>
+    )
+  );
 }
