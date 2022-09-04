@@ -6,7 +6,9 @@ const logger = new Logger('education');
 
 class EducationService {
   async getData() {
-    return Education.findAll().catch(err => {
+    return Education.findAll({
+      attributes: ['id', 'from', 'to', 'icon', 'organisation', 'description'],
+    }).catch((err) => {
       logger.error(err.message);
       throw ApiError.internal();
     });

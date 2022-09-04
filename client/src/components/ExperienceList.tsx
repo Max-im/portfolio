@@ -8,7 +8,7 @@ export default function ExperienceList() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/experience')
+      .get('/experience')
       .then(({ data }) => setExperience(data))
       .catch(() => setError('error'));
   }, []);

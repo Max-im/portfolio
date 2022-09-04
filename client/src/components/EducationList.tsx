@@ -8,7 +8,7 @@ export default function EducationList() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/education')
+      .get('/education')
       .then(({ data }) => setEducation(data))
       .catch(() => setError('error'));
   }, []);

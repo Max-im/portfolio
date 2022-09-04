@@ -13,7 +13,7 @@ export default function Bio() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/resume')
+      .get('/resume')
       .then(({ data }) => setBio(data))
       .catch(() => setError('error'));
   }, []);

@@ -1,7 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-export default function Skill() {
+export interface ISkill {
+  id: string;
+  displayName: string;
+  icon: string;
+}
+
+export default function Skill(options: {skill: ISkill}) {
+  const skill: ISkill = options.skill;
+
   return (
-    <div>Skill</div>
-  )
+    (
+      <li>
+        <img src={skill.icon} alt={skill.id} />
+      </li>
+    )
+  );
 }
