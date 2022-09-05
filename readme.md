@@ -12,10 +12,10 @@ File Uploading
 Logging system
 Cron Jobs
 PDF CV downloading
-SQL migrations
-SQL seeds
+DB migrations
+DB seeds
 SQL one-to-many and many-to-many relations
-Automatic information creating / updating
+Caching
 Testing
 CI/CD deploying
 ```
@@ -30,6 +30,8 @@ PostgreSQL
 Sequelize
 React
 Redux
+Redis
+Jest
 GitHub API
 ```
 
