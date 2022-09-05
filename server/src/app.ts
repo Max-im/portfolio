@@ -12,6 +12,6 @@ app.use(express.static('public'));
 app.use(router);
 
 // githubJob.execute();
-// cvJob.execute();
+cvJob.execute();
 
 export { app };
