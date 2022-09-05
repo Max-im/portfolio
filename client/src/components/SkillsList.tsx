@@ -25,7 +25,7 @@ export default function SkillsList() {
         Object.keys(skills).map((category) => (
           <div key={category}>
             {category}
-            <ul>
+            <ul style={{display: "flex"}}>
               {skills[category].map((skill) => (
                 <Skill key={skill.id} skill={skill} />
               ))}

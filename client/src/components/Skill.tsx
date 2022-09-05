@@ -12,7 +12,7 @@ export default function Skill(options: {skill: ISkill}) {
   return (
     (
       <li>
-        <img src={skill.icon} alt={skill.id} />
+        <img width="42" src={skill.icon} alt={skill.id} />
       </li>
     )
   );
