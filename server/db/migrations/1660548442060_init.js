@@ -6,6 +6,7 @@ module.exports = {
         id: { type: DataTypes.STRING, primaryKey: true },
         displayName: { type: DataTypes.STRING, unique: true },
         icon: { type: DataTypes.STRING, defaultValue: '' },
+        active: { type: DataTypes.BOOLEAN, defaultValue: true },
         createdAt: { type: DataTypes.DATE, defaultValue: new Date() },
         updatedAt: { type: DataTypes.DATE, defaultValue: new Date() },
         category: {

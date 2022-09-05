@@ -8,8 +8,8 @@ interface IBio {
 }
 
 export default function Bio() {
-  const [bio, setBio] = useState<null|IBio>(null);
-  const [error, setError] = useState<null|string>(null);
+  const [bio, setBio] = useState<null | IBio>(null);
+  const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
     axios
@@ -17,7 +17,7 @@ export default function Bio() {
       .then(({ data }) => setBio(data))
       .catch(() => setError('error'));
   }, []);
-  
+
   return (
     <>
       {bio && (
@@ -25,6 +25,7 @@ export default function Bio() {
           <p>{bio.name}</p>
           <p>{bio.bio}</p>
           <img src={bio.photo} alt={bio.name} />
+          <a target="_blank" rel="noreferrer" href="http://localhost:5000/assets/cv.pdf">CV</a>
         </>
       )}
       {error && <>{error}</>}

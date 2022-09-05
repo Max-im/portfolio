@@ -14,6 +14,7 @@ class SkillService {
   getData() {
     return Skill.findAll({
       attributes: ['id', 'displayName', 'icon', 'category'],
+      where: { active: true },
     }).catch((err) => {
       logger.error(err.message);
       throw ApiError.internal();
@@ -21,7 +22,7 @@ class SkillService {
   }
 
   formatResponse(skillsArr: any[]) {
-    const response: {[key: string]: string[]} = {};
+    const response: { [key: string]: string[] } = {};
 
     for (const skill of skillsArr) {
       response[skill.category] = response[skill.category] || [];
@@ -40,7 +41,7 @@ class SkillService {
 
   create(dto: CreateSkillDto) {
     const data = dto.data;
-    return Skill.create(data).catch(err => {
+    return Skill.create(data).catch((err) => {
       if (data.icon) {
         fileLoaderService.deleteIcon(data.icon);
       }

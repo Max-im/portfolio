@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Skill, { ISkill } from './Skill';
 
+interface SkillsData {
+  [key: string]: ISkill[]
+}
+
 export default function SkillsList() {
-  const [skills, setSkills] = useState<null | { [key: string]: ISkill[] }>(null);
+  const [skills, setSkills] = useState<null | SkillsData>(null);
   const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
