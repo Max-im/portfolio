@@ -24,6 +24,8 @@ class CvController {
 
 
     await cvService.addBio(doc);
+    await cvService.addExperience(doc);
+    await cvService.addEducation(doc);
 
     doc.end();
   }

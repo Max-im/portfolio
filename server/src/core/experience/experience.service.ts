@@ -7,7 +7,7 @@ const logger = new Logger('experience');
 class ExperienceService {
   async getData() {
     return Experience.findAll({
-      attributes: ['id', 'from', 'to', 'icon', 'organisation', 'description'],
+      attributes: ['id', 'from', 'to', 'icon', 'organisation', 'description', 'position'],
       order: [['id', 'DESC']],
     }).catch((err) => {
       logger.error(err.message);

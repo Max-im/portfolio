@@ -27,6 +27,7 @@ module.exports = {
       queryInterface.createTable('experiences', {
         id: { type: DataTypes.INTEGER, primaryKey: true },
         organisation: { type: DataTypes.STRING, allowNull: false },
+        position: { type: DataTypes.STRING, allowNull: false },
         from: { type: DataTypes.DATE, allowNull: false },
         to: { type: DataTypes.DATE },
         description: { type: DataTypes.STRING, allowNull: false },
