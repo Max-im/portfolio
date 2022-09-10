@@ -5,14 +5,6 @@ import { skillService } from '../skill/skill.service';
 import { resumeService } from './resume.service';
 
 class ResumeController {
-  async _getData(req: Request, res: Response, next: NextFunction) {
-    try {
-      const resumeData = await resumeService.getData();
-      return res.json(resumeData);
-    } catch (err) {
-      next(err);
-    }
-  }
   async getData(req: Request, res: Response, next: NextFunction) {
     try {
       const bioPromise = resumeService.getData();

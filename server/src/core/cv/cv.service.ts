@@ -69,7 +69,7 @@ class CvService {
 
     experience.forEach((exp) => {
       // @ts-ignore
-      doc.image('public/icons/react.png', { fit: [18, 24], align: 'center', valign: 'bottom' });
+      doc.image(`public${exp.icon}`, { fit: [18, 24], align: 'center', valign: 'bottom' });
       // @ts-ignore
       doc.fontSize(10).fillColor(c.black).text(`${exp.position} | ${exp.organisation}`, { indent: 25, paragraphGap: 2 });
       // @ts-ignore
@@ -85,7 +85,7 @@ class CvService {
 
     educations.forEach(edu => {
       // @ts-ignore
-      doc.image('public/icons/vue.png', { fit: [18, 24], align: 'center', valign: 'bottom' });
+      doc.image(`public${edu.icon}`, { fit: [18, 24], align: 'center', valign: 'bottom' });
       // @ts-ignore
       doc.fontSize(12).fillColor(c.black).text(edu.organisation, { indent: 25, paragraphGap: 2 });
       // @ts-ignore

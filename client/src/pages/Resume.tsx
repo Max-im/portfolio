@@ -34,8 +34,8 @@ export default function Resume() {
         <>
           <Bio bio={bio!} />
           <SkillsList skills={skills!} />
-          <EducationList educations={educations!} />
           <ExperienceList experience={experience!} />
+          <EducationList educations={educations!} />
         </>
       )}
       {error && <p>error</p>}
