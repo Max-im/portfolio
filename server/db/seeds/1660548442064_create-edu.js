@@ -7,7 +7,7 @@ module.exports = {
           from: new Date('2003-09-01'),
           to: new Date('2008-06-01'),
           description: 'Economic',
-          icon: ''
+          icon: '/icons/donnu.png'
         }
       ]);
     },

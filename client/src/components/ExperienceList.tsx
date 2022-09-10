@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Experience, { IExperience } from './Experience';
 
-export default function ExperienceList() {
-  const [experience, setExperience] = useState<null | IExperience[]>(null);
-  const [error, setError] = useState<null | string>(null);
-
-  useEffect(() => {
-    axios
-      .get('/experience')
-      .then(({ data }) => setExperience(data))
-      .catch(() => setError('error'));
-  }, []);
+export default function ExperienceList(params: { experience: IExperience[] }) {
+  const experience = params.experience;
 
   return (
     <>
@@ -22,7 +13,6 @@ export default function ExperienceList() {
           ))}
         </ul>
       )}
-      {error && <>{error}</>}
     </>
   );
 }

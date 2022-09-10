@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-interface IBio {
+export interface IBio {
   name: string;
   photo: string;
   bio: string;
 }
 
-export default function Bio() {
-  const [bio, setBio] = useState<null | IBio>(null);
-  const [error, setError] = useState<null | string>(null);
-
-  useEffect(() => {
-    axios
-      .get('/resume')
-      .then(({ data }) => setBio(data))
-      .catch(() => setError('error'));
-  }, []);
+export default function Bio(params: { bio: IBio }) {
+  const bio = params.bio;
 
   return (
     <>
@@ -28,7 +19,6 @@ export default function Bio() {
           <a target="_blank" rel="noreferrer" href="http://localhost:5000/assets/cv.pdf">CV</a>
         </>
       )}
-      {error && <>{error}</>}
     </>
   );
 }

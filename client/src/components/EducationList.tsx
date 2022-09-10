@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Education, { IEducation } from './Education';
 
-export default function EducationList() {
-  const [edu, setEducation] = useState<null | IEducation[]>(null);
-  const [error, setError] = useState<null | string>(null);
-
-  useEffect(() => {
-    axios
-      .get('/education')
-      .then(({ data }) => setEducation(data))
-      .catch(() => setError('error'));
-  }, []);
+export default function EducationList(params: { educations: IEducation[] }) {
+  const edu = params.educations;
 
   return (
     <>
@@ -22,7 +13,6 @@ export default function EducationList() {
           ))}
         </ul>
       )}
-      {error && <>{error}</>}
     </>
   );
 }

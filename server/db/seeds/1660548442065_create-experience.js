@@ -8,7 +8,7 @@ module.exports = {
           to: new Date('2010-04-24'),
           description: 'pb description',
           position: 'Credit Specialist',
-          icon: ''
+          icon: '/icons/privatbank.png'
         },
         {
           id: 2,
@@ -17,7 +17,7 @@ module.exports = {
           to: new Date('2014-09-07'),
           description: 'gaz description',
           position: 'from Economist to Head of Department',
-          icon: ''
+          icon: '/icons/gorgaz.png'
         },
         {
           id: 3,
@@ -26,7 +26,7 @@ module.exports = {
           to: new Date('2018-01-08'),
           description: 'chnpp description',
           position: 'Economist',
-          icon: ''
+          icon: '/icons/chnpp.png'
         },
         {
           id: 4,
@@ -35,7 +35,7 @@ module.exports = {
           to: new Date('2020-09-08'),
           description: 'ideals description',
           position: 'JavaScript Developer',
-          icon: ''
+          icon: '/icons/ideals.png'
         },
         {
           id: 5,
@@ -44,7 +44,7 @@ module.exports = {
           to: null,
           description: 'astound description',
           position: 'Web Developer',
-          icon: ''
+          icon: '/icons/astound.png'
         }
       ]);
     },
