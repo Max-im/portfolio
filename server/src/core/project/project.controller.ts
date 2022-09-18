@@ -15,8 +15,14 @@ class ProjectController {
     try {
       const id = Number(req.params.id);
       if (isNaN(id)) throw ApiError.internal();
+
       const projectData = await projectService.getById(id);
-      return res.json(projectData);
+      if (!projectData) throw ApiError.badRequest('Project not found');
+
+      // TODO: get comments
+      // TODO: get likes
+      
+      return res.json({project: projectData});
     } catch (err) {
       next(err);
     }
